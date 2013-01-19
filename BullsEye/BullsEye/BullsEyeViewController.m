@@ -26,4 +26,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)showAlert
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hello, world !" message:@"This is the first step of the BullsEye app !" delegate:nil cancelButtonTitle:@"Sweet !" otherButtonTitles:nil];
+    [alertView show];
+}
+
 @end

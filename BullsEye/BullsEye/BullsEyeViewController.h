@@ -10,4 +10,6 @@
 
 @interface BullsEyeViewController : UIViewController
 
+-(IBAction)showAlert;
+
 @end
