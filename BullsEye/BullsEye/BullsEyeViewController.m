@@ -43,12 +43,28 @@
 
 -(IBAction)showAlert
 {
-    int sliderValue = (int)lroundf(self.slider.value);
-    self.score = 100 - abs(sliderValue - self.targetValue);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Aiming for %d...", self.targetValue]
-                                                        message:[NSString stringWithFormat:@"Your bet: %d, Your score: %d", sliderValue, self.score]
+    int difference = abs((int)lroundf(self.slider.value) - self.targetValue);
+    self.score = 100 - difference;
+    
+    NSString *title;
+    if(!difference) {
+        title = @"Perfect !";
+        self.score += 100;
+    } else if(difference < 5) {
+        if(difference == 1) {
+            self.score += 50;
+        }
+        title = @"Almost had it !";
+    } else if(difference < 10) {
+        title = @"Not bad...";
+    } else {
+        title = @"Not even close !";
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+                                                        message:[NSString stringWithFormat:@"Your score: %d", self.score]
                                                        delegate:nil
-                                              cancelButtonTitle:@"Sweet !"
+                                              cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];
     [self startNewRound];
