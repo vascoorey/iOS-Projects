@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BullsEyeViewController : UIViewController
+@interface BullsEyeViewController : UIViewController <UIAlertViewDelegate>
 
 @property int targetValue;
 @property int score;
@@ -18,5 +18,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *roundLabel;
 
 -(IBAction)showAlert;
+-(IBAction)reset;
+-(IBAction)showInfo;
 
 @end

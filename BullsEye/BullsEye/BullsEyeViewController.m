@@ -7,6 +7,7 @@
 //
 
 #import "BullsEyeViewController.h"
+#import "AboutViewController.h"
 
 @interface BullsEyeViewController ()
 -(void)startNewRound;
@@ -25,9 +26,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self startNewRound];
-    self.scoreLabel.text = @"0";
-    self.roundLabel.text = @"1";
+    [self reset];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,15 +62,28 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:[NSString stringWithFormat:@"Your score: %d", self.score]
-                                                       delegate:nil
+                                                       delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];
+}
+
+-(IBAction)reset
+{
+    [self startNewRound];
+    self.scoreLabel.text = @"0";
+    self.roundLabel.text = @"1";
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
     [self startNewRound];
 }
 
 -(void)startNewRound
 {
+    // Reset the slider to 50
+    self.slider.value = 50;
     // Generate new target value (model)
     self.targetValue = 1 + arc4random() % 100;
     // Update the labels to reflect the last round and the new target.
@@ -79,6 +91,13 @@
     // May be a future cause of complaints...
     self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.score + [self.scoreLabel.text intValue]];
     self.roundLabel.text = [NSString stringWithFormat:@"%d", 1 + [self.roundLabel.text intValue]];
+}
+
+-(IBAction)showInfo
+{
+    AboutViewController *aboutView = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    aboutView.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:aboutView animated:YES completion:nil];
 }
 
 @end
