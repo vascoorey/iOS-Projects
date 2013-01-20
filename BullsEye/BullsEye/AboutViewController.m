@@ -7,7 +7,6 @@
 //
 
 #import "AboutViewController.h"
-#import "BullsEyeViewController.h"
 
 @interface AboutViewController ()
 
@@ -43,9 +42,7 @@
 
 -(IBAction)close
 {
-    BullsEyeViewController *bullsEye = [[BullsEyeViewController alloc] initWithNibName:@"BullsEyeViewController" bundle:nil];
-    bullsEye.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:bullsEye animated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
