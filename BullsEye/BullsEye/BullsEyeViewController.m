@@ -14,6 +14,8 @@
 
 @implementation BullsEyeViewController
 
+@synthesize currentValue = _currentValue;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,10 +28,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
 -(IBAction)showAlert
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hello, world !" message:@"This is the first step of the BullsEye app !" delegate:nil cancelButtonTitle:@"Sweet !" otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bull's Eye"
+                                                        message:[NSString stringWithFormat:@"Slider value: %d", self.currentValue]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Sweet !"
+                                              otherButtonTitles:nil];
     [alertView show];
+}
+
+-(IBAction)sliderMoved:(UISlider *)slider
+{
+    self.currentValue = lroundf(slider.value);
 }
 
 @end

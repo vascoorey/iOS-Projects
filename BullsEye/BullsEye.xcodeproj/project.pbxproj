@@ -295,6 +295,7 @@
 				BC1BA3C216AB1EF300810E76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
