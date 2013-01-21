@@ -29,6 +29,7 @@
 		BCBA2A8A16ADA20B007CBBC4 /* SliderTrackRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8116ADA20B007CBBC4 /* SliderTrackRight.png */; };
 		BCBA2A8B16ADA20B007CBBC4 /* StartOverButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8216ADA20B007CBBC4 /* StartOverButton.png */; };
 		BCBA2A8C16ADA20B007CBBC4 /* StartOverIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8316ADA20B007CBBC4 /* StartOverIcon.png */; };
+		BCBA2A8F16ADAE4B007CBBC4 /* BullsEye.html in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8E16ADAE4B007CBBC4 /* BullsEye.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		BCBA2A8116ADA20B007CBBC4 /* SliderTrackRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderTrackRight.png; sourceTree = "<group>"; };
 		BCBA2A8216ADA20B007CBBC4 /* StartOverButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartOverButton.png; sourceTree = "<group>"; };
 		BCBA2A8316ADA20B007CBBC4 /* StartOverIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartOverIcon.png; sourceTree = "<group>"; };
+		BCBA2A8E16ADAE4B007CBBC4 /* BullsEye.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BullsEye.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				BC370AD016AC64F90053F662 /* AboutViewController.h */,
 				BC370AD116AC64F90053F662 /* AboutViewController.m */,
 				BC370AD216AC64F90053F662 /* AboutViewController.xib */,
+				BCBA2A8E16ADAE4B007CBBC4 /* BullsEye.html */,
 				BC1BA3A716AB1EF300810E76 /* Supporting Files */,
 			);
 			path = BullsEye;
@@ -217,6 +220,7 @@
 				BCBA2A8A16ADA20B007CBBC4 /* SliderTrackRight.png in Resources */,
 				BCBA2A8B16ADA20B007CBBC4 /* StartOverButton.png in Resources */,
 				BCBA2A8C16ADA20B007CBBC4 /* StartOverIcon.png in Resources */,
+				BCBA2A8F16ADAE4B007CBBC4 /* BullsEye.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

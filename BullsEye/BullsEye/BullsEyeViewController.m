@@ -26,6 +26,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Slider Images
+    // Set image for normal state
+    UIImage *thumbImageNormal = [UIImage imageNamed:@"SliderThumb-Normal"];
+    [self.slider setThumbImage:thumbImageNormal forState:UIControlStateNormal];
+    // Set image for highlighted state
+    UIImage *thumbImageHighlighted = [UIImage imageNamed:@"SliderThumb-Highlighted"];
+    [self.slider setThumbImage:thumbImageHighlighted forState:UIControlStateHighlighted];
+    // Set left tracking image
+    UIImage *leftTrackingImage = [[UIImage imageNamed:@"SliderTrackLeft"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
+    [self.slider setMinimumTrackImage:leftTrackingImage forState:UIControlStateNormal];
+    // Set right tracking image
+    UIImage *rightTrackingImage = [[UIImage imageNamed:@"SliderTrackRight"] stretchableImageWithLeftCapWidth:14 topCapHeight:0];
+    [self.slider setMaximumTrackImage:rightTrackingImage forState:UIControlStateNormal];
+    
+    // Reset the game (in order to start it)
     [self reset];
 }
 
