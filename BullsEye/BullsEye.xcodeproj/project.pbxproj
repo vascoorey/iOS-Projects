@@ -20,6 +20,15 @@
 		BC1BA3BD16AB1EF300810E76 /* BullsEyeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1BA3BB16AB1EF300810E76 /* BullsEyeViewController.xib */; };
 		BC370AD316AC64F90053F662 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC370AD116AC64F90053F662 /* AboutViewController.m */; };
 		BC370AD416AC64F90053F662 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC370AD216AC64F90053F662 /* AboutViewController.xib */; };
+		BCBA2A8416ADA20B007CBBC4 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A7B16ADA20B007CBBC4 /* Background.png */; };
+		BCBA2A8516ADA20B007CBBC4 /* Button-Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A7C16ADA20B007CBBC4 /* Button-Highlighted.png */; };
+		BCBA2A8616ADA20B007CBBC4 /* Button-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A7D16ADA20B007CBBC4 /* Button-Normal.png */; };
+		BCBA2A8716ADA20B007CBBC4 /* SliderThumb-Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A7E16ADA20B007CBBC4 /* SliderThumb-Highlighted.png */; };
+		BCBA2A8816ADA20B007CBBC4 /* SliderThumb-Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A7F16ADA20B007CBBC4 /* SliderThumb-Normal.png */; };
+		BCBA2A8916ADA20B007CBBC4 /* SliderTrackLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8016ADA20B007CBBC4 /* SliderTrackLeft.png */; };
+		BCBA2A8A16ADA20B007CBBC4 /* SliderTrackRight.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8116ADA20B007CBBC4 /* SliderTrackRight.png */; };
+		BCBA2A8B16ADA20B007CBBC4 /* StartOverButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8216ADA20B007CBBC4 /* StartOverButton.png */; };
+		BCBA2A8C16ADA20B007CBBC4 /* StartOverIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBA2A8316ADA20B007CBBC4 /* StartOverIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +51,15 @@
 		BC370AD016AC64F90053F662 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BC370AD116AC64F90053F662 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BC370AD216AC64F90053F662 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		BCBA2A7B16ADA20B007CBBC4 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		BCBA2A7C16ADA20B007CBBC4 /* Button-Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Highlighted.png"; sourceTree = "<group>"; };
+		BCBA2A7D16ADA20B007CBBC4 /* Button-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Normal.png"; sourceTree = "<group>"; };
+		BCBA2A7E16ADA20B007CBBC4 /* SliderThumb-Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SliderThumb-Highlighted.png"; sourceTree = "<group>"; };
+		BCBA2A7F16ADA20B007CBBC4 /* SliderThumb-Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SliderThumb-Normal.png"; sourceTree = "<group>"; };
+		BCBA2A8016ADA20B007CBBC4 /* SliderTrackLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderTrackLeft.png; sourceTree = "<group>"; };
+		BCBA2A8116ADA20B007CBBC4 /* SliderTrackRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderTrackRight.png; sourceTree = "<group>"; };
+		BCBA2A8216ADA20B007CBBC4 /* StartOverButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartOverButton.png; sourceTree = "<group>"; };
+		BCBA2A8316ADA20B007CBBC4 /* StartOverIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartOverIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +79,7 @@
 		BC1BA39116AB1EF300810E76 = {
 			isa = PBXGroup;
 			children = (
+				BCBA2A7A16ADA20B007CBBC4 /* Images */,
 				BC1BA3A616AB1EF300810E76 /* BullsEye */,
 				BC1BA39F16AB1EF300810E76 /* Frameworks */,
 				BC1BA39D16AB1EF300810E76 /* Products */,
@@ -113,6 +132,22 @@
 				BC1BA3B616AB1EF300810E76 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCBA2A7A16ADA20B007CBBC4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BCBA2A7B16ADA20B007CBBC4 /* Background.png */,
+				BCBA2A7C16ADA20B007CBBC4 /* Button-Highlighted.png */,
+				BCBA2A7D16ADA20B007CBBC4 /* Button-Normal.png */,
+				BCBA2A7E16ADA20B007CBBC4 /* SliderThumb-Highlighted.png */,
+				BCBA2A7F16ADA20B007CBBC4 /* SliderThumb-Normal.png */,
+				BCBA2A8016ADA20B007CBBC4 /* SliderTrackLeft.png */,
+				BCBA2A8116ADA20B007CBBC4 /* SliderTrackRight.png */,
+				BCBA2A8216ADA20B007CBBC4 /* StartOverButton.png */,
+				BCBA2A8316ADA20B007CBBC4 /* StartOverIcon.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +208,15 @@
 				BC1BA3B716AB1EF300810E76 /* Default-568h@2x.png in Resources */,
 				BC1BA3BD16AB1EF300810E76 /* BullsEyeViewController.xib in Resources */,
 				BC370AD416AC64F90053F662 /* AboutViewController.xib in Resources */,
+				BCBA2A8416ADA20B007CBBC4 /* Background.png in Resources */,
+				BCBA2A8516ADA20B007CBBC4 /* Button-Highlighted.png in Resources */,
+				BCBA2A8616ADA20B007CBBC4 /* Button-Normal.png in Resources */,
+				BCBA2A8716ADA20B007CBBC4 /* SliderThumb-Highlighted.png in Resources */,
+				BCBA2A8816ADA20B007CBBC4 /* SliderThumb-Normal.png in Resources */,
+				BCBA2A8916ADA20B007CBBC4 /* SliderTrackLeft.png in Resources */,
+				BCBA2A8A16ADA20B007CBBC4 /* SliderTrackRight.png in Resources */,
+				BCBA2A8B16ADA20B007CBBC4 /* StartOverButton.png in Resources */,
+				BCBA2A8C16ADA20B007CBBC4 /* StartOverIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
