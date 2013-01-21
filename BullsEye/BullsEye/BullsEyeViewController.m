@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "BullsEyeViewController.h"
 #import "AboutViewController.h"
 
@@ -86,9 +88,16 @@
 
 -(IBAction)reset
 {
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionFade;
+    transition.duration = 1;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
     [self startNewRound];
     self.scoreLabel.text = @"0";
     self.roundLabel.text = @"1";
+    
+    [self.view.layer addAnimation:transition forKey:nil];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
