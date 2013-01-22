@@ -18,9 +18,14 @@
     if((self = [super init]))
     {
         self.text = text;
-        self.checked = checked;
+        _checked = checked;
     }
     return self;
+}
+
+-(void)toggleChecked
+{
+    _checked = !_checked;
 }
 
 +(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked

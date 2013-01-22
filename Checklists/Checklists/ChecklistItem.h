@@ -11,9 +11,10 @@
 @interface ChecklistItem : NSObject
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, assign) BOOL checked;
+@property (nonatomic, readonly) BOOL checked;
 
 -(id)initWithText:(NSString *)text andChecked:(BOOL)checked;
+-(void)toggleChecked;
 
 +(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked;
 

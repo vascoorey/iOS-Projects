@@ -10,21 +10,21 @@
 #import "ChecklistItem.h"
 
 @interface ChecklistsViewController ()
-@property (nonatomic, strong) NSArray *rows;
+@property (nonatomic, strong) NSMutableArray *rows;
 @end
 
 @implementation ChecklistsViewController
 
 @synthesize rows = _rows;
 
--(NSArray *)rows
+-(NSMutableArray *)rows
 {
     if(!_rows)
     {
         _rows = [NSMutableArray arrayWithObjects:[ChecklistItem itemWithItem:@"Walk the dog" andChecked:NO], [ChecklistItem itemWithItem:@"Brush my teeth" andChecked:NO], [ChecklistItem itemWithItem:@"Learn iOS development..." andChecked:NO], [ChecklistItem itemWithItem:@"Soccer practice" andChecked:NO], [ChecklistItem itemWithItem:@"Eat ice cream" andChecked:NO], nil];
     }
     // Returns an immutable copy
-    return [_rows copy];
+    return _rows;
 }
 
 - (void)viewDidLoad
@@ -49,15 +49,23 @@
     return [self.rows count];
 }
 
+-(void)addItem
+{
+    [self.rows addObject:[ChecklistItem itemWithItem:@"New row!" andChecked:NO]];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.rows count] - 1 inSection:0];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 // Rethink this bit... Use introspection to guard !
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
-    UILabel *cellLabel = (UILabel *)[cell viewWithTag:1000];
     ChecklistItem *item = (ChecklistItem *)[self.rows objectAtIndex:indexPath.row];
-    cellLabel.text = item.text;
-    [self configureCheckmarkForCell:cell forChecklistItem:item];
+    
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     return cell;
 }
 
@@ -65,13 +73,18 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ChecklistItem *item = (ChecklistItem *)[self.rows objectAtIndex:indexPath.row];
-    item.checked = !item.checked;
+    [item toggleChecked];
     
-    [self configureCheckmarkForCell:cell forChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
--(void)configureCheckmarkForCell:(UITableViewCell *)cell forChecklistItem:(ChecklistItem *)item
+-(void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
+{
+    [(UILabel *)[cell viewWithTag:1000] setText:item.text];
+}
+
+-(void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
     if(item.checked)
     {
@@ -80,6 +93,13 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.rows removeObjectAtIndex:indexPath.row];
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end
