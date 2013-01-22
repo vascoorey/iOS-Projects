@@ -7,23 +7,24 @@
 //
 
 #import "ChecklistsViewController.h"
+#import "ChecklistItem.h"
 
 @interface ChecklistsViewController ()
-@property (nonatomic, strong) NSMutableDictionary *rows;
+@property (nonatomic, strong) NSArray *rows;
 @end
 
 @implementation ChecklistsViewController
 
 @synthesize rows = _rows;
 
--(NSMutableDictionary *)rows
+-(NSArray *)rows
 {
     if(!_rows)
     {
-        _rows = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"Walk the dog", [NSNumber numberWithBool:NO], @"Brush my teeth", [NSNumber numberWithBool:YES], @"Learn iOS development...", [NSNumber numberWithBool:NO], @"Soccer practice", [NSNumber numberWithBool:YES], @"Eat ice cream", nil];
+        _rows = [NSMutableArray arrayWithObjects:[ChecklistItem itemWithItem:@"Walk the dog" andChecked:NO], [ChecklistItem itemWithItem:@"Brush my teeth" andChecked:NO], [ChecklistItem itemWithItem:@"Learn iOS development..." andChecked:NO], [ChecklistItem itemWithItem:@"Soccer practice" andChecked:NO], [ChecklistItem itemWithItem:@"Eat ice cream" andChecked:NO], nil];
     }
     // Returns an immutable copy
-    return _rows;
+    return [_rows copy];
 }
 
 - (void)viewDidLoad
@@ -48,32 +49,31 @@
     return [self.rows count];
 }
 
+// Rethink this bit... Use introspection to guard !
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
-    // Rethink this bit... Use introspection to guard !
     UILabel *cellLabel = (UILabel *)[cell viewWithTag:1000];
-    NSArray *allKeys = [self.rows allKeys];
-    cellLabel.text = (NSString *)[allKeys objectAtIndex:indexPath.row];
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    ChecklistItem *item = (ChecklistItem *)[self.rows objectAtIndex:indexPath.row];
+    cellLabel.text = item.text;
+    [self configureCheckmarkForCell:cell forChecklistItem:item];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSArray *allKeys = [self.rows allKeys];
-    BOOL isChecked = [[self.rows objectForKey:[allKeys objectAtIndex:indexPath.row]] boolValue];
-    [self.rows setObject:[NSNumber numberWithBool:!isChecked] forKey:[allKeys objectAtIndex:indexPath.row]];
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    ChecklistItem *item = (ChecklistItem *)[self.rows objectAtIndex:indexPath.row];
+    item.checked = !item.checked;
+    
+    [self configureCheckmarkForCell:cell forChecklistItem:item];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
--(void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+-(void)configureCheckmarkForCell:(UITableViewCell *)cell forChecklistItem:(ChecklistItem *)item
 {
-    BOOL isChecked = NO;
-    NSArray *allKeys = [self.rows allKeys];
-    if((isChecked = [[self.rows objectForKey:[allKeys objectAtIndex:indexPath.row]] boolValue]))
+    if(item.checked)
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else
