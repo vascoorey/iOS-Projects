@@ -9,21 +9,21 @@
 #import "ChecklistsViewController.h"
 
 @interface ChecklistsViewController ()
-@property (nonatomic, strong) NSMutableArray *rows;
+@property (nonatomic, strong) NSMutableDictionary *rows;
 @end
 
 @implementation ChecklistsViewController
 
 @synthesize rows = _rows;
 
--(NSMutableArray *)rows
+-(NSMutableDictionary *)rows
 {
     if(!_rows)
     {
-        _rows = [NSMutableArray arrayWithObjects:@"Walk the dog", @"Brush my teeth", @"Learn iOS development...", @"Soccer practice", @"Eat ice cream", nil];
+        _rows = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], @"Walk the dog", [NSNumber numberWithBool:NO], @"Brush my teeth", [NSNumber numberWithBool:YES], @"Learn iOS development...", [NSNumber numberWithBool:NO], @"Soccer practice", [NSNumber numberWithBool:YES], @"Eat ice cream", nil];
     }
     // Returns an immutable copy
-    return [_rows copy];
+    return _rows;
 }
 
 - (void)viewDidLoad
@@ -45,7 +45,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.rows count] * 50;
+    return [self.rows count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -53,8 +53,33 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     // Rethink this bit... Use introspection to guard !
     UILabel *cellLabel = (UILabel *)[cell viewWithTag:1000];
-    cellLabel.text = (NSString *)[self.rows objectAtIndex:indexPath.row % 5];
+    NSArray *allKeys = [self.rows allKeys];
+    cellLabel.text = (NSString *)[allKeys objectAtIndex:indexPath.row];
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSArray *allKeys = [self.rows allKeys];
+    BOOL isChecked = [[self.rows objectForKey:[allKeys objectAtIndex:indexPath.row]] boolValue];
+    [self.rows setObject:[NSNumber numberWithBool:!isChecked] forKey:[allKeys objectAtIndex:indexPath.row]];
+    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL isChecked = NO;
+    NSArray *allKeys = [self.rows allKeys];
+    if((isChecked = [[self.rows objectForKey:[allKeys objectAtIndex:indexPath.row]] boolValue]))
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 }
 
 @end
