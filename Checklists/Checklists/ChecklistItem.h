@@ -17,5 +17,6 @@
 -(void)toggleChecked;
 
 +(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked;
++(ChecklistItem *)itemWithItem:(NSString *)item;
 
 @end

@@ -33,4 +33,9 @@
     return [[[self class] alloc] initWithText:item andChecked:checked];
 }
 
++(ChecklistItem *)itemWithItem:(NSString *)item
+{
+    return [[[self class] alloc] initWithText:item andChecked:NO];
+}
+
 @end
