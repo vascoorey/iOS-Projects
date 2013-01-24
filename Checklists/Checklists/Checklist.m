@@ -53,4 +53,9 @@
     }
 }
 
++(Checklist *)checklistWithName:(NSString *)name
+{
+    return [[[self class] alloc] initWithName:name];
+}
+
 @end

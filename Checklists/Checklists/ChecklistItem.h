@@ -16,7 +16,7 @@
 -(id)initWithText:(NSString *)text andChecked:(BOOL)checked;
 -(void)toggleChecked;
 
-+(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked;
-+(ChecklistItem *)itemWithItem:(NSString *)item;
++(ChecklistItem *)itemWithText:(NSString *)item andChecked:(BOOL)checked;
++(ChecklistItem *)itemWithText:(NSString *)item;
 
 @end

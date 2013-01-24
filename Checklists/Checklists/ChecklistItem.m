@@ -44,12 +44,12 @@
     [aCoder encodeBool:self.checked forKey:@"Checked"];
 }
 
-+(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked
++(ChecklistItem *)itemWithText:(NSString *)item andChecked:(BOOL)checked
 {
     return [[[self class] alloc] initWithText:item andChecked:checked];
 }
 
-+(ChecklistItem *)itemWithItem:(NSString *)item
++(ChecklistItem *)itemWithText:(NSString *)item
 {
     return [[[self class] alloc] initWithText:item andChecked:NO];
 }

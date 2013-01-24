@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *items;
 
++(Checklist *)checklistWithName:(NSString *)name;
+
 @end
