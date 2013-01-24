@@ -37,6 +37,26 @@
     return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
 }
 
+-(void)loadChecklistItems
+{
+    if([[NSFileManager defaultManager] fileExistsAtPath:[self dataFilePath]])
+    {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:[self dataFilePath]];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        self.items = [unarchiver decodeObjectForKey:@"ChecklistItems"];
+        [unarchiver finishDecoding];
+    }
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        [self loadChecklistItems];
+    }
+    return self;
+}
+
 -(void)saveChecklistItems
 {
     NSMutableData *data = [[NSMutableData alloc] init];
@@ -50,8 +70,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"Documents folder: %@", [self documentsDirectory]);
-    NSLog(@"Data file path: %@", [self dataFilePath]);
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,6 +23,16 @@
     return self;
 }
 
+-(id) initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super init]))
+    {
+        self.text = (NSString *)[aDecoder decodeObjectForKey:@"Text"];
+        _checked = [aDecoder decodeBoolForKey:@"Checked"];
+    }
+    return self;
+}
+
 -(void)toggleChecked
 {
     _checked = !_checked;
