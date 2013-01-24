@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "ChecklistsViewController.h"
+#import "ChecklistViewController.h"
 #import "ChecklistItem.h"
 
-@interface ChecklistsViewController ()
+@interface ChecklistViewController ()
 @property (nonatomic, strong) NSMutableArray *items;
 @end
 
-@implementation ChecklistsViewController
+@implementation ChecklistViewController
 
 @synthesize items = _items;
 
