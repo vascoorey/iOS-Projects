@@ -10,4 +10,6 @@
 
 @interface AllListsViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *lists;
+
 @end

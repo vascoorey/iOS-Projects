@@ -15,17 +15,7 @@
 
 @implementation ChecklistViewController
 
-@synthesize items = _items;
-
--(NSMutableArray *)items
-{
-    if(!_items)
-    {
-        _items = [[NSMutableArray alloc] init];
-    }
-    return _items;
-}
-
+#pragma mark File IO
 -(NSString *)documentsDirectory
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -48,15 +38,6 @@
     }
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
-{
-    if((self = [super initWithCoder:aDecoder]))
-    {
-        [self loadChecklistItems];
-    }
-    return self;
-}
-
 -(void)saveChecklistItems
 {
     NSMutableData *data = [[NSMutableData alloc] init];
@@ -66,10 +47,22 @@
     [data writeToFile:[self dataFilePath] atomically:YES];
 }
 
+#pragma mark UIKit
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        [self loadChecklistItems];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.title = self.checklist.name;
+    self.items = self.checklist.items;
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +75,24 @@
 {
     return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"AddItem"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
+        controller.delegate = self;
+    } else if([segue.identifier isEqualToString:@"EditItem"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
+        controller.delegate = self;
+        controller.itemToEdit = (ChecklistItem *)sender;
+    }
+}
+
+#pragma mark TableView
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -134,6 +145,8 @@
     [self performSegueWithIdentifier:@"EditItem" sender:[self.items objectAtIndex:indexPath.row]];
 }
 
+#pragma mark ItemDetailViewController - delegate methods
+
 -(void)itemDetailViewControllerDidCancel:(ItemDetailViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -156,22 +169,6 @@
     [self configureTextForCell:cell withChecklistItem:item];
     [self saveChecklistItems];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"AddItem"])
-    {
-        UINavigationController *navigationController = segue.destinationViewController;
-        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
-        controller.delegate = self;
-    } else if([segue.identifier isEqualToString:@"EditItem"])
-    {
-        UINavigationController *navigationController = segue.destinationViewController;
-        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
-        controller.delegate = self;
-        controller.itemToEdit = (ChecklistItem *)sender;
-    }
 }
 
 @end

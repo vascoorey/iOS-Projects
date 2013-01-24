@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemDetailViewController.h"
+#import "Checklist.h"
 
 @interface ChecklistViewController : UITableViewController <ItemDetailControllerDelegate>
+
+@property (nonatomic, strong) Checklist *checklist;
 
 @end

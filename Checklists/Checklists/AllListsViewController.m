@@ -7,6 +7,8 @@
 //
 
 #import "AllListsViewController.h"
+#import "ChecklistViewController.h"
+#import "Checklist.h"
 
 @interface AllListsViewController ()
 
@@ -14,11 +16,24 @@
 
 @implementation AllListsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize lists = _lists;
+
+-(NSMutableArray *)lists
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if(!_lists)
+    {
+        _lists = [[NSMutableArray alloc] init];
+    }
+    return _lists;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self = [super initWithCoder:aDecoder]))
+    {
+        [self.lists addObject:[Checklist checklistWithName:@"Birthdays"]];
+        [self.lists addObject:[Checklist checklistWithName:@"Shopping"]];
+        [self.lists addObject:[Checklist checklistWithName:@"Work"]];
     }
     return self;
 }
@@ -35,9 +50,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ShowChecklist"])
+    {
+        ChecklistViewController *controller = segue.destinationViewController;
+        controller.checklist = sender;
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [self.lists count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,13 +74,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"List %d", indexPath.row];
+    cell.textLabel.text = [(Checklist *)[self.lists objectAtIndex:indexPath.row] name];
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"ShowChecklist" sender:nil];
+    [self performSegueWithIdentifier:@"ShowChecklist" sender:[self.lists objectAtIndex:indexPath.row]];
 }
 
 @end

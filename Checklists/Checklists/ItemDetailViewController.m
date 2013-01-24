@@ -45,7 +45,7 @@
         [self.delegate itemDetailViewController:self didFinishEditingItem:self.itemToEdit];
     } else
     {
-        [self.delegate itemDetailViewController:self didFinishAddingItem:[ChecklistItem itemWithItem:self.textField.text]];
+        [self.delegate itemDetailViewController:self didFinishAddingItem:[ChecklistItem itemWithText:self.textField.text]];
     }
 }
 
