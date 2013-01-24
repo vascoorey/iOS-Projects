@@ -77,13 +77,8 @@
 
 -(void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
-    if(item.checked)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    UILabel *label = (UILabel *)[cell viewWithTag:1001];
+    label.text = item.checked ? @"√" : @"";
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,12 +88,17 @@
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
--(void)addItemViewControllerDidCancel:(AddItemViewController *)controller
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"EditItem" sender:[self.items objectAtIndex:indexPath.row]];
+}
+
+-(void)itemDetailViewControllerDidCancel:(ItemDetailViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)addItemViewController:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
+-(void)itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)item
 {
     [self.items addObject:item];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.items count] - 1 inSection:0];
@@ -107,13 +107,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)itemDetailViewController:(ItemDetailViewController *)controller didFinishEditingItem:(ChecklistItem *)item
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.items indexOfObject:item] inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"AddItem"])
     {
         UINavigationController *navigationController = segue.destinationViewController;
-        AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
+        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
         controller.delegate = self;
+    } else if([segue.identifier isEqualToString:@"EditItem"])
+    {
+        UINavigationController *navigationController = segue.destinationViewController;
+        ItemDetailViewController *controller = (ItemDetailViewController *)navigationController.topViewController;
+        controller.delegate = self;
+        controller.itemToEdit = (ChecklistItem *)sender;
     }
 }
 

@@ -13,17 +13,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChecklistItem" id="thD-L5-4Yn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChecklistItem" id="thD-L5-4Yn">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1000" contentMode="left" text="Checklists Item 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="Hpk-jF-j3t">
-                                            <rect key="frame" x="20" y="11" width="260" height="21"/>
+                                            <rect key="frame" x="48" y="11" width="232" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1001" contentMode="left" text="√" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xou-L7-vzp">
+                                            <rect key="frame" x="20" y="11" width="20" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -45,15 +52,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="vm0-gJ-iej" kind="modal" identifier="EditItem" id="jnb-ay-fbF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KgY-gl-bPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="598" y="33"/>
         </scene>
-        <!--Add Item View Controller - AddItem-->
+        <!--Item Detail View Controller - AddItem-->
         <scene sceneID="lKR-k2-hz5">
             <objects>
-                <tableViewController title="AddItem" id="KBj-nj-cGV" customClass="AddItemViewController" sceneMemberID="viewController">
+                <tableViewController title="AddItem" id="KBj-nj-cGV" customClass="ItemDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BfH-0R-Iqh">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,12 +101,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add New Item" id="434-h0-89s">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="z0S-7b-BQE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="z0S-7b-BQE">
                             <connections>
                                 <action selector="cancel" destination="KBj-nj-cGV" id="UOX-vR-VYT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="plain" systemItem="done" id="Mpm-vY-x9P">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="Mpm-vY-x9P">
                             <connections>
                                 <action selector="done" destination="KBj-nj-cGV" id="vtq-EJ-jWD"/>
                             </connections>
@@ -152,19 +162,16 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AddItemViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddItemViewController.h"/>
+        <class className="ChecklistsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChecklistsViewController.h"/>
+        </class>
+        <class className="ItemDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel"/>
                 <relationship kind="action" name="done"/>
                 <relationship kind="outlet" name="doneBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ChecklistsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChecklistsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addItem"/>
             </relationships>
         </class>
     </classes>
@@ -173,4 +180,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="jnb-ay-fbF"/>
+    </inferredMetricsTieBreakers>
 </document>

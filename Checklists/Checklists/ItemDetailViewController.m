@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "AddItemViewController.h"
+#import "ItemDetailViewController.h"
 
-@interface AddItemViewController ()
+@interface ItemDetailViewController ()
 
 @end
 
-@implementation AddItemViewController
+@implementation ItemDetailViewController
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -21,14 +21,32 @@
     [self.textField becomeFirstResponder];
 }
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    if(self.itemToEdit)
+    {
+        self.title = @"Edit Item";
+        self.textField.text = self.itemToEdit.text;
+        self.doneBarButton.enabled = true;
+    }
+}
+
 -(IBAction)cancel
 {
-    [self.delegate addItemViewControllerDidCancel:self];
+    [self.delegate itemDetailViewControllerDidCancel:self];
 }
 
 -(IBAction)done
 {
-    [self.delegate addItemViewController:self didFinishAddingItem:[ChecklistItem itemWithItem:self.textField.text]];
+    if(self.itemToEdit)
+    {
+        self.itemToEdit.text = self.textField.text;
+        [self.delegate itemDetailViewController:self didFinishEditingItem:self.itemToEdit];
+    } else
+    {
+        [self.delegate itemDetailViewController:self didFinishAddingItem:[ChecklistItem itemWithItem:self.textField.text]];
+    }
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
