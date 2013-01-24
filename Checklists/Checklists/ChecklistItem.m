@@ -28,6 +28,12 @@
     _checked = !_checked;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.text forKey:@"Text"];
+    [aCoder encodeBool:self.checked forKey:@"Checked"];
+}
+
 +(ChecklistItem *)itemWithItem:(NSString *)item andChecked:(BOOL)checked
 {
     return [[[self class] alloc] initWithText:item andChecked:checked];

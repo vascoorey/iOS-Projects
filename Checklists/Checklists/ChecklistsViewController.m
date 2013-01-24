@@ -21,15 +21,37 @@
 {
     if(!_items)
     {
-        _items = [NSMutableArray arrayWithObjects:[ChecklistItem itemWithItem:@"Walk the dog" andChecked:NO], [ChecklistItem itemWithItem:@"Brush my teeth" andChecked:NO], [ChecklistItem itemWithItem:@"Learn iOS development..." andChecked:NO], [ChecklistItem itemWithItem:@"Soccer practice" andChecked:NO], [ChecklistItem itemWithItem:@"Eat ice cream" andChecked:NO], nil];
+        _items = [[NSMutableArray alloc] init];
     }
     return _items;
+}
+
+-(NSString *)documentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return (NSString *)[paths objectAtIndex:0];
+}
+
+-(NSString *)dataFilePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
+}
+
+-(void)saveChecklistItems
+{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.items forKey:@"ChecklistItems"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSLog(@"Documents folder: %@", [self documentsDirectory]);
+    NSLog(@"Data file path: %@", [self dataFilePath]);
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +87,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ChecklistItem *item = (ChecklistItem *)[self.items objectAtIndex:indexPath.row];
     [item toggleChecked];
-    
+    [self saveChecklistItems];
     [self configureCheckmarkForCell:cell withChecklistItem:item];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -85,6 +107,7 @@
 {
     [self.items removeObjectAtIndex:indexPath.row];
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self saveChecklistItems];
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -104,6 +127,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.items count] - 1 inSection:0];
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self saveChecklistItems];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -112,6 +136,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.items indexOfObject:item] inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [self configureTextForCell:cell withChecklistItem:item];
+    [self saveChecklistItems];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
