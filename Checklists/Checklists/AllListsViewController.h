@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListDetailViewController.h"
 
-@interface AllListsViewController : UITableViewController
+@interface AllListsViewController : UITableViewController <ListDetailViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *lists;
 

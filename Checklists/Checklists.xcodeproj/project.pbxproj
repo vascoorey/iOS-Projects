@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC5600BA16B2DF7800A2A69A /* ListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5600B916B2DF7800A2A69A /* ListDetailViewController.m */; };
 		BC70BEFA16B0318600F3DB9E /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC70BEF916B0318600F3DB9E /* ItemDetailViewController.m */; };
 		BCADEA7116B196460003F78E /* AllListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCADEA7016B196460003F78E /* AllListsViewController.m */; };
 		BCADEA7416B198BD0003F78E /* Checklist.m in Sources */ = {isa = PBXBuildFile; fileRef = BCADEA7316B198BD0003F78E /* Checklist.m */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC5600B816B2DF7800A2A69A /* ListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDetailViewController.h; sourceTree = "<group>"; };
+		BC5600B916B2DF7800A2A69A /* ListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDetailViewController.m; sourceTree = "<group>"; };
 		BC70BEF816B0318600F3DB9E /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
 		BC70BEF916B0318600F3DB9E /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 		BCADEA6F16B196460003F78E /* AllListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllListsViewController.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				BC70BEF916B0318600F3DB9E /* ItemDetailViewController.m */,
 				BCADEA6F16B196460003F78E /* AllListsViewController.h */,
 				BCADEA7016B196460003F78E /* AllListsViewController.m */,
+				BC5600B816B2DF7800A2A69A /* ListDetailViewController.h */,
+				BC5600B916B2DF7800A2A69A /* ListDetailViewController.m */,
 				BC70BEF716B0300000F3DB9E /* Model */,
 				BCEC2CF516AEC4DA00A12AB4 /* Supporting Files */,
 			);
@@ -209,6 +214,7 @@
 				BC70BEFA16B0318600F3DB9E /* ItemDetailViewController.m in Sources */,
 				BCADEA7116B196460003F78E /* AllListsViewController.m in Sources */,
 				BCADEA7416B198BD0003F78E /* Checklist.m in Sources */,
+				BC5600BA16B2DF7800A2A69A /* ListDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
