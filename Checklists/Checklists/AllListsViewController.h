@@ -13,4 +13,6 @@
 
 @property (nonatomic, strong) NSMutableArray *lists;
 
+-(void)saveChecklists;
+
 @end

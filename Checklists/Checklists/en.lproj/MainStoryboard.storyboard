@@ -92,7 +92,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="eJd-56-i18">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zsC-aq-Xbi">
                             <connections>
-                                <segue destination="Kxx-tY-woI" kind="modal" id="VQn-bd-XHZ"/>
+                                <segue destination="Kxx-tY-woI" kind="modal" identifier="AddChecklist" id="VQn-bd-XHZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,7 +123,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the item..." adjustsFontSizeToFit="NO" minimumFontSize="17" id="Pjb-s7-ZmG">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the item..." adjustsFontSizeToFit="NO" minimumFontSize="17" id="Pjb-s7-ZmG">
                                                     <rect key="frame" x="20" y="7" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -223,7 +223,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the checklist..." clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" id="Pk2-97-mQV">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the checklist..." adjustsFontSizeToFit="NO" minimumFontSize="17" id="Pk2-97-mQV">
                                                     <rect key="frame" x="20" y="7" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -300,6 +300,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QYg-gi-G8m"/>
+        <segue reference="jnb-ay-fbF"/>
     </inferredMetricsTieBreakers>
 </document>

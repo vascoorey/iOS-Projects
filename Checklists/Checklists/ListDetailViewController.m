@@ -15,8 +15,6 @@
 
 @implementation ListDetailViewController
 
-@synthesize delegate;
-
 #pragma mark UIKit
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,7 +34,6 @@
     {
         self.title = @"Edit Checklist";
         self.textField.text = self.checklistToEdit.name;
-        self.textField.selected = NO;
         self.doneBarButton.enabled = YES;
     }
 }
@@ -74,11 +71,11 @@
     if(self.checklistToEdit)
     {
         self.checklistToEdit.name = self.textField.text;
-        [self.delegate listDetailViewController:self didFinishAddingChecklist:self.checklistToEdit];
+        [self.delegate listDetailViewController:self didFinishEditingChecklist:self.checklistToEdit];
     }
     else
     {
-        [self.delegate listDetailViewController:self didFinishEditingChecklist:[Checklist checklistWithName:self.textField.text]];
+        [self.delegate listDetailViewController:self didFinishAddingChecklist:[Checklist checklistWithName:self.textField.text]];
     }
 }
 
