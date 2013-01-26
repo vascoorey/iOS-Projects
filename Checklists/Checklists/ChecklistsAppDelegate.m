@@ -8,6 +8,7 @@
 
 #import "ChecklistsAppDelegate.h"
 #import "AllListsViewController.h"
+#import "DataModel.h"
 
 @implementation ChecklistsAppDelegate
 
@@ -17,7 +18,7 @@
 {
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     AllListsViewController *controller = (AllListsViewController *)[navigationController.viewControllers objectAtIndex:0];
-    [controller saveChecklists];
+    [controller.dataModel saveChecklists];
 }
 
 #pragma mark App Delegate Methods

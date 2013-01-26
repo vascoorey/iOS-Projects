@@ -10,56 +10,12 @@
 #import "ChecklistViewController.h"
 #import "Checklist.h"
 #import "ChecklistItem.h"
+#import "DataModel.h"
 
 @interface AllListsViewController ()
-@property (nonatomic, strong) NSMutableArray *lists;
 @end
 
 @implementation AllListsViewController
-
--(NSMutableArray *)lists
-{
-    if(!_lists)
-    {
-        _lists = [[NSMutableArray alloc] init];
-    }
-    return _lists;
-}
-
-#pragma mark File IO
-
--(NSString *)documentsDirectory
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [paths objectAtIndex:0];
-}
-
--(NSString *)dataFilePath
-{
-    return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plist"];
-}
-
--(void)saveChecklists
-{
-    NSLog(@"Saving checklists...");
-    NSMutableData *data = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [archiver encodeObject:self.lists forKey:@"Checklists"];
-    [archiver finishEncoding];
-    [data writeToFile:[self dataFilePath] atomically:YES];
-}
-
--(void)loadChecklists
-{
-    NSString *path = [self dataFilePath];
-    if([[NSFileManager defaultManager] fileExistsAtPath:path])
-    {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        self.lists = [unarchiver decodeObjectForKey:@"Checklists"];
-        [unarchiver finishDecoding];
-    }
-}
 
 #pragma mark UIKit
 
@@ -67,7 +23,7 @@
 {
     if((self = [super initWithCoder:aDecoder]))
     {
-        [self loadChecklists];
+        self.dataModel = [[DataModel alloc] init];
     }
     return self;
 }
@@ -104,7 +60,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.lists count];
+    return [self.dataModel.lists count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,19 +73,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [(Checklist *)[self.lists objectAtIndex:indexPath.row] name];
+    cell.textLabel.text = [(Checklist *)[self.dataModel.lists objectAtIndex:indexPath.row] name];
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"ShowChecklist" sender:[self.lists objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"ShowChecklist" sender:[self.dataModel.lists objectAtIndex:indexPath.row]];
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.lists removeObjectAtIndex:indexPath.row];
+    [self.dataModel.lists removeObjectAtIndex:indexPath.row];
     NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
     [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -139,7 +95,7 @@
     UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListNavigationController"];
     ListDetailViewController *controller = (ListDetailViewController *)navigationController.topViewController;
     controller.delegate = self;
-    controller.checklistToEdit = [self.lists objectAtIndex:indexPath.row];
+    controller.checklistToEdit = [self.dataModel.lists objectAtIndex:indexPath.row];
     
     [self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -153,8 +109,8 @@
 
 -(void)listDetailViewController:(ListDetailViewController *)controller didFinishAddingChecklist:(Checklist *)checklist
 {
-    [self.lists addObject:checklist];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:self.lists.count - 1 inSection:0];
+    [self.dataModel.lists addObject:checklist];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:self.dataModel.lists.count - 1 inSection:0];
     NSArray *indexPath = [NSArray arrayWithObject:path];
     [self.tableView insertRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationAutomatic];
     
@@ -163,7 +119,7 @@
 
 -(void)listDetailViewController:(ListDetailViewController *)controller didFinishEditingChecklist:(Checklist *)checklist
 {
-    int index = [self.lists indexOfObject:checklist];
+    int index = [self.dataModel.lists indexOfObject:checklist];
     NSIndexPath *path = [NSIndexPath indexPathForRow:index inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
     cell.textLabel.text = checklist.name;
