@@ -45,12 +45,17 @@
     [aCoder encodeObject:self.items forKey:@"Items"];
 }
 
--(void)addNewItem:(ChecklistItem *)item
+-(int)uncheckedItems
 {
-    if(![self.items containsObject:item])
+    int count = 0;
+    for(ChecklistItem *item in self.items)
     {
-        [self.items addObject:item];
+        if(!item.checked)
+        {
+            count ++;
+        }
     }
+    return count;
 }
 
 +(Checklist *)checklistWithName:(NSString *)name
