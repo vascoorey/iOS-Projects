@@ -12,7 +12,7 @@
 #import "ChecklistItem.h"
 
 @interface AllListsViewController ()
-
+@property (nonatomic, strong) NSMutableArray *lists;
 @end
 
 @implementation AllListsViewController
