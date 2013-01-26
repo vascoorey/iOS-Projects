@@ -34,6 +34,19 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.delegate = self;
+    
+    int index = [self.dataModel indexOfSelectedChecklist];
+    if(index >= 0 && index < self.dataModel.lists.count)
+    {
+        Checklist *checklist = [self.dataModel.lists objectAtIndex:index];
+        [self performSegueWithIdentifier:@"ShowChecklist" sender:checklist];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -80,6 +93,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.dataModel setIndexOfSelectedChecklist:indexPath.row];
     [self performSegueWithIdentifier:@"ShowChecklist" sender:[self.dataModel.lists objectAtIndex:indexPath.row]];
 }
 
@@ -100,6 +114,16 @@
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
+#pragma mark UINavigationController delegate methods
+
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if(viewController == self)
+    {
+        [self.dataModel setIndexOfSelectedChecklist:-1];
+    }
+}
+
 #pragma mark ListDetailViewController delegate methods
 
 -(void)listDetailViewControllerDidCancel:(ListDetailViewController *)controller
@@ -109,6 +133,7 @@
 
 -(void)listDetailViewController:(ListDetailViewController *)controller didFinishAddingChecklist:(Checklist *)checklist
 {
+    NSLog(@"Adding: %@", checklist.name);
     [self.dataModel.lists addObject:checklist];
     NSIndexPath *path = [NSIndexPath indexPathForRow:self.dataModel.lists.count - 1 inSection:0];
     NSArray *indexPath = [NSArray arrayWithObject:path];
