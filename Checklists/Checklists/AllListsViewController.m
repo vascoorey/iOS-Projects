@@ -93,9 +93,13 @@
     }
     
     Checklist *checklist = (Checklist *)[self.dataModel.lists objectAtIndex:indexPath.row];
+    int count = [checklist uncheckedItems];
     cell.textLabel.text = checklist.name;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d Remaining...", [checklist uncheckedItems]];
+    if(checklist.items.count)
+        cell.detailTextLabel.text = count ? [NSString stringWithFormat:@"%d Remaining...", count] : @"All done!";
+    else
+        cell.detailTextLabel.text = @"(No Items)";
     return cell;
 }
 
