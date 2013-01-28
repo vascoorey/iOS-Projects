@@ -145,21 +145,17 @@
 
 -(void)listDetailViewController:(ListDetailViewController *)controller didFinishAddingChecklist:(Checklist *)checklist
 {
-    NSLog(@"Adding: %@", checklist.name);
     [self.dataModel.lists addObject:checklist];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:self.dataModel.lists.count - 1 inSection:0];
-    NSArray *indexPath = [NSArray arrayWithObject:path];
-    [self.tableView insertRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.dataModel sortChecklists];
+    [self.tableView reloadData];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)listDetailViewController:(ListDetailViewController *)controller didFinishEditingChecklist:(Checklist *)checklist
 {
-    int index = [self.dataModel.lists indexOfObject:checklist];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:index inSection:0];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
-    cell.textLabel.text = checklist.name;
+    [self.dataModel sortChecklists];
+    [self.tableView reloadData];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

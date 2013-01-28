@@ -20,6 +20,11 @@
     return _items;
 }
 
+-(NSComparisonResult)compare:(Checklist *)other
+{
+    return [self.name localizedStandardCompare:other.name];
+}
+
 -(id) initWithName:(NSString *)name
 {
     if((self = [super init]))

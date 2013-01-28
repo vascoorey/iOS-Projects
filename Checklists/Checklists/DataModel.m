@@ -20,6 +20,11 @@
     return _lists;
 }
 
+-(void)sortChecklists
+{
+    [self.lists sortUsingSelector:@selector(compare:)];
+}
+
 -(id)init
 {
     if((self = [super init]))
