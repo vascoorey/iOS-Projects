@@ -29,6 +29,7 @@
 		BC7F582B16B6E00100F9E50E /* Photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7F581716B6E00100F9E50E /* Photos@2x.png */; };
 		BC7F582C16B6E00100F9E50E /* Trips.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7F581816B6E00100F9E50E /* Trips.png */; };
 		BC7F582D16B6E00100F9E50E /* Trips@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7F581916B6E00100F9E50E /* Trips@2x.png */; };
+		BC7F583016B6E1A300F9E50E /* IconPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7F582F16B6E1A300F9E50E /* IconPickerViewController.m */; };
 		BCADEA7116B196460003F78E /* AllListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCADEA7016B196460003F78E /* AllListsViewController.m */; };
 		BCADEA7416B198BD0003F78E /* Checklist.m in Sources */ = {isa = PBXBuildFile; fileRef = BCADEA7316B198BD0003F78E /* Checklist.m */; };
 		BCB16BB816B4391A004D56AA /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB16BB716B4391A004D56AA /* DataModel.m */; };
@@ -71,6 +72,8 @@
 		BC7F581716B6E00100F9E50E /* Photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photos@2x.png"; sourceTree = "<group>"; };
 		BC7F581816B6E00100F9E50E /* Trips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trips.png; sourceTree = "<group>"; };
 		BC7F581916B6E00100F9E50E /* Trips@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Trips@2x.png"; sourceTree = "<group>"; };
+		BC7F582E16B6E1A300F9E50E /* IconPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconPickerViewController.h; sourceTree = "<group>"; };
+		BC7F582F16B6E1A300F9E50E /* IconPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconPickerViewController.m; sourceTree = "<group>"; };
 		BCADEA6F16B196460003F78E /* AllListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllListsViewController.h; sourceTree = "<group>"; };
 		BCADEA7016B196460003F78E /* AllListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllListsViewController.m; sourceTree = "<group>"; };
 		BCADEA7216B198BD0003F78E /* Checklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checklist.h; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				BCADEA7016B196460003F78E /* AllListsViewController.m */,
 				BC5600B816B2DF7800A2A69A /* ListDetailViewController.h */,
 				BC5600B916B2DF7800A2A69A /* ListDetailViewController.m */,
+				BC7F582E16B6E1A300F9E50E /* IconPickerViewController.h */,
+				BC7F582F16B6E1A300F9E50E /* IconPickerViewController.m */,
 				BC70BEF716B0300000F3DB9E /* Model */,
 				BCEC2CF516AEC4DA00A12AB4 /* Supporting Files */,
 			);
@@ -317,6 +322,7 @@
 				BCADEA7416B198BD0003F78E /* Checklist.m in Sources */,
 				BC5600BA16B2DF7800A2A69A /* ListDetailViewController.m in Sources */,
 				BCB16BB816B4391A004D56AA /* DataModel.m in Sources */,
+				BC7F583016B6E1A300F9E50E /* IconPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -97,9 +97,15 @@
     cell.textLabel.text = checklist.name;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     if(checklist.items.count)
+    {
         cell.detailTextLabel.text = count ? [NSString stringWithFormat:@"%d Remaining...", count] : @"All done!";
+    }
     else
+    {
         cell.detailTextLabel.text = @"(No Items)";
+    }
+    cell.imageView.image = [UIImage imageNamed:checklist.iconName];
+    
     return cell;
 }
 

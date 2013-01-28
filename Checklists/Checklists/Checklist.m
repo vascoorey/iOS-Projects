@@ -30,6 +30,17 @@
     if((self = [super init]))
     {
         self.name = name;
+        self.iconName = @"No Icon";
+    }
+    return self;
+}
+
+-(id) initWithName:(NSString *)name andIcon:(NSString *)iconName
+{
+    if((self = [super init]))
+    {
+        self.name = name;
+        self.iconName = iconName;
     }
     return self;
 }
@@ -40,6 +51,7 @@
     {
         self.name = (NSString *)[aDecoder decodeObjectForKey:@"Name"];
         self.items = [aDecoder decodeObjectForKey:@"Items"];
+        self.iconName = (NSString *)[aDecoder decodeObjectForKey:@"IconName"];
     }
     return self;
 }
@@ -48,6 +60,7 @@
 {
     [aCoder encodeObject:self.name forKey:@"Name"];
     [aCoder encodeObject:self.items forKey:@"Items"];
+    [aCoder encodeObject:self.iconName forKey:@"IconName"];
 }
 
 -(int)uncheckedItems
@@ -66,6 +79,11 @@
 +(Checklist *)checklistWithName:(NSString *)name
 {
     return [[[self class] alloc] initWithName:name];
+}
+
++(Checklist *)checklistWithName:(NSString *)name andIcon:(NSString *)iconName
+{
+    return [[[self class] alloc] initWithName:name andIcon:iconName];
 }
 
 @end
