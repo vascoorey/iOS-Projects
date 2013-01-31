@@ -42,14 +42,14 @@
 		BCBF265D16BADA380043DFB9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBF265416BADA380043DFB9 /* Icon.png */; };
 		BCBF265E16BADA380043DFB9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBF265516BADA380043DFB9 /* Icon@2x.png */; };
 		BCBF265F16BADA380043DFB9 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BCBF265616BADA380043DFB9 /* iTunesArtwork */; };
+		BCBF266316BADAF50043DFB9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBF266116BADAF50043DFB9 /* Default.png */; };
+		BCBF266416BADAF50043DFB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBF266216BADAF50043DFB9 /* Default@2x.png */; };
 		BCEC2CEF16AEC4DA00A12AB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCEC2CEE16AEC4DA00A12AB4 /* UIKit.framework */; };
 		BCEC2CF116AEC4DA00A12AB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCEC2CF016AEC4DA00A12AB4 /* Foundation.framework */; };
 		BCEC2CF316AEC4DA00A12AB4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCEC2CF216AEC4DA00A12AB4 /* CoreGraphics.framework */; };
 		BCEC2CF916AEC4DA00A12AB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2CF716AEC4DA00A12AB4 /* InfoPlist.strings */; };
 		BCEC2CFB16AEC4DA00A12AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEC2CFA16AEC4DA00A12AB4 /* main.m */; };
 		BCEC2CFF16AEC4DA00A12AB4 /* ChecklistsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEC2CFE16AEC4DA00A12AB4 /* ChecklistsAppDelegate.m */; };
-		BCEC2D0116AEC4DA00A12AB4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2D0016AEC4DA00A12AB4 /* Default.png */; };
-		BCEC2D0316AEC4DA00A12AB4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2D0216AEC4DA00A12AB4 /* Default@2x.png */; };
 		BCEC2D0516AEC4DA00A12AB4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2D0416AEC4DA00A12AB4 /* Default-568h@2x.png */; };
 		BCEC2D0816AEC4DA00A12AB4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCEC2D0616AEC4DA00A12AB4 /* MainStoryboard.storyboard */; };
 		BCEC2D0B16AEC4DA00A12AB4 /* ChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEC2D0A16AEC4DA00A12AB4 /* ChecklistViewController.m */; };
@@ -98,6 +98,8 @@
 		BCBF265416BADA380043DFB9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		BCBF265516BADA380043DFB9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BCBF265616BADA380043DFB9 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		BCBF266116BADAF50043DFB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BCBF266216BADAF50043DFB9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BCEC2CEA16AEC4DA00A12AB4 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCEC2CEE16AEC4DA00A12AB4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BCEC2CF016AEC4DA00A12AB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,8 +110,6 @@
 		BCEC2CFC16AEC4DA00A12AB4 /* Checklists-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Checklists-Prefix.pch"; sourceTree = "<group>"; };
 		BCEC2CFD16AEC4DA00A12AB4 /* ChecklistsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistsAppDelegate.h; sourceTree = "<group>"; };
 		BCEC2CFE16AEC4DA00A12AB4 /* ChecklistsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistsAppDelegate.m; sourceTree = "<group>"; };
-		BCEC2D0016AEC4DA00A12AB4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		BCEC2D0216AEC4DA00A12AB4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BCEC2D0416AEC4DA00A12AB4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BCEC2D0716AEC4DA00A12AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		BCEC2D0916AEC4DA00A12AB4 /* ChecklistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChecklistViewController.h; sourceTree = "<group>"; };
@@ -148,6 +148,7 @@
 		BC7F580416B6E00100F9E50E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BCBF266016BADAF50043DFB9 /* Launch Images */,
 				BCBF264D16BADA380043DFB9 /* Icon */,
 				BC7F580516B6E00100F9E50E /* Checklist Icons */,
 			);
@@ -195,6 +196,15 @@
 				BCBF265616BADA380043DFB9 /* iTunesArtwork */,
 			);
 			path = Icon;
+			sourceTree = "<group>";
+		};
+		BCBF266016BADAF50043DFB9 /* Launch Images */ = {
+			isa = PBXGroup;
+			children = (
+				BCBF266116BADAF50043DFB9 /* Default.png */,
+				BCBF266216BADAF50043DFB9 /* Default@2x.png */,
+			);
+			path = "Launch Images";
 			sourceTree = "<group>";
 		};
 		BCEC2CDF16AEC4DA00A12AB4 = {
@@ -254,8 +264,6 @@
 				BCEC2CF716AEC4DA00A12AB4 /* InfoPlist.strings */,
 				BCEC2CFA16AEC4DA00A12AB4 /* main.m */,
 				BCEC2CFC16AEC4DA00A12AB4 /* Checklists-Prefix.pch */,
-				BCEC2D0016AEC4DA00A12AB4 /* Default.png */,
-				BCEC2D0216AEC4DA00A12AB4 /* Default@2x.png */,
 				BCEC2D0416AEC4DA00A12AB4 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
@@ -314,8 +322,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCEC2CF916AEC4DA00A12AB4 /* InfoPlist.strings in Resources */,
-				BCEC2D0116AEC4DA00A12AB4 /* Default.png in Resources */,
-				BCEC2D0316AEC4DA00A12AB4 /* Default@2x.png in Resources */,
 				BCEC2D0516AEC4DA00A12AB4 /* Default-568h@2x.png in Resources */,
 				BCEC2D0816AEC4DA00A12AB4 /* MainStoryboard.storyboard in Resources */,
 				BC7F581A16B6E00100F9E50E /* Appointments.png in Resources */,
@@ -347,6 +353,8 @@
 				BCBF265D16BADA380043DFB9 /* Icon.png in Resources */,
 				BCBF265E16BADA380043DFB9 /* Icon@2x.png in Resources */,
 				BCBF265F16BADA380043DFB9 /* iTunesArtwork in Resources */,
+				BCBF266316BADAF50043DFB9 /* Default.png in Resources */,
+				BCBF266416BADAF50043DFB9 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
