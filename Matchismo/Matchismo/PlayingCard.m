@@ -14,9 +14,7 @@
 
 -(NSString *)contents
 {
-    // Equivalent to [NSArray arrayWithObjects:b...]
-    NSArray *rankOfStrings = @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
-    return [rankOfStrings[self.rank] stringByAppendingString:self.suit];
+    return [[PlayingCard rankStrings][self.rank] stringByAppendingString:self.suit];
 }
 
 -(void)setSuit:(NSString *)suit
@@ -42,6 +40,7 @@
 
 +(NSArray *)rankStrings
 {
+    // Equivalent to [NSArray arrayWithObjects:b...]
     return @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
 }
 
