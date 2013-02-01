@@ -96,8 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				BCB94B4216BC025F00C266E3 /* Model */,
-				BCB94B2E16BC019100C266E3 /* MatchismoAppDelegate.h */,
-				BCB94B2F16BC019100C266E3 /* MatchismoAppDelegate.m */,
 				BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */,
 				BCB94B3A16BC019100C266E3 /* MatchismoViewController.h */,
 				BCB94B3B16BC019100C266E3 /* MatchismoViewController.m */,
@@ -109,6 +107,8 @@
 		BCB94B2616BC019100C266E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BCB94B2E16BC019100C266E3 /* MatchismoAppDelegate.h */,
+				BCB94B2F16BC019100C266E3 /* MatchismoAppDelegate.m */,
 				BCB94B2716BC019100C266E3 /* Matchismo-Info.plist */,
 				BCB94B2816BC019100C266E3 /* InfoPlist.strings */,
 				BCB94B2B16BC019100C266E3 /* main.m */,

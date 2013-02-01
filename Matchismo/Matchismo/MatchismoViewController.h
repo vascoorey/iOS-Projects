@@ -10,4 +10,6 @@
 
 @interface MatchismoViewController : UIViewController
 
+- (IBAction)didFlipCard:(UIButton *)sender;
+
 @end
