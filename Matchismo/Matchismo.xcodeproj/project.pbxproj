@@ -22,6 +22,7 @@
 		BCB94B4816BC037800C266E3 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4716BC037800C266E3 /* Deck.m */; };
 		BCB94B4B16BC073B00C266E3 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4A16BC073B00C266E3 /* PlayingCard.m */; };
 		BCB94B4E16BC0B5B00C266E3 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */; };
+		BCB94B5116BC34D200C266E3 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		BCB94B4A16BC073B00C266E3 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
 		BCB94B4C16BC0B5B00C266E3 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
 		BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
+		BCB94B4F16BC34D200C266E3 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
+		BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				BCB94B4A16BC073B00C266E3 /* PlayingCard.m */,
 				BCB94B4C16BC0B5B00C266E3 /* PlayingCardDeck.h */,
 				BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */,
+				BCB94B4F16BC34D200C266E3 /* CardMatchingGame.h */,
+				BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				BCB94B4816BC037800C266E3 /* Deck.m in Sources */,
 				BCB94B4B16BC073B00C266E3 /* PlayingCard.m in Sources */,
 				BCB94B4E16BC0B5B00C266E3 /* PlayingCardDeck.m in Sources */,
+				BCB94B5116BC34D200C266E3 /* CardMatchingGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

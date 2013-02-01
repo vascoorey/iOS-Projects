@@ -9,24 +9,36 @@
 #import "MatchismoViewController.h"
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
+#import "CardMatchingGame.h"
 
 @interface MatchismoViewController ()
-
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) NSInteger flipCount;
-@property (nonatomic, strong) PlayingCardDeck *deck;
-
+@property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @end
 
 @implementation MatchismoViewController
 
--(PlayingCardDeck *)deck
+-(CardMatchingGame *)game
 {
-    if(!_deck)
+    if(!_game)
     {
-        _deck = [[PlayingCardDeck alloc] init];
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                  usingDeck:[[PlayingCardDeck alloc] init]];
     }
-    return _deck;
+    return _game;
+}
+
+-(void)setCardButtons:(NSArray *)cardButtons
+{
+    _cardButtons = cardButtons;
+    [self updateUI];
+}
+
+-(void)updateUI
+{
+    
 }
 
 -(void)setFlipCount:(NSInteger)flipCount
@@ -36,12 +48,9 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
-    if(sender.isSelected)
-    {
-        [sender setTitle:[[self.deck drawRandomCard] description] forState:UIControlStateSelected];
-        self.flipCount ++;
-    }
+    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    self.flipCount ++;
+    [self updateUI];
 }
 
 @end
