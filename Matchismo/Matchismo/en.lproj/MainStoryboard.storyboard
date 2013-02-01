@@ -25,7 +25,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="didFlipCard:" destination="2" eventType="touchUpInside" id="ljE-xV-IU6"/>
+                                    <action selector="flipCard:" destination="2" eventType="touchUpInside" id="jbJ-sQ-mVi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -36,6 +36,14 @@
             </objects>
         </scene>
     </scenes>
+    <classes>
+        <class className="MatchismoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MatchismoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

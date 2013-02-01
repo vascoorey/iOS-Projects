@@ -14,7 +14,7 @@
 
 @implementation MatchismoViewController
 
-- (IBAction)didFlipCard:(UIButton *)sender {
+- (IBAction)flipCard:(UIButton *)sender {
     sender.selected = !sender.selected;
 }
 
