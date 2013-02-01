@@ -18,6 +18,8 @@
 		BCB94B3616BC019100C266E3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB94B3516BC019100C266E3 /* Default-568h@2x.png */; };
 		BCB94B3916BC019100C266E3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */; };
 		BCB94B3C16BC019100C266E3 /* MatchismoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B3B16BC019100C266E3 /* MatchismoViewController.m */; };
+		BCB94B4516BC028800C266E3 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4416BC028800C266E3 /* Card.m */; };
+		BCB94B4816BC037800C266E3 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4716BC037800C266E3 /* Deck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,10 @@
 		BCB94B3816BC019100C266E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		BCB94B3A16BC019100C266E3 /* MatchismoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchismoViewController.h; sourceTree = "<group>"; };
 		BCB94B3B16BC019100C266E3 /* MatchismoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchismoViewController.m; sourceTree = "<group>"; };
+		BCB94B4316BC028800C266E3 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		BCB94B4416BC028800C266E3 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		BCB94B4616BC037800C266E3 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		BCB94B4716BC037800C266E3 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 		BCB94B2516BC019100C266E3 /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
+				BCB94B4216BC025F00C266E3 /* Model */,
 				BCB94B2E16BC019100C266E3 /* MatchismoAppDelegate.h */,
 				BCB94B2F16BC019100C266E3 /* MatchismoAppDelegate.m */,
 				BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */,
@@ -105,6 +112,17 @@
 				BCB94B3516BC019100C266E3 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCB94B4216BC025F00C266E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BCB94B4316BC028800C266E3 /* Card.h */,
+				BCB94B4416BC028800C266E3 /* Card.m */,
+				BCB94B4616BC037800C266E3 /* Deck.h */,
+				BCB94B4716BC037800C266E3 /* Deck.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +195,8 @@
 				BCB94B2C16BC019100C266E3 /* main.m in Sources */,
 				BCB94B3016BC019100C266E3 /* MatchismoAppDelegate.m in Sources */,
 				BCB94B3C16BC019100C266E3 /* MatchismoViewController.m in Sources */,
+				BCB94B4516BC028800C266E3 /* Card.m in Sources */,
+				BCB94B4816BC037800C266E3 /* Deck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
