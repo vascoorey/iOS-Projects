@@ -28,6 +28,11 @@
             {
                 score += 4;
             }
+            else
+            {
+                score = 0;
+                break;
+            }
         }
     }
     

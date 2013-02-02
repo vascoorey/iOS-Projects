@@ -48,6 +48,7 @@
         [button setBackgroundImage:[UIImage imageNamed:@"Card_0.png"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected];
         [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected|UIControlStateDisabled];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGRectGetHeight(button.frame), 0, 0)];
     }
     [self updateUI];
 }
