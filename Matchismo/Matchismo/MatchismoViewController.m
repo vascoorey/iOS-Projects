@@ -18,9 +18,17 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionOfLastFlipLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *matchModeSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *matchModeLabel;
 @end
 
 @implementation MatchismoViewController
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self updateUI];
+}
 
 -(CardMatchingGame *)game
 {
@@ -35,6 +43,10 @@
 -(void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    for(UIButton *button in self.cardButtons)
+    {
+        [button setBackgroundImage:[UIImage imageNamed:@"cardback.jpeg"] forState:UIControlStateNormal];
+    }
     [self updateUI];
 }
 
@@ -61,6 +73,7 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
+    self.matchModeSwitch.enabled = NO;
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount ++;
     [self updateUI];
@@ -75,6 +88,7 @@
 {
     if(buttonIndex == 1)
     {
+        self.matchModeSwitch.enabled = YES;
         [self.game reset];
         self.flipCount = 0;
         [self updateUI];
@@ -83,6 +97,14 @@
 
 - (IBAction)switchPlayingMode {
     [self.game switchMatchingMode];
+    if(self.matchModeSwitch.isOn)
+    {
+        self.matchModeLabel.text = @"2 Card Match";
+    }
+    else
+    {
+        self.matchModeLabel.text = @"3 Card Match";
+    }
 }
 
 

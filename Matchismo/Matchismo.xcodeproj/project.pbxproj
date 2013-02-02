@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC8CF9B016BD7D2F00002CD3 /* cardback.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */; };
 		BCB94B2016BC019100C266E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB94B1F16BC019100C266E3 /* UIKit.framework */; };
 		BCB94B2216BC019100C266E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB94B2116BC019100C266E3 /* Foundation.framework */; };
 		BCB94B2416BC019100C266E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB94B2316BC019100C266E3 /* CoreGraphics.framework */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpeg; sourceTree = "<group>"; };
 		BCB94B1C16BC019100C266E3 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB94B1F16BC019100C266E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BCB94B2116BC019100C266E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC8CF9AE16BD7D2F00002CD3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		BCB94B1316BC019100C266E3 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 				BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */,
 				BCB94B3A16BC019100C266E3 /* MatchismoViewController.h */,
 				BCB94B3B16BC019100C266E3 /* MatchismoViewController.m */,
+				BC8CF9AE16BD7D2F00002CD3 /* Images */,
 				BCB94B2616BC019100C266E3 /* Supporting Files */,
 			);
 			path = Matchismo;
@@ -197,6 +208,7 @@
 				BCB94B3416BC019100C266E3 /* Default@2x.png in Resources */,
 				BCB94B3616BC019100C266E3 /* Default-568h@2x.png in Resources */,
 				BCB94B3916BC019100C266E3 /* MainStoryboard.storyboard in Resources */,
+				BC8CF9B016BD7D2F00002CD3 /* cardback.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +349,7 @@
 				BCB94B4116BC019100C266E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

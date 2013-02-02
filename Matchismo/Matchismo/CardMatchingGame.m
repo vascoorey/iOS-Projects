@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *playingDeck;
 @property (nonatomic) NSInteger cardCount;
+@property (nonatomic, getter = isDefaultMatchMode) BOOL defaultMatchMode;
 @end
 
 @implementation CardMatchingGame
@@ -25,6 +26,11 @@
         _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
+}
+
+-(void)switchMatchingMode
+{
+    self.defaultMatchMode = !self.defaultMatchMode;
 }
 
 -(BOOL)reset
@@ -52,6 +58,7 @@
     {
         self.playingDeck = deck;
         self.cardCount = count;
+        self.defaultMatchMode = YES;
         if(![self reset])
         {
             self = nil;
@@ -65,12 +72,18 @@
     return index < [self.cards count] ? self.cards[index] : nil;
 }
 
+-(BOOL)canCheckForMatches:(NSMutableArray *)matches
+{
+    return (self.isDefaultMatchMode && [matches count] == 1) || (!self.isDefaultMatchMode && [matches count] == 2);
+}
+
 #define MATCH_BONUS 4
 #define MISMATCH_PENALTY 2
 #define FLIP_COST 1
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    NSMutableArray *matches = [[NSMutableArray alloc] init];
     
     if(card && !card.isUnplayable)
     {
@@ -82,21 +95,43 @@
             {
                 if(otherCard.isFaceUp && !otherCard.isUnplayable)
                 {
-                    int matchScore = [card match:@[otherCard]];
-                    if(matchScore)
+                    [matches addObject:otherCard];
+                    if(self.isDefaultMatchMode || [matches count] == 2)
                     {
-                        card.unplayable = YES;
+                        //NSLog(@"default: %d, matches: %@", self.isDefaultMatchMode, matches);
+                        break;
+                    }
+                }
+            }
+            
+            NSLog(@"Checking matches: %@", matches);
+            
+            if([self canCheckForMatches:matches])
+            {
+                // Calculate
+                int matchScore = [card match:matches];
+                if(matchScore)
+                {
+                    card.unplayable = YES;
+                    self.score += matchScore * MATCH_BONUS * [matches count];
+                    self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@", card];
+                    for(Card *otherCard in matches)
+                    {
                         otherCard.unplayable = YES;
-                        self.score += matchScore * MATCH_BONUS;
-                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@ and %@ for %d points.", card, otherCard, matchScore * MATCH_BONUS];
+                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                     }
-                    else
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" for %d points.", matchScore * MATCH_BONUS * [matches count]]];
+                }
+                else
+                {
+                    self.score -= MISMATCH_PENALTY;
+                    self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@", card];
+                    for(Card *otherCard in matches)
                     {
+                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                         otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty!", card, otherCard, MISMATCH_PENALTY];
                     }
-                    break;
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d point penalty.", matchScore - MISMATCH_PENALTY]];
                 }
             }
             self.score -= FLIP_COST;
