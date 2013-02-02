@@ -45,7 +45,9 @@
     _cardButtons = cardButtons;
     for(UIButton *button in self.cardButtons)
     {
-        [button setBackgroundImage:[UIImage imageNamed:@"cardback.jpeg"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"Card_0.png"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected|UIControlStateDisabled];
     }
     [self updateUI];
 }
