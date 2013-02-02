@@ -10,7 +10,10 @@
 
 @interface CardMatchingGame ()
 @property (readwrite, nonatomic) NSInteger score;
+@property (readwrite, nonatomic) NSString *descriptionOfLastFlip;
 @property (nonatomic, strong) NSMutableArray *cards;
+@property (nonatomic, strong) Deck *playingDeck;
+@property (nonatomic) NSInteger cardCount;
 @end
 
 @implementation CardMatchingGame
@@ -24,22 +27,34 @@
     return _cards;
 }
 
+-(BOOL)reset
+{
+    for(int i = 0; i < self.cardCount; i++)
+    {
+        Card *card = [self.playingDeck drawRandomCard];
+        if(card)
+        {
+            self.cards[i] = card;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    self.score = 0;
+    self.descriptionOfLastFlip = @"Last flip.";
+    return YES;
+}
+
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     if((self = [super init]))
     {
-        for(int i = 0; i < count; i++)
+        self.playingDeck = deck;
+        self.cardCount = count;
+        if(![self reset])
         {
-            Card *card = [deck drawRandomCard];
-            if(card)
-            {
-                self.cards[i] = card;
-            }
-            else
-            {
-                self = nil;
-                break;
-            }
+            self = nil;
         }
     }
     return self;
@@ -59,6 +74,7 @@
     
     if(card && !card.isUnplayable)
     {
+        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@", card];
         if(!card.isFaceUp)
         {
             // Check for matches
@@ -72,11 +88,13 @@
                         card.unplayable = YES;
                         otherCard.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
+                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@ and %@ for %d points.", card, otherCard, matchScore * MATCH_BONUS];
                     }
                     else
                     {
                         otherCard.faceUp = NO;
                         self.score -= MISMATCH_PENALTY;
+                        self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@ and %@ don't match! %d point penalty!", card, otherCard, MISMATCH_PENALTY];
                     }
                     break;
                 }

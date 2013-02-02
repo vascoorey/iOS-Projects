@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MatchismoViewController : UIViewController
+@interface MatchismoViewController : UIViewController <UIAlertViewDelegate>
 
 - (IBAction)flipCard:(UIButton *)sender;
 
