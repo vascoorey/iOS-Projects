@@ -15,6 +15,7 @@
 -(int)match:(NSArray *)otherCards
 {
     int score = 0;
+    NSMutableArray *matches = [[NSMutableArray alloc] init];
     
     if([otherCards count])
     {
@@ -23,11 +24,11 @@
             if([otherCard isKindOfClass:[PlayingCard class]])
             {
                 PlayingCard *otherPlayingCard = (PlayingCard *)otherCard;
-                if([otherPlayingCard.suit isEqualToString:self.suit])
+                if([otherPlayingCard.suit isEqualToString:self.suit] && (![matches count] || [otherPlayingCard match:matches]))
                 {
                     score += 1;
                 }
-                else if(otherPlayingCard.rank == self.rank)
+                else if(otherPlayingCard.rank == self.rank && (![matches count] || [otherPlayingCard match:matches]))
                 {
                     score += 4;
                 }
@@ -37,6 +38,7 @@
                     score = 0;
                     break;
                 }
+                [matches addObject:otherPlayingCard];
             }
             else
             {
