@@ -18,19 +18,29 @@
     
     if([otherCards count])
     {
-        for(PlayingCard *otherCard in otherCards)
+        for(id otherCard in otherCards)
         {
-            if([otherCard.suit isEqualToString:self.suit])
+            if([otherCard isKindOfClass:[PlayingCard class]])
             {
-                score += 1;
-            }
-            else if(otherCard.rank == self.rank)
-            {
-                score += 4;
+                PlayingCard *otherPlayingCard = (PlayingCard *)otherCard;
+                if([otherPlayingCard.suit isEqualToString:self.suit])
+                {
+                    score += 1;
+                }
+                else if(otherPlayingCard.rank == self.rank)
+                {
+                    score += 4;
+                }
+                else
+                {
+                    NSLog(@"No match for %@ and %@!", self, otherCard);
+                    score = 0;
+                    break;
+                }
             }
             else
             {
-                NSLog(@"No match for %@ and %@!", self, otherCard);
+                NSLog(@"Tring to match against non-playing cards!");
                 score = 0;
                 break;
             }
