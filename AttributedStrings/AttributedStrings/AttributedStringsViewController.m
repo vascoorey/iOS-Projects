@@ -9,21 +9,80 @@
 #import "AttributedStringsViewController.h"
 
 @interface AttributedStringsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *selectedWordLabel;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIStepper *selectedWordStepper;
 
 @end
 
 @implementation AttributedStringsViewController
 
-- (void)viewDidLoad
+-(NSArray *)wordList
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    NSArray *wordList = [[self.label.attributedText string] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if([wordList count])
+    {
+        return wordList;
+    }
+    else
+    {
+        return @[@""];
+    }
 }
 
-- (void)didReceiveMemoryWarning
+-(NSString *)selectedWord
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [self wordList][(int)self.selectedWordStepper.value];
+}
+
+-(void)addLabelAttributes:(NSDictionary *)attributes range:(NSRange)range
+{
+    if(range.location != NSNotFound)
+    {
+        NSMutableAttributedString *mutableAttributedString = [self.label.attributedText mutableCopy];
+        [mutableAttributedString addAttributes:attributes range: range];
+        self.label.attributedText = mutableAttributedString;
+    }
+}
+
+-(void)addSelectedWordAttributes:(NSDictionary *)attributes
+{
+    NSRange range = [[self.label.attributedText string] rangeOfString:[self selectedWord]];
+    [self addLabelAttributes:attributes range:range];
+}
+
+- (IBAction)updateSelectedWord {
+    self.selectedWordStepper.maximumValue = [[self wordList] count] - 1;
+    self.selectedWordLabel.text = [self selectedWord];
+}
+- (IBAction)underline {
+    [self addSelectedWordAttributes:@{NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}];
+}
+
+- (IBAction)noUnderline {
+    [self addSelectedWordAttributes:@{NSUnderlineStyleAttributeName : @(NSUnderlineStyleNone)}];
+}
+
+- (IBAction)changeColor:(UIButton *)sender {
+    [self addSelectedWordAttributes:@{NSForegroundColorAttributeName : sender.backgroundColor}];
+}
+
+- (IBAction)changeFont:(UIButton *)sender {
+    CGFloat fontSize = [UIFont systemFontSize];
+    NSDictionary *attributes = [self.label.attributedText attributesAtIndex:0 effectiveRange:NULL];
+    UIFont *existingFont = attributes[NSFontAttributeName];
+    if(existingFont)
+    {
+        fontSize = existingFont.pointSize;
+    }
+    UIFont *font = [sender.titleLabel.font fontWithSize:fontSize];
+    [self addSelectedWordAttributes:@{ NSFontAttributeName : font }];
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self updateSelectedWord];
 }
 
 @end
