@@ -15,9 +15,17 @@
 @property (nonatomic, strong) Deck *playingDeck;
 @property (nonatomic) NSInteger cardCount;
 @property (nonatomic, getter = isDefaultMatchMode) BOOL defaultMatchMode;
+@property (nonatomic, strong) NSMutableArray *flipHistory;
 @end
 
 @implementation CardMatchingGame
+
+@synthesize flipCount;
+
+-(NSInteger)flipCount
+{
+    return [self.flipHistory count];
+}
 
 -(NSMutableArray *)cards
 {
@@ -26,6 +34,15 @@
         _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
+}
+
+-(NSMutableArray *)flipHistory
+{
+    if(!_flipHistory)
+    {
+        _flipHistory = [[NSMutableArray alloc] init];
+    }
+    return _flipHistory;
 }
 
 -(void)switchMatchingMode
@@ -49,6 +66,7 @@
     }
     self.score = 0;
     self.descriptionOfLastFlip = @"Last flip.";
+    [self.flipHistory removeAllObjects];
     return YES;
 }
 
@@ -65,6 +83,16 @@
         }
     }
     return self;
+}
+
+-(NSString *)descriptionOfFlip:(NSInteger)flip
+{
+    NSString *flipDescription = nil;
+    if(flip > 0 && flip <= self.flipCount)
+    {
+        flipDescription = self.flipHistory[flip - 1];
+    }
+    return flipDescription;
 }
 
 -(Card *)cardAtIndex:(NSUInteger)index
@@ -98,13 +126,10 @@
                     [matches addObject:otherCard];
                     if(self.isDefaultMatchMode || [matches count] == 2)
                     {
-                        //NSLog(@"default: %d, matches: %@", self.isDefaultMatchMode, matches);
                         break;
                     }
                 }
             }
-            
-            NSLog(@"Checking matches: %@", matches);
             
             if([self canCheckForMatches:matches])
             {
@@ -134,6 +159,7 @@
                     self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d point penalty.", matchScore - MISMATCH_PENALTY]];
                 }
             }
+            [self.flipHistory addObject:self.descriptionOfLastFlip];
             self.score -= FLIP_COST;
         }
         card.faceUp = !card.isFaceUp;

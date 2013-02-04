@@ -14,6 +14,7 @@
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSString *descriptionOfLastFlip;
+@property (nonatomic, readonly) NSInteger flipCount;
 
 // Designated Initializer
 -(id)initWithCardCount:(NSUInteger)count
@@ -22,5 +23,6 @@
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(void)switchMatchingMode;
+-(NSString *)descriptionOfFlip:(NSInteger)flip;
 
 @end

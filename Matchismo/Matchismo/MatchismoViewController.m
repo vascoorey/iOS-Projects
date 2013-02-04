@@ -13,13 +13,13 @@
 
 @interface MatchismoViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) NSInteger flipCount;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionOfLastFlipLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *matchModeSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *matchModeLabel;
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @end
 
 @implementation MatchismoViewController
@@ -27,6 +27,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.historySlider.maximumValue = self.game.flipCount;
+    self.historySlider.value = self.game.flipCount;
     [self updateUI];
 }
 
@@ -64,21 +66,16 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.5 : 1.0;
     }
+    self.historySlider.maximumValue = self.game.flipCount;
+    self.historySlider.value = self.game.flipCount;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    NSLog(@"description: %@", self.game.descriptionOfLastFlip);
     self.descriptionOfLastFlipLabel.text = self.game.descriptionOfLastFlip;
-}
-
--(void)setFlipCount:(NSInteger)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
     self.matchModeSwitch.enabled = NO;
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount ++;
     [self updateUI];
 }
 
@@ -93,7 +90,6 @@
     {
         self.matchModeSwitch.enabled = YES;
         [self.game reset];
-        self.flipCount = 0;
         [self updateUI];
     }
 }
@@ -110,5 +106,14 @@
     }
 }
 
+- (IBAction)showHistory:(UISlider *)sender
+{
+    NSInteger flipToShow = roundf(sender.value);
+    NSString *flipDescription = [self.game descriptionOfFlip:flipToShow];
+    if(flipDescription)
+    {
+        self.descriptionOfLastFlipLabel.text = flipDescription;
+    }
+}
 
 @end
