@@ -30,6 +30,7 @@
             }
             else
             {
+                NSLog(@"No match for %@ and %@!", self, otherCard);
                 score = 0;
                 break;
             }

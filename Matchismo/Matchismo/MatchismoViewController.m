@@ -98,11 +98,11 @@
     [self.game switchMatchingMode];
     if(self.matchModeSwitch.isOn)
     {
-        self.matchModeLabel.text = @"2 Card Match";
+        self.matchModeLabel.text = @"2 Card";
     }
     else
     {
-        self.matchModeLabel.text = @"3 Card Match";
+        self.matchModeLabel.text = @"3 Card";
     }
 }
 
