@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectedWordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIStepper *selectedWordStepper;
-
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @end
 
 @implementation AttributedStringsViewController
@@ -27,6 +27,17 @@
     else
     {
         return @[@""];
+    }
+}
+
+- (IBAction)changedText:(UITextField *)sender {
+    NSLog(@"%@", sender.text);
+    if(sender.text.length)
+    {
+        NSMutableAttributedString *mutableAttributedString = [self.label.attributedText mutableCopy];
+        NSRange range = NSMakeRange(0, mutableAttributedString.length);
+        [mutableAttributedString replaceCharactersInRange:range withString:sender.text];
+        self.label.attributedText = mutableAttributedString;
     }
 }
 
