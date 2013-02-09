@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "MatchismoViewController.h"
+#import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
+#import "GameResult.h"
 
-@interface MatchismoViewController ()
+@interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -20,9 +21,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *matchModeSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *matchModeLabel;
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
+@property (strong, nonatomic) GameResult *gameResult;
 @end
 
-@implementation MatchismoViewController
+@implementation CardGameViewController
 
 -(void)viewDidLoad
 {
@@ -40,6 +42,15 @@
                                                   usingDeck:[[PlayingCardDeck alloc] init]];
     }
     return _game;
+}
+
+-(GameResult *)gameResult
+{
+    if(!_gameResult)
+    {
+        _gameResult = [[GameResult alloc] init];
+    }
+    return _gameResult;
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
