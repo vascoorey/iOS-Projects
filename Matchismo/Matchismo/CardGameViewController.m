@@ -87,6 +87,7 @@
 - (IBAction)flipCard:(UIButton *)sender {
     self.matchModeSwitch.enabled = NO;
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    self.gameResult.score = self.game.score;
     [self updateUI];
 }
 
@@ -100,6 +101,7 @@
     if(buttonIndex == 1)
     {
         self.game = nil;
+        self.gameResult = nil;
         [self updateUI];
     }
 }

@@ -93,7 +93,7 @@
     
     for(id plist in [[[NSUserDefaults standardUserDefaults] dictionaryForKey:ALL_RESULTS_KEY] allValues])
     {
-        GameResult *result = (GameResult *)plist;
+        GameResult *result = [[GameResult alloc] initFromPropertyList:plist];
         [allGameResults addObject:result];
     }
     

@@ -38,7 +38,13 @@
 
 -(void)updateUI
 {
-    
+    NSString *resultsText = @"";
+    for(GameResult *result in [GameResult allGameResults])
+    {
+        NSLog(@"Hail mary");
+        resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, End: %@, Duration: %0g\n", result.score, result.start, result.end, result.duration];
+    }
+    self.display.text = resultsText;
 }
 
 -(void)viewDidLoad
