@@ -19,7 +19,6 @@
 // Designated Initializer
 -(id)initWithCardCount:(NSUInteger)count
              usingDeck:(Deck *)deck;
--(BOOL)reset;
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(void)switchMatchingMode;

@@ -50,36 +50,28 @@
     self.defaultMatchMode = !self.defaultMatchMode;
 }
 
--(BOOL)reset
-{
-    for(int i = 0; i < self.cardCount; i++)
-    {
-        Card *card = [self.playingDeck drawRandomCard];
-        if(card)
-        {
-            self.cards[i] = card;
-        }
-        else
-        {
-            return NO;
-        }
-    }
-    self.score = 0;
-    self.descriptionOfLastFlip = @"Last flip.";
-    [self.flipHistory removeAllObjects];
-    return YES;
-}
-
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
 {
     if((self = [super init]))
     {
-        self.playingDeck = deck;
-        self.cardCount = count;
-        self.defaultMatchMode = YES;
-        if(![self reset])
+        _playingDeck = deck;
+        _cardCount = count;
+        _defaultMatchMode = YES;
+        _score = 0;
+        _descriptionOfLastFlip = @"Last flip.";
+        _cards = [[NSMutableArray alloc] init];
+        for(int i = 0; i < _cardCount; i++)
         {
-            self = nil;
+            Card *card = [_playingDeck drawRandomCard];
+            if(card)
+            {
+                _cards[i] = card;
+            }
+            else
+            {
+                self = nil;
+                break;
+            }
         }
     }
     return self;
@@ -105,8 +97,8 @@
     return (self.isDefaultMatchMode && [matches count] == 1) || (!self.isDefaultMatchMode && [matches count] == 2);
 }
 
-#define MATCH_BONUS 4
-#define MISMATCH_PENALTY 2
+#define MATCH_BONUS 6
+#define MISMATCH_PENALTY 3
 #define FLIP_COST 1
 -(void)flipCardAtIndex:(NSUInteger)index
 {

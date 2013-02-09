@@ -88,8 +88,7 @@
 {
     if(buttonIndex == 1)
     {
-        self.matchModeSwitch.enabled = YES;
-        [self.game reset];
+        self.game = nil;
         [self updateUI];
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF04F16C69CEB005C0CE0 /* GameResult.m */; };
 		BC8CF9B016BD7D2F00002CD3 /* cardback.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */; };
 		BC8CF9B316BD842500002CD3 /* Card_0.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B116BD842500002CD3 /* Card_0.png */; };
 		BC8CF9B416BD842500002CD3 /* Card_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B216BD842500002CD3 /* Card_1.png */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC2FF04E16C69CEB005C0CE0 /* GameResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResult.h; sourceTree = "<group>"; };
+		BC2FF04F16C69CEB005C0CE0 /* GameResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResult.m; sourceTree = "<group>"; };
 		BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpeg; sourceTree = "<group>"; };
 		BC8CF9B116BD842500002CD3 /* Card_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_0.png; sourceTree = "<group>"; };
 		BC8CF9B216BD842500002CD3 /* Card_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_1.png; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 				BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */,
 				BCB94B3A16BC019100C266E3 /* MatchismoViewController.h */,
 				BCB94B3B16BC019100C266E3 /* MatchismoViewController.m */,
+				BC2FF04E16C69CEB005C0CE0 /* GameResult.h */,
+				BC2FF04F16C69CEB005C0CE0 /* GameResult.m */,
 				BC8CF9AE16BD7D2F00002CD3 /* Images */,
 				BCB94B2616BC019100C266E3 /* Supporting Files */,
 			);
@@ -235,6 +240,7 @@
 				BCB94B4B16BC073B00C266E3 /* PlayingCard.m in Sources */,
 				BCB94B4E16BC0B5B00C266E3 /* PlayingCardDeck.m in Sources */,
 				BCB94B5116BC34D200C266E3 /* CardMatchingGame.m in Sources */,
+				BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
