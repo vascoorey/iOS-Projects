@@ -87,6 +87,21 @@
     return @{ START_DATE_KEY : self.start, END_DATE_KEY : self.end, SCORE_KEY : @(self.score) };
 }
 
+-(NSComparisonResult)compareByDate:(GameResult *)otherResult
+{
+    return [self.start compare:otherResult.start];
+}
+
+-(NSComparisonResult)compareByScore:(GameResult *)otherResult
+{
+    return self.score < otherResult.score ? NSOrderedDescending : (self.score == otherResult.score ? NSOrderedSame : NSOrderedAscending);
+}
+
+-(NSComparisonResult)compareByDuration:(GameResult *)otherResult
+{
+    return self.duration < otherResult.duration ? NSOrderedAscending : (self.duration == otherResult.duration ? NSOrderedSame : NSOrderedDescending);
+}
+
 +(NSArray *)allGameResults
 {
     NSMutableArray *allGameResults = [[NSMutableArray alloc] init];

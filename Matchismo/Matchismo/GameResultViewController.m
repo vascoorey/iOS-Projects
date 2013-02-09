@@ -36,13 +36,17 @@
     return self;
 }
 
--(void)updateUI
+-(void)updateUISorted:(BOOL)sorted withSelector:(SEL)selector
 {
-    NSString *resultsText = @"";
-    for(GameResult *result in [GameResult allGameResults])
+    NSArray *allGameResults = [GameResult allGameResults];
+    if(sorted)
     {
-        NSLog(@"Hail mary");
-        resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, End: %@, Duration: %0g\n", result.score, result.start, result.end, result.duration];
+        allGameResults = [allGameResults sortedArrayUsingSelector:selector];
+    }
+    NSString *resultsText = @"";
+    for(GameResult *result in allGameResults)
+    {
+        resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, End: %@, Duration: %0g seconds)\n", result.score, result.start, result.end, round(result.duration)];
     }
     self.display.text = resultsText;
 }
@@ -50,7 +54,19 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateUI];
+    [self updateUISorted:NO withSelector:nil];
+}
+
+- (IBAction)sortByDuration {
+    [self updateUISorted:YES withSelector:@selector(compareByDuration:)];
+}
+
+- (IBAction)sortByScore {
+    [self updateUISorted:YES withSelector:@selector(compareByScore:)];
+}
+
+- (IBAction)sortByDate {
+    [self updateUISorted:YES withSelector:@selector(compareByDate:)];
 }
 
 @end
