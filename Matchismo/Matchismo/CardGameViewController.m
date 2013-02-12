@@ -18,8 +18,6 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionOfLastFlipLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *matchModeSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *matchModeLabel;
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @property (strong, nonatomic) GameResult *gameResult;
 @end
@@ -85,7 +83,6 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-    self.matchModeSwitch.enabled = NO;
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.gameResult.score = self.game.score;
     [self updateUI];
@@ -103,18 +100,6 @@
         self.game = nil;
         self.gameResult = nil;
         [self updateUI];
-    }
-}
-
-- (IBAction)switchPlayingMode {
-    [self.game switchMatchingMode];
-    if(self.matchModeSwitch.isOn)
-    {
-        self.matchModeLabel.text = @"2 Card";
-    }
-    else
-    {
-        self.matchModeLabel.text = @"3 Card";
     }
 }
 
