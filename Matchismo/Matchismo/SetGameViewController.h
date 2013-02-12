@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GameResultViewController.h"
 
-@interface SetGameViewController : UIViewController
+@interface SetGameViewController : GameResultViewController
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC184A4B16CAB6AC00FC0782 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC184A4A16CAB6AC00FC0782 /* GameViewController.m */; };
 		BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF04F16C69CEB005C0CE0 /* GameResult.m */; };
 		BC2FF05316C6A3EA005C0CE0 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */; };
 		BC2FF05616C6A987005C0CE0 /* SetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC184A4916CAB6AC00FC0782 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		BC184A4A16CAB6AC00FC0782 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		BC2FF04E16C69CEB005C0CE0 /* GameResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResult.h; sourceTree = "<group>"; };
 		BC2FF04F16C69CEB005C0CE0 /* GameResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResult.m; sourceTree = "<group>"; };
 		BC2FF05116C6A3EA005C0CE0 /* GameResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultViewController.h; sourceTree = "<group>"; };
@@ -127,10 +130,12 @@
 				BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */,
 				BCB94B3A16BC019100C266E3 /* CardGameViewController.h */,
 				BCB94B3B16BC019100C266E3 /* CardGameViewController.m */,
-				BC2FF05116C6A3EA005C0CE0 /* GameResultViewController.h */,
-				BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */,
 				BC2FF05416C6A987005C0CE0 /* SetGameViewController.h */,
 				BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */,
+				BC184A4916CAB6AC00FC0782 /* GameViewController.h */,
+				BC184A4A16CAB6AC00FC0782 /* GameViewController.m */,
+				BC2FF05116C6A3EA005C0CE0 /* GameResultViewController.h */,
+				BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */,
 				BC2FF04E16C69CEB005C0CE0 /* GameResult.h */,
 				BC2FF04F16C69CEB005C0CE0 /* GameResult.m */,
 				BC8CF9AE16BD7D2F00002CD3 /* Images */,
@@ -253,6 +258,7 @@
 				BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */,
 				BC2FF05316C6A3EA005C0CE0 /* GameResultViewController.m in Sources */,
 				BC2FF05616C6A987005C0CE0 /* SetGameViewController.m in Sources */,
+				BC184A4B16CAB6AC00FC0782 /* GameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
