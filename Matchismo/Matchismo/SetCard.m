@@ -21,7 +21,7 @@
 
 -(NSString *)description
 {
-    NSString *description = self.shape;
+    NSString *description = @"";
     for(int i = 0; i < self.numShapes; i ++)
     {
         description = [description stringByAppendingFormat:@" %@", self.shape];
