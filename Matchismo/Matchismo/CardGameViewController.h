@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "GameViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface CardGameViewController : GameViewController
+@interface CardGameViewController : UIViewController
 
 - (IBAction)flipCard:(UIButton *)sender;
 

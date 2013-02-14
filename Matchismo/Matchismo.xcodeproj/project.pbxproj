@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC184A4B16CAB6AC00FC0782 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC184A4A16CAB6AC00FC0782 /* GameViewController.m */; };
 		BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF04F16C69CEB005C0CE0 /* GameResult.m */; };
 		BC2FF05316C6A3EA005C0CE0 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */; };
 		BC2FF05616C6A987005C0CE0 /* SetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */; };
@@ -30,11 +29,11 @@
 		BCB94B4B16BC073B00C266E3 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4A16BC073B00C266E3 /* PlayingCard.m */; };
 		BCB94B4E16BC0B5B00C266E3 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */; };
 		BCB94B5116BC34D200C266E3 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */; };
+		BCF131F216CD2E35004E6312 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF131F116CD2E35004E6312 /* SetCardDeck.m */; };
+		BCF131F516CD2E48004E6312 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF131F416CD2E48004E6312 /* SetCard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BC184A4916CAB6AC00FC0782 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		BC184A4A16CAB6AC00FC0782 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		BC2FF04E16C69CEB005C0CE0 /* GameResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResult.h; sourceTree = "<group>"; };
 		BC2FF04F16C69CEB005C0CE0 /* GameResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResult.m; sourceTree = "<group>"; };
 		BC2FF05116C6A3EA005C0CE0 /* GameResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultViewController.h; sourceTree = "<group>"; };
@@ -70,6 +69,10 @@
 		BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardDeck.m; sourceTree = "<group>"; };
 		BCB94B4F16BC34D200C266E3 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
+		BCF131F016CD2E35004E6312 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
+		BCF131F116CD2E35004E6312 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardDeck.m; sourceTree = "<group>"; };
+		BCF131F316CD2E48004E6312 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCard.h; sourceTree = "<group>"; };
+		BCF131F416CD2E48004E6312 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +135,6 @@
 				BCB94B3B16BC019100C266E3 /* CardGameViewController.m */,
 				BC2FF05416C6A987005C0CE0 /* SetGameViewController.h */,
 				BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */,
-				BC184A4916CAB6AC00FC0782 /* GameViewController.h */,
-				BC184A4A16CAB6AC00FC0782 /* GameViewController.m */,
 				BC2FF05116C6A3EA005C0CE0 /* GameResultViewController.h */,
 				BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */,
 				BC2FF04E16C69CEB005C0CE0 /* GameResult.h */,
@@ -169,6 +170,10 @@
 				BCB94B4716BC037800C266E3 /* Deck.m */,
 				BCB94B4916BC073B00C266E3 /* PlayingCard.h */,
 				BCB94B4A16BC073B00C266E3 /* PlayingCard.m */,
+				BCF131F316CD2E48004E6312 /* SetCard.h */,
+				BCF131F416CD2E48004E6312 /* SetCard.m */,
+				BCF131F016CD2E35004E6312 /* SetCardDeck.h */,
+				BCF131F116CD2E35004E6312 /* SetCardDeck.m */,
 				BCB94B4C16BC0B5B00C266E3 /* PlayingCardDeck.h */,
 				BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */,
 				BCB94B4F16BC34D200C266E3 /* CardMatchingGame.h */,
@@ -258,7 +263,8 @@
 				BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */,
 				BC2FF05316C6A3EA005C0CE0 /* GameResultViewController.m in Sources */,
 				BC2FF05616C6A987005C0CE0 /* SetGameViewController.m in Sources */,
-				BC184A4B16CAB6AC00FC0782 /* GameViewController.m in Sources */,
+				BCF131F216CD2E35004E6312 /* SetCardDeck.m in Sources */,
+				BCF131F516CD2E48004E6312 /* SetCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

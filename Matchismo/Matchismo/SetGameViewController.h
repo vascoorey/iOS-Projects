@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "GameResultViewController.h"
+#import "CardGameViewController.h"
 
-@interface SetGameViewController : GameResultViewController
+@interface SetGameViewController : CardGameViewController
 
 @end

@@ -103,6 +103,7 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    NSLog(@"%@", card);
     NSMutableArray *matches = [[NSMutableArray alloc] init];
     
     if(card && !card.isUnplayable)
