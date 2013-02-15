@@ -93,7 +93,7 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    int matchScore;
+    int matchScore = 0;
     NSMutableArray *matches = [[NSMutableArray alloc] init];
     
     if(card && !card.isUnplayable)
@@ -147,7 +147,7 @@
             [matches addObject:card];
             self.cardsForLastFlip = matches;
             self.score -= self.settings.flipCost;
-            if(matchScore && self.settings.redrawCards)
+            if(matchScore && self.settings.shouldRedealCards)
             {
                 for(Card *card in matches)
                 {

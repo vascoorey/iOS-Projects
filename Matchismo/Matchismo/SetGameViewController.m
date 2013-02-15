@@ -31,7 +31,7 @@
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[[SetCardDeck alloc] init]
-                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 matchMode:3 redrawCards:YES]];
+                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 matchMode:3 shouldRedealCards:YES]];
     }
     return _game;
 }
@@ -49,6 +49,8 @@
     [self updateButtons];
 }
 
+#warning Sometimes this changes the whole AttributedString's color.
+#warning Find a way to work with multiple "equal" Set cards (same symbols).
 -(void)updateDescriptionOfLastFlipLabel
 {
     NSMutableAttributedString *attributedString = [self.descriptionOfLastFlipLabel.attributedText mutableCopy];

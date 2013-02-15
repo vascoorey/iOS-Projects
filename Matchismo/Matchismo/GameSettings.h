@@ -14,13 +14,13 @@
 @property (nonatomic, readonly) int matchBonus;
 @property (nonatomic, readonly) int mismatchPenalty;
 @property (nonatomic, readonly) int matchMode;
-@property (nonatomic, readonly) BOOL redrawCards;
+@property (nonatomic, readonly) BOOL shouldRedealCards;
 
 // Designated Initializer
 -(id)initWithFlipCost:(int)flipCost
            matchBonus:(int)matchBonus
       mismatchPenalty:(int)mismatchPenalty
             matchMode:(int)matchMode
-          redrawCards:(BOOL)redrawCards;
+    shouldRedealCards:(BOOL)shouldRedealCard;
 
 @end

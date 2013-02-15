@@ -38,7 +38,7 @@
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[[PlayingCardDeck alloc] init]
-                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:4 mismatchPenalty:2 matchMode:2 redrawCards:NO]];
+                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:4 mismatchPenalty:2 matchMode:2 shouldRedealCards:NO]];
     }
     return _game;
 }
