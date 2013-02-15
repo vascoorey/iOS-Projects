@@ -93,7 +93,7 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
-    NSLog(@"%@", card);
+    int matchScore;
     NSMutableArray *matches = [[NSMutableArray alloc] init];
     
     if(card && !card.isUnplayable)
@@ -117,7 +117,7 @@
             if([matches count] + 1 == self.matchMode)
             {
                 // Calculate
-                int matchScore = [card match:matches];
+                matchScore = [card match:matches];
                 if(matchScore)
                 {
                     card.unplayable = YES;
@@ -147,6 +147,21 @@
             [matches addObject:card];
             self.cardsForLastFlip = matches;
             self.score -= self.settings.flipCost;
+            if(matchScore && self.settings.redrawCards)
+            {
+                for(Card *card in matches)
+                {
+                    if(card.isUnplayable)
+                    {
+                        Card *newCard = [self.playingDeck drawRandomCard];
+                        if(newCard)
+                        {
+                            NSLog(@"Replacing %@ with %@", card, newCard);
+                            [self.cards replaceObjectAtIndex:[self.cards indexOfObject:card] withObject:newCard];
+                        }
+                    }
+                }
+            }
         }
         card.faceUp = !card.isFaceUp;
     }

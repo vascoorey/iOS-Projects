@@ -14,12 +14,13 @@
 @property (nonatomic, readwrite) int matchBonus;
 @property (nonatomic, readwrite) int mismatchPenalty;
 @property (nonatomic, readwrite) int matchMode;
+@property (nonatomic, readwrite) BOOL redrawCards;
 
 @end
 
 @implementation GameSettings
 
--(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus mismatchPenalty:(int)mismatchPenalty andMatchMode:(int)matchMode
+-(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus mismatchPenalty:(int)mismatchPenalty matchMode:(int)matchMode redrawCards:(BOOL)redrawCards
 {
     if((self = [super init]))
     {
@@ -27,6 +28,7 @@
         _matchBonus = matchBonus;
         _mismatchPenalty = mismatchPenalty;
         _matchMode = matchMode;
+        _redrawCards = redrawCards;
     }
     return self;
 }

@@ -31,7 +31,7 @@
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[[SetCardDeck alloc] init]
-                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 andMatchMode:3]];
+                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 matchMode:3 redrawCards:YES]];
     }
     return _game;
 }
@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     // TODO: Move settings to an independent view controller where the user can change them at will.
-    [AllGameSettings setSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 andMatchMode:3]forGame:@"SetGame"];
+    // [AllGameSettings setSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 matchMode:3 redrawCards:YES]forGame:@"SetGame"];
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
