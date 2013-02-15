@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *playingDeck;
 @property (nonatomic) NSInteger cardCount;
-@property (nonatomic, getter = isDefaultMatchMode) BOOL defaultMatchMode;
+@property (nonatomic) int matchMode;
 @property (nonatomic, strong) NSMutableArray *flipHistory;
 @property (nonatomic, strong) GameSettings *settings;
 @end
@@ -46,18 +46,13 @@
     return _flipHistory;
 }
 
--(void)switchMatchingMode
-{
-    self.defaultMatchMode = !self.defaultMatchMode;
-}
-
 -(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck andGameSettings:(GameSettings *)settings
 {
     if((self = [super init]))
     {
         _playingDeck = deck;
         _cardCount = count;
-        _defaultMatchMode = YES;
+        _matchMode = settings.matchMode;
         _score = 0;
         _descriptionOfLastFlip = @"Last flip.";
         _cards = [[NSMutableArray alloc] init];
@@ -91,12 +86,7 @@
 
 -(Card *)cardAtIndex:(NSUInteger)index
 {
-    return index < [self.cards count] ? self.cards[index] : nil;
-}
-
--(BOOL)canCheckForMatches:(NSMutableArray *)matches
-{
-    return (self.isDefaultMatchMode && [matches count] == 1) || (!self.isDefaultMatchMode && [matches count] == 2);
+    return index < [self.cards count] || index >= [self.cards count] ? self.cards[index] : nil;
 }
 
 -(void)flipCardAtIndex:(NSUInteger)index
@@ -110,20 +100,22 @@
         self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@", card];
         if(!card.isFaceUp)
         {
-            // Check for matches
+            // Check for what cards we'll be matching
             for(Card *otherCard in self.cards)
             {
-                if(otherCard.isFaceUp && !otherCard.isUnplayable)
+                if(otherCard.isFaceUp && !otherCard.isUnplayable && ![otherCard isEqual:card])
                 {
                     [matches addObject:otherCard];
-                    if(self.isDefaultMatchMode || [matches count] == 2)
+                    if([matches count] + 1 == self.matchMode)
                     {
                         break;
                     }
                 }
             }
             
-            if([self canCheckForMatches:matches])
+            NSLog(@"Matches: %@", matches);
+            
+            if([matches count] + 1 == self.matchMode)
             {
                 // Calculate
                 int matchScore = [card match:matches];

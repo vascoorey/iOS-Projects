@@ -13,18 +13,20 @@
 @property (nonatomic, readwrite) int flipCost;
 @property (nonatomic, readwrite) int matchBonus;
 @property (nonatomic, readwrite) int mismatchPenalty;
+@property (nonatomic, readwrite) int matchMode;
 
 @end
 
 @implementation GameSettings
 
--(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus andMismatchPenalty:(int)mismatchPenalty
+-(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus mismatchPenalty:(int)mismatchPenalty andMatchMode:(int)matchMode
 {
     if((self = [super init]))
     {
         _flipCost = flipCost;
         _matchBonus = matchBonus;
         _mismatchPenalty = mismatchPenalty;
+        _matchMode = matchMode;
     }
     return self;
 }

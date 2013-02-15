@@ -13,8 +13,12 @@
 @property (nonatomic, readonly) int flipCost;
 @property (nonatomic, readonly) int matchBonus;
 @property (nonatomic, readonly) int mismatchPenalty;
+@property (nonatomic, readonly) int matchMode;
 
 // Designated Initializer
--(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus andMismatchPenalty:(int)mismatchPenalty;
+-(id)initWithFlipCost:(int)flipCost
+           matchBonus:(int)matchBonus
+      mismatchPenalty:(int)mismatchPenalty
+         andMatchMode:(int)matchMode;
 
 @end

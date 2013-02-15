@@ -26,7 +26,7 @@
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingDeck:[[SetCardDeck alloc] init]
-                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 andMismatchPenalty:2]];
+                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 andMatchMode:3]];
     }
     return _game;
 }
@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
     // TODO: Move settings to an independent view controller where the user can change them at will.
-    [AllGameSettings setSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 andMismatchPenalty:2]forGame:@"SetGame"];
+    [AllGameSettings setSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:2 andMatchMode:3]forGame:@"SetGame"];
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons
@@ -64,6 +64,8 @@
         // Create attributed text to reflect this card and set it as the button's attributed title
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:card.description];
         NSRange range = NSMakeRange(0, [card.description length]);
+        
+        // Set attributes for normal "face-up" mode
         [attributedString setAttributes:
          @{NSFontAttributeName: [UIFont fontWithName:FONT_NAME size:FONT_SIZE],
             NSStrokeColorAttributeName : [self translateColor:card.color],
@@ -71,7 +73,16 @@
             NSStrokeWidthAttributeName : @([self translateShade:card.shade])}
                                   range:range];
         [cardButton setAttributedTitle:attributedString forState:UIControlStateNormal];
-        [cardButton setAttributedTitle:attributedString forState:UIControlStateSelected];
+        
+        // Set attributes for selected mode
+        if(card.isFaceUp)
+        {
+            [cardButton setBackgroundColor:[UIColor grayColor]];
+        }
+        else
+        {
+            [cardButton setBackgroundColor:nil];
+        }
     }
 }
 

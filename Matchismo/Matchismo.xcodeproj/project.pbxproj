@@ -99,6 +99,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC77D07216CE77FB0029EFBA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BCA9177C16CE53B4001AB75E /* AllGameSettings.h */,
+				BCA9177D16CE53B4001AB75E /* AllGameSettings.m */,
+				BCA9177F16CE56E2001AB75E /* GameSettings.h */,
+				BCA9178016CE56E3001AB75E /* GameSettings.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		BC8CF9AE16BD7D2F00002CD3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +120,25 @@
 				BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		BCA9178216CE5BA8001AB75E /* Cards and Decks */ = {
+			isa = PBXGroup;
+			children = (
+				BCB94B4316BC028800C266E3 /* Card.h */,
+				BCB94B4416BC028800C266E3 /* Card.m */,
+				BCB94B4616BC037800C266E3 /* Deck.h */,
+				BCB94B4716BC037800C266E3 /* Deck.m */,
+				BCB94B4916BC073B00C266E3 /* PlayingCard.h */,
+				BCB94B4A16BC073B00C266E3 /* PlayingCard.m */,
+				BCF131F316CD2E48004E6312 /* SetCard.h */,
+				BCF131F416CD2E48004E6312 /* SetCard.m */,
+				BCF131F016CD2E35004E6312 /* SetCardDeck.h */,
+				BCF131F116CD2E35004E6312 /* SetCardDeck.m */,
+				BCB94B4C16BC0B5B00C266E3 /* PlayingCardDeck.h */,
+				BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */,
+			);
+			name = "Cards and Decks";
 			sourceTree = "<group>";
 		};
 		BCB94B1316BC019100C266E3 = {
@@ -176,24 +206,10 @@
 		BCB94B4216BC025F00C266E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BCB94B4316BC028800C266E3 /* Card.h */,
-				BCB94B4416BC028800C266E3 /* Card.m */,
-				BCB94B4616BC037800C266E3 /* Deck.h */,
-				BCB94B4716BC037800C266E3 /* Deck.m */,
-				BCB94B4916BC073B00C266E3 /* PlayingCard.h */,
-				BCB94B4A16BC073B00C266E3 /* PlayingCard.m */,
-				BCF131F316CD2E48004E6312 /* SetCard.h */,
-				BCF131F416CD2E48004E6312 /* SetCard.m */,
-				BCF131F016CD2E35004E6312 /* SetCardDeck.h */,
-				BCF131F116CD2E35004E6312 /* SetCardDeck.m */,
-				BCB94B4C16BC0B5B00C266E3 /* PlayingCardDeck.h */,
-				BCB94B4D16BC0B5B00C266E3 /* PlayingCardDeck.m */,
+				BC77D07216CE77FB0029EFBA /* Settings */,
+				BCA9178216CE5BA8001AB75E /* Cards and Decks */,
 				BCB94B4F16BC34D200C266E3 /* CardMatchingGame.h */,
 				BCB94B5016BC34D200C266E3 /* CardMatchingGame.m */,
-				BCA9177C16CE53B4001AB75E /* AllGameSettings.h */,
-				BCA9177D16CE53B4001AB75E /* AllGameSettings.m */,
-				BCA9177F16CE56E2001AB75E /* GameSettings.h */,
-				BCA9178016CE56E3001AB75E /* GameSettings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
