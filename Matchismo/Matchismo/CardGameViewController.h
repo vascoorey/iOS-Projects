@@ -10,6 +10,6 @@
 
 @interface CardGameViewController : UIViewController
 
-- (IBAction)flipCard:(UIButton *)sender;
+-(IBAction)flipCard:(UIButton *)sender;
 
 @end

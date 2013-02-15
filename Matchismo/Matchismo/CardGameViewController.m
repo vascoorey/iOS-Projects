@@ -64,7 +64,7 @@
     [self updateUI];
 }
 
--(void)updateUI
+-(void)updateButtons
 {
     for(UIButton *cardButton in self.cardButtons)
     {
@@ -75,6 +75,11 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.5 : 1.0;
     }
+}
+
+-(void)updateUI
+{
+    [self updateButtons];
     self.historySlider.maximumValue = self.game.flipCount;
     self.historySlider.value = self.game.flipCount;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];

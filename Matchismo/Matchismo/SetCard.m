@@ -83,7 +83,7 @@
 
 +(int)maxShade
 {
-    return 4;
+    return 2;
 }
 
 +(int)maxColor

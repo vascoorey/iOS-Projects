@@ -10,6 +10,7 @@
 		BC2FF05016C69CEB005C0CE0 /* GameResult.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF04F16C69CEB005C0CE0 /* GameResult.m */; };
 		BC2FF05316C6A3EA005C0CE0 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */; };
 		BC2FF05616C6A987005C0CE0 /* SetGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */; };
+		BC673DBC16CD733900454E45 /* BarItems_2.png in Resources */ = {isa = PBXBuildFile; fileRef = BC673DBB16CD733900454E45 /* BarItems_2.png */; };
 		BC8CF9B016BD7D2F00002CD3 /* cardback.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */; };
 		BC8CF9B316BD842500002CD3 /* Card_0.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B116BD842500002CD3 /* Card_0.png */; };
 		BC8CF9B416BD842500002CD3 /* Card_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B216BD842500002CD3 /* Card_1.png */; };
@@ -41,6 +42,7 @@
 		BC2FF05216C6A3EA005C0CE0 /* GameResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultViewController.m; sourceTree = "<group>"; };
 		BC2FF05416C6A987005C0CE0 /* SetGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGameViewController.h; sourceTree = "<group>"; };
 		BC2FF05516C6A987005C0CE0 /* SetGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGameViewController.m; sourceTree = "<group>"; };
+		BC673DBB16CD733900454E45 /* BarItems_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarItems_2.png; sourceTree = "<group>"; };
 		BC8CF9AF16BD7D2F00002CD3 /* cardback.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardback.jpeg; sourceTree = "<group>"; };
 		BC8CF9B116BD842500002CD3 /* Card_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_0.png; sourceTree = "<group>"; };
 		BC8CF9B216BD842500002CD3 /* Card_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_1.png; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		BC8CF9AE16BD7D2F00002CD3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BC673DBB16CD733900454E45 /* BarItems_2.png */,
 				BCF131F616CD3EFF004E6312 /* BarItems_1.png */,
 				BC8CF9B116BD842500002CD3 /* Card_0.png */,
 				BC8CF9B216BD842500002CD3 /* Card_1.png */,
@@ -246,6 +249,7 @@
 				BC8CF9B316BD842500002CD3 /* Card_0.png in Resources */,
 				BC8CF9B416BD842500002CD3 /* Card_1.png in Resources */,
 				BCF131F716CD3EFF004E6312 /* BarItems_1.png in Resources */,
+				BC673DBC16CD733900454E45 /* BarItems_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

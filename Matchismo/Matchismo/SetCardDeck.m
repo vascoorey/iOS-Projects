@@ -28,6 +28,7 @@
                         setCard.color = color;
                         setCard.shade = shade;
                         setCard.numShapes = numShapes;
+                        setCard.faceUp = YES;
                         [self addCard:setCard atTop:YES];
                     }
                 }
