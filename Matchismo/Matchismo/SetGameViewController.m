@@ -42,7 +42,7 @@
 
 -(float)translateShade:(int)shade
 {
-    return shade == 0 ? -10 : 10;
+    return shade * 10;
 }
 
 #define FONT_SIZE 16
