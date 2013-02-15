@@ -16,6 +16,7 @@
 @property (nonatomic) NSInteger cardCount;
 @property (nonatomic, getter = isDefaultMatchMode) BOOL defaultMatchMode;
 @property (nonatomic, strong) NSMutableArray *flipHistory;
+@property (nonatomic, strong) GameSettings *settings;
 @end
 
 @implementation CardMatchingGame
@@ -50,7 +51,7 @@
     self.defaultMatchMode = !self.defaultMatchMode;
 }
 
--(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+-(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck andGameSettings:(GameSettings *)settings
 {
     if((self = [super init]))
     {
@@ -60,6 +61,7 @@
         _score = 0;
         _descriptionOfLastFlip = @"Last flip.";
         _cards = [[NSMutableArray alloc] init];
+        _settings = settings;
         for(int i = 0; i < _cardCount; i++)
         {
             Card *card = [_playingDeck drawRandomCard];
@@ -97,9 +99,6 @@
     return (self.isDefaultMatchMode && [matches count] == 1) || (!self.isDefaultMatchMode && [matches count] == 2);
 }
 
-#define MATCH_BONUS 6
-#define MISMATCH_PENALTY 3
-#define FLIP_COST 1
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
@@ -131,29 +130,29 @@
                 if(matchScore)
                 {
                     card.unplayable = YES;
-                    self.score += matchScore * MATCH_BONUS * [matches count];
+                    self.score += matchScore * self.settings.matchBonus * [matches count];
                     self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@", card];
                     for(Card *otherCard in matches)
                     {
                         otherCard.unplayable = YES;
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" for %d points.", matchScore * MATCH_BONUS * [matches count]]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" for %d points.", matchScore * self.settings.matchBonus * [matches count]]];
                 }
                 else
                 {
-                    self.score -= MISMATCH_PENALTY;
+                    self.score -= self.settings.mismatchPenalty;
                     self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@", card];
                     for(Card *otherCard in matches)
                     {
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                         otherCard.faceUp = NO;
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d point penalty.", matchScore - MISMATCH_PENALTY]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d point penalty.", matchScore - self.settings.mismatchPenalty]];
                 }
             }
             [self.flipHistory addObject:self.descriptionOfLastFlip];
-            self.score -= FLIP_COST;
+            self.score -= self.settings.flipCost;
         }
         card.faceUp = !card.isFaceUp;
     }

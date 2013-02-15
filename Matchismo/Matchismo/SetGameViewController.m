@@ -11,6 +11,7 @@
 #import "SetCard.h"
 #import "CardMatchingGame.h"
 #import "GameResult.h"
+#import "AllGameSettings.h"
 
 @interface SetGameViewController()
 @property (strong, nonatomic) CardMatchingGame *game;
@@ -24,9 +25,17 @@
     if(!_game)
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                  usingDeck:[[SetCardDeck alloc] init]];
+                                                  usingDeck:[[SetCardDeck alloc] init]
+                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 andMismatchPenalty:2]];
     }
     return _game;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    // TODO: Move settings to an independent view controller where the user can change them at will.
+    [AllGameSettings setSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:6 andMismatchPenalty:2]forGame:@"SetGame"];
 }
 
 -(void)setCardButtons:(NSArray *)cardButtons

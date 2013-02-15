@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Card.h"
 #import "Deck.h"
+#import "GameSettings.h"
 
 @interface CardMatchingGame : NSObject
 
@@ -18,7 +19,8 @@
 
 // Designated Initializer
 -(id)initWithCardCount:(NSUInteger)count
-             usingDeck:(Deck *)deck;
+             usingDeck:(Deck *)deck
+       andGameSettings:(GameSettings *)settings;
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(void)switchMatchingMode;

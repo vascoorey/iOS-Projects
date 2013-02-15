@@ -15,7 +15,14 @@
 -(int)match:(NSArray *)otherCards
 {
     int score = 0;
-    
+    /*
+     * A Set match must satisfy all these conditions:
+     *
+     *  1) All cards have the same number of symbols OR 3 diferent numbers
+     *  2) All cards have the same symbol OR 3 diferent symbols
+     *  3) All cards have the same shading OR 3 diferent shadings
+     *  4) All cards have the same color OR 3 diferent colors
+     */
     return score;
 }
 
