@@ -46,7 +46,7 @@
     NSString *resultsText = @"";
     for(GameResult *result in allGameResults)
     {
-        resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, End: %@, Duration: %0g seconds)\n", result.score, result.start, result.end, round(result.duration)];
+        resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, Duration: %0g seconds)\n", result.score, result.start, round(result.duration)];
     }
     self.display.text = resultsText;
 }

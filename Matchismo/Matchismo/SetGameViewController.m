@@ -13,6 +13,10 @@
 #import "GameResult.h"
 #import "AllGameSettings.h"
 
+#define FONT_SIZE 17
+#define FONT_NAME @"Arial Rounded MT Bold"
+#define BUTTON_ALPHA 0.167f
+
 @interface SetGameViewController()
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -47,11 +51,19 @@
 
 -(void)updateDescriptionOfLastFlipLabel
 {
-    NSArray *lastCards = self.game.cardsForLastFlip;
-    NSString *descriptionOfLastFlip = self.game.descriptionOfLastFlip;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:descriptionOfLastFlip];
-    // To keep track of what portions of the string we've already editted
-    NSRange firstRange, secondRange;
+    NSMutableAttributedString *attributedString = [self.descriptionOfLastFlipLabel.attributedText mutableCopy];
+    [attributedString replaceCharactersInRange:NSMakeRange(0, [attributedString string].length) withString:self.game.descriptionOfLastFlip];
+    for(SetCard *card in self.game.cardsForLastFlip)
+    {
+        NSRange range = [[attributedString string] rangeOfString:card.description];
+        // Set attributes for normal "face-up" mode
+        [attributedString setAttributes:
+         @{NSStrokeColorAttributeName : [self strokeColorForCard:card],
+        NSForegroundColorAttributeName : [self foregroundColorForCard:card],
+            NSStrokeWidthAttributeName : @(-10)}
+                                  range:range];
+    }
+    self.descriptionOfLastFlipLabel.attributedText = attributedString;
 }
 
 -(UIColor *)strokeColorForCard:(SetCard *)card
@@ -66,8 +78,12 @@
     return [[self strokeColorForCard:card] colorWithAlphaComponent:card.shadeValue];
 }
 
-#define FONT_SIZE 17
-#define FONT_NAME @"Arial Rounded MT Bold"
+-(NSMutableAttributedString *)setAttributes:(NSMutableAttributedString *)attributedString forCard:(SetCard *)card withRange:(NSRange)range
+{
+    
+    return attributedString;
+}
+
 -(void)updateButtons
 {
     for(UIButton *cardButton in self.cardButtons)
@@ -76,7 +92,6 @@
         // Create attributed text to reflect this card and set it as the button's attributed title
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:card.description];
         NSRange range = NSMakeRange(0, [card.description length]);
-        
         // Set attributes for normal "face-up" mode
         [attributedString setAttributes:
          @{NSFontAttributeName: [UIFont fontWithName:FONT_NAME size:FONT_SIZE],
@@ -85,14 +100,22 @@
             NSStrokeWidthAttributeName : @(-10)}
                                   range:range];
         [cardButton setAttributedTitle:attributedString forState:UIControlStateNormal];
-        
         if(card.isFaceUp)
         {
-            [cardButton setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.167f]];
+            [cardButton setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:BUTTON_ALPHA]];
         }
         else
         {
             [cardButton setBackgroundColor:nil];
+        }
+        cardButton.enabled = !card.isUnplayable;
+        if(!cardButton.enabled)
+        {
+            NSLog(@"%d : %@", cardButton.state, card.description);
+            [cardButton setBackgroundColor:nil];
+            [cardButton setAttributedTitle:nil forState:UIControlStateSelected|UIControlStateDisabled];
+            [cardButton setAttributedTitle:nil forState:UIControlStateNormal];
+            //[cardButton setAttributedTitle:nil forState:UIControlStateNormal|UIControlStateDisabled];
         }
     }
 }

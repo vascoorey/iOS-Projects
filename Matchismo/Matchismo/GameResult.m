@@ -99,7 +99,7 @@
 
 -(NSComparisonResult)compareByDuration:(GameResult *)otherResult
 {
-    return self.duration < otherResult.duration ? NSOrderedAscending : (self.duration == otherResult.duration ? NSOrderedSame : NSOrderedDescending);
+    return self.duration < otherResult.duration ? NSOrderedDescending : (self.duration == otherResult.duration ? NSOrderedSame : NSOrderedAscending);
 }
 
 +(NSArray *)allGameResults
