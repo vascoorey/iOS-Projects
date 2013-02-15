@@ -11,11 +11,12 @@
 @interface CardMatchingGame ()
 @property (readwrite, nonatomic) NSInteger score;
 @property (readwrite, nonatomic) NSString *descriptionOfLastFlip;
+@property (nonatomic, strong) NSArray *cardsForLastFlip;
+@property (nonatomic, strong) NSMutableArray *flipHistory;
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *playingDeck;
 @property (nonatomic) NSInteger cardCount;
 @property (nonatomic) int matchMode;
-@property (nonatomic, strong) NSMutableArray *flipHistory;
 @property (nonatomic, strong) GameSettings *settings;
 @end
 
@@ -113,8 +114,6 @@
                 }
             }
             
-            NSLog(@"Matches: %@", matches);
-            
             if([matches count] + 1 == self.matchMode)
             {
                 // Calculate
@@ -129,7 +128,7 @@
                         otherCard.unplayable = YES;
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" for %d points.", matchScore * self.settings.matchBonus * [matches count]]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@". %d points", matchScore * self.settings.matchBonus * [matches count]]];
                 }
                 else
                 {
@@ -140,10 +139,13 @@
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
                         otherCard.faceUp = NO;
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d point penalty.", matchScore - self.settings.mismatchPenalty]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d points", matchScore - self.settings.mismatchPenalty]];
                 }
             }
             [self.flipHistory addObject:self.descriptionOfLastFlip];
+            // Mainly used for the Set game as we need to know what cards were chosen
+            [matches addObject:card];
+            self.cardsForLastFlip = matches;
             self.score -= self.settings.flipCost;
         }
         card.faceUp = !card.isFaceUp;

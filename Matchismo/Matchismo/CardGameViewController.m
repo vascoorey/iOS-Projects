@@ -78,14 +78,20 @@
     }
 }
 
+-(void)updateDescriptionOfLastFlipLabel
+{
+    NSMutableAttributedString *attributedString = [self.descriptionOfLastFlipLabel.attributedText mutableCopy];
+    [attributedString replaceCharactersInRange:NSMakeRange(0, attributedString.length) withString:self.game.descriptionOfLastFlip];
+    self.descriptionOfLastFlipLabel.attributedText = attributedString;
+}
+
 -(void)updateUI
 {
     [self updateButtons];
+    [self updateDescriptionOfLastFlipLabel];
     self.historySlider.maximumValue = self.game.flipCount;
     self.historySlider.value = self.game.flipCount;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    self.descriptionOfLastFlipLabel.text = self.game.descriptionOfLastFlip;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
 }
 
 - (IBAction)flipCard:(UIButton *)sender {

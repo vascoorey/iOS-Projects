@@ -23,7 +23,7 @@
        andGameSettings:(GameSettings *)settings;
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
--(void)switchMatchingMode;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;
+-(NSArray *)cardsForLastFlip;
 
 @end

@@ -16,6 +16,7 @@
 @interface SetGameViewController()
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionOfLastFlipLabel;
 @end
 
 @implementation SetGameViewController
@@ -44,17 +45,28 @@
     [self updateButtons];
 }
 
--(UIColor *)translateColor:(int)color
+-(void)updateDescriptionOfLastFlipLabel
 {
-    return color == 0 ? [UIColor blueColor] : (color == 1 ? [UIColor redColor] : [UIColor greenColor] );
+    NSArray *lastCards = self.game.cardsForLastFlip;
+    NSString *descriptionOfLastFlip = self.game.descriptionOfLastFlip;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:descriptionOfLastFlip];
+    // To keep track of what portions of the string we've already editted
+    NSRange firstRange, secondRange;
 }
 
--(float)translateShade:(int)shade
+-(UIColor *)strokeColorForCard:(SetCard *)card
 {
-    return shade * 10;
+    return card.color == 1 ? [UIColor blueColor]
+                      : (card.color == 2 ? [UIColor redColor]
+                                    : [UIColor greenColor] );
 }
 
-#define FONT_SIZE 16
+-(UIColor *)foregroundColorForCard:(SetCard *)card
+{
+    return [[self strokeColorForCard:card] colorWithAlphaComponent:card.shadeValue];
+}
+
+#define FONT_SIZE 17
 #define FONT_NAME @"Arial Rounded MT Bold"
 -(void)updateButtons
 {
@@ -68,16 +80,15 @@
         // Set attributes for normal "face-up" mode
         [attributedString setAttributes:
          @{NSFontAttributeName: [UIFont fontWithName:FONT_NAME size:FONT_SIZE],
-            NSStrokeColorAttributeName : [self translateColor:card.color],
-        NSForegroundColorAttributeName : [self translateColor:card.color],
-            NSStrokeWidthAttributeName : @([self translateShade:card.shade])}
+            NSStrokeColorAttributeName : [self strokeColorForCard:card],
+        NSForegroundColorAttributeName : [self foregroundColorForCard:card],
+            NSStrokeWidthAttributeName : @(-10)}
                                   range:range];
         [cardButton setAttributedTitle:attributedString forState:UIControlStateNormal];
         
-        // Set attributes for selected mode
         if(card.isFaceUp)
         {
-            [cardButton setBackgroundColor:[UIColor grayColor]];
+            [cardButton setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.167f]];
         }
         else
         {

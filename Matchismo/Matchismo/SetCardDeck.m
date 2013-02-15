@@ -17,9 +17,9 @@
     {
         for(NSString *shape in [SetCard validShapes])
         {
-            for(int color = 0; color < [SetCard maxColor]; color ++)
+            for(int color = 1; color <= [SetCard maxColor]; color ++)
             {
-                for(int shade = 0; shade < [SetCard maxShade]; shade ++)
+                for(int shade = 1; shade <= [SetCard maxShade]; shade ++)
                 {
                     for(int numShapes = 1; numShapes <= [SetCard maxShapes]; numShapes ++)
                     {
