@@ -98,7 +98,14 @@
     
     if(card && !card.isUnplayable)
     {
-        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@", card];
+        if([self.descriptionOfLastFlip rangeOfString:@"Flipped"].location != NSNotFound)
+        {
+            self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingFormat:@"and %@ ", card];
+        }
+        else
+        {
+            self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@ ", card];
+        }
         if(!card.isFaceUp)
         {
             // Check for what cards we'll be matching
@@ -126,7 +133,7 @@
                     for(Card *otherCard in matches)
                     {
                         otherCard.unplayable = YES;
-                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
+                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@"& %@ ", otherCard]];
                     }
                     self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@". %d points", matchScore * self.settings.matchBonus * [matches count]]];
                 }
@@ -136,7 +143,7 @@
                     self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@", card];
                     for(Card *otherCard in matches)
                     {
-                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@", %@", otherCard]];
+                        self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@"& %@ ", otherCard]];
                         otherCard.faceUp = NO;
                     }
                     self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d points", matchScore - self.settings.mismatchPenalty]];
@@ -156,7 +163,7 @@
                         Card *newCard = [self.playingDeck drawRandomCard];
                         if(newCard)
                         {
-                            NSLog(@"Replacing %@ with %@", card, newCard);
+                            //NSLog(@"Replacing %@ with %@", card, newCard);
                             [self.cards replaceObjectAtIndex:[self.cards indexOfObject:card] withObject:newCard];
                         }
                     }

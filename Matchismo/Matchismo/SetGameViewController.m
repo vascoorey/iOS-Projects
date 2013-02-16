@@ -49,7 +49,7 @@
     [self updateButtons];
 }
 
-#warning Sometimes this changes the whole AttributedString's color.
+#warning Sometimes this changes the whole AttributedString's color (on iPad).
 #warning Find a way to work with multiple "equal" Set cards (same symbols).
 -(void)updateDescriptionOfLastFlipLabel
 {
@@ -57,7 +57,7 @@
     [attributedString replaceCharactersInRange:NSMakeRange(0, [attributedString string].length) withString:self.game.descriptionOfLastFlip];
     for(SetCard *card in self.game.cardsForLastFlip)
     {
-        NSRange range = [[attributedString string] rangeOfString:card.description];
+        NSRange range = [[attributedString string] rangeOfString:[NSString stringWithFormat:@" %@ ", card.description]];
         // Set attributes for normal "face-up" mode
         [attributedString setAttributes:
          @{NSStrokeColorAttributeName : [self strokeColorForCard:card],

@@ -50,7 +50,7 @@
     NSString *description = @"";
     for(int i = 0; i < self.numShapes; i ++)
     {
-        description = [description stringByAppendingFormat:@" %@", self.shape];
+        description = [description stringByAppendingFormat:@"%@", self.shape];
     }
     return self.numShapes ? description : @"?";
 }

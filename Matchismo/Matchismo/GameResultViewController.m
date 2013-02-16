@@ -47,6 +47,7 @@
     for(GameResult *result in allGameResults)
     {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
         resultsText = [resultsText stringByAppendingFormat:@"Score: %d (Start: %@, Duration: %0g seconds)\n", result.score, [formatter stringFromDate:result.start], round(result.duration)];
     }
     self.display.text = resultsText;
