@@ -49,8 +49,6 @@
     [self updateButtons];
 }
 
-#warning Sometimes this changes the whole AttributedString's color (on iPad).
-#warning Find a way to work with multiple "equal" Set cards (same symbols).
 -(void)updateDescriptionOfLastFlipLabel
 {
     NSMutableAttributedString *attributedString = [self.descriptionOfLastFlipLabel.attributedText mutableCopy];
@@ -113,7 +111,7 @@
         cardButton.enabled = !card.isUnplayable;
         if(!cardButton.enabled)
         {
-            NSLog(@"%d : %@", cardButton.state, card.description);
+            //NSLog(@"%d : %@", cardButton.state, card.description);
             [cardButton setBackgroundColor:nil];
             [cardButton setAttributedTitle:nil forState:UIControlStateSelected|UIControlStateDisabled];
             [cardButton setAttributedTitle:nil forState:UIControlStateNormal];

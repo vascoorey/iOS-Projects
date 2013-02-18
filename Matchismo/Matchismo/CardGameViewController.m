@@ -7,19 +7,17 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCardDeck.h"
-#import "PlayingCard.h"
 #import "CardMatchingGame.h"
 #import "GameResult.h"
 
-@interface CardGameViewController ()
+@interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionOfLastFlipLabel;
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @property (strong, nonatomic) GameResult *gameResult;
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 @end
 
 @implementation CardGameViewController
@@ -36,11 +34,16 @@
 {
     if(!_game)
     {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                  usingDeck:[[PlayingCardDeck alloc] init]
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
+                                                  usingDeck:[self createDeck]
                                             andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:4 mismatchPenalty:2 matchMode:2 shouldRedealCards:NO]];
     }
     return _game;
+}
+
+-(Deck *)createDeck
+{
+    return nil;
 }
 
 -(GameResult *)gameResult
@@ -52,32 +55,6 @@
     return _gameResult;
 }
 
--(void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    for(UIButton *button in self.cardButtons)
-    {
-        [button setBackgroundImage:[UIImage imageNamed:@"Card_0.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected];
-        [button setBackgroundImage:[UIImage imageNamed:@"Card_1.png"] forState:UIControlStateSelected|UIControlStateDisabled];
-        [button setImageEdgeInsets:UIEdgeInsetsMake(0, CGRectGetHeight(button.frame), 0, 0)];
-    }
-    [self updateUI];
-}
-
--(void)updateButtons
-{
-    for(UIButton *cardButton in self.cardButtons)
-    {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.5 : 1.0;
-    }
-}
-
 -(void)updateDescriptionOfLastFlipLabel
 {
     NSMutableAttributedString *attributedString = [self.descriptionOfLastFlipLabel.attributedText mutableCopy];
@@ -87,17 +64,28 @@
 
 -(void)updateUI
 {
-    [self updateButtons];
+    for(UICollectionViewCell *cell in [self.cardCollectionView visibleCells])
+    {
+        NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
+        Card *card = [self.game cardAtIndex:indexPath.item];
+        [self updateCell:cell usingCard:card animate:YES];
+    }
     [self updateDescriptionOfLastFlipLabel];
     self.historySlider.maximumValue = self.game.flipCount;
     self.historySlider.value = self.game.flipCount;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
 
-- (IBAction)flipCard:(UIButton *)sender {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.gameResult.score = self.game.score;
-    [self updateUI];
+- (IBAction)flipCard:(UITapGestureRecognizer *)gesture
+{
+    CGPoint tapLocation = [gesture locationInView:self.cardCollectionView];
+    NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
+    if(indexPath)
+    {
+        [self.game flipCardAtIndex:indexPath.item];
+        self.gameResult.score = self.game.score;
+        [self updateUI];
+    }
 }
 
 - (IBAction)deal {
@@ -123,6 +111,31 @@
     {
         self.descriptionOfLastFlipLabel.text = flipDescription;
     }
+}
+
+#pragma mark Collection View
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.startingCardCount;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayingCard" forIndexPath:indexPath];
+    Card *card = [self.game cardAtIndex:indexPath.item];
+    [self updateCell:cell usingCard:card animate:NO];
+    return cell;
+}
+
+-(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
+{
+    NSAssert(false, @"updateCell must be overriden!");
 }
 
 @end
