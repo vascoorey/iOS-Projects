@@ -19,12 +19,17 @@
 
 -(NSUInteger) startingCardCount
 {
-    return 20;
+    return 22;
 }
 
 -(Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
+}
+
+-(GameSettings *)settings
+{
+    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:4 matchMode:2 shouldRedealCards:NO];
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate

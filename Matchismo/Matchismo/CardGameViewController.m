@@ -36,12 +36,19 @@
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
                                                   usingDeck:[self createDeck]
-                                            andGameSettings:[[GameSettings alloc] initWithFlipCost:1 matchBonus:4 mismatchPenalty:2 matchMode:2 shouldRedealCards:NO]];
+                                            andGameSettings:[self settings]];
     }
     return _game;
 }
 
+// Abstract
 -(Deck *)createDeck
+{
+    return nil;
+}
+
+// Abstract
+-(GameSettings *)settings
 {
     return nil;
 }

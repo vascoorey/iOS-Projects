@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Deck.h"
+#import "GameSettings.h"
 
 @interface CardGameViewController : UIViewController
 
+// Abstract
 @property (nonatomic) NSUInteger startingCardCount;
 -(Deck *)createDeck;
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate;
+-(GameSettings *)settings;
 
 @end

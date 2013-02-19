@@ -60,7 +60,6 @@
     
     if(self.faceUp)
     {
-        NSLog(@"%@", [NSString stringWithFormat:@"%@-%@.png", [self translateSuit], [NSString stringWithFormat:@"%d", self.rank]]);
         UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@.png", [self translateSuit], [NSString stringWithFormat:@"%d", self.rank]]];
         
         if(faceImage)

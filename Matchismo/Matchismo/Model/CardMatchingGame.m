@@ -98,14 +98,8 @@
     
     if(card && !card.isUnplayable)
     {
-        if([self.descriptionOfLastFlip rangeOfString:@"Flipped"].location != NSNotFound)
-        {
-            self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingFormat:@"and %@ ", card];
-        }
-        else
-        {
-            self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@ ", card];
-        }
+#warning This needs to work for various matching schemes: for 3 or more cards this needs to show the last n selected.
+        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@ ", card];
         if(!card.isFaceUp)
         {
             // Check for what cards we'll be matching

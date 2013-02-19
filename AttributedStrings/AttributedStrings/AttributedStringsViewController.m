@@ -75,7 +75,7 @@
 }
 
 - (IBAction)changeColor:(UIButton *)sender {
-    [self addSelectedWordAttributes:@{NSForegroundColorAttributeName : sender.backgroundColor}];
+    [self addSelectedWordAttributes:@{NSBackgroundColorAttributeName : sender.backgroundColor}];
 }
 
 - (IBAction)changeFont:(UIButton *)sender {

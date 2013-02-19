@@ -27,7 +27,7 @@
                                 </connections>
                             </stepper>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wex-tz-UTJ">
-                                <rect key="frame" x="20" y="90" width="280" height="115"/>
+                                <rect key="frame" x="20" y="55" width="280" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="CS193p is quite an awesome class ! Don't you think so ?">
@@ -215,15 +215,6 @@
                                     <action selector="noUnderline" destination="2" eventType="touchUpInside" id="CNu-Ci-FNe"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Change text ?" textAlignment="center" minimumFontSize="17" id="Ujt-dI-p4Y">
-                                <rect key="frame" x="20" y="55" width="275" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                <connections>
-                                    <action selector="changedText:" destination="2" eventType="editingDidEnd" id="uSB-Fn-sTc"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -231,7 +222,6 @@
                         <outlet property="label" destination="Wex-tz-UTJ" id="jDg-BZ-Due"/>
                         <outlet property="selectedWordLabel" destination="wYM-fY-z8q" id="gsL-vH-jVc"/>
                         <outlet property="selectedWordStepper" destination="k7w-sd-zvn" id="qjN-zE-CYr"/>
-                        <outlet property="textField" destination="Ujt-dI-p4Y" id="JF7-e8-cdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
