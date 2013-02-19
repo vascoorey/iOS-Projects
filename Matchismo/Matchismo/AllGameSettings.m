@@ -36,6 +36,7 @@ static AllGameSettings *gameSettings;
 
 +(void)setSettings:(GameSettings *)settings forGame:(NSString *)game
 {
+    NSLog(@"Saving settings for %@: %d, %d", game, settings.startingCardCount, settings.shouldRedealCards);
     [self sharedSettings].allGameSettings[game] = settings;
 }
 

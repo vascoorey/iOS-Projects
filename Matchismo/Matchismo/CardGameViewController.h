@@ -13,7 +13,7 @@
 @interface CardGameViewController : UIViewController
 
 // Abstract
-@property (nonatomic) NSUInteger startingCardCount;
+@property (nonatomic, strong) NSString *gameName;
 -(Deck *)createDeck;
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate;
 -(GameSettings *)settings;

@@ -9,18 +9,11 @@
 #import "GameSettings.h"
 
 @interface GameSettings()
-
-@property (nonatomic, readwrite) int flipCost;
-@property (nonatomic, readwrite) int matchBonus;
-@property (nonatomic, readwrite) int mismatchPenalty;
-@property (nonatomic, readwrite) int matchMode;
-@property (nonatomic, readwrite) BOOL shouldRedealCards;
-
 @end
 
 @implementation GameSettings
 
--(id)initWithFlipCost:(int)flipCost matchBonus:(int)matchBonus mismatchPenalty:(int)mismatchPenalty matchMode:(int)matchMode shouldRedealCards:(BOOL)shouldRedealCards
+-(id)initWithFlipCost:(NSUInteger)flipCost matchBonus:(NSUInteger)matchBonus mismatchPenalty:(NSUInteger)mismatchPenalty matchMode:(NSUInteger)matchMode shouldRedealCards:(BOOL)shouldRedealCards startingCardCount:(NSUInteger)startingCardCount
 {
     if((self = [super init]))
     {
@@ -29,6 +22,7 @@
         _mismatchPenalty = mismatchPenalty;
         _matchMode = matchMode;
         _shouldRedealCards = shouldRedealCards;
+        _startingCardCount = startingCardCount;
     }
     return self;
 }

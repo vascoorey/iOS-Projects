@@ -19,9 +19,9 @@
 
 @implementation SetGameViewController
 
--(NSUInteger) startingCardCount
+-(NSString *)gameName
 {
-    return 12;
+    return @"Set";
 }
 
 -(Deck *)createDeck
@@ -36,7 +36,7 @@
 
 -(GameSettings *)settings
 {
-    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 shouldRedealCards:YES];
+    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 shouldRedealCards:YES startingCardCount:12];
 }
 
 @end

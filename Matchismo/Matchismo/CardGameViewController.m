@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 #import "GameResult.h"
+#import "AllGameSettings.h"
 
 @interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -34,9 +35,9 @@
 {
     if(!_game)
     {
-        _game = [[CardMatchingGame alloc] initWithCardCount:self.startingCardCount
-                                                  usingDeck:[self createDeck]
-                                            andGameSettings:[self settings]];
+        _game = [[CardMatchingGame alloc] initWithDeck:[self createDeck]
+                                                  name:self.gameName
+                                              settings:[self settings]];
     }
     return _game;
 }
@@ -106,6 +107,7 @@
     {
         self.game = nil;
         self.gameResult = nil;
+        [self.cardCollectionView reloadData];
         [self updateUI];
     }
 }
@@ -129,7 +131,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.startingCardCount;
+    return [AllGameSettings settingsForGame:self.gameName].startingCardCount;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

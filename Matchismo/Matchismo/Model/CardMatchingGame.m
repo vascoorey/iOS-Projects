@@ -7,6 +7,7 @@
 //
 
 #import "CardMatchingGame.h"
+#import "AllGameSettings.h"
 
 @interface CardMatchingGame ()
 @property (readwrite, nonatomic) NSInteger score;
@@ -15,9 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *flipHistory;
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *playingDeck;
-@property (nonatomic) NSInteger cardCount;
-@property (nonatomic) int matchMode;
-@property (nonatomic, strong) GameSettings *settings;
+@property (nonatomic, strong) NSString *name;
 @end
 
 @implementation CardMatchingGame
@@ -47,18 +46,25 @@
     return _flipHistory;
 }
 
--(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck andGameSettings:(GameSettings *)settings
+-(id)initWithDeck:(Deck *)deck name:(NSString *)name settings:(GameSettings *)settings
 {
     if((self = [super init]))
     {
         _playingDeck = deck;
-        _cardCount = count;
-        _matchMode = settings.matchMode;
         _score = 0;
         _descriptionOfLastFlip = @"Last flip.";
         _cards = [[NSMutableArray alloc] init];
-        _settings = settings;
-        for(int i = 0; i < _cardCount; i++)
+        _name = name;
+        // Only set settings if they don't exist
+        if(![AllGameSettings settingsForGame:_name])
+        {
+            [AllGameSettings setSettings:settings forGame:_name];
+        }
+        else
+        {
+            settings = [AllGameSettings settingsForGame:_name];
+        }
+        for(int i = 0; i < settings.startingCardCount; i++)
         {
             Card *card = [_playingDeck drawRandomCard];
             if(card)
@@ -93,6 +99,10 @@
 -(void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    
+    GameSettings *settings = [AllGameSettings settingsForGame:self.name];
+    NSAssert(settings, @"Couldn't find setting for %@", self.name);
+    
     int matchScore = 0;
     NSMutableArray *matches = [[NSMutableArray alloc] init];
     
@@ -108,47 +118,47 @@
                 if(otherCard.isFaceUp && !otherCard.isUnplayable && ![otherCard isEqual:card])
                 {
                     [matches addObject:otherCard];
-                    if([matches count] + 1 == self.matchMode)
+                    if([matches count] + 1 == settings.matchMode)
                     {
                         break;
                     }
                 }
             }
             
-            if([matches count] + 1 == self.matchMode)
+            if([matches count] + 1 == settings.matchMode)
             {
                 // Calculate
                 matchScore = [card match:matches];
                 if(matchScore)
                 {
                     card.unplayable = YES;
-                    self.score += matchScore * self.settings.matchBonus * [matches count];
+                    self.score += matchScore * settings.matchBonus * [matches count];
                     self.descriptionOfLastFlip = [NSString stringWithFormat:@"Matched %@", card];
                     for(Card *otherCard in matches)
                     {
                         otherCard.unplayable = YES;
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@"& %@ ", otherCard]];
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@". %d points", matchScore * self.settings.matchBonus * [matches count]]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@". %d points", matchScore * settings.matchBonus * [matches count]]];
                 }
                 else
                 {
-                    self.score -= self.settings.mismatchPenalty;
+                    self.score -= settings.mismatchPenalty;
                     self.descriptionOfLastFlip = [NSString stringWithFormat:@"%@", card];
                     for(Card *otherCard in matches)
                     {
                         self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@"& %@ ", otherCard]];
                         otherCard.faceUp = NO;
                     }
-                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d points", matchScore - self.settings.mismatchPenalty]];
+                    self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingString:[NSString stringWithFormat:@" dont match. %d points", matchScore - settings.mismatchPenalty]];
                 }
             }
             [self.flipHistory addObject:self.descriptionOfLastFlip];
             // Mainly used for the Set game as we need to know what cards were chosen
             [matches addObject:card];
             self.cardsForLastFlip = matches;
-            self.score -= self.settings.flipCost;
-            if(matchScore && self.settings.shouldRedealCards)
+            self.score -= settings.flipCost;
+            if(matchScore && settings.shouldRedealCards)
             {
                 for(Card *card in matches)
                 {
@@ -157,7 +167,6 @@
                         Card *newCard = [self.playingDeck drawRandomCard];
                         if(newCard)
                         {
-                            //NSLog(@"Replacing %@ with %@", card, newCard);
                             [self.cards replaceObjectAtIndex:[self.cards indexOfObject:card] withObject:newCard];
                         }
                     }

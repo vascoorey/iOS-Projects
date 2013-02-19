@@ -18,9 +18,9 @@
 @property (nonatomic, readonly) NSInteger flipCount;
 
 // Designated Initializer
--(id)initWithCardCount:(NSUInteger)count
-             usingDeck:(Deck *)deck
-       andGameSettings:(GameSettings *)settings;
+-(id)initWithDeck:(Deck *)deck
+             name:(NSString *)name
+         settings:(GameSettings *)settings;
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;

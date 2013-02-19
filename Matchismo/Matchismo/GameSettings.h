@@ -10,17 +10,19 @@
 
 @interface GameSettings : NSObject
 
-@property (nonatomic, readonly) int flipCost;
-@property (nonatomic, readonly) int matchBonus;
-@property (nonatomic, readonly) int mismatchPenalty;
-@property (nonatomic, readonly) int matchMode;
-@property (nonatomic, readonly) BOOL shouldRedealCards;
+@property (nonatomic) NSUInteger flipCost;
+@property (nonatomic) NSUInteger matchBonus;
+@property (nonatomic) NSUInteger mismatchPenalty;
+@property (nonatomic) NSUInteger matchMode;
+@property (nonatomic) BOOL shouldRedealCards;
+@property (nonatomic) NSUInteger startingCardCount;
 
 // Designated Initializer
--(id)initWithFlipCost:(int)flipCost
-           matchBonus:(int)matchBonus
-      mismatchPenalty:(int)mismatchPenalty
-            matchMode:(int)matchMode
-    shouldRedealCards:(BOOL)shouldRedealCard;
+-(id)initWithFlipCost:(NSUInteger)flipCost
+           matchBonus:(NSUInteger)matchBonus
+      mismatchPenalty:(NSUInteger)mismatchPenalty
+            matchMode:(NSUInteger)matchMode
+    shouldRedealCards:(BOOL)shouldRedealCard
+     startingCardCount:(NSUInteger)startingCardCount;
 
 @end
