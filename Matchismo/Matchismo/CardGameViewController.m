@@ -45,12 +45,14 @@
 // Abstract
 -(Deck *)createDeck
 {
+    NSAssert(false, @"createDeck must be overriden!");
     return nil;
 }
 
 // Abstract
 -(GameSettings *)settings
 {
+    NSAssert(false, @"settings must be overriden!");
     return nil;
 }
 

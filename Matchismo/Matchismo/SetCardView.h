@@ -11,7 +11,7 @@
 @interface SetCardView : UIView
 
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic) NSUInteger shape;
+@property (nonatomic, strong) NSString *shape;
 @property (nonatomic) NSUInteger numberOfShapes;
 
 @end

@@ -52,13 +52,14 @@
     NSString *gameName = [sender titleForSegmentAtIndex:sender.selectedSegmentIndex];
     self.currentSettings = [AllGameSettings settingsForGame:gameName];
     NSAssert(self.currentSettings, @"No settings found for %@", gameName);
+    [self updateUI];
 }
 
 - (IBAction)enterPressed {
     // Save new settings
     self.currentSettings.shouldRedealCards = self.shouldRedealSwitch.isOn;
     self.currentSettings.startingCardCount = (int)roundf(self.cardCountSlider.value);
-    [AllGameSettings setSettings:self.currentSettings forGame:self.gameNameLabel.text];
+    //[AllGameSettings setSettings:self.currentSettings forGame:self.gameNameLabel.text];
 }
 
 @end

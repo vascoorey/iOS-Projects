@@ -10,13 +10,13 @@
 
 @interface SetCard : Card
 
-@property (nonatomic, strong) NSString *shape;
+@property (nonatomic) int shape;
 @property (nonatomic) int shade;
 @property (nonatomic) int color;
 @property (nonatomic) int numShapes;
 @property (nonatomic, readonly) float shadeValue;
 
-+(NSArray *)validShapes;
++(int)numberOfShapes;
 +(int)maxShade;
 +(int)maxColor;
 +(int)maxShapes;

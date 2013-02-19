@@ -10,7 +10,20 @@
 
 @implementation SetCardView
 
+#define CORNER_RADIUS 12.0f
 
+-(void)drawRect:(CGRect)rect
+{
+    // Drawing code
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:CORNER_RADIUS];
+    [roundedRect addClip];
+    
+    [[UIColor blackColor] setFill];
+    UIRectFill(self.bounds);
+    
+    [[UIColor blueColor] setStroke];
+    [roundedRect stroke];
+}
 
 #pragma mark Initialization
 

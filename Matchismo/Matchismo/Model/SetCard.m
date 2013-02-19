@@ -10,8 +10,6 @@
 
 @implementation SetCard
 
-@synthesize shape = _shape;
-
 -(BOOL)checkMatchWithFirstCard:(SetCard *)firstCard andSecondCard:(SetCard *)secondCard
 {
     return
@@ -19,8 +17,8 @@
      (self.numShapes != firstCard.numShapes && self.numShapes != secondCard.numShapes && firstCard.numShapes != secondCard.numShapes)) &&
     ((self.shade == firstCard.shade && self.shade == secondCard.shade) ||
      (self.shade != firstCard.shade && self.shade != secondCard.shade && firstCard.shade != secondCard.shade)) &&
-    (([self.shape isEqualToString:firstCard.shape] && [self.shape isEqualToString:secondCard.shape]) ||
-     (![self.shape isEqualToString:firstCard.shape] && ![self.shape isEqualToString:secondCard.shape] && ![firstCard.shape isEqualToString:secondCard.shape])) &&
+    ((self.shape == firstCard.shape && self.shape == secondCard.shape) ||
+     (!self.shape == firstCard.shape && !self.shape == secondCard.shape && !firstCard.shape == secondCard.shape)) &&
     ((self.color == firstCard.color && self.color == secondCard.color) ||
      (self.color != firstCard.color && self.color != secondCard.color && firstCard.color != secondCard.color));
 }
@@ -47,25 +45,16 @@
 
 -(NSString *)description
 {
-    NSString *description = @"";
-    for(int i = 0; i < self.numShapes; i ++)
-    {
-        description = [description stringByAppendingFormat:@"%@", self.shape];
-    }
+    NSString *description = [NSString stringWithFormat:@"%d%d%d%d", self.shape, self.numShapes, self.color, self.shade];
     return self.numShapes ? description : @"?";
 }
 
--(void)setShape:(NSString *)shape
+-(void)setShape:(int)shape
 {
-    if([[SetCard validShapes] containsObject:shape])
+    if(shape > 0 && shape <= [SetCard numberOfShapes])
     {
         _shape = shape;
     }
-}
-
--(NSString *)shape
-{
-    return _shape;
 }
 
 -(void)setShade:(int)shade
@@ -99,12 +88,12 @@
 
 -(NSString *)contents
 {
-    return self.shape;
+    return [NSString stringWithFormat:@"%d %d %d %d", self.shape, self.numShapes, self.color, self.shade];
 }
 
-+(NSArray *)validShapes
++(int)numberOfShapes
 {
-    return @[@"▲", @"●", @"■"];
+    return 3;
 }
 
 +(int)maxShapes

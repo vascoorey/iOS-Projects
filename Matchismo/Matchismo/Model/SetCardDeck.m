@@ -15,7 +15,7 @@
 {
     if((self = [super init]))
     {
-        for(NSString *shape in [SetCard validShapes])
+        for(int shape = 1; shape <= [SetCard numberOfShapes]; shape ++)
         {
             for(int color = 1; color <= [SetCard maxColor]; color ++)
             {
