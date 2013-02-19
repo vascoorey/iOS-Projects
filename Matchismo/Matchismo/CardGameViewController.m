@@ -23,6 +23,25 @@
 
 @implementation CardGameViewController
 
+-(void)setup
+{
+    [AllGameSettings setSettings:[self settings] forGame:self.gameName];
+}
+
+-(void)awakeFromNib
+{
+    [self setup];
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+    {
+        [self setup];
+    }
+    return self;
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,8 +55,7 @@
     if(!_game)
     {
         _game = [[CardMatchingGame alloc] initWithDeck:[self createDeck]
-                                                  name:self.gameName
-                                              settings:[self settings]];
+                                                  name:self.gameName];
     }
     return _game;
 }

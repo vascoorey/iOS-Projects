@@ -10,6 +10,7 @@
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "PlayingCardCollectionViewCell.h"
+#import "AllGameSettings.h"
 
 @interface PlayingCardGameViewController ()
 

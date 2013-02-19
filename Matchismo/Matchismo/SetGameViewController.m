@@ -9,6 +9,7 @@
 #import "SetGameViewController.h"
 #import "SetCardDeck.h"
 #import "SetCard.h"
+#import "AllGameSettings.h"
 
 #define FONT_SIZE 17
 #define FONT_NAME @"Arial Rounded MT Bold"

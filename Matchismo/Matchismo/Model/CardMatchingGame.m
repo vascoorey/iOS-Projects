@@ -46,24 +46,18 @@
     return _flipHistory;
 }
 
--(id)initWithDeck:(Deck *)deck name:(NSString *)name settings:(GameSettings *)settings
+-(id)initWithDeck:(Deck *)deck name:(NSString *)name
 {
     if((self = [super init]))
     {
         _playingDeck = deck;
         _score = 0;
-        _descriptionOfLastFlip = @"Last flip.";
+        _descriptionOfLastFlip = @"Nothing here...";
         _cards = [[NSMutableArray alloc] init];
         _name = name;
         // Only set settings if they don't exist
-        if(![AllGameSettings settingsForGame:_name])
-        {
-            [AllGameSettings setSettings:settings forGame:_name];
-        }
-        else
-        {
-            settings = [AllGameSettings settingsForGame:_name];
-        }
+        GameSettings *settings = [AllGameSettings settingsForGame:_name];
+        NSAssert(settings, @"Could not find settings for: %@", _name);
         for(int i = 0; i < settings.startingCardCount; i++)
         {
             Card *card = [_playingDeck drawRandomCard];
@@ -108,10 +102,20 @@
     
     if(card && !card.isUnplayable)
     {
-#warning This needs to work for various matching schemes: for 3 or more cards this needs to show the last n selected.
-        self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@ ", card];
-        if(!card.isFaceUp)
+        if(card.isFaceUp)
         {
+            self.descriptionOfLastFlip = @" ";
+        }
+        else
+        {
+            if([self.descriptionOfLastFlip rangeOfString:@"Flipped"].location != NSNotFound)
+            {
+                self.descriptionOfLastFlip = [self.descriptionOfLastFlip stringByAppendingFormat:@", %@ ", card];
+            }
+            else
+            {
+                self.descriptionOfLastFlip = [NSString stringWithFormat:@"Flipped %@ ", card];
+            }
             // Check for what cards we'll be matching
             for(Card *otherCard in self.cards)
             {

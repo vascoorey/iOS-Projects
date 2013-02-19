@@ -19,8 +19,7 @@
 
 // Designated Initializer
 -(id)initWithDeck:(Deck *)deck
-             name:(NSString *)name
-         settings:(GameSettings *)settings;
+             name:(NSString *)name;
 -(void)flipCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;

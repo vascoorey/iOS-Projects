@@ -18,11 +18,31 @@
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:CORNER_RADIUS];
     [roundedRect addClip];
     
-    [[UIColor blackColor] setFill];
+    [[UIColor whiteColor] setFill];
     UIRectFill(self.bounds);
     
-    [[UIColor blueColor] setStroke];
+    [[UIColor blackColor] setStroke];
     [roundedRect stroke];
+    
+#warning Todo
+    [self drawOvalInRect:rect];
+}
+
+-(void)drawTriangleInRect:(CGRect)rect
+{
+    
+}
+
+-(void)drawSquiglyInRect:(CGRect)rect
+{
+    
+}
+
+-(void)drawOvalInRect:(CGRect)rect
+{
+    UIBezierPath *circle = [UIBezierPath bezierPathWithOvalInRect:rect];
+    [[UIColor greenColor] setFill];
+    [circle fill];
 }
 
 #pragma mark Initialization

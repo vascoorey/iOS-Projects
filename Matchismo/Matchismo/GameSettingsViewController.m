@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *shouldRedealSwitch;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameNameControl;
 @property (weak, nonatomic) GameSettings *currentSettings;
+@property (weak, nonatomic) IBOutlet UISlider *matchModeSlider;
+@property (weak, nonatomic) IBOutlet UILabel *matchModeLabel;
 @end
 
 @implementation GameSettingsViewController
@@ -41,11 +43,17 @@
     self.gameNameLabel.text = gameName;
     self.cardCountSlider.value = (float)self.currentSettings.startingCardCount;
     self.cardCountLabel.text = [NSString stringWithFormat:@"%d", self.currentSettings.startingCardCount];
+    self.matchModeSlider.value = (float)self.currentSettings.matchMode;
+    self.matchModeLabel.text = [NSString stringWithFormat:@"%d", self.currentSettings.matchMode];
     self.shouldRedealSwitch.on = self.currentSettings.shouldRedealCards;
 }
 
 - (IBAction)cardCountSliderMoved:(UISlider *)sender {
     self.cardCountLabel.text = [NSString stringWithFormat:@"%d", (int)roundf(sender.value)];
+}
+
+- (IBAction)matchModeSliderMoved:(UISlider *)sender {
+    self.matchModeLabel.text = [NSString stringWithFormat:@"%d", (int)roundf(sender.value)];
 }
 
 - (IBAction)gameNameControlChanged:(UISegmentedControl *)sender {
@@ -59,7 +67,11 @@
     // Save new settings
     self.currentSettings.shouldRedealCards = self.shouldRedealSwitch.isOn;
     self.currentSettings.startingCardCount = (int)roundf(self.cardCountSlider.value);
-    //[AllGameSettings setSettings:self.currentSettings forGame:self.gameNameLabel.text];
+    self.currentSettings.matchMode = (int)roundf(self.matchModeSlider.value);
+}
+
+- (IBAction)cancelPressed {
+    [self updateUI];
 }
 
 @end
