@@ -19,6 +19,7 @@
 -(void)setup
 {
     // Anything that has to be setup before viewDidLoad
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
 }
 
 -(void)awakeFromNib
@@ -56,6 +57,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateUISorted:NO withSelector:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self updateUISorted:NO withSelector:nil];
 }
 

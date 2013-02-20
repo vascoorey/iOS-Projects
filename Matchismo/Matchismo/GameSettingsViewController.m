@@ -23,6 +23,25 @@
 
 @implementation GameSettingsViewController
 
+-(void)setup
+{
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
+}
+
+-(void)awakeFromNib
+{
+    [self setup];
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+    {
+        [self setup];
+    }
+    return self;
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,6 +87,7 @@
     self.currentSettings.shouldRedealCards = self.shouldRedealSwitch.isOn;
     self.currentSettings.startingCardCount = (int)roundf(self.cardCountSlider.value);
     self.currentSettings.matchMode = (int)roundf(self.matchModeSlider.value);
+    [[[UIAlertView alloc] initWithTitle:@"OK" message:@"Settings updated!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 - (IBAction)cancelPressed {

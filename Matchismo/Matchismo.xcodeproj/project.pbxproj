@@ -55,6 +55,8 @@
 		BC69168A16D2CBAD007F66E6 /* spade-13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC69166816D2CBAD007F66E6 /* spade-13@2x.png */; };
 		BC69168D16D2D02D007F66E6 /* PlayingCardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC69168C16D2D02D007F66E6 /* PlayingCardCollectionViewCell.m */; };
 		BC69169016D2D244007F66E6 /* PlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC69168F16D2D244007F66E6 /* PlayingCardGameViewController.m */; };
+		BC74E23916D4DEBD007795D0 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BC74E23716D4DEBD007795D0 /* background.png */; };
+		BC74E23A16D4DEBD007795D0 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = BC74E23816D4DEBD007795D0 /* border.png */; };
 		BC8CF9B316BD842500002CD3 /* Card_0.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B116BD842500002CD3 /* Card_0.png */; };
 		BC8CF9B416BD842500002CD3 /* Card_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8CF9B216BD842500002CD3 /* Card_1.png */; };
 		BCA2491216D391EB001ABB52 /* SetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA2491116D391EB001ABB52 /* SetCardView.m */; };
@@ -136,6 +138,8 @@
 		BC69168C16D2D02D007F66E6 /* PlayingCardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardCollectionViewCell.m; sourceTree = "<group>"; };
 		BC69168E16D2D244007F66E6 /* PlayingCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardGameViewController.h; sourceTree = "<group>"; };
 		BC69168F16D2D244007F66E6 /* PlayingCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardGameViewController.m; sourceTree = "<group>"; };
+		BC74E23716D4DEBD007795D0 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		BC74E23816D4DEBD007795D0 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		BC8CF9B116BD842500002CD3 /* Card_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_0.png; sourceTree = "<group>"; };
 		BC8CF9B216BD842500002CD3 /* Card_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Card_1.png; sourceTree = "<group>"; };
 		BCA2491016D391EB001ABB52 /* SetCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 		BC8CF9AE16BD7D2F00002CD3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BC74E23716D4DEBD007795D0 /* background.png */,
+				BC74E23816D4DEBD007795D0 /* border.png */,
 				BC673DBB16CD733900454E45 /* BarItems_2.png */,
 				BCF131F616CD3EFF004E6312 /* BarItems_1.png */,
 				BC8CF9B116BD842500002CD3 /* Card_0.png */,
@@ -446,6 +452,8 @@
 				BC69168816D2CBAD007F66E6 /* spade-12@2x.png in Resources */,
 				BC69168916D2CBAD007F66E6 /* spade-13.png in Resources */,
 				BC69168A16D2CBAD007F66E6 /* spade-13@2x.png in Resources */,
+				BC74E23916D4DEBD007795D0 /* background.png in Resources */,
+				BC74E23A16D4DEBD007795D0 /* border.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,8 +572,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Matchismo/Matchismo-Prefix.pch";
 				INFOPLIST_FILE = "Matchismo/Matchismo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Match-a-boo";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -576,8 +585,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Matchismo/Matchismo-Prefix.pch";
 				INFOPLIST_FILE = "Matchismo/Matchismo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Match-a-boo";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

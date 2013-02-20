@@ -10,6 +10,7 @@
 #import "CardMatchingGame.h"
 #import "GameResult.h"
 #import "AllGameSettings.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @property (strong, nonatomic) GameResult *gameResult;
 @property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *controlView;
 @end
 
 @implementation CardGameViewController
@@ -26,6 +28,7 @@
 -(void)setup
 {
     [AllGameSettings setSettings:[self settings] forGame:self.gameName];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
 }
 
 -(void)awakeFromNib

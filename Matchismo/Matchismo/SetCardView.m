@@ -11,6 +11,9 @@
 @implementation SetCardView
 
 #define CORNER_RADIUS 12.0f
+#define Y_OFFSET 0.05f
+#define X_OFFSET 0.1f
+#define RECT_SIZE 0.3f
 
 -(void)drawRect:(CGRect)rect
 {
@@ -23,26 +26,22 @@
     
     [[UIColor blackColor] setStroke];
     [roundedRect stroke];
-    
-#warning Todo
-    [self drawOvalInRect:rect];
 }
 
--(void)drawTriangleInRect:(CGRect)rect
+-(void)drawDiamondAtPoint:(CGPoint)point
+{
+    UIBezierPath *diamond = [UIBezierPath bezierPath];
+    [diamond moveToPoint:point];
+}
+
+-(void)drawSquiglyAtPoint:(CGPoint)point
 {
     
 }
 
--(void)drawSquiglyInRect:(CGRect)rect
+-(void)drawOvalAtPoint:(CGPoint)point
 {
     
-}
-
--(void)drawOvalInRect:(CGRect)rect
-{
-    UIBezierPath *circle = [UIBezierPath bezierPathWithOvalInRect:rect];
-    [[UIColor greenColor] setFill];
-    [circle fill];
 }
 
 #pragma mark Initialization

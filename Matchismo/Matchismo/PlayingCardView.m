@@ -18,7 +18,7 @@
 
 #define CORNER_RADIUS 12.0f
 #define FONT_SCALE_FACTOR 0.20f
-#define DEFAULT_FACE_CARD_SCALE_FACTOR 0.90f
+#define DEFAULT_FACE_CARD_SCALE_FACTOR 0.95f
 
 -(CGFloat)faceCardScaleFactor
 {
