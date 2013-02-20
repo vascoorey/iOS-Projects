@@ -10,7 +10,6 @@
 #import "CardMatchingGame.h"
 #import "GameResult.h"
 #import "AllGameSettings.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
