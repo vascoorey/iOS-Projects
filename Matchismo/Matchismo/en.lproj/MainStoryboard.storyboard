@@ -207,7 +207,7 @@
                             <constraint firstAttribute="bottom" secondItem="U3o-UP-QnZ" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="zlZ-bu-mDQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Results" id="uqB-OH-NPX"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="BarItems_4.png" id="uqB-OH-NPX"/>
                     <connections>
                         <outlet property="display" destination="BbL-K0-FIh" id="aXz-gZ-vR0"/>
                     </connections>
@@ -344,7 +344,7 @@
                             <constraint firstItem="KN4-tr-PG4" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="xX2-jU-oQk"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="ywd-Tg-7a2"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="BarItems_3.png" id="ywd-Tg-7a2"/>
                     <connections>
                         <outlet property="cardCountLabel" destination="fAK-WW-fl6" id="7Mm-JP-iGd"/>
                         <outlet property="cardCountSlider" destination="Bv8-Wh-Wa6" id="owq-2j-TRt"/>
@@ -359,7 +359,7 @@
             </objects>
             <point key="canvasLocation" x="-326" y="108"/>
         </scene>
-        <!--Set Game View Controller - Match-->
+        <!--Set Game View Controller - Set-->
         <scene sceneID="usK-BQ-8Tf">
             <objects>
                 <viewController id="QhC-0T-OsD" customClass="SetGameViewController" sceneMemberID="viewController">
@@ -458,7 +458,7 @@
                             <constraint firstItem="lEl-86-hjq" firstAttribute="leading" secondItem="GoK-eD-eWb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="x21-ib-x7w"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Match" image="BarItems_2.png" id="K78-ev-3H0"/>
+                    <tabBarItem key="tabBarItem" title="Set" image="BarItems_2.png" id="K78-ev-3H0"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="8fL-sU-mC1" id="QrE-7x-8Kt"/>
                         <outlet property="descriptionOfLastFlipLabel" destination="ujg-b4-clB" id="gHz-fZ-G3f"/>
@@ -478,6 +478,8 @@
     <resources>
         <image name="BarItems_1.png" width="30" height="30"/>
         <image name="BarItems_2.png" width="30" height="30"/>
+        <image name="BarItems_3.png" width="30" height="30"/>
+        <image name="BarItems_4.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="CardGameViewController" superclassName="UIViewController">

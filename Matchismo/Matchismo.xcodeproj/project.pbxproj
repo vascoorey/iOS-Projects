@@ -76,6 +76,8 @@
 		BCB94B3916BC019100C266E3 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCB94B3716BC019100C266E3 /* MainStoryboard.storyboard */; };
 		BCB94B3C16BC019100C266E3 /* CardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB94B3B16BC019100C266E3 /* CardGameViewController.m */; };
 		BCF131F716CD3EFF004E6312 /* BarItems_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF131F616CD3EFF004E6312 /* BarItems_1.png */; };
+		BCFDA6DA16D54E7B0005201A /* BarItems_3.png in Resources */ = {isa = PBXBuildFile; fileRef = BCFDA6D816D54E7B0005201A /* BarItems_3.png */; };
+		BCFDA6DB16D54E7B0005201A /* BarItems_4.png in Resources */ = {isa = PBXBuildFile; fileRef = BCFDA6D916D54E7B0005201A /* BarItems_4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +173,8 @@
 		BCF131F616CD3EFF004E6312 /* BarItems_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarItems_1.png; sourceTree = "<group>"; };
 		BCF6789216D2C8BC005D256C /* CardMatchingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		BCF6789316D2C8BC005D256C /* CardMatchingGame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
+		BCFDA6D816D54E7B0005201A /* BarItems_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarItems_3.png; sourceTree = "<group>"; };
+		BCFDA6D916D54E7B0005201A /* BarItems_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarItems_4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,8 @@
 		BC8CF9AE16BD7D2F00002CD3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BCFDA6D816D54E7B0005201A /* BarItems_3.png */,
+				BCFDA6D916D54E7B0005201A /* BarItems_4.png */,
 				BC74E23716D4DEBD007795D0 /* background.png */,
 				BC74E23816D4DEBD007795D0 /* border.png */,
 				BC673DBB16CD733900454E45 /* BarItems_2.png */,
@@ -454,6 +460,8 @@
 				BC69168A16D2CBAD007F66E6 /* spade-13@2x.png in Resources */,
 				BC74E23916D4DEBD007795D0 /* background.png in Resources */,
 				BC74E23A16D4DEBD007795D0 /* border.png in Resources */,
+				BCFDA6DA16D54E7B0005201A /* BarItems_3.png in Resources */,
+				BCFDA6DB16D54E7B0005201A /* BarItems_4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

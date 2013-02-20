@@ -10,4 +10,7 @@
    <FileRef
       location = "group:AttributedStrings/AttributedStrings.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:CardViewer/CardViewer.xcodeproj">
+   </FileRef>
 </Workspace>
