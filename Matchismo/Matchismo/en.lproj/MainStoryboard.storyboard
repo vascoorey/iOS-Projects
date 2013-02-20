@@ -260,7 +260,7 @@
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="0.0" maxValue="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bv8-Wh-Wa6">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="xJ1-3i-iTc"/>
+                                    <constraint firstAttribute="width" constant="114" id="J7v-av-Ar7"/>
                                 </constraints>
                                 <connections>
                                     <action selector="cardCountSliderMoved:" destination="xog-f2-WZ4" eventType="valueChanged" id="0Cr-6T-2fv"/>
@@ -277,25 +277,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Khr-Ed-abp">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelPressed" destination="xog-f2-WZ4" eventType="touchUpInside" id="5Zc-2P-LEl"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Match Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhj-f4-uGR">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="2" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-ix-wWV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="cIn-HT-xmK"/>
+                                </constraints>
                                 <connections>
                                     <action selector="matchModeSliderMoved:" destination="xog-f2-WZ4" eventType="valueChanged" id="U7t-2S-nci"/>
                                 </connections>
@@ -308,38 +298,34 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YwG-4j-ZTp" firstAttribute="leading" secondItem="gmy-ix-wWV" secondAttribute="leading" type="default" id="2IW-Ay-Fjj"/>
-                            <constraint firstItem="cTO-kF-cPP" firstAttribute="bottom" secondItem="eu0-SD-Qt6" secondAttribute="bottom" type="default" id="3os-pW-fcB"/>
                             <constraint firstAttribute="trailing" secondItem="fAK-WW-fl6" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="4va-an-IeI"/>
                             <constraint firstItem="Bv8-Wh-Wa6" firstAttribute="leading" secondItem="fAK-WW-fl6" secondAttribute="leading" type="default" id="5ac-Tc-Ge0"/>
                             <constraint firstAttribute="trailing" secondItem="VJC-yj-iNF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5km-9Z-gTx"/>
-                            <constraint firstItem="fAK-WW-fl6" firstAttribute="top" secondItem="Bv8-Wh-Wa6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7Zs-tV-my2"/>
-                            <constraint firstItem="Bv8-Wh-Wa6" firstAttribute="bottom" secondItem="KN4-tr-PG4" secondAttribute="bottom" type="default" id="8dT-Tp-RSK"/>
-                            <constraint firstAttribute="trailing" secondItem="gmy-ix-wWV" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Apy-FK-wYq"/>
                             <constraint firstItem="VJC-yj-iNF" firstAttribute="top" secondItem="3uM-yh-N2A" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Btj-cm-EGJ"/>
-                            <constraint firstItem="gmy-ix-wWV" firstAttribute="bottom" secondItem="yhj-f4-uGR" secondAttribute="bottom" type="default" id="D89-5V-8ZK"/>
+                            <constraint firstItem="yhj-f4-uGR" firstAttribute="top" secondItem="gmy-ix-wWV" secondAttribute="top" type="default" id="C6I-06-PnA"/>
                             <constraint firstItem="jNy-a4-Q9b" firstAttribute="top" secondItem="8Nl-Sr-l2G" secondAttribute="top" constant="20" symbolic="YES" type="default" id="DIx-qX-7lM"/>
-                            <constraint firstItem="KN4-tr-PG4" firstAttribute="top" secondItem="8Nl-Sr-l2G" secondAttribute="top" constant="109" id="EYS-Qb-VDe"/>
                             <constraint firstAttribute="bottom" secondItem="VJC-yj-iNF" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Eph-oi-7ig"/>
                             <constraint firstItem="yhj-f4-uGR" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Fp3-2Z-Lxg"/>
-                            <constraint firstItem="cTO-kF-cPP" firstAttribute="top" secondItem="eu0-SD-Qt6" secondAttribute="top" type="default" id="IRM-oq-VST"/>
-                            <constraint firstAttribute="trailing" secondItem="YwG-4j-ZTp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Kn2-Er-aLM"/>
-                            <constraint firstItem="fAK-WW-fl6" firstAttribute="leading" secondItem="gmy-ix-wWV" secondAttribute="leading" type="default" id="Lbp-fE-elU"/>
+                            <constraint firstItem="yhj-f4-uGR" firstAttribute="trailing" secondItem="cTO-kF-cPP" secondAttribute="trailing" type="default" id="JP1-kA-akW"/>
+                            <constraint firstAttribute="trailing" secondItem="gmy-ix-wWV" secondAttribute="trailing" constant="21" id="MLG-DF-bIQ"/>
+                            <constraint firstItem="fAK-WW-fl6" firstAttribute="leading" secondItem="yhj-f4-uGR" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Mvf-in-ppw"/>
                             <constraint firstItem="jNy-a4-Q9b" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NG3-fS-2wn"/>
-                            <constraint firstItem="yhj-f4-uGR" firstAttribute="top" secondItem="gmy-ix-wWV" secondAttribute="top" type="default" id="Nu9-iD-XSb"/>
-                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="leading" secondItem="cTO-kF-cPP" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="OA1-g5-7HI"/>
                             <constraint firstAttribute="trailing" secondItem="Bv8-Wh-Wa6" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="OAn-vG-uvm"/>
-                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="top" secondItem="YwG-4j-ZTp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="TB3-SQ-nmC"/>
-                            <constraint firstItem="cTO-kF-cPP" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vpn-xz-Pq5"/>
+                            <constraint firstItem="fAK-WW-fl6" firstAttribute="top" secondItem="Bv8-Wh-Wa6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Rro-8o-dKy"/>
+                            <constraint firstItem="cTO-kF-cPP" firstAttribute="top" secondItem="eu0-SD-Qt6" secondAttribute="top" type="default" id="Rzu-GB-8xI"/>
+                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="centerX" secondItem="YwG-4j-ZTp" secondAttribute="centerX" type="default" id="SRz-78-Eac"/>
+                            <constraint firstItem="KN4-tr-PG4" firstAttribute="bottom" secondItem="Bv8-Wh-Wa6" secondAttribute="bottom" type="default" id="TzG-Ns-MkZ"/>
+                            <constraint firstAttribute="trailing" secondItem="YwG-4j-ZTp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="WIl-kE-sa8"/>
+                            <constraint firstItem="3uM-yh-N2A" firstAttribute="centerX" secondItem="VJC-yj-iNF" secondAttribute="centerX" type="default" id="X8p-PP-SXP"/>
+                            <constraint firstItem="cTO-kF-cPP" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="bsa-Rs-d3w"/>
+                            <constraint firstItem="YwG-4j-ZTp" firstAttribute="leading" secondItem="fAK-WW-fl6" secondAttribute="leading" type="default" id="e3R-D0-Zbw"/>
+                            <constraint firstItem="YwG-4j-ZTp" firstAttribute="top" secondItem="gmy-ix-wWV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eBf-kG-9t0"/>
+                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="top" secondItem="YwG-4j-ZTp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="hbS-Er-xrX"/>
                             <constraint firstItem="VJC-yj-iNF" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="iPc-uF-nZD"/>
-                            <constraint firstItem="3uM-yh-N2A" firstAttribute="baseline" secondItem="Khr-Ed-abp" secondAttribute="baseline" type="default" id="lgu-iT-oms"/>
-                            <constraint firstItem="3uM-yh-N2A" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="67" id="nJ7-Wb-b9x"/>
-                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="leading" secondItem="YwG-4j-ZTp" secondAttribute="leading" type="default" id="nlu-q3-heM"/>
-                            <constraint firstItem="eu0-SD-Qt6" firstAttribute="leading" secondItem="Khr-Ed-abp" secondAttribute="leading" type="default" id="pQM-hg-9It"/>
+                            <constraint firstItem="gmy-ix-wWV" firstAttribute="top" secondItem="fAK-WW-fl6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jbJ-wg-bKX"/>
+                            <constraint firstItem="yhj-f4-uGR" firstAttribute="bottom" secondItem="gmy-ix-wWV" secondAttribute="bottom" type="default" id="kZs-Sf-fOh"/>
                             <constraint firstItem="Bv8-Wh-Wa6" firstAttribute="leading" secondItem="KN4-tr-PG4" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="qF1-9k-Foc"/>
-                            <constraint firstItem="YwG-4j-ZTp" firstAttribute="top" secondItem="gmy-ix-wWV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sYc-yU-CYM"/>
-                            <constraint firstItem="gmy-ix-wWV" firstAttribute="leading" secondItem="yhj-f4-uGR" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="tBM-mE-PBS"/>
-                            <constraint firstItem="gmy-ix-wWV" firstAttribute="top" secondItem="fAK-WW-fl6" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="uFj-YV-nU8"/>
+                            <constraint firstItem="KN4-tr-PG4" firstAttribute="top" secondItem="jNy-a4-Q9b" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="swT-8L-MLD"/>
                             <constraint firstAttribute="trailing" secondItem="jNy-a4-Q9b" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vBO-BW-8VG"/>
                             <constraint firstItem="KN4-tr-PG4" firstAttribute="leading" secondItem="8Nl-Sr-l2G" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="xX2-jU-oQk"/>
                         </constraints>
@@ -357,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjT-yP-vI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-326" y="108"/>
+            <point key="canvasLocation" x="-330" y="316"/>
         </scene>
         <!--Set Game View Controller - Set-->
         <scene sceneID="usK-BQ-8Tf">
@@ -502,9 +488,6 @@
         <class className="GameSettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cardCountSliderMoved:" candidateClass="UISlider"/>
-                <relationship kind="action" name="gameNameControlChanged:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="matchModeSliderMoved:" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="cardCountLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="cardCountSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="gameNameControl" candidateClass="UISegmentedControl"/>
