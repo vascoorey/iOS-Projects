@@ -13,8 +13,9 @@
 @property (nonatomic) int shape;
 @property (nonatomic) int shade;
 @property (nonatomic) int color;
-@property (nonatomic) int numShapes;
+@property (nonatomic) int numberOfShapes;
 @property (nonatomic, readonly) float shadeValue;
+@property (nonatomic, readonly) int asInt;
 
 +(int)numberOfShapes;
 +(int)maxShade;

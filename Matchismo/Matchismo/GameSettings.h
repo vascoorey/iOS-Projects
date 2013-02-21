@@ -14,7 +14,6 @@
 @property (nonatomic) NSUInteger matchBonus;
 @property (nonatomic) NSUInteger mismatchPenalty;
 @property (nonatomic) NSUInteger matchMode;
-@property (nonatomic) BOOL shouldRedealCards;
 @property (nonatomic) NSUInteger startingCardCount;
 
 // Designated Initializer
@@ -22,7 +21,6 @@
            matchBonus:(NSUInteger)matchBonus
       mismatchPenalty:(NSUInteger)mismatchPenalty
             matchMode:(NSUInteger)matchMode
-    shouldRedealCards:(BOOL)shouldRedealCard
      startingCardCount:(NSUInteger)startingCardCount;
 
 @end

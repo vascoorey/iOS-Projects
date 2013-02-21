@@ -10,6 +10,7 @@
 #import "SetCardDeck.h"
 #import "SetCard.h"
 #import "AllGameSettings.h"
+#import "SetCardCollectionViewCell.h"
 
 #define FONT_SIZE 17
 #define FONT_NAME @"Arial Rounded MT Bold"
@@ -32,12 +33,34 @@
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
 {
-    
+    if([cell isKindOfClass:[SetCardCollectionViewCell class]])
+    {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
+        if([card isKindOfClass:[SetCard class]])
+        {
+            SetCard *setCard = (SetCard *)card;
+            
+            // Are we really going to animate ? !faceUp -> faceUp .. faceUp -> !faceUp
+            // animate = animate ? (setCard.isFaceUp != setCardView.faceUp) : NO;
+            // Set will only animate deletions !
+            
+            setCardView.numberOfShapes = setCard.numberOfShapes;
+            setCardView.color = setCard.color;
+            setCardView.shape = setCard.shape;
+            setCardView.shade = setCard.shade;
+            setCardView.faceUp = setCard.isFaceUp;
+        }
+    }
+}
+
+-(NSUInteger) cardsToAdd
+{
+    return 3;
 }
 
 -(GameSettings *)settings
 {
-    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 shouldRedealCards:YES startingCardCount:12];
+    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 startingCardCount:12];
 }
 
 @end

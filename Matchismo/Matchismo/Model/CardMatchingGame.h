@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSString *descriptionOfLastFlip;
 @property (nonatomic, readonly) NSInteger flipCount;
+@property (nonatomic, readonly) NSInteger cardsInPlay;
 
 // Designated Initializer
 -(id)initWithDeck:(Deck *)deck
@@ -24,5 +25,7 @@
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;
 -(NSArray *)cardsForLastFlip;
+-(BOOL)requestCards:(NSUInteger)cards;
+-(void)removeUnplayableCards;
 
 @end

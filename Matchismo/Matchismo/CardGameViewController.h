@@ -14,6 +14,7 @@
 
 // Abstract
 @property (nonatomic, strong) NSString *gameName;
+@property (nonatomic, readonly) NSUInteger cardsToAdd;
 -(Deck *)createDeck;
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate;
 -(GameSettings *)settings;

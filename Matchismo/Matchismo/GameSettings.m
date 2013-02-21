@@ -13,7 +13,7 @@
 
 @implementation GameSettings
 
--(id)initWithFlipCost:(NSUInteger)flipCost matchBonus:(NSUInteger)matchBonus mismatchPenalty:(NSUInteger)mismatchPenalty matchMode:(NSUInteger)matchMode shouldRedealCards:(BOOL)shouldRedealCards startingCardCount:(NSUInteger)startingCardCount
+-(id)initWithFlipCost:(NSUInteger)flipCost matchBonus:(NSUInteger)matchBonus mismatchPenalty:(NSUInteger)mismatchPenalty matchMode:(NSUInteger)matchMode startingCardCount:(NSUInteger)startingCardCount
 {
     if((self = [super init]))
     {
@@ -21,7 +21,6 @@
         _matchBonus = matchBonus;
         _mismatchPenalty = mismatchPenalty;
         _matchMode = matchMode;
-        _shouldRedealCards = shouldRedealCards;
         _startingCardCount = startingCardCount;
     }
     return self;

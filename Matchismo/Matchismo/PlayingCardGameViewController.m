@@ -30,7 +30,7 @@
 
 -(GameSettings *)settings
 {
-    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:4 matchMode:2 shouldRedealCards:NO startingCardCount:22];
+    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:4 matchMode:2 startingCardCount:22];
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate

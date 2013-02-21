@@ -153,7 +153,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [AllGameSettings settingsForGame:self.gameName].startingCardCount;
+    return self.game.cardsInPlay;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -167,6 +167,15 @@
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
 {
     NSAssert(false, @"updateCell must be overriden!");
+}
+
+-(IBAction)dealMoreCards
+{
+    if(![self.game requestCards:self.cardsToAdd])
+    {
+        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and Re-deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+    // Reload data for the collection view...
 }
 
 @end

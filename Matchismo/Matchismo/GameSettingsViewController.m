@@ -64,7 +64,6 @@
     self.cardCountLabel.text = [NSString stringWithFormat:@"%d", self.currentSettings.startingCardCount];
     self.matchModeSlider.value = (float)self.currentSettings.matchMode;
     self.matchModeLabel.text = [NSString stringWithFormat:@"%d", self.currentSettings.matchMode];
-    self.shouldRedealSwitch.on = self.currentSettings.shouldRedealCards;
 }
 
 - (IBAction)cardCountSliderMoved:(UISlider *)sender {
@@ -84,7 +83,6 @@
 
 - (IBAction)enterPressed {
     // Save new settings
-    self.currentSettings.shouldRedealCards = self.shouldRedealSwitch.isOn;
     self.currentSettings.startingCardCount = (int)roundf(self.cardCountSlider.value);
     self.currentSettings.matchMode = (int)roundf(self.matchModeSlider.value);
     [[[UIAlertView alloc] initWithTitle:@"OK" message:@"Settings updated!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

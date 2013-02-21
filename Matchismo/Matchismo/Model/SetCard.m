@@ -12,15 +12,22 @@
 
 -(BOOL)checkMatchWithFirstCard:(SetCard *)firstCard andSecondCard:(SetCard *)secondCard
 {
+    int total = self.asInt + firstCard.asInt + secondCard.asInt;
+    NSLog(@"%d %d %d --> %d (%d, %d,%d)", self.asInt, firstCard.asInt, secondCard.asInt, total, total % self.asInt, total % firstCard.asInt, total % secondCard.asInt);
     return
-    ((self.numShapes == firstCard.numShapes && self.numShapes == secondCard.numShapes) ||
-     (self.numShapes != firstCard.numShapes && self.numShapes != secondCard.numShapes && firstCard.numShapes != secondCard.numShapes)) &&
+    ((self.numberOfShapes == firstCard.numberOfShapes && self.numberOfShapes == secondCard.numberOfShapes) ||
+     (self.numberOfShapes != firstCard.numberOfShapes && self.numberOfShapes != secondCard.numberOfShapes && firstCard.numberOfShapes != secondCard.numberOfShapes)) &&
     ((self.shade == firstCard.shade && self.shade == secondCard.shade) ||
      (self.shade != firstCard.shade && self.shade != secondCard.shade && firstCard.shade != secondCard.shade)) &&
     ((self.shape == firstCard.shape && self.shape == secondCard.shape) ||
      (!self.shape == firstCard.shape && !self.shape == secondCard.shape && !firstCard.shape == secondCard.shape)) &&
     ((self.color == firstCard.color && self.color == secondCard.color) ||
      (self.color != firstCard.color && self.color != secondCard.color && firstCard.color != secondCard.color));
+}
+
+-(int)asInt
+{
+    return (self.color * 1000) + (self.shape * 100) + (self.shade * 10) + self.numberOfShapes;
 }
 
 -(int)match:(NSArray *)otherCards
@@ -45,8 +52,8 @@
 
 -(NSString *)description
 {
-    NSString *description = [NSString stringWithFormat:@"%d%d%d%d", self.shape, self.numShapes, self.color, self.shade];
-    return self.numShapes ? description : @"?";
+    NSString *description = [NSString stringWithFormat:@"%d%d%d%d", self.shape, self.numberOfShapes, self.color, self.shade];
+    return self.numberOfShapes ? description : @"?";
 }
 
 -(void)setShape:(int)shape
@@ -78,17 +85,17 @@
     }
 }
 
--(void)setNumShapes:(int)numShapes
+-(void)setNumberOfShapes:(int)numShapes
 {
     if(numShapes > 0 && numShapes <= [SetCard maxShapes])
     {
-        _numShapes = numShapes;
+        _numberOfShapes = numShapes;
     }
 }
 
 -(NSString *)contents
 {
-    return [NSString stringWithFormat:@"%d %d %d %d", self.shape, self.numShapes, self.color, self.shade];
+    return [NSString stringWithFormat:@"%d %d %d %d", self.shape, self.numberOfShapes, self.color, self.shade];
 }
 
 +(int)numberOfShapes

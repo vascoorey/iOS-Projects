@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSArray *cardsForLastFlip;
 @property (nonatomic, strong) NSMutableArray *flipHistory;
 @property (nonatomic, strong) NSMutableArray *cards;
-@property (nonatomic, strong) Deck *playingDeck;
+@property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) NSString *name;
 @end
 
@@ -46,11 +46,16 @@
     return _flipHistory;
 }
 
+-(NSInteger)cardsInPlay
+{
+    return [self.cards count];
+}
+
 -(id)initWithDeck:(Deck *)deck name:(NSString *)name
 {
     if((self = [super init]))
     {
-        _playingDeck = deck;
+        _deck = deck;
         _score = 0;
         _descriptionOfLastFlip = @" ";
         _cards = [[NSMutableArray alloc] init];
@@ -60,7 +65,7 @@
         NSAssert(settings, @"Could not find settings for: %@", _name);
         for(int i = 0; i < settings.startingCardCount; i++)
         {
-            Card *card = [_playingDeck drawRandomCard];
+            Card *card = [_deck drawRandomCard];
             if(card)
             {
                 _cards[i] = card;
@@ -162,7 +167,7 @@
             [matches addObject:card];
             self.cardsForLastFlip = matches;
             self.score -= settings.flipCost;
-            if(matchScore && settings.shouldRedealCards)
+            /*if(matchScore && settings.shouldRedealCards)
             {
                 for(Card *card in matches)
                 {
@@ -175,9 +180,37 @@
                         }
                     }
                 }
-            }
+            }*/
         }
         card.faceUp = !card.isFaceUp;
+    }
+}
+
+-(BOOL)requestCards:(NSUInteger)cards
+{
+    for(int i = 0; i < cards; i ++)
+    {
+        Card *card = [self.deck drawRandomCard];
+        if(card)
+        {
+            [self.cards addObject:card];
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(void)removeUnplayableCards
+{
+    for(Card *card in self.cards)
+    {
+        if(card.isUnplayable)
+        {
+            [self.cards removeObject:card];
+        }
     }
 }
 
