@@ -186,32 +186,36 @@
     }
 }
 
--(BOOL)requestCards:(NSUInteger)cards
+// Of NSNumber
+-(NSArray *)requestCards:(NSUInteger)cards
 {
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
     for(int i = 0; i < cards; i ++)
     {
         Card *card = [self.deck drawRandomCard];
         if(card)
         {
             [self.cards addObject:card];
-        }
-        else
-        {
-            return NO;
+            [indexPaths addObject:@([self.cards indexOfObject:card])];
         }
     }
-    return YES;
+    NSLog(@"%d", self.cardsInPlay);
+    return [indexPaths copy];
 }
 
--(void)removeUnplayableCards
+// Of NSNumber
+-(NSArray *)removeUnplayableCards
 {
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
     for(Card *card in self.cards)
     {
         if(card.isUnplayable)
         {
+            [indexPaths addObject:@([self.cards indexOfObject:card])];
             [self.cards removeObject:card];
         }
     }
+    return [indexPaths copy];
 }
 
 @end

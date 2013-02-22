@@ -25,7 +25,9 @@
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;
 -(NSArray *)cardsForLastFlip;
--(BOOL)requestCards:(NSUInteger)cards;
--(void)removeUnplayableCards;
+
+// Both return NSArray of NSIndexPath for the cards added/removed
+-(NSArray *)requestCards:(NSUInteger)cards;
+-(NSArray *)removeUnplayableCards;
 
 @end

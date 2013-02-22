@@ -171,11 +171,29 @@
 
 -(IBAction)dealMoreCards
 {
-    if(![self.game requestCards:self.cardsToAdd])
+    NSArray *indexes = [self.game requestCards:self.cardsToAdd];
+    if([indexes count])
     {
-        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and Re-deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        // Convert indexPaths to NSIndexPath
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+        for(NSNumber *index in indexes)
+        {
+            NSLog(@"%d", index.unsignedIntegerValue);
+            [indexPaths addObject:[NSIndexPath indexPathForItem:index.unsignedIntegerValue inSection:0]];
+        }
+        // Reload data for the collection view...
+        [self.cardCollectionView insertItemsAtIndexPaths:indexPaths];
+        [self.cardCollectionView scrollToItemAtIndexPath:[indexPaths lastObject] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
     }
-    // Reload data for the collection view...
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Re-deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+}
+
+-(void)deleteUnplayableCards
+{
+    
 }
 
 @end
