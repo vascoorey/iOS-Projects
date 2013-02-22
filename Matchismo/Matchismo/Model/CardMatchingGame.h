@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSInteger flipCount;
 @property (nonatomic, readonly) NSInteger cardsInPlay;
 @property (nonatomic, readonly) BOOL hasUnplayableCards;
+@property (nonatomic, readonly) NSMutableArray *cards;
 
 // Designated Initializer
 -(id)initWithDeck:(Deck *)deck
@@ -26,6 +27,7 @@
 -(Card *)cardAtIndex:(NSUInteger)index;
 -(NSString *)descriptionOfFlip:(NSInteger)flip;
 -(NSArray *)cardsForLastFlip;
+-(NSArray *)indicesForMatch;
 
 // Both return NSArray of NSIndexPath for the cards added/removed
 -(NSArray *)requestCards:(NSUInteger)cards;

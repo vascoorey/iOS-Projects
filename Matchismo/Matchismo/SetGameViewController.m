@@ -49,7 +49,17 @@
             setCardView.shape = setCard.shape;
             setCardView.shade = setCard.shade;
             setCardView.faceUp = setCard.isFaceUp;
+            setCardView.markForCheating = NO;
         }
+    }
+}
+
+-(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell
+{
+    if([cell isKindOfClass:[SetCardCollectionViewCell class]])
+    {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
+        setCardView.markForCheating = YES;
     }
 }
 

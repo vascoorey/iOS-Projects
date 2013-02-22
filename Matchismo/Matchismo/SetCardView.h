@@ -15,5 +15,6 @@
 @property (nonatomic) NSUInteger shade;
 @property (nonatomic) NSUInteger numberOfShapes;
 @property (nonatomic) BOOL faceUp;
+@property (nonatomic) BOOL markForCheating;
 
 @end

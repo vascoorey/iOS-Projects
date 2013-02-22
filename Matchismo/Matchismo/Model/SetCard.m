@@ -12,18 +12,24 @@
 
 -(BOOL)checkMatchWithFirstCard:(SetCard *)firstCard andSecondCard:(SetCard *)secondCard
 {
-    NSLog(@"1 color: %d, shape: %d, shade: %d, num: %d", self.color, self.shape, self.shade, self.numberOfShapes);
-    NSLog(@"2 color: %d, shape: %d, shade: %d, num: %d", firstCard.color, firstCard.shape, firstCard.shade, firstCard.numberOfShapes);
-    NSLog(@"3 color: %d, shape: %d, shade: %d, num: %d", secondCard.color, secondCard.shape, secondCard.shade, secondCard.numberOfShapes);
-    return
-    ((self.numberOfShapes == firstCard.numberOfShapes && self.numberOfShapes == secondCard.numberOfShapes) ||
-     (self.numberOfShapes != firstCard.numberOfShapes && self.numberOfShapes != secondCard.numberOfShapes && firstCard.numberOfShapes != secondCard.numberOfShapes)) &&
-    ((self.shade == firstCard.shade && self.shade == secondCard.shade) ||
-     (self.shade != firstCard.shade && self.shade != secondCard.shade && firstCard.shade != secondCard.shade)) &&
-    ((self.shape == firstCard.shape && self.shape == secondCard.shape) ||
-     (self.shape != firstCard.shape && self.shape != secondCard.shape && firstCard.shape != secondCard.shape)) &&
-    ((self.color == firstCard.color && self.color == secondCard.color) ||
-     (self.color != firstCard.color && self.color != secondCard.color && firstCard.color != secondCard.color));
+//    NSLog(@"1 color: %d, shape: %d, shade: %d, num: %d", self.color, self.shape, self.shade, self.numberOfShapes);
+//    NSLog(@"2 color: %d, shape: %d, shade: %d, num: %d", firstCard.color, firstCard.shape, firstCard.shade, firstCard.numberOfShapes);
+//    NSLog(@"3 color: %d, shape: %d, shade: %d, num: %d", secondCard.color, secondCard.shape, secondCard.shade, secondCard.numberOfShapes);
+//    return
+//    ((self.numberOfShapes == firstCard.numberOfShapes && self.numberOfShapes == secondCard.numberOfShapes) ||
+//     (self.numberOfShapes != firstCard.numberOfShapes && self.numberOfShapes != secondCard.numberOfShapes && firstCard.numberOfShapes != secondCard.numberOfShapes)) &&
+//    ((self.shade == firstCard.shade && self.shade == secondCard.shade) ||
+//     (self.shade != firstCard.shade && self.shade != secondCard.shade && firstCard.shade != secondCard.shade)) &&
+//    ((self.shape == firstCard.shape && self.shape == secondCard.shape) ||
+//     (self.shape != firstCard.shape && self.shape != secondCard.shape && firstCard.shape != secondCard.shape)) &&
+//    ((self.color == firstCard.color && self.color == secondCard.color) ||
+//     (self.color != firstCard.color && self.color != secondCard.color && firstCard.color != secondCard.color));
+    int shape = self.shape + firstCard.shape + secondCard.shape;
+    int shade = self.shade + firstCard.shade + secondCard.shade;
+    int color = self.color + firstCard.color + secondCard.color;
+    int num = self.numberOfShapes + firstCard.numberOfShapes + secondCard.numberOfShapes;
+    NSLog(@"%d, %d, %d, %d", color, shape, shade, num);
+    return shape % 3 == 0  && shade % 3 == 0 && color % 3 == 0 && num % 3 == 0;
 }
 
 -(int)match:(NSArray *)otherCards

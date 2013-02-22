@@ -35,6 +35,12 @@
     [self setNeedsDisplay];
 }
 
+-(void)setMarkForCheating:(BOOL)markForCheating
+{
+    _markForCheating = markForCheating;
+    [self setNeedsDisplay];
+}
+
 -(void)pinch:(UIPinchGestureRecognizer *)gesture
 {
     if((gesture.state == UIGestureRecognizerStateChanged) ||
@@ -75,6 +81,11 @@
             [self drawPips];
         }
         [self drawCorners];
+    }
+    else if(self.markForCheating)
+    {
+        [[UIColor yellowColor] setFill];
+        UIRectFill(self.bounds);
     }
     else
     {

@@ -76,6 +76,11 @@
     return nil;
 }
 
+-(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell
+{
+    NSAssert(false, @"userCheatedSoUpdateCell: must be overidden!");
+}
+
 -(GameResult *)gameResult
 {
     if(!_gameResult)
@@ -103,7 +108,7 @@
     [self updateDescriptionOfLastFlipLabel];
     self.historySlider.maximumValue = self.game.flipCount;
     self.historySlider.value = self.game.flipCount;
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.game.score];
     if(self.game.hasUnplayableCards)
     {
         [self removeUnplayableCards];
@@ -148,6 +153,32 @@
     }
 }
 
+- (IBAction)findMatch {
+    NSArray *indices = [self.game indicesForMatch];
+    if(indices)
+    {
+        [self getCellsAndUpdateAtIndices:indices];
+    }
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Oops!"
+                                    message:@"No matches left... Maybe draw some more cards?"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
+}
+
+-(void)getCellsAndUpdateAtIndices:(NSArray *)indices
+{
+    for(id index in indices)
+    {
+        NSAssert([index isKindOfClass:[NSNumber class]], @"Bad NSArray: contained non-NSNumbers!");
+        UICollectionViewCell *cell = [self.cardCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:((NSNumber *)index).unsignedIntValue inSection:0]];
+        [self userCheatedSoUpdateCell:cell];
+    }
+}
+
 #pragma mark Collection View
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -189,7 +220,7 @@
     }
     else
     {
-        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Re-deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 

@@ -46,15 +46,29 @@
     [self setNeedsDisplay];
 }
 
+-(void)setMarkForCheating:(BOOL)markForCheating
+{
+    _markForCheating = markForCheating;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:12.0];
     [roundedRect addClip]; //prevents filling corners, i.e. sharp corners not included in roundedRect
     
-    if (self.faceUp) {
+    if (self.faceUp)
+    {
         [[UIColor colorWithRed: 0.0 green:0.2 blue:0.4 alpha:0.1] setFill];
         UIRectFill(self.bounds);
-    } else {
+    }
+    else if(self.markForCheating)
+    {
+        [[UIColor yellowColor] setFill];
+        UIRectFill(self.bounds);
+    }
+    else
+    {
         [[UIColor whiteColor] setFill];
         UIRectFill(self.bounds);
     }

@@ -28,9 +28,23 @@
     return [[PlayingCardDeck alloc] init];
 }
 
+-(NSUInteger)cardsToAdd
+{
+    return 2;
+}
+
 -(GameSettings *)settings
 {
     return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:4 matchMode:2 startingCardCount:22];
+}
+
+-(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell
+{
+    if([cell isKindOfClass:[PlayingCardCollectionViewCell class]])
+    {
+        PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingCardView;
+        playingCardView.markForCheating = YES;
+    }
 }
 
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
@@ -49,6 +63,7 @@
             playingCardView.suit = playingCard.suit;
             playingCardView.faceUp = playingCard.isFaceUp;
             playingCardView.alpha = playingCard.isUnplayable ? 0.3f : 1.0f;
+            playingCardView.markForCheating = NO;
             if(animate)
             {
                 [UIView transitionWithView:playingCardView

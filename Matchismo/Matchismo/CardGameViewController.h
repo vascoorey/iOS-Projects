@@ -18,5 +18,6 @@
 -(Deck *)createDeck;
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate;
 -(GameSettings *)settings;
+-(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell;
 
 @end

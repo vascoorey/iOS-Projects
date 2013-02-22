@@ -87,47 +87,69 @@
                                     <action selector="deal" destination="2" eventType="touchUpInside" id="ZfU-Ss-iHA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOc-Gi-IHF">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOc-Gi-IHF">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYO-Di-Fbb">
-                                <attributedString key="attributedText">
-                                    <fragment content="Description of last flip. ">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="15" name="Helvetica"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbE-S2-5qU">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="UYe-Vh-CF1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cheat">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findMatch" destination="2" eventType="touchUpInside" id="Reu-7s-apq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgN-LE-49m">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="eHu-WN-UUO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Draw">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dealMoreCards" destination="QhC-0T-OsD" eventType="touchUpInside" id="CP6-0W-gYk"/>
+                                    <action selector="dealMoreCards" destination="2" eventType="touchUpInside" id="fPZ-tW-cAG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="5XL-3g-53V" firstAttribute="top" secondItem="C4i-9Y-6Si" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0GB-gO-s0M"/>
                             <constraint firstItem="tOc-Gi-IHF" firstAttribute="top" secondItem="C4i-9Y-6Si" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5VM-gZ-Zm0"/>
-                            <constraint firstItem="EYO-Di-Fbb" firstAttribute="top" secondItem="C4i-9Y-6Si" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5fz-oB-XcH"/>
                             <constraint firstItem="C4i-9Y-6Si" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="7oR-T4-NkF"/>
                             <constraint firstItem="C4i-9Y-6Si" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="8eT-d1-K6U"/>
+                            <constraint firstItem="tOc-Gi-IHF" firstAttribute="leading" secondItem="5XL-3g-53V" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="B7X-hJ-51m"/>
                             <constraint firstAttribute="bottom" secondItem="5XL-3g-53V" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="FEC-g8-7L0"/>
-                            <constraint firstAttribute="bottom" secondItem="EYO-Di-Fbb" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="MC4-ag-AsM"/>
+                            <constraint firstItem="5XL-3g-53V" firstAttribute="leading" secondItem="mbE-S2-5qU" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="JgZ-4L-T9C"/>
+                            <constraint firstAttribute="bottom" secondItem="mbE-S2-5qU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Jj9-1d-utd"/>
+                            <constraint firstItem="cgN-LE-49m" firstAttribute="baseline" secondItem="mbE-S2-5qU" secondAttribute="baseline" type="default" id="Pcb-pJ-zxU"/>
                             <constraint firstItem="C4i-9Y-6Si" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="TFz-PH-N1v"/>
+                            <constraint firstItem="cgN-LE-49m" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="TsH-MR-1EA"/>
+                            <constraint firstItem="mbE-S2-5qU" firstAttribute="baseline" secondItem="5XL-3g-53V" secondAttribute="baseline" type="default" id="Vjc-Qz-bur"/>
                             <constraint firstItem="tOc-Gi-IHF" firstAttribute="baseline" secondItem="5XL-3g-53V" secondAttribute="baseline" type="default" id="cx9-Ia-q86"/>
-                            <constraint firstItem="5XL-3g-53V" firstAttribute="centerX" secondItem="C4i-9Y-6Si" secondAttribute="centerX" type="default" id="egL-K2-Mbz"/>
-                            <constraint firstItem="tOc-Gi-IHF" firstAttribute="leading" secondItem="5XL-3g-53V" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="hLp-6c-soF"/>
+                            <constraint firstItem="mbE-S2-5qU" firstAttribute="leading" secondItem="cgN-LE-49m" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ehf-9M-Uix"/>
+                            <constraint firstItem="cgN-LE-49m" firstAttribute="top" secondItem="C4i-9Y-6Si" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="esd-NY-yAc"/>
+                            <constraint firstAttribute="bottom" secondItem="cgN-LE-49m" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="f2O-gx-QZl"/>
                             <constraint firstAttribute="bottom" secondItem="tOc-Gi-IHF" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="oSX-Fg-mK7"/>
                             <constraint firstAttribute="trailing" secondItem="tOc-Gi-IHF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="oaw-as-r1i"/>
-                            <constraint firstItem="5XL-3g-53V" firstAttribute="leading" secondItem="EYO-Di-Fbb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pJp-wa-lVA"/>
-                            <constraint firstItem="EYO-Di-Fbb" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="zeA-UF-1da"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Match" image="BarItems_1.png" id="TOs-sX-CDQ"/>
                     <connections>
                         <outlet property="cardCollectionView" destination="C4i-9Y-6Si" id="Fgc-2h-INh"/>
-                        <outlet property="descriptionOfLastFlipLabel" destination="EYO-Di-Fbb" id="u9r-Jg-8qc"/>
                         <outlet property="scoreLabel" destination="tOc-Gi-IHF" id="V5V-Xg-Lww"/>
                     </connections>
                 </viewController>
@@ -389,6 +411,30 @@
                                             <outlet property="setCardView" destination="F6x-L1-drc" id="bY8-dE-Hne"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MatchedSet" id="KaK-th-S1j" customClass="SetCardCollectionViewCell">
+                                        <rect key="frame" x="85" y="0.0" width="64" height="119"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fx6-NI-35p" customClass="MatchedSetView">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Fx6-NI-35p" firstAttribute="leading" secondItem="KaK-th-S1j" secondAttribute="leading" type="default" id="3Dk-LC-1Du"/>
+                                            <constraint firstItem="Fx6-NI-35p" firstAttribute="top" secondItem="KaK-th-S1j" secondAttribute="top" type="default" id="AIb-Xf-Jiq"/>
+                                            <constraint firstItem="Fx6-NI-35p" firstAttribute="bottom" secondItem="KaK-th-S1j" secondAttribute="bottom" type="default" id="ICS-pY-T5G"/>
+                                            <constraint firstItem="Fx6-NI-35p" firstAttribute="trailing" secondItem="KaK-th-S1j" secondAttribute="trailing" type="default" id="ZfU-kK-ZJm"/>
+                                        </constraints>
+                                        <size key="customSize" width="64" height="119"/>
+                                        <connections>
+                                            <outlet property="setCardView" destination="Fx6-NI-35p" id="aI1-L6-dKZ"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="QhC-0T-OsD" id="agU-pi-n5y"/>
@@ -398,7 +444,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="257" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoK-eD-eWb">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Re-deal">
+                                <state key="normal" title="Deal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -409,14 +455,17 @@
                                     <action selector="deal" destination="QhC-0T-OsD" eventType="touchUpInside" id="Qyu-2o-qbP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEl-86-hjq">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEl-86-hjq">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wO-cS-PWH">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="61" id="lP0-G3-ufQ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="3 More">
+                                <state key="normal" title="Draw">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -427,23 +476,42 @@
                                     <action selector="dealMoreCards" destination="QhC-0T-OsD" eventType="touchUpInside" id="aQc-cT-FXl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Hb-5Y-Xg1">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="yOM-DI-LfA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cheat">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findMatch" destination="QhC-0T-OsD" eventType="touchUpInside" id="Vth-TT-0Pq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="1Hb-5Y-Xg1" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2cj-Q0-3lE"/>
                             <constraint firstAttribute="bottom" secondItem="lEl-86-hjq" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="7qS-AO-WOs"/>
                             <constraint firstItem="8fL-sU-mC1" firstAttribute="top" secondItem="44i-6V-GrP" secondAttribute="top" type="default" id="9YQ-Cz-uk3"/>
                             <constraint firstItem="lEl-86-hjq" firstAttribute="top" secondItem="8fL-sU-mC1" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ebu-bB-C8L"/>
+                            <constraint firstItem="6wO-cS-PWH" firstAttribute="baseline" secondItem="1Hb-5Y-Xg1" secondAttribute="baseline" type="default" id="Hh8-vA-FQd"/>
                             <constraint firstItem="8fL-sU-mC1" firstAttribute="leading" secondItem="44i-6V-GrP" secondAttribute="leading" type="default" id="Qwh-V1-rp8"/>
-                            <constraint firstAttribute="bottom" secondItem="GoK-eD-eWb" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="UVy-Nh-LeG"/>
+                            <constraint firstAttribute="bottom" secondItem="GoK-eD-eWb" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="S1u-AO-eE6"/>
                             <constraint firstItem="6wO-cS-PWH" firstAttribute="top" secondItem="8fL-sU-mC1" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Wfb-4U-etV"/>
-                            <constraint firstItem="GoK-eD-eWb" firstAttribute="centerX" secondItem="8fL-sU-mC1" secondAttribute="centerX" type="default" id="Wv4-Oj-Sus"/>
                             <constraint firstItem="6wO-cS-PWH" firstAttribute="leading" secondItem="44i-6V-GrP" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Wvb-lZ-1PH"/>
                             <constraint firstItem="lEl-86-hjq" firstAttribute="baseline" secondItem="GoK-eD-eWb" secondAttribute="baseline" type="default" id="aXy-PK-gYS"/>
                             <constraint firstItem="8fL-sU-mC1" firstAttribute="trailing" secondItem="44i-6V-GrP" secondAttribute="trailing" type="default" id="cd9-L5-ZpU"/>
-                            <constraint firstItem="6wO-cS-PWH" firstAttribute="baseline" secondItem="GoK-eD-eWb" secondAttribute="baseline" type="default" id="iWa-5O-PDd"/>
+                            <constraint firstItem="1Hb-5Y-Xg1" firstAttribute="baseline" secondItem="GoK-eD-eWb" secondAttribute="baseline" type="default" id="foT-9z-r5e"/>
                             <constraint firstAttribute="trailing" secondItem="lEl-86-hjq" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mFk-Nd-pci"/>
+                            <constraint firstItem="GoK-eD-eWb" firstAttribute="leading" secondItem="1Hb-5Y-Xg1" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="oVP-Tx-wgh"/>
+                            <constraint firstItem="1Hb-5Y-Xg1" firstAttribute="leading" secondItem="6wO-cS-PWH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pDw-Eb-VWK"/>
                             <constraint firstAttribute="bottom" secondItem="6wO-cS-PWH" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="siI-8Y-Duz"/>
-                            <constraint firstItem="lEl-86-hjq" firstAttribute="leading" secondItem="GoK-eD-eWb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="x21-ib-x7w"/>
+                            <constraint firstItem="lEl-86-hjq" firstAttribute="leading" secondItem="GoK-eD-eWb" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zrf-xJ-81A"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Set" image="BarItems_2.png" id="K78-ev-3H0"/>

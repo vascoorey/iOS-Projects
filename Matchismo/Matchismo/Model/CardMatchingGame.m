@@ -14,7 +14,7 @@
 @property (readwrite, nonatomic) NSString *descriptionOfLastFlip;
 @property (nonatomic, strong) NSArray *cardsForLastFlip;
 @property (nonatomic, strong) NSMutableArray *flipHistory;
-@property (nonatomic, strong) NSMutableArray *cards;
+@property (nonatomic, strong, readwrite) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) NSString *name;
 @end
@@ -61,6 +61,44 @@
         }
     }
     return NO;
+}
+
+// Only works for 2 or 3 match
+-(NSArray *)indicesForMatch
+{
+    int matchMode = [AllGameSettings settingsForGame:self.name].matchMode;
+    NSAssert(matchMode == 2 || matchMode == 3, @"indicesForMatch will only work for a match mode of 3");
+    if([self.cards count] < matchMode)
+    {
+        return nil;
+    }
+    else
+    {
+        for(NSUInteger i = 0; i < [self.cards count]; i ++)
+        {
+            for(NSUInteger j = (i + 1); j < [self.cards count]; j ++)
+            {
+                if(matchMode == 2)
+                {
+                    if([((Card*)self.cards[i]) match:@[self.cards[j]]])
+                    {
+                        return @[@(i), @(j)];
+                    }
+                }
+                else
+                {
+                    for(NSUInteger k = (j + 1); k < [self.cards count]; k ++)
+                    {
+                        if([((Card*)self.cards[i]) match:@[self.cards[j],self.cards[k]]])
+                        {
+                            return @[@(i), @(j), @(k)];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return nil;
 }
 
 -(id)initWithDeck:(Deck *)deck name:(NSString *)name
