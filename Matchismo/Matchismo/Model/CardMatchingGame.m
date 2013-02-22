@@ -51,6 +51,18 @@
     return [self.cards count];
 }
 
+-(BOOL)hasUnplayableCards
+{
+    for(int i = 0; i < [self.cards count]; i++)
+    {
+        if(((Card *)self.cards[i]).isUnplayable)
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 -(id)initWithDeck:(Deck *)deck name:(NSString *)name
 {
     if((self = [super init]))
@@ -189,33 +201,35 @@
 // Of NSNumber
 -(NSArray *)requestCards:(NSUInteger)cards
 {
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    NSMutableArray *indices = [[NSMutableArray alloc] init];
     for(int i = 0; i < cards; i ++)
     {
         Card *card = [self.deck drawRandomCard];
         if(card)
         {
             [self.cards addObject:card];
-            [indexPaths addObject:@([self.cards indexOfObject:card])];
+            [indices addObject:@([self.cards indexOfObject:card])];
         }
     }
-    NSLog(@"%d", self.cardsInPlay);
-    return [indexPaths copy];
+    return [indices copy];
 }
 
 // Of NSNumber
 -(NSArray *)removeUnplayableCards
 {
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    NSMutableArray *indices = [[NSMutableArray alloc] init];
+    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
     for(Card *card in self.cards)
     {
         if(card.isUnplayable)
         {
-            [indexPaths addObject:@([self.cards indexOfObject:card])];
-            [self.cards removeObject:card];
+            NSUInteger index = [self.cards indexOfObject:card];
+            [indices addObject:@(index)];
+            [indexSet addIndex:index];
         }
     }
-    return [indexPaths copy];
+    [self.cards removeObjectsAtIndexes:indexSet];
+    return [indices copy];
 }
 
 @end

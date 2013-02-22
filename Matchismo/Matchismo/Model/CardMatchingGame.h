@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) NSString *descriptionOfLastFlip;
 @property (nonatomic, readonly) NSInteger flipCount;
 @property (nonatomic, readonly) NSInteger cardsInPlay;
+@property (nonatomic, readonly) BOOL hasUnplayableCards;
 
 // Designated Initializer
 -(id)initWithDeck:(Deck *)deck

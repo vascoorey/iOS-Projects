@@ -104,6 +104,10 @@
     self.historySlider.maximumValue = self.game.flipCount;
     self.historySlider.value = self.game.flipCount;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    if(self.game.hasUnplayableCards)
+    {
+        [self removeUnplayableCards];
+    }
 }
 
 - (IBAction)flipCard:(UITapGestureRecognizer *)gesture
@@ -171,14 +175,12 @@
 
 -(IBAction)dealMoreCards
 {
-    NSArray *indexes = [self.game requestCards:self.cardsToAdd];
-    if([indexes count])
+    NSArray *indices = [self.game requestCards:self.cardsToAdd];
+    if([indices count])
     {
-        // Convert indexPaths to NSIndexPath
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        for(NSNumber *index in indexes)
+        for(NSNumber *index in indices)
         {
-            NSLog(@"%d", index.unsignedIntegerValue);
             [indexPaths addObject:[NSIndexPath indexPathForItem:index.unsignedIntegerValue inSection:0]];
         }
         // Reload data for the collection view...
@@ -191,9 +193,18 @@
     }
 }
 
--(void)deleteUnplayableCards
+-(void)removeUnplayableCards
 {
-    
+    NSArray *indices = [self.game removeUnplayableCards];
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    if([indices count])
+    {
+        for(NSNumber *index in indices)
+        {
+            [indexPaths addObject:[NSIndexPath indexPathForItem:index.unsignedIntegerValue inSection:0]];
+        }
+        [self.cardCollectionView deleteItemsAtIndexPaths:indexPaths];
+    }
 }
 
 @end
