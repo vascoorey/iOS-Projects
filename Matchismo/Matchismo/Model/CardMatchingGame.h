@@ -19,6 +19,8 @@
 @property (nonatomic, readonly) NSInteger cardsInPlay;
 @property (nonatomic, readonly) BOOL hasUnplayableCards;
 @property (nonatomic, readonly) NSMutableArray *cards;
+// Set after requestCards: is called
+@property (nonatomic, readonly) BOOL hadMatch;
 
 // Designated Initializer
 -(id)initWithDeck:(Deck *)deck

@@ -31,6 +31,15 @@
     return [[SetCardDeck alloc] init];
 }
 
+-(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell
+{
+    if([cell isKindOfClass:[SetCardCollectionViewCell class]])
+    {
+        SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
+        setCardView.markForCheating = !setCardView.faceUp;
+    }
+}
+
 -(void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
 {
     if([cell isKindOfClass:[SetCardCollectionViewCell class]])
@@ -49,17 +58,9 @@
             setCardView.shape = setCard.shape;
             setCardView.shade = setCard.shade;
             setCardView.faceUp = setCard.isFaceUp;
-            setCardView.markForCheating = NO;
+            setCardView.markForCheating = setCard.isMarkedForCheating;
+            setCard.markedForCheating = NO;
         }
-    }
-}
-
--(void)userCheatedSoUpdateCell:(UICollectionViewCell *)cell
-{
-    if([cell isKindOfClass:[SetCardCollectionViewCell class]])
-    {
-        SetCardView *setCardView = ((SetCardCollectionViewCell *)cell).setCardView;
-        setCardView.markForCheating = YES;
     }
 }
 

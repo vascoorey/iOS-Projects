@@ -17,6 +17,7 @@
 @property (nonatomic, strong, readwrite) NSMutableArray *cards;
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, readwrite) BOOL hadMatch;
 @end
 
 @implementation CardMatchingGame
@@ -51,6 +52,15 @@
     return [self.cards count];
 }
 
+-(void)setHadMatch:(BOOL)hadMatch
+{
+    _hadMatch = hadMatch;
+    if(_hadMatch)
+    {
+        self.score -= [AllGameSettings settingsForGame:self.name].mismatchPenalty;
+    }
+}
+
 -(BOOL)hasUnplayableCards
 {
     for(int i = 0; i < [self.cards count]; i++)
@@ -82,6 +92,8 @@
                 {
                     if([((Card*)self.cards[i]) match:@[self.cards[j]]])
                     {
+                        ((Card *)self.cards[i]).markedForCheating = YES;
+                        ((Card *)self.cards[j]).markedForCheating = YES;
                         return @[@(i), @(j)];
                     }
                 }
@@ -91,6 +103,9 @@
                     {
                         if([((Card*)self.cards[i]) match:@[self.cards[j],self.cards[k]]])
                         {
+                            ((Card *)self.cards[i]).markedForCheating = YES;
+                            ((Card *)self.cards[j]).markedForCheating = YES;
+                            ((Card *)self.cards[k]).markedForCheating = YES;
                             return @[@(i), @(j), @(k)];
                         }
                     }
@@ -249,6 +264,7 @@
             [indices addObject:@([self.cards indexOfObject:card])];
         }
     }
+    self.hadMatch = [self indicesForMatch] ? YES : NO;
     return [indices copy];
 }
 

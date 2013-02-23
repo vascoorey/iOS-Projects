@@ -43,7 +43,7 @@
     if([cell isKindOfClass:[PlayingCardCollectionViewCell class]])
     {
         PlayingCardView *playingCardView = ((PlayingCardCollectionViewCell *)cell).playingCardView;
-        playingCardView.markForCheating = YES;
+        playingCardView.markForCheating = !playingCardView.faceUp;
     }
 }
 
@@ -63,7 +63,8 @@
             playingCardView.suit = playingCard.suit;
             playingCardView.faceUp = playingCard.isFaceUp;
             playingCardView.alpha = playingCard.isUnplayable ? 0.3f : 1.0f;
-            playingCardView.markForCheating = NO;
+            playingCardView.markForCheating = playingCard.isMarkedForCheating;
+            playingCard.markedForCheating = NO;
             if(animate)
             {
                 [UIView transitionWithView:playingCardView

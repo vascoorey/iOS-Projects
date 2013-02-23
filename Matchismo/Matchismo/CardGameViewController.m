@@ -174,8 +174,10 @@
     for(id index in indices)
     {
         NSAssert([index isKindOfClass:[NSNumber class]], @"Bad NSArray: contained non-NSNumbers!");
-        UICollectionViewCell *cell = [self.cardCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:((NSNumber *)index).unsignedIntValue inSection:0]];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:((NSNumber *)index).unsignedIntValue inSection:0];
+        UICollectionViewCell *cell = [self.cardCollectionView cellForItemAtIndexPath:indexPath];
         [self userCheatedSoUpdateCell:cell];
+        [self.cardCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
     }
 }
 
@@ -221,6 +223,11 @@
     else
     {
         [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+    if(self.game.hadMatch)
+    {
+        [self updateUI];
+        [[[UIAlertView alloc] initWithTitle:@"Missed a match" message:@"You missed a match!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 
