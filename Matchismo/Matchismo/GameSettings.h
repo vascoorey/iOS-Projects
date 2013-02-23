@@ -15,6 +15,7 @@
 @property (nonatomic) NSUInteger mismatchPenalty;
 @property (nonatomic) NSUInteger matchMode;
 @property (nonatomic) NSUInteger startingCardCount;
+@property (nonatomic) BOOL penalizeCheating;
 
 // Designated Initializer
 -(id)initWithFlipCost:(NSUInteger)flipCost

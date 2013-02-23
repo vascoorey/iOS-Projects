@@ -71,7 +71,9 @@
 
 -(GameSettings *)settings
 {
-    return [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 startingCardCount:12];
+    GameSettings *settings = [[GameSettings alloc] initWithFlipCost:1 matchBonus:6 mismatchPenalty:3 matchMode:3 startingCardCount:12];
+    settings.penalizeCheating = YES;
+    return settings;
 }
 
 @end

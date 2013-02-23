@@ -254,6 +254,19 @@
 // Of NSNumber
 -(NSArray *)requestCards:(NSUInteger)cards
 {
+    NSArray *matches = [AllGameSettings settingsForGame:self.name].penalizeCheating ? [self indicesForMatch] : nil;
+    if(matches)
+    {
+        self.hadMatch = YES;
+        for(NSNumber *index in matches)
+        {
+            ((Card *)self.cards[index.unsignedIntValue]).markedForCheating = NO;
+        }
+    }
+    else
+    {
+        self.hadMatch = NO;
+    }
     NSMutableArray *indices = [[NSMutableArray alloc] init];
     for(int i = 0; i < cards; i ++)
     {
@@ -264,7 +277,6 @@
             [indices addObject:@([self.cards indexOfObject:card])];
         }
     }
-    self.hadMatch = [self indicesForMatch] ? YES : NO;
     return [indices copy];
 }
 
