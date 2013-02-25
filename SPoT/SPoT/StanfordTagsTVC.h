@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "FlickrPhotoTVC.h"
+#import <UIKit/UIKit.h>
 
-@interface StanfordPhotosTVC : FlickrPhotoTVC
+@interface StanfordTagsTVC : UITableViewController
 
-@property (nonatomic, strong) NSString *tag;
+@property (nonatomic, strong) NSArray *photos;
 
 @end

@@ -7,14 +7,11 @@
 //
 
 #import "StanfordPhotosTVC.h"
-#import "FlickrFetcher.h"
+
+@interface StanfordPhotosTVC ()
+
+@end
 
 @implementation StanfordPhotosTVC
-
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.photos = [FlickrFetcher stanfordPhotos];
-}
 
 @end

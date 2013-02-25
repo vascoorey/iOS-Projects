@@ -8,7 +8,7 @@
         <scene sceneID="QFg-iZ-PFj">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="GV2-zT-b0Y" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JI7-HS-rgd">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -23,25 +23,37 @@
             </objects>
             <point key="canvasLocation" x="-425" y="-25"/>
         </scene>
-        <!--Stanford PhotosTVC-->
+        <!--Stanford TagsTVC-->
         <scene sceneID="oVr-WW-Tiw">
             <objects>
-                <tableViewController id="tM4-vo-oNs" customClass="StanfordPhotosTVC" sceneMemberID="viewController">
+                <tableViewController id="tM4-vo-oNs" customClass="StanfordTagsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F22-1b-y7E">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flickr Photo" id="Rmy-Hj-rtJ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flickr Tag" textLabel="wPP-Dd-agQ" detailTextLabel="3ar-wW-Nqx" style="IBUITableViewCellStyleSubtitle" id="Rmy-Hj-rtJ">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPP-Dd-agQ">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ar-wW-Nqx">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="aq0-zn-a4i" kind="push" identifier="Show Image" id="2oH-Xs-5Ci"/>
+                                    <segue destination="6E1-2o-3ty" kind="push" id="jjg-VZ-BKi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -55,6 +67,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sz1-x5-15H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="640" y="-355"/>
+        </scene>
+        <!--Stanford PhotosTVC-->
+        <scene sceneID="qM8-kr-fpf">
+            <objects>
+                <tableViewController id="6E1-2o-3ty" customClass="StanfordPhotosTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zZx-ZC-Yla">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flickr Image" id="pOd-sg-Weg">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="aq0-zn-a4i" kind="push" identifier="Show Image" id="xiH-IF-OHl"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6E1-2o-3ty" id="eKC-f8-PsG"/>
+                            <outlet property="delegate" destination="6E1-2o-3ty" id="luU-5n-2T3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="YMV-f1-sCA"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TjZ-nB-Kwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077" y="-355"/>
         </scene>
         <!--Navigation Controller - Highlights-->
         <scene sceneID="zQu-mw-OQV">
@@ -133,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAb-Qd-Smr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1176" y="-25"/>
+            <point key="canvasLocation" x="1446" y="-3"/>
         </scene>
         <!--Navigation Controller - Recents-->
         <scene sceneID="nkN-ss-bb3">
@@ -171,6 +216,9 @@
         <class className="StanfordPhotosTVC" superclassName="FlickrPhotoTVC">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StanfordPhotosTVC.h"/>
         </class>
+        <class className="StanfordTagsTVC" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StanfordTagsTVC.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -178,6 +226,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2oH-Xs-5Ci"/>
+        <segue reference="xiH-IF-OHl"/>
     </inferredMetricsTieBreakers>
 </document>
