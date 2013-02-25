@@ -7,6 +7,7 @@
 //
 
 #import "ImageViewController.h"
+#import "Utils.h"
 
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -53,6 +54,12 @@
     return _imageView;
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.scrollView zoomToRect:self.imageView.bounds animated:YES];
+}
+
 // returns the view which will be zoomed when the user pinches
 // in this case, it is the image view, obviously
 // (there are no other subviews of the scroll view in its content area)
@@ -71,8 +78,8 @@
 {
     [super viewDidLoad];
     [self.scrollView addSubview:self.imageView];
-    self.scrollView.minimumZoomScale = 0.2;
-    self.scrollView.maximumZoomScale = 5.0;
+    self.scrollView.minimumZoomScale = MIN_ZOOM_SCALE;
+    self.scrollView.maximumZoomScale = MAX_ZOOM_SCALE;
     self.scrollView.delegate = self;
     [self resetImage];
 }

@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-425" y="-25"/>
         </scene>
-        <!--Stanford TagsTVC-->
+        <!--Stanford TagsTVC - SPoT-->
         <scene sceneID="oVr-WW-Tiw">
             <objects>
                 <tableViewController id="tM4-vo-oNs" customClass="StanfordTagsTVC" sceneMemberID="viewController">
@@ -62,7 +62,7 @@
                             <outlet property="delegate" destination="tM4-vo-oNs" id="sr7-2T-Vjr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="6ou-xq-r9q"/>
+                    <navigationItem key="navigationItem" title="SPoT" id="6ou-xq-r9q"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sz1-x5-15H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,7 +132,7 @@
             </objects>
             <point key="canvasLocation" x="114" y="-355"/>
         </scene>
-        <!--Recent PhotosTVC-->
+        <!--Recent PhotosTVC - Recents-->
         <scene sceneID="Zvb-dT-FyH">
             <objects>
                 <tableViewController id="18i-kh-J4N" customClass="RecentPhotosTVC" sceneMemberID="viewController">
@@ -171,7 +171,7 @@
                             <outlet property="delegate" destination="18i-kh-J4N" id="aN2-b6-Szf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="pfr-uc-eFT"/>
+                    <navigationItem key="navigationItem" title="Recents" id="pfr-uc-eFT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MwJ-nh-oE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

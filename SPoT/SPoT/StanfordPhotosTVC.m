@@ -27,8 +27,6 @@
     {
         if([recents[i][FLICKR_PHOTO_ID] isEqualToString:photo[FLICKR_PHOTO_ID]])
         {
-            NSLog(@"%@ ==== %@", recents[i][FLICKR_PHOTO_ID], photo[FLICKR_PHOTO_ID]);
-            NSLog(@"Removing duplicate..");
             [recents removeObject:recents[i]];
             break;
         }
@@ -36,6 +34,7 @@
     [recents addObject:photo];
     while([recents count] > MAX_RECENT_PHOTOS)
     {
+        NSLog(@"Removing the oldest recent...");
         [recents removeObjectAtIndex:0];
     }
     [[NSUserDefaults standardUserDefaults] setObject:recents forKey:RECENT_PHOTOS_KEY];
