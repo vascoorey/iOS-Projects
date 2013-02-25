@@ -56,6 +56,7 @@
 
 -(void)viewDidLayoutSubviews
 {
+#warning Todo: calculate how much of the image fits in the scrollview's bounds
     [super viewDidLayoutSubviews];
     [self.scrollView zoomToRect:self.imageView.bounds animated:YES];
 }

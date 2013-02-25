@@ -16,8 +16,18 @@
 
 - (void)setPhotos:(NSArray *)photos
 {
-    _photos = photos;
+    _photos = [self sortPhotos:photos];
     [self.tableView reloadData];
+}
+
+// Will sort them alphabetically
+-(NSArray *)sortPhotos:(NSArray *)photos
+{
+//    NSSortDescriptor *country = [[[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES]autorelease];
+//    NSSortDescriptor *city = [[[NSSortDescriptor alloc] initWithKey:@"city" ascending:YES]autorelease];
+//    NSArray *sorted = [bag sortedArrayUsingDescriptors:[NSArray arrayWithObjects: country, city, nil]];
+    NSSortDescriptor *title = [[NSSortDescriptor alloc] initWithKey:FLICKR_PHOTO_TITLE ascending:YES];
+    return [photos sortedArrayUsingDescriptors:@[title]];
 }
 
 #pragma mark - Segue
