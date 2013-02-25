@@ -17,6 +17,7 @@
 - (void)setPhotos:(NSArray *)photos
 {
     _photos = photos;
+    NSLog(@"Got: %d, %@", [photos count], photos[0]);
     [self.tableView reloadData];
 }
 
