@@ -105,10 +105,10 @@
 				BC6F92E716DB8E9700DBEBCA /* StanfordTagsTVC.m */,
 				BC6F92F816DB939500DBEBCA /* StanfordPhotosTVC.h */,
 				BC6F92F916DB939500DBEBCA /* StanfordPhotosTVC.m */,
-				BC6F92F416DB8F9600DBEBCA /* RecentPhotosTVC.h */,
-				BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */,
 				BC6F92ED16DB8EEA00DBEBCA /* FlickrPhotoTVC.h */,
 				BC6F92EE16DB8EEA00DBEBCA /* FlickrPhotoTVC.m */,
+				BC6F92F416DB8F9600DBEBCA /* RecentPhotosTVC.h */,
+				BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */,
 				BC6F92EF16DB8EEA00DBEBCA /* ImageViewController.h */,
 				BC6F92F016DB8EEA00DBEBCA /* ImageViewController.m */,
 				BC6F92DB16DB8D5E00DBEBCA /* MainStoryboard.storyboard */,
@@ -340,6 +340,7 @@
 				BC6F92E516DB8D5E00DBEBCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

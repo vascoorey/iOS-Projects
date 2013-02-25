@@ -9,6 +9,8 @@
 #ifndef SPoT_Utils_h
 #define SPoT_Utils_h
 
-#define RECENT_PHOTOS_KEY @"Recent Photos"
+#define RECENT_PHOTOS_KEY @"SPoT.RecentPhotos"
+#define MAX_RECENT_PHOTOS 20
+#define IGNORE_TAGS @[@"cs193pspot", @"portrait", @"landscape"]
 
 #endif

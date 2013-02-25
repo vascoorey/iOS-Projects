@@ -10,6 +10,4 @@
 
 @interface StanfordPhotosTVC : FlickrPhotoTVC
 
-@property (nonatomic, strong) NSString *tag;
-
 @end

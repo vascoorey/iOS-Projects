@@ -5,10 +5,10 @@
 //  Created by Vasco Orey on 2/25/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
-//  Will call setTag: as part of any "Show Tag" segue
 
 #import "StanfordTagsTVC.h"
 #import "FlickrFetcher.h"
+#import "Utils.h"
 
 @interface StanfordTagsTVC ()
 @property (nonatomic, strong) NSMutableSet *tags;
@@ -17,6 +17,25 @@
 @end
 
 @implementation StanfordTagsTVC
+
+-(void)setup
+{
+    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+}
+
+-(void)awakeFromNib
+{
+    [self setup];
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+    {
+        [self setup];
+    }
+    return self;
+}
 
 -(NSMutableSet *)tags
 {
@@ -50,27 +69,43 @@
         NSArray *separatedTags = [photo[FLICKR_TAGS] componentsSeparatedByString:@" "];
         for(NSString *tag in separatedTags)
         {
-            if(![[self.tagOcurrences allKeys] containsObject:tag])
+            if(![IGNORE_TAGS containsObject:tag])
             {
-                self.tagOcurrences[tag] = @(1);
+                NSString *capitalizedTag = [tag capitalizedString];
+                if(![[self.tagOcurrences allKeys] containsObject:capitalizedTag])
+                {
+                    self.tagOcurrences[capitalizedTag] = @(1);
+                }
+                else
+                {
+                    int ocurrences = [self.tagOcurrences[capitalizedTag] intValue];
+                    self.tagOcurrences[capitalizedTag] = @(ocurrences + 1);
+                }
+                [self.tags addObject:capitalizedTag];
             }
-            else
-            {
-                int ocurrences = [self.tagOcurrences[tag] intValue];
-                self.tagOcurrences[tag] = @(ocurrences + 1);
-            }
-            [self.tags addObject:tag];
         }
     }
     self.finalTags = [self.tags allObjects];
-    NSLog(@"Tags: %@", self.finalTags);
-    NSLog(@"Ocurrences: %@", self.tagOcurrences);
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     self.photos = [FlickrFetcher stanfordPhotos];
+}
+
+-(NSArray *)photosForTag:(NSString *)tag
+{
+    NSAssert(self.finalTags, @"Must call getTagInfo before photosForTag:");
+    NSMutableArray *photos = [[NSMutableArray alloc] initWithCapacity:[self.tagOcurrences[tag] intValue]];
+    for(NSDictionary *photo in self.photos)
+    {
+        if([photo[FLICKR_TAGS] rangeOfString:[tag lowercaseString]].location != NSNotFound)
+        {
+            [photos addObject:photo];
+        }
+    }
+    return photos;
 }
 
 -(NSString *)titleForRow:(NSUInteger)row
@@ -80,7 +115,7 @@
 
 -(NSString *)subtitleForRow:(NSUInteger)row
 {
-    return self.finalTags ? [self.tagOcurrences[self.finalTags[row]] description] : nil;
+    return self.finalTags ? [NSString stringWithFormat:@"%@ photos", self.tagOcurrences[self.finalTags[row]]] : nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,7 +125,19 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSAssert(false, @"haha");
+    if([sender isKindOfClass:[UITableViewCell class]])
+    {
+        if([segue.identifier isEqualToString:@"Show Photos For Tag"])
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+            if ([segue.destinationViewController respondsToSelector:@selector(setPhotos:)]) {
+                NSString *tag = [self titleForRow:indexPath.row];
+                NSArray *photosForTag = [self photosForTag:tag];
+                [segue.destinationViewController performSelector:@selector(setPhotos:) withObject:photosForTag];
+                [segue.destinationViewController setTitle:tag];
+            }
+        }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
