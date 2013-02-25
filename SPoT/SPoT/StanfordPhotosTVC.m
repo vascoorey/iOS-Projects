@@ -23,14 +23,20 @@
     {
         recents = [[NSMutableArray alloc] init];
     }
-    if([recents containsObject:photo])
+    for(int i = 0; i < [recents count]; i ++)
     {
-        [recents removeObject:photo];
+        if([recents[i][FLICKR_PHOTO_ID] isEqualToString:photo[FLICKR_PHOTO_ID]])
+        {
+            NSLog(@"%@ ==== %@", recents[i][FLICKR_PHOTO_ID], photo[FLICKR_PHOTO_ID]);
+            NSLog(@"Removing duplicate..");
+            [recents removeObject:recents[i]];
+            break;
+        }
     }
     [recents addObject:photo];
     while([recents count] > MAX_RECENT_PHOTOS)
     {
-        [recents removeLastObject];
+        [recents removeObjectAtIndex:0];
     }
     [[NSUserDefaults standardUserDefaults] setObject:recents forKey:RECENT_PHOTOS_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
