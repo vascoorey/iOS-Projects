@@ -56,9 +56,12 @@
 
 -(void)viewDidLayoutSubviews
 {
-#warning Todo: calculate how much of the image fits in the scrollview's bounds
     [super viewDidLayoutSubviews];
-    [self.scrollView zoomToRect:self.imageView.bounds animated:YES];
+    CGFloat xScale = self.imageView.bounds.size.width / self.scrollView.bounds.size.width;
+    CGFloat yScale = self.imageView.bounds.size.height / self.scrollView.bounds.size.height;
+    CGFloat scale = xScale < yScale ? xScale : yScale;
+    CGRect optimalBounds = CGRectMake(self.scrollView.bounds.origin.x, self.scrollView.bounds.origin.y, self.scrollView.bounds.size.width * scale, self.scrollView.bounds.size.height * scale);
+    [self.scrollView zoomToRect:optimalBounds animated:YES];
 }
 
 // returns the view which will be zoomed when the user pinches
