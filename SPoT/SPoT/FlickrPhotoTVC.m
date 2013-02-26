@@ -9,7 +9,20 @@
 #import "FlickrPhotoTVC.h"
 #import "FlickrFetcher.h"
 
+@interface FlickrPhotoTVC () <UISplitViewControllerDelegate>
+@end
+
 @implementation FlickrPhotoTVC
+
+-(void)awakeFromNib
+{
+    self.splitViewController.delegate = self;
+}
+
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
 
 // sets the Model
 // reloads the UITableView (since Model is changing)

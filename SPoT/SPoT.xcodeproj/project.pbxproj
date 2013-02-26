@@ -16,13 +16,14 @@
 		BC6F92D616DB8D5E00DBEBCA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F92D516DB8D5E00DBEBCA /* Default.png */; };
 		BC6F92D816DB8D5E00DBEBCA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F92D716DB8D5E00DBEBCA /* Default@2x.png */; };
 		BC6F92DA16DB8D5E00DBEBCA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6F92D916DB8D5E00DBEBCA /* Default-568h@2x.png */; };
-		BC6F92DD16DB8D5E00DBEBCA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6F92DB16DB8D5E00DBEBCA /* MainStoryboard.storyboard */; };
+		BC6F92DD16DB8D5E00DBEBCA /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6F92DB16DB8D5E00DBEBCA /* iPhone.storyboard */; };
 		BC6F92E816DB8E9700DBEBCA /* StanfordTagsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92E716DB8E9700DBEBCA /* StanfordTagsTVC.m */; };
 		BC6F92F116DB8EEA00DBEBCA /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92EC16DB8EEA00DBEBCA /* FlickrFetcher.m */; };
 		BC6F92F216DB8EEA00DBEBCA /* FlickrPhotoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92EE16DB8EEA00DBEBCA /* FlickrPhotoTVC.m */; };
 		BC6F92F316DB8EEA00DBEBCA /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92F016DB8EEA00DBEBCA /* ImageViewController.m */; };
 		BC6F92F616DB8F9600DBEBCA /* RecentPhotosTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */; };
 		BC6F92FA16DB939500DBEBCA /* StanfordPhotosTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92F916DB939500DBEBCA /* StanfordPhotosTVC.m */; };
+		BC8B459716DD2173008BE654 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC8B459616DD2173008BE654 /* iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +40,7 @@
 		BC6F92D516DB8D5E00DBEBCA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BC6F92D716DB8D5E00DBEBCA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		BC6F92D916DB8D5E00DBEBCA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		BC6F92DC16DB8D5E00DBEBCA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		BC6F92DC16DB8D5E00DBEBCA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		BC6F92E616DB8E9700DBEBCA /* StanfordTagsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StanfordTagsTVC.h; sourceTree = "<group>"; };
 		BC6F92E716DB8E9700DBEBCA /* StanfordTagsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StanfordTagsTVC.m; sourceTree = "<group>"; };
 		BC6F92EA16DB8EEA00DBEBCA /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		BC6F92F716DB906000DBEBCA /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		BC6F92F816DB939500DBEBCA /* StanfordPhotosTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StanfordPhotosTVC.h; sourceTree = "<group>"; };
 		BC6F92F916DB939500DBEBCA /* StanfordPhotosTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StanfordPhotosTVC.m; sourceTree = "<group>"; };
+		BC8B459616DD2173008BE654 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +113,8 @@
 				BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */,
 				BC6F92EF16DB8EEA00DBEBCA /* ImageViewController.h */,
 				BC6F92F016DB8EEA00DBEBCA /* ImageViewController.m */,
-				BC6F92DB16DB8D5E00DBEBCA /* MainStoryboard.storyboard */,
+				BC6F92DB16DB8D5E00DBEBCA /* iPhone.storyboard */,
+				BC8B459616DD2173008BE654 /* iPad.storyboard */,
 				BC6F92E916DB8EEA00DBEBCA /* FlickrFetcher */,
 				BC6F92CA16DB8D5E00DBEBCA /* Supporting Files */,
 			);
@@ -199,7 +202,8 @@
 				BC6F92D616DB8D5E00DBEBCA /* Default.png in Resources */,
 				BC6F92D816DB8D5E00DBEBCA /* Default@2x.png in Resources */,
 				BC6F92DA16DB8D5E00DBEBCA /* Default-568h@2x.png in Resources */,
-				BC6F92DD16DB8D5E00DBEBCA /* MainStoryboard.storyboard in Resources */,
+				BC6F92DD16DB8D5E00DBEBCA /* iPhone.storyboard in Resources */,
+				BC8B459716DD2173008BE654 /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,12 +236,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		BC6F92DB16DB8D5E00DBEBCA /* MainStoryboard.storyboard */ = {
+		BC6F92DB16DB8D5E00DBEBCA /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BC6F92DC16DB8D5E00DBEBCA /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -305,7 +309,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPoT/SPoT-Prefix.pch";
 				INFOPLIST_FILE = "SPoT/SPoT-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -316,7 +322,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SPoT/SPoT-Prefix.pch";
 				INFOPLIST_FILE = "SPoT/SPoT-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
