@@ -24,6 +24,7 @@
 		BC6F92F616DB8F9600DBEBCA /* RecentPhotosTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */; };
 		BC6F92FA16DB939500DBEBCA /* StanfordPhotosTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6F92F916DB939500DBEBCA /* StanfordPhotosTVC.m */; };
 		BC8B459716DD2173008BE654 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC8B459616DD2173008BE654 /* iPad.storyboard */; };
+		BCC2864716DE17CD00D50228 /* NetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC2864616DE17CD00D50228 /* NetworkActivity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		BC6F92F816DB939500DBEBCA /* StanfordPhotosTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StanfordPhotosTVC.h; sourceTree = "<group>"; };
 		BC6F92F916DB939500DBEBCA /* StanfordPhotosTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StanfordPhotosTVC.m; sourceTree = "<group>"; };
 		BC8B459616DD2173008BE654 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		BCC2864516DE17CD00D50228 /* NetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivity.h; sourceTree = "<group>"; };
+		BCC2864616DE17CD00D50228 /* NetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 				BC6F92F516DB8F9600DBEBCA /* RecentPhotosTVC.m */,
 				BC6F92EF16DB8EEA00DBEBCA /* ImageViewController.h */,
 				BC6F92F016DB8EEA00DBEBCA /* ImageViewController.m */,
+				BCC2864516DE17CD00D50228 /* NetworkActivity.h */,
+				BCC2864616DE17CD00D50228 /* NetworkActivity.m */,
 				BC6F92DB16DB8D5E00DBEBCA /* iPhone.storyboard */,
 				BC8B459616DD2173008BE654 /* iPad.storyboard */,
 				BC6F92E916DB8EEA00DBEBCA /* FlickrFetcher */,
@@ -222,6 +227,7 @@
 				BC6F92F316DB8EEA00DBEBCA /* ImageViewController.m in Sources */,
 				BC6F92F616DB8F9600DBEBCA /* RecentPhotosTVC.m in Sources */,
 				BC6F92FA16DB939500DBEBCA /* StanfordPhotosTVC.m in Sources */,
+				BCC2864716DE17CD00D50228 /* NetworkActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

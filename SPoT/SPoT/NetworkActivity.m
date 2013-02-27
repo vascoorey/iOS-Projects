@@ -1,0 +1,55 @@
+//
+//  NetworkActivity.m
+//  SPoT
+//
+//  Created by Vasco Orey on 2/27/13.
+//  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
+//
+
+#import "NetworkActivity.h"
+
+static NetworkActivity *sharedActivity;
+
+@interface NetworkActivity ()
+@property (atomic) NSUInteger count;
+@end
+
+@implementation NetworkActivity
+
+-(void)setCount:(NSUInteger)count
+{
+    _count = count;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = count > 0;
+}
+
+-(void)addRequest
+{
+    self.count ++;
+}
+
+-(void)removeRequest
+{
+    NSAssert(self.count > 0, @"Seems like you called removeRequest one too many times!");
+    self.count --;
+}
+
++(NetworkActivity *)sharedActivity
+{
+    if(!sharedActivity)
+    {
+        sharedActivity = [[NetworkActivity alloc] init];
+    }
+    return sharedActivity;
+}
+
++(void)addRequest
+{
+    [[self sharedActivity] addRequest];
+}
+
++(void)removeRequest
+{
+    [[self sharedActivity] removeRequest];
+}
+
+@end

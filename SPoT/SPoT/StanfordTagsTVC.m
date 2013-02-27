@@ -64,6 +64,8 @@
 
 -(void)getTagInfo
 {
+    self.tagOcurrences = nil;
+    self.tags = nil;
     for(NSDictionary *photo in self.photos)
     {
         NSArray *separatedTags = [photo[FLICKR_TAGS] componentsSeparatedByString:@" "];
@@ -91,7 +93,21 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.photos = [FlickrFetcher stanfordPhotos];
+    [self loadLatestPhotosFromFlickr];
+    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)loadLatestPhotosFromFlickr
+{
+    [self.refreshControl beginRefreshing];
+    dispatch_queue_t loadingQ = dispatch_queue_create("Loading Queue", NULL);
+    dispatch_async(loadingQ, ^{
+        NSArray *latestPhotos = [FlickrFetcher stanfordPhotos];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.photos = latestPhotos;
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 
 -(NSArray *)photosForTag:(NSString *)tag

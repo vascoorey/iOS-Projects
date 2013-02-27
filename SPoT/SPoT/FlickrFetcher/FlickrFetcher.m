@@ -8,6 +8,7 @@
 
 #import "FlickrFetcher.h"
 #import "FlickrAPIKey.h"
+#import "NetworkActivity.h"
 
 #define FLICKR_PLACE_ID @"place_id"
 
@@ -18,7 +19,9 @@
     query = [NSString stringWithFormat:@"%@&format=json&nojsoncallback=1&api_key=%@", query, FlickrAPIKey];
     query = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (NSLOG_FLICKR) NSLog(@"[%@ %@] sent %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), query);
+    [NetworkActivity addRequest];
     NSData *jsonData = [[NSString stringWithContentsOfURL:[NSURL URLWithString:query] encoding:NSUTF8StringEncoding error:nil] dataUsingEncoding:NSUTF8StringEncoding];
+    [NetworkActivity removeRequest];
     NSError *error = nil;
     NSDictionary *results = jsonData ? [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error] : nil;
     if (error) NSLog(@"[%@ %@] JSON error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error.localizedDescription);

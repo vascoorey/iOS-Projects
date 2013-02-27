@@ -8,9 +8,11 @@
 
 #import "ImageViewController.h"
 #import "Utils.h"
+#import "NetworkActivity.h"
 
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) UIImageView *imageView;
 @end
 
@@ -35,14 +37,30 @@
         self.scrollView.contentSize = CGSizeZero;
         self.imageView.image = nil;
         
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
-        UIImage *image = [[UIImage alloc] initWithData:imageData];
-        if (image) {
-            self.scrollView.zoomScale = 1.0;
-            self.scrollView.contentSize = image.size;
-            self.imageView.image = image;
-            self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        }
+        [self.spinner startAnimating];
+        NSLog(@"%d", self.spinner.isAnimating);
+        NSURL *imageURL = self.imageURL;
+        dispatch_queue_t imageFetchQ = dispatch_queue_create("Image Fetcher", NULL);
+        dispatch_async(imageFetchQ, ^{
+            [NetworkActivity addRequest];
+            NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
+            [NetworkActivity removeRequest];
+            UIImage *image = [[UIImage alloc] initWithData:imageData];
+            if(imageURL == self.imageURL)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Can only do UIKit calls in the main thread.
+                    if (image) {
+                        self.scrollView.zoomScale = 1.0;
+                        self.scrollView.contentSize = image.size;
+                        self.imageView.image = image;
+                        self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+                    }
+                    [self.spinner stopAnimating];
+                    NSLog(@"%d", self.spinner.isAnimating);
+                });
+            }
+        });
     }
 }
 
