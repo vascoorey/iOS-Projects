@@ -9,22 +9,30 @@
 #import "FlickrPhotoTVC.h"
 #import "FlickrFetcher.h"
 
-@interface FlickrPhotoTVC () <UISplitViewControllerDelegate>
+@interface FlickrPhotoTVC ()
 @end
 
 @implementation FlickrPhotoTVC
 
--(void)awakeFromNib
+/*
+-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
-    self.splitViewController.delegate = self;
+    barButtonItem.title = @"Master";
+    id detailViewController = [self.splitViewController.viewControllers lastObject];
+    [detailViewController setSplitViewBarButtonItem:barButtonItem];
 }
 
--(BOOL)splitViewController:(UISplitViewController *)svc
-  shouldHideViewController:(UIViewController *)vc
-             inOrientation:(UIInterfaceOrientation)orientation
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    return NO;
+    id detailViewController = [self.splitViewController.viewControllers lastObject];
+    [detailViewController setSplitViewBarButtonItem:nil];
 }
+
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    
+}
+ */
 
 // sets the Model
 // reloads the UITableView (since Model is changing)

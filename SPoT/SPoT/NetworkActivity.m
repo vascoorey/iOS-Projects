@@ -16,21 +16,17 @@ static NetworkActivity *sharedActivity;
 
 @implementation NetworkActivity
 
--(void)setCount:(NSUInteger)count
-{
-    _count = count;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = count > 0;
-}
-
 -(void)addRequest
 {
     self.count ++;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = self.count > 0;
 }
 
 -(void)removeRequest
 {
     NSAssert(self.count > 0, @"Seems like you called removeRequest one too many times!");
     self.count --;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = self.count > 0;
 }
 
 +(NetworkActivity *)sharedActivity

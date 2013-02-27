@@ -54,6 +54,8 @@
                         self.scrollView.contentSize = image.size;
                         self.imageView.image = image;
                         self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+                        // Need to fit the image here because viewDidLayoutSubviews has probably already been called while we were loading the image from the network.
+                        [self fitImageToScrollview];
                     }
                     [self.spinner stopAnimating];
                 });
@@ -73,11 +75,16 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    CGFloat xScale = self.imageView.bounds.size.width / self.scrollView.bounds.size.width;
-    CGFloat yScale = self.imageView.bounds.size.height / self.scrollView.bounds.size.height;
-    CGFloat scale = xScale < yScale ? xScale : yScale;
-    CGRect optimalBounds = CGRectMake(self.scrollView.bounds.origin.x, self.scrollView.bounds.origin.y, self.scrollView.bounds.size.width * scale, self.scrollView.bounds.size.height * scale);
-    [self.scrollView zoomToRect:optimalBounds animated:YES];
+    [self fitImageToScrollview];
+}
+
+-(void)fitImageToScrollview
+{
+    CGFloat xScale = self.scrollView.bounds.size.width / self.imageView.bounds.size.width;
+    CGFloat yScale = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
+    NSLog(@"%g, %g", xScale, yScale);
+    CGFloat scale = (xScale && yScale < 1.0f) ? MAX(xScale, yScale) : MIN(xScale, yScale);
+    [self.scrollView setZoomScale:scale animated:YES];
 }
 
 // returns the view which will be zoomed when the user pinches

@@ -10,7 +10,7 @@
 #import "FlickrFetcher.h"
 #import "Utils.h"
 
-@interface StanfordTagsTVC ()
+@interface StanfordTagsTVC () <UISplitViewControllerDelegate>
 @property (nonatomic, strong) NSMutableSet *tags;
 @property (nonatomic, strong) NSArray *finalTags;
 @property (nonatomic, strong) NSMutableDictionary *tagOcurrences;
@@ -18,9 +18,12 @@
 
 @implementation StanfordTagsTVC
 
+#pragma mark View Lifecycle
+
 -(void)setup
 {
     self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+    self.splitViewController.delegate = self;
 }
 
 -(void)awakeFromNib
@@ -36,6 +39,15 @@
     }
     return self;
 }
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self loadLatestPhotosFromFlickr];
+    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
+}
+
+#pragma mark Model
 
 -(NSMutableSet *)tags
 {
@@ -90,13 +102,6 @@
     self.finalTags = [self.tags allObjects];
 }
 
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self loadLatestPhotosFromFlickr];
-    [self.refreshControl addTarget:self action:@selector(loadLatestPhotosFromFlickr) forControlEvents:UIControlEventValueChanged];
-}
-
 -(void)loadLatestPhotosFromFlickr
 {
     [self.refreshControl beginRefreshing];
@@ -139,6 +144,8 @@
     return [self.tags count];
 }
 
+#pragma mark Segue
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([sender isKindOfClass:[UITableViewCell class]])
@@ -155,6 +162,17 @@
         }
     }
 }
+
+#pragma mark SplitView
+
+-(BOOL)splitViewController:(UISplitViewController *)svc
+  shouldHideViewController:(UIViewController *)vc
+             inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
+
+#pragma mark TableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
