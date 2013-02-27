@@ -82,8 +82,7 @@
 {
     CGFloat xScale = self.scrollView.bounds.size.width / self.imageView.bounds.size.width;
     CGFloat yScale = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
-    NSLog(@"%g, %g", xScale, yScale);
-    CGFloat scale = (xScale && yScale < 1.0f) ? MAX(xScale, yScale) : MIN(xScale, yScale);
+    CGFloat scale = (xScale < 1.0f && yScale < 1.0f) ? MAX(xScale, yScale) : MIN(xScale, yScale);
     [self.scrollView setZoomScale:scale animated:YES];
 }
 
