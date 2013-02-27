@@ -38,7 +38,6 @@
         self.imageView.image = nil;
         
         [self.spinner startAnimating];
-        NSLog(@"%d", self.spinner.isAnimating);
         NSURL *imageURL = self.imageURL;
         dispatch_queue_t imageFetchQ = dispatch_queue_create("Image Fetcher", NULL);
         dispatch_async(imageFetchQ, ^{
@@ -57,7 +56,6 @@
                         self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
                     }
                     [self.spinner stopAnimating];
-                    NSLog(@"%d", self.spinner.isAnimating);
                 });
             }
         });

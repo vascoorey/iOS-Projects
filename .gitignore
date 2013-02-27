@@ -1,6 +1,8 @@
 FlickrAPIKey.h
+ParseAPIKey.h
 project.xcworkspace/
 xcuserdata/
 .DS_Store
 The iOS Apprentice Bundle/
 iOS 5 By Tutorials/
+Parse.framework/
