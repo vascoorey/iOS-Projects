@@ -68,7 +68,8 @@
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"Show Image"]) {
                 if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)]) {
-                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
+                    FlickrPhotoFormat format = self.splitViewController ? FlickrPhotoFormatOriginal : FlickrPhotoFormatLarge;
+                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:format];
                     [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
                 }

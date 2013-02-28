@@ -13,10 +13,17 @@
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *imageTitleBarButtonItem;
 @property (strong, nonatomic) UIImageView *imageView;
 @end
 
 @implementation ImageViewController
+
+-(void)setTitle:(NSString *)title
+{
+    super.title = title;
+    self.imageTitleBarButtonItem.title = title;
+}
 
 // resets the image whenever the URL changes
 
@@ -82,7 +89,7 @@
 {
     CGFloat xScale = self.scrollView.bounds.size.width / self.imageView.bounds.size.width;
     CGFloat yScale = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
-    CGFloat scale = (xScale < 1.0f && yScale < 1.0f) ? MAX(xScale, yScale) : MIN(xScale, yScale);
+    CGFloat scale = (xScale < 1.0f && yScale < 1.0f) ? MIN(xScale, yScale) : MAX(xScale, yScale);
     [self.scrollView setZoomScale:scale animated:YES];
 }
 
@@ -108,6 +115,7 @@
     self.scrollView.maximumZoomScale = MAX_ZOOM_SCALE;
     self.scrollView.delegate = self;
     [self resetImage];
+    self.imageTitleBarButtonItem.title = self.title;
 }
 
 @end

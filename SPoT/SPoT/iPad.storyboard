@@ -219,7 +219,9 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEd-Fp-zAP"/>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSc-Ni-gJU">
                                 <items>
-                                    <barButtonItem title="Item" id="yQU-n0-Ij0"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jVV-bf-A6k"/>
+                                    <barButtonItem title="Image Title" style="plain" id="yQU-n0-Ij0"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rIH-nm-gZm"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -239,6 +241,7 @@
                     <navigationItem key="navigationItem" id="bzr-pf-PHi"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
+                        <outlet property="imageTitleBarButtonItem" destination="yQU-n0-Ij0" id="cYx-O8-D4J"/>
                         <outlet property="scrollView" destination="HEd-Fp-zAP" id="FEU-pu-EFr"/>
                         <outlet property="spinner" destination="U0s-kg-RbH" id="u0I-3v-iuS"/>
                     </connections>
@@ -275,6 +278,7 @@
         <class className="ImageViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="imageTitleBarButtonItem" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
