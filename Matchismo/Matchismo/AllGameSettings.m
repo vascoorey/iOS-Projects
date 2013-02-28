@@ -23,15 +23,14 @@
     return _allGameSettings;
 }
 
-static AllGameSettings *gameSettings;
-
 +(AllGameSettings *)sharedSettings
 {
-    if(!gameSettings)
-    {
-        gameSettings = [[AllGameSettings alloc] init];
-    }
-    return gameSettings;
+    static AllGameSettings *sharedSettings = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedSettings = [[AllGameSettings alloc] init];
+    });
+    return sharedSettings;
 }
 
 +(void)setSettings:(GameSettings *)settings forGame:(NSString *)game

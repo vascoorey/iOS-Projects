@@ -9,6 +9,7 @@
 #import "ImageViewController.h"
 #import "Utils.h"
 #import "NetworkActivity.h"
+#import "CacheControl.h"
 
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -46,12 +47,22 @@
         
         [self.spinner startAnimating];
         NSURL *imageURL = self.imageURL;
+        NSString *identifier = [NSString stringWithFormat:@"%@", [imageURL lastPathComponent]];
         dispatch_queue_t imageFetchQ = dispatch_queue_create("Image Fetcher", NULL);
         dispatch_async(imageFetchQ, ^{
-            [NetworkActivity addRequest];
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
-            [NetworkActivity removeRequest];
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
+            UIImage *image;
+            if([CacheControl containsIdentifier:identifier])
+            {
+                image = [[UIImage alloc] initWithData:[CacheControl getDataFromCache:identifier]];
+            }
+            else
+            {
+                [NetworkActivity addRequest];
+                NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
+                [NetworkActivity removeRequest];
+                [CacheControl pushDataToCache:imageData identifier:identifier];
+                image = [[UIImage alloc] initWithData:imageData];
+            }
             if(imageURL == self.imageURL)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
