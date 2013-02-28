@@ -154,19 +154,24 @@
 }
 
 - (IBAction)findMatch {
-    NSArray *indices = [self.game indicesForMatch];
-    if(indices)
-    {
-        [self getCellsAndUpdateAtIndices:indices];
-    }
-    else
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Oops!"
-                                    message:@"No matches left... Maybe draw some more cards?"
-                                   delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
-    }
+    dispatch_queue_t cheatQ = dispatch_queue_create("Cheating Queue", NULL);
+    dispatch_async(cheatQ, ^{
+        NSArray *indices = [self.game indicesForMatch];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(indices)
+            {
+                [self getCellsAndUpdateAtIndices:indices];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"Oops!"
+                                            message:@"No matches left... Maybe draw some more cards?"
+                                           delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
+            }
+        });
+    });
 }
 
 -(void)getCellsAndUpdateAtIndices:(NSArray *)indices
@@ -208,27 +213,32 @@
 
 -(IBAction)dealMoreCards
 {
-    NSArray *indices = [self.game requestCards:self.cardsToAdd];
-    if([indices count])
-    {
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        for(NSNumber *index in indices)
-        {
-            [indexPaths addObject:[NSIndexPath indexPathForItem:index.unsignedIntegerValue inSection:0]];
-        }
-        // Reload data for the collection view...
-        [self.cardCollectionView insertItemsAtIndexPaths:indexPaths];
-        [self.cardCollectionView scrollToItemAtIndexPath:[indexPaths lastObject] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-    }
-    else
-    {
-        [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }
-    if(self.game.hadMatch)
-    {
-        [self updateUI];
-        [[[UIAlertView alloc] initWithTitle:@"Missed a match" message:@"You missed a match!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }
+    dispatch_queue_t cheatQ = dispatch_queue_create("Cheating Queue", NULL);
+    dispatch_async(cheatQ, ^{
+        NSArray *indices = [self.game requestCards:self.cardsToAdd];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([indices count])
+            {
+                NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+                for(NSNumber *index in indices)
+                {
+                    [indexPaths addObject:[NSIndexPath indexPathForItem:index.unsignedIntegerValue inSection:0]];
+                }
+                // Reload data for the collection view...
+                [self.cardCollectionView insertItemsAtIndexPaths:indexPaths];
+                [self.cardCollectionView scrollToItemAtIndexPath:[indexPaths lastObject] atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+            }
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:@"No more cards!" message:@"If you want to play with a new deck go ahead and press Deal!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+            if(self.game.hadMatch)
+            {
+                [self updateUI];
+                [[[UIAlertView alloc] initWithTitle:@"Missed a match" message:@"You missed a match!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        });
+    });
 }
 
 -(void)removeUnplayableCards
