@@ -7,8 +7,7 @@
 //
 
 #import "CacheControl.h"
-
-#define CACHE_DIR @"SPoTCache"
+#import "Utils.h"
 
 @interface CacheControl ()
 @property (atomic, strong) NSMutableSet *identifiers;
@@ -22,15 +21,24 @@
     if((self = [super init]))
     {
         NSFileManager *fileManager = [[NSFileManager alloc] init];
-        NSError *error, *attributesError;
+        NSError *error, *filePathsError;
         NSString *folderPath = [CacheControl folderPath];
+        if(![fileManager fileExistsAtPath:folderPath])
+        {
+            [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error];
+            NSAssert(!error, @"ERROR: %@", [error description]);
+        }
         NSArray *files = [fileManager contentsOfDirectoryAtPath:folderPath error:&error];
-        NSDictionary *attributes = [fileManager attributesOfItemAtPath:folderPath error:&attributesError];
-        NSAssert(!error && !attributesError, @"ERROR: %@\n%@", [error description], [attributesError description]);
+        NSArray *filePaths = [fileManager subpathsOfDirectoryAtPath:folderPath error:&filePathsError];
+        NSAssert(!error && !filePathsError, @"ERROR: %@\n%@", [error description], [filePathsError description]);
         _identifiers = [[NSMutableSet alloc] initWithArray:files];
-        _folderSize = [attributes fileSize];
-        NSLog(@"%@", _identifiers);
-        NSLog(@"%d", _folderSize);
+        for(NSString *filePath in filePaths)
+        {
+            NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:filePath] error:nil];
+            _folderSize += [fileDictionary fileSize];
+        }
+        //NSLog(@"%@", _identifiers);
+        NSLog(@"%@: %d", folderPath, _folderSize);
     }
     return self;
 }
@@ -51,15 +59,46 @@
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *folderPath = [self folderPath];
     NSError *error;
+    NSUInteger maxSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? MAX_CACHE_IPAD : MAX_CACHE_IPHONE);
+    CacheControl *sharedControl = [self sharedControl];
     if(![fileManager fileExistsAtPath:folderPath])
     {
         [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
     NSAssert(!error, @"ERROR: %@", [error description]);
-    NSLog(@"Folder: %@", [folderPath stringByAppendingPathComponent:identifier]);
+    //NSLog(@"Folder: %@", [folderPath stringByAppendingPathComponent:identifier]);
     [fileManager createFileAtPath:[folderPath stringByAppendingPathComponent:identifier] contents:data attributes:nil];
-    [[self sharedControl].identifiers addObject:identifier];
-    NSLog(@"Added %@", identifier);
+    [sharedControl.identifiers addObject:identifier];
+    sharedControl.folderSize += [data length];
+    while(sharedControl.folderSize >= maxSize)
+    {
+        [self removeOldestFile];
+    }
+    //NSLog(@"Added %@", identifier);
+}
+
++(void)removeOldestFile
+{
+    NSError *filePathsError, *attributesError;
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSArray *filePaths = [fileManager subpathsOfDirectoryAtPath:[self folderPath] error:&filePathsError];
+    NSAssert(!filePathsError, @"ERROR: %@", [filePathsError description]);
+    NSDate *oldestDate = [NSDate date];
+    NSString *oldestFile;
+    for(NSString *filePath in filePaths)
+    {
+        //NSLog(@"Checking %@", filePath);
+        NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[[self folderPath] stringByAppendingPathComponent:filePath] error:&attributesError];
+        NSAssert(!attributesError, @"ERROR: %@", [attributesError description]);
+        if([[fileDictionary fileModificationDate] compare:oldestDate] == NSOrderedAscending)
+        {
+            oldestDate = [fileDictionary fileModificationDate];
+            oldestFile = filePath;
+        }
+    }
+    NSAssert(oldestFile, @"ERROR: Couldn't find a file to delete!");
+    //NSLog(@"Deleting: %@", oldestFile);
+    [self removeIdentifierAndDeleteFile:oldestFile];
 }
 
 +(NSString *)folderPath
@@ -71,7 +110,7 @@
 +(NSData *)getDataFromCache:(NSString *)identifier
 {
     NSAssert([self containsIdentifier:identifier], @"Can't get contents for identifier: %@", identifier);
-    NSLog(@"Fetching %@", identifier);
+    //NSLog(@"Fetching %@", identifier);
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:identifier]];
     return data;
@@ -86,9 +125,12 @@
 {
     NSError *error;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    [fileManager removeItemAtPath:[[self folderPath] stringByAppendingPathComponent:identifier] error:&error];
+    NSString *filePath = [[self folderPath] stringByAppendingPathComponent:identifier];
+    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:filePath error:nil];
+    [fileManager removeItemAtPath:filePath error:&error];
     NSAssert(!error, @"ERROR: %@", [error description]);
     [[self sharedControl].identifiers removeObject:identifier];
+    [self sharedControl].folderSize -= [fileDictionary fileSize];
 }
 
 @end
