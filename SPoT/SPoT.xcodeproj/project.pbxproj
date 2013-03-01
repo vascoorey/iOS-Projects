@@ -108,9 +108,9 @@
 		BC6F92C916DB8D5E00DBEBCA /* SPoT */ = {
 			isa = PBXGroup;
 			children = (
+				BC6F92F716DB906000DBEBCA /* Utils.h */,
 				BCFC9F3116DFA4B500E33569 /* CacheControl.h */,
 				BCFC9F3216DFA4B500E33569 /* CacheControl.m */,
-				BC6F92F716DB906000DBEBCA /* Utils.h */,
 				BC6F92E616DB8E9700DBEBCA /* StanfordTagsTVC.h */,
 				BC6F92E716DB8E9700DBEBCA /* StanfordTagsTVC.m */,
 				BC6F92F816DB939500DBEBCA /* StanfordPhotosTVC.h */,

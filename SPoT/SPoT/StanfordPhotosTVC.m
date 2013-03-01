@@ -16,6 +16,18 @@
 
 @implementation StanfordPhotosTVC
 
+-(void)setPhotos:(NSArray *)photos
+{
+    super.photos = [self sortPhotos:photos];
+}
+
+// Will sort them alphabetically
+-(NSArray *)sortPhotos:(NSArray *)photos
+{
+    NSSortDescriptor *title = [[NSSortDescriptor alloc] initWithKey:FLICKR_PHOTO_TITLE ascending:YES];
+    return [photos sortedArrayUsingDescriptors:@[title]];
+}
+
 -(void)didSelectPhoto:(NSDictionary *)photo
 {
     NSMutableArray *recents = [[[NSUserDefaults standardUserDefaults] objectForKey:RECENT_PHOTOS_KEY] mutableCopy];
@@ -34,7 +46,6 @@
     [recents addObject:photo];
     while([recents count] > MAX_RECENT_PHOTOS)
     {
-        NSLog(@"Removing the oldest recent...");
         [recents removeObjectAtIndex:0];
     }
     [[NSUserDefaults standardUserDefaults] setObject:recents forKey:RECENT_PHOTOS_KEY];

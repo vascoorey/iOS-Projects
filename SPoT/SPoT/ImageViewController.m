@@ -100,8 +100,8 @@
 {
     CGFloat xScale = self.scrollView.bounds.size.width / self.imageView.bounds.size.width;
     CGFloat yScale = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
-    CGFloat scale = (xScale < 1.0f && yScale < 1.0f) ? MIN(xScale, yScale) : MAX(xScale, yScale);
-    [self.scrollView setZoomScale:scale animated:YES];
+    CGFloat scale = MAX(xScale, yScale);
+    [self.scrollView setZoomScale:scale animated:NO];
 }
 
 // returns the view which will be zoomed when the user pinches
