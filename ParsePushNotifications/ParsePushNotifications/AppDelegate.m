@@ -18,7 +18,7 @@
 {
     [PFPush storeDeviceToken:deviceToken]; // Send the device token to parse...
     // Subscribe this user to the broadcast channel
-    [PFPush subscribeToChannelInBackground:@"Channel Name" block:^(BOOL succeeded, NSError *error) {
+    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
         if(succeeded)
         {
             NSLog(@"Successfully subscribed!");
