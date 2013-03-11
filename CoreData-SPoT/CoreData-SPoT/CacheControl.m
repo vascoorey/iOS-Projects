@@ -103,7 +103,7 @@
 
 +(NSString *)folderPath
 {
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // App's root folder
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // App's root folder
     return [documentsDirectory stringByAppendingPathComponent:CACHE_DIR];
 }
 

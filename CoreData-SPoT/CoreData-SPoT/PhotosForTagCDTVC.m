@@ -74,6 +74,7 @@
         if([segue.identifier isEqualToString:@"setImageURL:"])
         {
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            photo.lastAccessDate = [NSDate date];
             if([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
             {
                 [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:[NSURL URLWithString:photo.imageURL]];

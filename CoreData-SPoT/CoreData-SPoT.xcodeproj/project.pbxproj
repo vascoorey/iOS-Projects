@@ -32,7 +32,7 @@
 		BC68261516EE1BAE007B150A /* PhotosForTagCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68261416EE1BAE007B150A /* PhotosForTagCDTVC.m */; };
 		BC68261816EE1CB5007B150A /* SPoTCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68261716EE1CB5007B150A /* SPoTCDTVC.m */; };
 		BC68263616EE249D007B150A /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68263516EE249D007B150A /* Tag.m */; };
-		BC68263916EE2965007B150A /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68263816EE2965007B150A /* Photo.m */; };
+		BCFCD72C16EE7A74000668F6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFCD72B16EE7A74000668F6 /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,8 +79,8 @@
 		BC68261716EE1CB5007B150A /* SPoTCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPoTCDTVC.m; sourceTree = "<group>"; };
 		BC68263416EE249D007B150A /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		BC68263516EE249D007B150A /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		BC68263716EE2965007B150A /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		BC68263816EE2965007B150A /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		BCFCD72A16EE7A74000668F6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		BCFCD72B16EE7A74000668F6 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,9 +163,9 @@
 		BC6825EB16EE168D007B150A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BCFCD72A16EE7A74000668F6 /* Photo.h */,
+				BCFCD72B16EE7A74000668F6 /* Photo.m */,
 				BC6825D616EE15C8007B150A /* CoreData-SPoT.xcdatamodeld */,
-				BC68263716EE2965007B150A /* Photo.h */,
-				BC68263816EE2965007B150A /* Photo.m */,
 				BC68263416EE249D007B150A /* Tag.h */,
 				BC68263516EE249D007B150A /* Tag.m */,
 				BC68260416EE1750007B150A /* Photo+Flickr.h */,
@@ -287,7 +287,7 @@
 				BC68261516EE1BAE007B150A /* PhotosForTagCDTVC.m in Sources */,
 				BC68261816EE1CB5007B150A /* SPoTCDTVC.m in Sources */,
 				BC68263616EE249D007B150A /* Tag.m in Sources */,
-				BC68263916EE2965007B150A /* Photo.m in Sources */,
+				BCFCD72C16EE7A74000668F6 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +420,7 @@
 				BC6825D516EE1388007B150A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
