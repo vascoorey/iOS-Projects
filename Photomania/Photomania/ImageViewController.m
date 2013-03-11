@@ -30,6 +30,7 @@
 
 - (void)setImageURL:(NSURL *)imageURL
 {
+    NSLog(@"%@", imageURL);
     _imageURL = imageURL;
     [self resetImage];
 }
@@ -57,8 +58,9 @@
             }
             else
             {
+                NSLog(@"Not cached... Fetching!");
                 [NetworkActivity addRequest];
-                NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
+                NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
                 [NetworkActivity removeRequest];
                 [CacheControl pushDataToCache:imageData identifier:identifier];
                 image = [[UIImage alloc] initWithData:imageData];
