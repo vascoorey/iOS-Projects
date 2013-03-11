@@ -9,11 +9,12 @@
 #import "Photo+Flickr.h"
 #import "FlickrFetcher.h"
 #import "Tag+Create.h"
+#import "Utils.h"
 
 @implementation Photo (Flickr)
 
-+(Photo *)photoWithFlickrDictionary:(NSDictionary *)photoDictionary
-             inManagedObjectContext:(NSManagedObjectContext *)context
++(Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
+       inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Photo *photo = nil;
     
@@ -36,12 +37,17 @@
         photo.subtitle = [[photoDictionary valueForKeyPath:FLICKR_PHOTO_DESCRIPTION] description];
         photo.imageURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         photo.unique = [photoDictionary[FLICKR_PHOTO_ID] description];
+        photo.thumbnailURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
+
         NSArray *allTags = [photoDictionary[FLICKR_TAGS] componentsSeparatedByString:@" "];
         for(NSString *tagName in allTags)
         {
-            // For each tag add the appropriate nsmanagedobject (Tag)
-            Tag *tag = [Tag tagWithName:tagName inManagedObjectContext:context];
-            [photo addTagsObject:tag];
+            if(![IGNORE_TAGS containsObject:tagName])
+            {
+                // For each tagName that we're not ignoring add the appropriate nsmanagedobject (Tag)
+                Tag *tag = [Tag tagWithName:tagName inManagedObjectContext:context];
+                [photo addTagsObject:tag];
+            }
         }
     }
     else

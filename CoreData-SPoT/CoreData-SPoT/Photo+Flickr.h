@@ -10,7 +10,7 @@
 
 @interface Photo (Flickr)
 
-+(Photo *)photoWithFlickrDictionary:(NSDictionary *)photoDictionary
-             inManagedObjectContext:(NSManagedObjectContext *)context;
++(Photo *)photoWithFlickrInfo:(NSDictionary *)photoDictionary
+       inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

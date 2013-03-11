@@ -4,6 +4,7 @@
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="photos" inverseEntity="Tag" syncable="YES"/>
@@ -14,6 +15,6 @@
     </entity>
     <elements>
         <element name="Tag" positionX="160" positionY="192" width="128" height="73"/>
-        <element name="Photo" positionX="403" positionY="189" width="128" height="133"/>
+        <element name="Photo" positionX="403" positionY="189" width="128" height="148"/>
     </elements>
 </model>

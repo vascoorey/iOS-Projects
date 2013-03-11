@@ -14,9 +14,10 @@
 
 @dynamic title;
 @dynamic subtitle;
-@dynamic unique;
 @dynamic imageURL;
 @dynamic thumbnail;
+@dynamic unique;
+@dynamic thumbnailURL;
 @dynamic tags;
 
 @end
