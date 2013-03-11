@@ -1,13 +1,18 @@
 //
-//  ViewController.h
+//  Tag.m
 //  CoreData-SPoT
 //
 //  Created by Vasco Orey on 3/11/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Tag.h"
+#import "Photo.h"
 
-@interface ViewController : UIViewController
+
+@implementation Tag
+
+@dynamic name;
+@dynamic photos;
 
 @end
