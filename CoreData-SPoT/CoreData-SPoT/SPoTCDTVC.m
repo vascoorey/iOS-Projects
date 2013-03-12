@@ -53,7 +53,7 @@
 -(void)useSPoTDocument
 {
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"Demo"];
+    url = [url URLByAppendingPathComponent:@"SPoT"];
     UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
     if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]])
     {

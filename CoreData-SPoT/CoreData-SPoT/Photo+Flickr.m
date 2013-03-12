@@ -39,7 +39,7 @@
         photo.imageURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         photo.unique = [photoDictionary[FLICKR_PHOTO_ID] description];
         photo.thumbnailURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
-        photo.lastAccessDate = nil;
+        photo.viewed = nil;
         
         NSArray *allTags = [photoDictionary[FLICKR_TAGS] componentsSeparatedByString:@" "];
         for(NSString *tagName in allTags)

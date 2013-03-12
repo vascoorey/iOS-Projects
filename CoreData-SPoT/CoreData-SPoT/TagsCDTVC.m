@@ -8,6 +8,7 @@
 
 #import "TagsCDTVC.h"
 #import "Tag.h"
+#import "SharedContext.h"
 
 @implementation TagsCDTVC
 
@@ -45,6 +46,7 @@
     {
         self.fetchedResultsController = nil;
     }
+    [SharedContext setSharedContext:_managedObjectContext];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

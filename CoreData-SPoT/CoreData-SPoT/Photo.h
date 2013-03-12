@@ -2,7 +2,7 @@
 //  Photo.h
 //  CoreData-SPoT
 //
-//  Created by Vasco Orey on 3/11/13.
+//  Created by Vasco Orey on 3/12/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 @interface Photo : NSManagedObject
 
 @property (nonatomic, retain) NSString * imageURL;
+@property (nonatomic, retain) NSDate * viewed;
 @property (nonatomic, retain) NSString * subtitle;
 @property (nonatomic, retain) NSData * thumbnail;
 @property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * unique;
-@property (nonatomic, retain) NSDate * lastAccessDate;
 @property (nonatomic, retain) NSSet *tags;
 @end
 

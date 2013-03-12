@@ -10,7 +10,6 @@
 #import "CoreDataTableViewController.h"
 
 @interface PhotoCDTVC : CoreDataTableViewController
-
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) BOOL shouldMarkAccessDate;
 @end

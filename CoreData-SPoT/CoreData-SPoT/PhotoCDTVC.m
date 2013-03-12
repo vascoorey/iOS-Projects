@@ -30,7 +30,6 @@
             [NetworkActivity addRequest];
             photo.thumbnail = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:photo.thumbnailURL]];
             [NetworkActivity removeRequest];
-            NSLog(@"Thumbnail downloaded...");
             UIImage *thumbnailImage = [UIImage imageWithData:photo.thumbnail];
             dispatch_async(dispatch_get_main_queue(), ^{
                 cell.imageView.image = thumbnailImage;
@@ -57,8 +56,9 @@
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
             if(self.shouldMarkAccessDate)
             {
-                photo.lastAccessDate = [NSDate date];
-                NSLog(@"Last access for %@: %@", photo.title, photo.lastAccessDate);
+                NSLog(@"Previous access: %@", photo.viewed);
+                photo.viewed = [NSDate date];
+                NSLog(@"Last access for %@: %@", photo.unique, photo.viewed);
             }
             if([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
             {
