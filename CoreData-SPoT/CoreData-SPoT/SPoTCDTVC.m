@@ -10,10 +10,6 @@
 #import "FlickrFetcher.h"
 #import "Photo+Flickr.h"
 
-@interface SPoTCDTVC ()
-
-@end
-
 @implementation SPoTCDTVC
 
 -(void)viewWillAppear:(BOOL)animated
@@ -21,7 +17,7 @@
     [super viewWillAppear:animated];
     if(!self.managedObjectContext)
     {
-        [self useDemoDocument];
+        [self useSPoTDocument];
     }
     else
     {
@@ -54,7 +50,7 @@
     });
 }
 
--(void)useDemoDocument
+-(void)useSPoTDocument
 {
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     url = [url URLByAppendingPathComponent:@"Demo"];

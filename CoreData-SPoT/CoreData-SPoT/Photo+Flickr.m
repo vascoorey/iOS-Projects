@@ -28,6 +28,7 @@
     if(!matches || [matches count] > 1)
     {
         // Handle error
+        NSLog(@"Error!");
     }
     else if(![matches count])
     {
@@ -38,7 +39,7 @@
         photo.imageURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatLarge] absoluteString];
         photo.unique = [photoDictionary[FLICKR_PHOTO_ID] description];
         photo.thumbnailURL = [[FlickrFetcher urlForPhoto:photoDictionary format:FlickrPhotoFormatSquare] absoluteString];
-        photo.lastAccessDate = [NSDate date];
+        photo.lastAccessDate = nil;
         
         NSArray *allTags = [photoDictionary[FLICKR_TAGS] componentsSeparatedByString:@" "];
         for(NSString *tagName in allTags)
@@ -54,7 +55,6 @@
     else
     {
         photo = [matches lastObject];
-        photo.lastAccessDate = [NSDate date];
     }
     
     return photo;

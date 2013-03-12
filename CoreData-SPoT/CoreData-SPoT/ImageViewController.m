@@ -22,8 +22,8 @@
 
 -(void)setTitle:(NSString *)title
 {
-    super.title = title;
-    self.imageTitleBarButtonItem.title = title;
+    super.title = [title capitalizedString];
+    self.imageTitleBarButtonItem.title = [title capitalizedString];
 }
 
 // resets the image whenever the URL changes

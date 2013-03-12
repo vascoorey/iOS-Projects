@@ -9,11 +9,26 @@
 #import "TagsCDTVC.h"
 #import "Tag.h"
 
-@interface TagsCDTVC ()
-
-@end
-
 @implementation TagsCDTVC
+
+-(void)setup
+{
+    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:0];
+}
+
+-(void)awakeFromNib
+{
+    [self setup];
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+    {
+        [self setup];
+    }
+    return self;
+}
 
 -(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
@@ -37,7 +52,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Tag"];
     
     Tag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = tag.name;
+    cell.textLabel.text = [tag.name capitalizedString];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [tag.photos count]];
     
     return cell;

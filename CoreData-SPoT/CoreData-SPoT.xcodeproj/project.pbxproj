@@ -32,6 +32,8 @@
 		BC68261516EE1BAE007B150A /* PhotosForTagCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68261416EE1BAE007B150A /* PhotosForTagCDTVC.m */; };
 		BC68261816EE1CB5007B150A /* SPoTCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68261716EE1CB5007B150A /* SPoTCDTVC.m */; };
 		BC68263616EE249D007B150A /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68263516EE249D007B150A /* Tag.m */; };
+		BCD00B2E16EF3B71001AADF2 /* RecentsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD00B2D16EF3B71001AADF2 /* RecentsCDTVC.m */; };
+		BCD00B3116EF48E1001AADF2 /* PhotoCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD00B3016EF48E0001AADF2 /* PhotoCDTVC.m */; };
 		BCFCD72C16EE7A74000668F6 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFCD72B16EE7A74000668F6 /* Photo.m */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,10 @@
 		BC68261716EE1CB5007B150A /* SPoTCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPoTCDTVC.m; sourceTree = "<group>"; };
 		BC68263416EE249D007B150A /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		BC68263516EE249D007B150A /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		BCD00B2C16EF3B71001AADF2 /* RecentsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentsCDTVC.h; sourceTree = "<group>"; };
+		BCD00B2D16EF3B71001AADF2 /* RecentsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentsCDTVC.m; sourceTree = "<group>"; };
+		BCD00B2F16EF48E0001AADF2 /* PhotoCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCDTVC.h; sourceTree = "<group>"; };
+		BCD00B3016EF48E0001AADF2 /* PhotoCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCDTVC.m; sourceTree = "<group>"; };
 		BCFCD72A16EE7A74000668F6 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		BCFCD72B16EE7A74000668F6 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,8 +141,7 @@
 				BC68261116EE1B1E007B150A /* TagsCDTVC.m */,
 				BC68261616EE1CB5007B150A /* SPoTCDTVC.h */,
 				BC68261716EE1CB5007B150A /* SPoTCDTVC.m */,
-				BC68261316EE1BAE007B150A /* PhotosForTagCDTVC.h */,
-				BC68261416EE1BAE007B150A /* PhotosForTagCDTVC.m */,
+				BCD00B3216EF4912001AADF2 /* Photo View Controllers */,
 				BC68260316EE16F7007B150A /* Helper Classes */,
 				BC6825EB16EE168D007B150A /* Model */,
 				BC6825B716EE1388007B150A /* Supporting Files */,
@@ -203,6 +208,19 @@
 				BC6825FB16EE16C3007B150A /* Utils.h */,
 			);
 			name = "Helper Classes";
+			sourceTree = "<group>";
+		};
+		BCD00B3216EF4912001AADF2 /* Photo View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BCD00B2F16EF48E0001AADF2 /* PhotoCDTVC.h */,
+				BCD00B3016EF48E0001AADF2 /* PhotoCDTVC.m */,
+				BC68261316EE1BAE007B150A /* PhotosForTagCDTVC.h */,
+				BC68261416EE1BAE007B150A /* PhotosForTagCDTVC.m */,
+				BCD00B2C16EF3B71001AADF2 /* RecentsCDTVC.h */,
+				BCD00B2D16EF3B71001AADF2 /* RecentsCDTVC.m */,
+			);
+			name = "Photo View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +306,8 @@
 				BC68261816EE1CB5007B150A /* SPoTCDTVC.m in Sources */,
 				BC68263616EE249D007B150A /* Tag.m in Sources */,
 				BCFCD72C16EE7A74000668F6 /* Photo.m in Sources */,
+				BCD00B2E16EF3B71001AADF2 /* RecentsCDTVC.m in Sources */,
+				BCD00B3116EF48E1001AADF2 /* PhotoCDTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

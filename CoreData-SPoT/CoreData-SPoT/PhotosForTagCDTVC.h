@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
+#import "PhotoCDTVC.h"
 #import "Tag.h"
 
-@interface PhotosForTagCDTVC : CoreDataTableViewController
+@interface PhotosForTagCDTVC : PhotoCDTVC
 
 @property (nonatomic, strong) Tag *tag;
 
