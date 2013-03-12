@@ -24,14 +24,17 @@
     }
     else
     {
+        NSURL *url = [NSURL URLWithString:photo.thumbnailURL];
         dispatch_queue_t thumbnailQ = dispatch_queue_create("Thumbnail Fetcher", NULL);
         dispatch_async(thumbnailQ, ^{
             // Download the photo's thumbnail
             [NetworkActivity addRequest];
-            photo.thumbnail = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:photo.thumbnailURL]];
+            NSData *thumbnail = [[NSData alloc] initWithContentsOfURL:url];
             [NetworkActivity removeRequest];
             UIImage *thumbnailImage = [UIImage imageWithData:photo.thumbnail];
             dispatch_async(dispatch_get_main_queue(), ^{
+                // Should only access CoreData in the main thread
+                photo.thumbnail = thumbnail;
                 cell.imageView.image = thumbnailImage;
                 [cell setNeedsDisplay];
             });
