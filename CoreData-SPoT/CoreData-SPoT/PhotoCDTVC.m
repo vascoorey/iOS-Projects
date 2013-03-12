@@ -65,6 +65,7 @@
             }
             if([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
             {
+                ((UIViewController *)segue.destinationViewController).title = photo.title;
                 [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:[NSURL URLWithString:photo.imageURL]];
             }
         }
