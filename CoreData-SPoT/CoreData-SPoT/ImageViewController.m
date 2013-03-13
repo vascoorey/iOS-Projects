@@ -10,12 +10,14 @@
 #import "Utils.h"
 #import "NetworkActivity.h"
 #import "CacheControl.h"
-#import "DetailViewManager.h"
 
-@interface ImageViewController () <UIScrollViewDelegate, SubstitutableDetailViewController>
+@interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *titleButtonItem;
 @end
 
 @implementation ImageViewController
@@ -23,7 +25,8 @@
 -(void)setTitle:(NSString *)title
 {
     super.title = [title capitalizedString];
-    self.navigationBarTitle.title = [title capitalizedString];
+    NSLog(@"%@", title);
+    self.titleButtonItem.title = [title capitalizedString];
 }
 
 // resets the image whenever the URL changes
@@ -123,12 +126,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.splitViewController.delegate = self;
     [self.scrollView addSubview:self.imageView];
     self.scrollView.minimumZoomScale = MIN_ZOOM_SCALE;
     self.scrollView.maximumZoomScale = MAX_ZOOM_SCALE;
     self.scrollView.delegate = self;
     [self resetImage];
-    self.navigationBarTitle.title = self.title;
+    self.titleButtonItem.title = self.title;
+}
+
+// UISplitViewControllerDelegate
+
+-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+{
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    barButtonItem.title = @"Navigation";
+    [toolbarItems insertObject:barButtonItem atIndex:0];
+    [self.toolbar setItems:toolbarItems animated:YES];
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    [toolbarItems removeObject:barButtonItem];
+    [self.toolbar setItems:toolbarItems animated:YES];
 }
 
 @end

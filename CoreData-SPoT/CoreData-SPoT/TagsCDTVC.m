@@ -9,7 +9,6 @@
 #import "TagsCDTVC.h"
 #import "Tag.h"
 #import "SharedContext.h"
-#import "DetailViewManager.h"
 
 @implementation TagsCDTVC
 

@@ -36,7 +36,6 @@
 		BCD00B3116EF48E1001AADF2 /* PhotoCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD00B3016EF48E0001AADF2 /* PhotoCDTVC.m */; };
 		BCD00B3516EF5759001AADF2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD00B3416EF5759001AADF2 /* Photo.m */; };
 		BCD00B3916EF6167001AADF2 /* SharedContext.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD00B3816EF6167001AADF2 /* SharedContext.m */; };
-		BCECFCC716F096EC000BC389 /* DetailViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCECFCC616F096EC000BC389 /* DetailViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,8 +90,6 @@
 		BCD00B3416EF5759001AADF2 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		BCD00B3716EF6166001AADF2 /* SharedContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContext.h; sourceTree = "<group>"; };
 		BCD00B3816EF6167001AADF2 /* SharedContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedContext.m; sourceTree = "<group>"; };
-		BCECFCC516F096EC000BC389 /* DetailViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewManager.h; sourceTree = "<group>"; };
-		BCECFCC616F096EC000BC389 /* DetailViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +240,6 @@
 			children = (
 				BC6825F216EE16AD007B150A /* ImageViewController.h */,
 				BC6825F316EE16AD007B150A /* ImageViewController.m */,
-				BCECFCC516F096EC000BC389 /* DetailViewManager.h */,
-				BCECFCC616F096EC000BC389 /* DetailViewManager.m */,
 			);
 			name = "Split View and Image View";
 			sourceTree = "<group>";
@@ -335,7 +330,6 @@
 				BCD00B3116EF48E1001AADF2 /* PhotoCDTVC.m in Sources */,
 				BCD00B3516EF5759001AADF2 /* Photo.m in Sources */,
 				BCD00B3916EF6167001AADF2 /* SharedContext.m in Sources */,
-				BCECFCC716F096EC000BC389 /* DetailViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

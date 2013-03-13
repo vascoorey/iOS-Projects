@@ -59,9 +59,7 @@
             Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
             if(self.shouldMarkAccessDate)
             {
-                NSLog(@"Previous access: %@", photo.viewed);
                 photo.viewed = [NSDate date];
-                NSLog(@"Last access for %@: %@", photo.unique, photo.viewed);
             }
             if([segue.destinationViewController respondsToSelector:@selector(setImageURL:)])
             {
