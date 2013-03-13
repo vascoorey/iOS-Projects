@@ -2,7 +2,7 @@
 //  Photo.m
 //  Photomania
 //
-//  Created by Vasco Orey on 3/11/13.
+//  Created by Vasco Orey on 3/13/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
@@ -12,10 +12,13 @@
 
 @implementation Photo
 
-@dynamic title;
-@dynamic subtitle;
-@dynamic unique;
 @dynamic imageURL;
+@dynamic subtitle;
+@dynamic title;
+@dynamic unique;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic thumbnailURL;
 @dynamic whoTook;
 
 @end

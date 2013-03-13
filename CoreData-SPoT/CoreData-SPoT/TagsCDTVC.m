@@ -9,6 +9,7 @@
 #import "TagsCDTVC.h"
 #import "Tag.h"
 #import "SharedContext.h"
+#import "DetailViewManager.h"
 
 @implementation TagsCDTVC
 
@@ -29,6 +30,11 @@
         [self setup];
     }
     return self;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 -(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

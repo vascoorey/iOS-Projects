@@ -10,11 +10,11 @@
 #import "Utils.h"
 #import "NetworkActivity.h"
 #import "CacheControl.h"
+#import "DetailViewManager.h"
 
-@interface ImageViewController () <UIScrollViewDelegate>
+@interface ImageViewController () <UIScrollViewDelegate, SubstitutableDetailViewController>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *imageTitleBarButtonItem;
 @property (strong, nonatomic) UIImageView *imageView;
 @end
 
@@ -23,7 +23,7 @@
 -(void)setTitle:(NSString *)title
 {
     super.title = [title capitalizedString];
-    self.imageTitleBarButtonItem.title = [title capitalizedString];
+    self.navigationBarTitle.title = [title capitalizedString];
 }
 
 // resets the image whenever the URL changes
@@ -128,7 +128,7 @@
     self.scrollView.maximumZoomScale = MAX_ZOOM_SCALE;
     self.scrollView.delegate = self;
     [self resetImage];
-    self.imageTitleBarButtonItem.title = self.title;
+    self.navigationBarTitle.title = self.title;
 }
 
 @end

@@ -1,40 +1,25 @@
 //
-//  DemoPhotographerCDTVC.m
+//  DemoPhotographerMapViewController.m
 //  Photomania
 //
-//  Created by Vasco Orey on 3/11/13.
+//  Created by Vasco Orey on 3/13/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "DemoPhotographerCDTVC.h"
+#import "DemoPhotographerMapViewController.h"
 #import "FlickrFetcher.h"
 #import "Photo+Flickr.h"
 
-@implementation DemoPhotographerCDTVC
+@interface DemoPhotographerMapViewController ()
 
--(void)viewDidLoad
+@end
+
+@implementation DemoPhotographerMapViewController
+
+- (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-}
-
--(IBAction)refresh
-{
-    [self.refreshControl beginRefreshing];
-    dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
-    dispatch_async(fetchQ, ^{
-        NSArray *photos = [FlickrFetcher latestGeoreferencedPhotos];
-        // Put the photos in CoreData
-        [self.managedObjectContext performBlock:^{
-            for(NSDictionary *photo in photos)
-            {
-                [Photo photoWithFlickrInfo:photo inManagedObjectContext:self.managedObjectContext];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.refreshControl endRefreshing];
-            });
-        }];
-    });
+	// Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -85,5 +70,21 @@
         self.managedObjectContext = document.managedObjectContext;
     }
 }
+
+-(IBAction)refresh
+{
+    dispatch_queue_t fetchQ = dispatch_queue_create("Flickr Fetch", NULL);
+    dispatch_async(fetchQ, ^{
+        NSArray *photos = [FlickrFetcher latestGeoreferencedPhotos];
+        // Put the photos in CoreData
+        [self.managedObjectContext performBlock:^{
+            for(NSDictionary *photo in photos)
+            {
+                [Photo photoWithFlickrInfo:photo inManagedObjectContext:self.managedObjectContext];
+            }
+        }];
+    });
+}
+
 
 @end

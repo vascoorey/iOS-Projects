@@ -13,5 +13,7 @@
 // the Model for this VC
 // simply the URL of a UIImage-compatible image (jpg, png, etc.)
 @property (nonatomic, strong) NSURL *imageURL;
-
+@property (nonatomic, weak) UIBarButtonItem *navigationPaneBarButtonItem;
+@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBarTitle;
 @end

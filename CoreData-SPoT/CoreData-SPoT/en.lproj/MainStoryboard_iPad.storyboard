@@ -123,36 +123,35 @@
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEe-kK-4Rl"/>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-bg-jlB">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaf-95-G1g">
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FTC-AA-5De"/>
-                                    <barButtonItem title="Item" style="plain" id="2EK-zB-dnG"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YUS-2t-mJg"/>
+                                    <navigationItem title="Title" id="FxK-fc-AOP"/>
                                 </items>
-                            </toolbar>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eoQ-bg-jlB" firstAttribute="leading" secondItem="g7l-9f-dHM" secondAttribute="leading" type="default" id="6TO-MI-2fc"/>
                             <constraint firstItem="nEe-kK-4Rl" firstAttribute="trailing" secondItem="g7l-9f-dHM" secondAttribute="trailing" type="default" id="6Wl-sb-QQM"/>
-                            <constraint firstItem="eoQ-bg-jlB" firstAttribute="trailing" secondItem="g7l-9f-dHM" secondAttribute="trailing" type="default" id="80m-9c-enh"/>
+                            <constraint firstItem="eaf-95-G1g" firstAttribute="trailing" secondItem="g7l-9f-dHM" secondAttribute="trailing" type="default" id="7sO-4U-PYv"/>
                             <constraint firstItem="en5-DY-PIH" firstAttribute="leading" secondItem="g7l-9f-dHM" secondAttribute="leading" constant="365" id="F3O-rK-zeE"/>
-                            <constraint firstAttribute="bottom" secondItem="nEe-kK-4Rl" secondAttribute="bottom" constant="-52" id="H6C-iU-rcx"/>
-                            <constraint firstItem="eoQ-bg-jlB" firstAttribute="top" secondItem="g7l-9f-dHM" secondAttribute="top" type="default" id="L1r-az-xUN"/>
+                            <constraint firstItem="eaf-95-G1g" firstAttribute="bottom" secondItem="nEe-kK-4Rl" secondAttribute="top" type="default" id="MbR-Jo-hHE"/>
                             <constraint firstItem="en5-DY-PIH" firstAttribute="centerY" secondItem="g7l-9f-dHM" secondAttribute="centerY" type="default" id="cBn-3A-Zh5"/>
                             <constraint firstItem="nEe-kK-4Rl" firstAttribute="leading" secondItem="g7l-9f-dHM" secondAttribute="leading" type="default" id="d8A-Jj-Q9s"/>
-                            <constraint firstItem="nEe-kK-4Rl" firstAttribute="top" secondItem="eoQ-bg-jlB" secondAttribute="bottom" type="default" id="j27-5f-Hwx"/>
+                            <constraint firstItem="eaf-95-G1g" firstAttribute="leading" secondItem="g7l-9f-dHM" secondAttribute="leading" type="default" id="gC3-jB-Uay"/>
+                            <constraint firstItem="nEe-kK-4Rl" firstAttribute="bottom" secondItem="g7l-9f-dHM" secondAttribute="bottom" type="default" id="kKV-Ro-Wht"/>
+                            <constraint firstItem="eaf-95-G1g" firstAttribute="top" secondItem="g7l-9f-dHM" secondAttribute="top" type="default" id="mUM-ab-BWT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageTitleBarButtonItem" destination="2EK-zB-dnG" id="TwW-Yu-u41"/>
+                        <outlet property="navigationBar" destination="eaf-95-G1g" id="jyz-zL-ymK"/>
+                        <outlet property="navigationBarTitle" destination="FxK-fc-AOP" id="ygt-ba-G07"/>
                         <outlet property="scrollView" destination="nEe-kK-4Rl" id="fYL-Ay-Iea"/>
                         <outlet property="spinner" destination="en5-DY-PIH" id="UHB-rq-M8x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEf-yD-Mud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2295" y="234"/>
+            <point key="canvasLocation" x="1457" y="950"/>
         </scene>
         <!--Navigation Controller - Item-->
         <scene sceneID="0xF-W7-grx">
@@ -216,7 +215,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7E-vL-eid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="942"/>
+            <point key="canvasLocation" x="999" y="950"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7Qz-xt-RLy">
@@ -235,7 +234,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1L-36-RZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501" y="553"/>
+            <point key="canvasLocation" x="429" y="-3"/>
         </scene>
     </scenes>
     <classes>
@@ -245,7 +244,8 @@
         <class className="ImageViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="imageTitleBarButtonItem" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="navigationBarTitle" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
@@ -278,6 +278,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8ml-5u-Xek"/>
+        <segue reference="EZy-9N-7Zm"/>
     </inferredMetricsTieBreakers>
 </document>

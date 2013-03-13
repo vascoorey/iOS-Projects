@@ -1,5 +1,5 @@
 //
-//  Photographer.m
+//  Photographer+MKAnnotation.h
 //  Photomania
 //
 //  Created by Vasco Orey on 3/13/13.
@@ -7,12 +7,11 @@
 //
 
 #import "Photographer.h"
-#import "Photo.h"
+#import <MapKit/MapKit.h>
 
+@interface Photographer (MKAnnotation) <MKAnnotation>
 
-@implementation Photographer
-
-@dynamic name;
-@dynamic photos;
+// Blocks
+-(UIImage *)thumbnail;
 
 @end
