@@ -40,6 +40,7 @@
 		BC6CE81716F0B82C0050D053 /* Photographer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6CE81616F0B82C0050D053 /* Photographer.m */; };
 		BC6CE81A16F0B82C0050D053 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6CE81916F0B82C0050D053 /* Photo.m */; };
 		BC6CE81C16F0BE5A0050D053 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6CE81B16F0BE5A0050D053 /* MapKit.framework */; };
+		BCC7F73D16F33FF500FFF003 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC7F73C16F33FF500FFF003 /* PhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,8 @@
 		BC6CE81816F0B82C0050D053 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		BC6CE81916F0B82C0050D053 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		BC6CE81B16F0BE5A0050D053 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BCC7F73B16F33FF500FFF003 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		BCC7F73C16F33FF500FFF003 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				BC3E9BCD16EDEF1D00103EE4 /* DemoPhotographerCDTVC.m */,
 				BC3E9BBD16EDE70400103EE4 /* ImageViewController.h */,
 				BC3E9BBE16EDE70400103EE4 /* ImageViewController.m */,
+				BCC7F73B16F33FF500FFF003 /* PhotoViewController.h */,
+				BCC7F73C16F33FF500FFF003 /* PhotoViewController.m */,
 				BC3E9BC016EDE76200103EE4 /* AttributedStringViewController.h */,
 				BC3E9BC116EDE76200103EE4 /* AttributedStringViewController.m */,
 				BC3E9BC316EDE77000103EE4 /* CoreDataTableViewController.h */,
@@ -320,6 +325,7 @@
 				BC6CE80E16F0B7620050D053 /* Photo+MKAnnotation.m in Sources */,
 				BC6CE81716F0B82C0050D053 /* Photographer.m in Sources */,
 				BC6CE81A16F0B82C0050D053 /* Photo.m in Sources */,
+				BCC7F73D16F33FF500FFF003 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

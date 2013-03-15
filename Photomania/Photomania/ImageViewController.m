@@ -42,6 +42,7 @@
 
 - (void)resetImage
 {
+    NSLog(@"Loading image from %@...", self.imageURL);
     if (self.scrollView) {
         self.scrollView.contentSize = CGSizeZero;
         self.imageView.image = nil;
