@@ -139,6 +139,7 @@
 
 -(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
+    NSLog(@"SVC1");
     NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
     barButtonItem.title = @"Navigation";
     [toolbarItems insertObject:barButtonItem atIndex:0];
@@ -147,6 +148,7 @@
 
 -(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
+    NSLog(@"SVC2");
     NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
     [toolbarItems removeObject:barButtonItem];
     [self.toolbar setItems:toolbarItems animated:YES];

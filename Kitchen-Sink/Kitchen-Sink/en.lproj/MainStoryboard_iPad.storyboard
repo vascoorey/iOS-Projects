@@ -19,10 +19,19 @@
                                             <segue destination="QSZ-ct-2re" kind="modal" identifier="Ask" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="HPB-cv-D8B"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Drain Food" id="HUZ-Oh-HHr">
+                                        <connections>
+                                            <action selector="drain" destination="02C-fZ-pvo" id="ctM-OX-EcN"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-ta-QSS">
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sLU-QQ-I0U" appends="YES" id="TI6-ea-kOI"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -36,8 +45,16 @@
                             <constraint firstItem="Ywb-ta-QSS" firstAttribute="trailing" secondItem="ZUn-ag-7mb" secondAttribute="trailing" type="default" id="uWJ-J1-cne"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="kitchenSink" destination="Ywb-ta-QSS" id="gaX-ca-IK5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csz-Mf-sFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sLU-QQ-I0U">
+                    <connections>
+                        <action selector="tap:" destination="02C-fZ-pvo" id="7KW-WK-8Fu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1998" y="-245"/>
         </scene>
@@ -126,6 +143,8 @@
             <relationships>
                 <relationship kind="action" name="cancelAsking:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="action" name="doneAsking:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="tap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="kitchenSink" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
