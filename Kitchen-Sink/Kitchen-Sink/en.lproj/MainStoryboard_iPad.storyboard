@@ -16,7 +16,7 @@
                                 <items>
                                     <barButtonItem title="Add Food" id="cwa-cg-Nfv">
                                         <connections>
-                                            <segue destination="QSZ-ct-2re" kind="modal" identifier="Ask" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="HPB-cv-D8B"/>
+                                            <segue destination="QSZ-ct-2re" kind="modal" identifier="Ask" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="HPB-cv-D8B"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Drain Food" id="HUZ-Oh-HHr">
@@ -116,7 +116,7 @@
                             <constraint firstAttribute="trailing" secondItem="w7D-mo-hcN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="IdY-MP-Gb1"/>
                             <constraint firstItem="x6F-gG-cZF" firstAttribute="baseline" secondItem="0zV-EN-2Oq" secondAttribute="baseline" type="default" id="KFE-aB-tG1"/>
                             <constraint firstItem="x6F-gG-cZF" firstAttribute="top" secondItem="w7D-mo-hcN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="oTb-e8-O11"/>
-                            <constraint firstItem="7Xb-V3-ldd" firstAttribute="top" secondItem="Nml-e1-P49" secondAttribute="top" constant="308" id="rIR-Zj-UeW"/>
+                            <constraint firstItem="7Xb-V3-ldd" firstAttribute="top" secondItem="Nml-e1-P49" secondAttribute="top" constant="157" id="uNG-d6-nrQ"/>
                         </constraints>
                     </view>
                     <connections>

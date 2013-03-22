@@ -11,13 +11,37 @@
 
 @interface KitchenSinkViewController ()
 @property (weak, nonatomic) IBOutlet UIView *kitchenSink;
+@property (weak, nonatomic) NSTimer *drainTimer;
 @end
 
 @implementation KitchenSinkViewController
 
-#define MOVE_DURATION 3.00f
-#define DRAIN_DURATION 3.00f
+#define MOVE_DURATION 2.00f
+#define DRAIN_DURATION 2.00f
 #define DRAIN_DELAY 0.00f
+
+-(void)startDrainTimer
+{
+    self.drainTimer = [NSTimer scheduledTimerWithTimeInterval:DRAIN_DURATION/3 target:self selector:@selector(drain:) userInfo:nil repeats:YES];
+}
+
+-(void)stopDrainTimer
+{
+    [self.drainTimer invalidate];
+    self.drainTimer = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self startDrainTimer];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self stopDrainTimer];
+}
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     CGPoint tapLocation = [sender locationInView:self.kitchenSink];
@@ -37,6 +61,12 @@
                              }];
         }
     }
+}
+
+-(void)drain:(NSTimer *)timer
+{
+    [self drain];
+    NSLog(@"Draining...");
 }
 
 -(IBAction)drain
