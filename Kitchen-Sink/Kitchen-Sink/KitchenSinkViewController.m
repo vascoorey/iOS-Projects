@@ -9,12 +9,13 @@
 #import "KitchenSinkViewController.h"
 #import "AskerViewController.h"
 
-@interface KitchenSinkViewController ()
+@interface KitchenSinkViewController () <UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *kitchenSink;
 @property (weak, nonatomic) NSTimer *drainTimer;
 @property (weak, nonatomic) NSTimer *gameTimer;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *scoreButtonItem;
 @property (nonatomic) NSUInteger score;
+@property (weak, nonatomic) UIActionSheet *sinkControlActionSheet;
 @end
 
 @implementation KitchenSinkViewController
@@ -60,6 +61,46 @@
     [self stopDrainTimer];
 }
 
+#define SINK_CONTROL @"Sink Controls"
+#define SINK_CONTROL_STOP_DRAIN @"Stopper Drain"
+#define SINK_CONTROL_UNSTOP_DRAIN @"Unstopper Drain"
+#define SINK_CONTROL_CANCEL @"Cancel"
+#define SINK_CONTROL_EMPTY @"Empty Sink"
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == actionSheet.destructiveButtonIndex)
+    {
+        [self.kitchenSink.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    else
+    {
+        NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if([choice isEqualToString:SINK_CONTROL_STOP_DRAIN])
+        {
+            [self stopDrainTimer];
+        }
+        else
+        {
+            [self startDrainTimer];
+        }
+    }
+}
+
+- (IBAction)controlSink:(UIBarButtonItem *)sender {
+    if(!self.sinkControlActionSheet)
+    {
+        NSString *drainButton = self.drainTimer ? SINK_CONTROL_STOP_DRAIN : SINK_CONTROL_UNSTOP_DRAIN;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SINK_CONTROL
+                                                                 delegate:self
+                                                        cancelButtonTitle:SINK_CONTROL_CANCEL
+                                                   destructiveButtonTitle:SINK_CONTROL_EMPTY
+                                                        otherButtonTitles:drainButton, nil];
+        [actionSheet showFromBarButtonItem:sender animated:YES];
+        self.sinkControlActionSheet = actionSheet;
+    }
+}
+
 - (IBAction)restart:(id)sender {
     self.scoreButtonItem.title = @"Points: 0";
     self.score = 0;
@@ -94,10 +135,7 @@
 -(void)gameOver:(NSTimer *)timer
 {
     [self stopDrainTimer];
-    for(UIView *view in self.kitchenSink.subviews)
-    {
-        [view removeFromSuperview];
-    }
+    [self.kitchenSink.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     NSString *score = [NSString stringWithFormat:@"Way to go champ! You only lost %d foods!", self.score];
     [[[UIAlertView alloc] initWithTitle:@"Game Over!" message:score delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil] show];
 }

@@ -19,14 +19,19 @@
                                             <segue destination="QSZ-ct-2re" kind="modal" identifier="Ask" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="HPB-cv-D8B"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Restart" id="5uG-V7-c3G">
+                                    <barButtonItem title="Control Sink" id="hzW-cR-AzC">
                                         <connections>
-                                            <action selector="restart:" destination="02C-fZ-pvo" id="hE2-8P-jE9"/>
+                                            <action selector="controlSink:" destination="02C-fZ-pvo" id="zi6-Q9-trp"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="h8L-gy-o9N"/>
                                     <barButtonItem title="Kitchen Sink" style="plain" id="zZ6-sX-Ful"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="rw6-tL-RyK"/>
+                                    <barButtonItem title="Restart" id="5uG-V7-c3G">
+                                        <connections>
+                                            <action selector="restart:" destination="02C-fZ-pvo" id="hE2-8P-jE9"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Points: 0" style="plain" id="7JF-Tv-v7N"/>
                                 </items>
                             </toolbar>
