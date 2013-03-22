@@ -19,11 +19,15 @@
                                             <segue destination="QSZ-ct-2re" kind="modal" identifier="Ask" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="HPB-cv-D8B"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Drain Food" id="HUZ-Oh-HHr">
+                                    <barButtonItem title="Restart" id="5uG-V7-c3G">
                                         <connections>
-                                            <action selector="drain" destination="02C-fZ-pvo" id="ctM-OX-EcN"/>
+                                            <action selector="restart:" destination="02C-fZ-pvo" id="hE2-8P-jE9"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="h8L-gy-o9N"/>
+                                    <barButtonItem title="Kitchen Sink" style="plain" id="zZ6-sX-Ful"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rw6-tL-RyK"/>
+                                    <barButtonItem title="Points: 0" style="plain" id="7JF-Tv-v7N"/>
                                 </items>
                             </toolbar>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-ta-QSS">
@@ -47,6 +51,7 @@
                     </view>
                     <connections>
                         <outlet property="kitchenSink" destination="Ywb-ta-QSS" id="gaX-ca-IK5"/>
+                        <outlet property="scoreButtonItem" destination="7JF-Tv-v7N" id="ax7-fl-Bst"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csz-Mf-sFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,30 +135,6 @@
             <point key="canvasLocation" x="-1083" y="-245"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AskerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AskerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="answerTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="questionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="KitchenSinkViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KitchenSinkViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelAsking:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="doneAsking:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="tap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="kitchenSink" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
