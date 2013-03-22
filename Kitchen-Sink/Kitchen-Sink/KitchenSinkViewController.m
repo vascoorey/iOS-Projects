@@ -6,16 +6,18 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "KitchenSinkViewController.h"
 #import "AskerViewController.h"
 
-@interface KitchenSinkViewController () <UIActionSheetDelegate>
+@interface KitchenSinkViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *kitchenSink;
 @property (weak, nonatomic) NSTimer *drainTimer;
 @property (weak, nonatomic) NSTimer *gameTimer;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *scoreButtonItem;
 @property (nonatomic) NSUInteger score;
 @property (weak, nonatomic) UIActionSheet *sinkControlActionSheet;
+@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @end
 
 @implementation KitchenSinkViewController
@@ -25,6 +27,7 @@
 #define DRAIN_DELAY 0.0f
 #define DISH_CLEANING_INTERVAL 2.0f
 #define GAME_DURATION 30.0f
+#define MAX_IMAGE_WIDTH 200
 
 -(void)cleanDish
 {
@@ -85,6 +88,85 @@
             [self startDrainTimer];
         }
     }
+}
+
+-(void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType sender:(UIBarButtonItem *)sender
+{
+    if(!self.imagePickerPopover && [UIImagePickerController isSourceTypeAvailable:sourceType])
+    {
+        NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        if([availableMediaTypes containsObject:(NSString *)kUTTypeImage])
+        {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.sourceType = sourceType;
+            picker.mediaTypes = @[ (NSString *)kUTTypeImage ];
+            picker.allowsEditing = YES;
+            picker.delegate = self;
+            if((sourceType != UIImagePickerControllerSourceTypeCamera) && (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad))
+            {
+                // Popover
+                self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:picker];
+                [self.imagePickerPopover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+                self.imagePickerPopover.delegate = self;
+            }
+            else
+            {
+                // Modal
+                [self presentViewController:picker animated:YES completion:nil];
+            }
+        }
+    }
+}
+
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.imagePickerPopover = nil;
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    // Dismiss modal
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    if(!image)
+    {
+        image = info[UIImagePickerControllerOriginalImage];
+    }
+    if(image)
+    {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        CGRect frame = imageView.frame;
+        if(frame.size.width > MAX_IMAGE_WIDTH)
+        {
+            frame.size.height = (frame.size.height / frame.size.width) * MAX_IMAGE_WIDTH;
+            frame.size.width = MAX_IMAGE_WIDTH;
+        }
+        imageView.frame = frame;
+        [self setRandomLocationForView:imageView];
+        [self.kitchenSink addSubview:imageView];
+    }
+    if(self.imagePickerPopover)
+    {
+        [self.imagePickerPopover dismissPopoverAnimated:YES];
+        self.imagePickerPopover = nil;
+    }
+    else
+    {
+        // Dismiss modal
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (IBAction)takeFoodPhoto:(UIBarButtonItem *)sender {
+    [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum sender:sender];
+}
+
+- (IBAction)addFoodPhoto:(UIBarButtonItem *)sender {
+    [self presentImagePicker:UIImagePickerControllerSourceTypeCamera sender:sender];
 }
 
 - (IBAction)controlSink:(UIBarButtonItem *)sender {
@@ -218,13 +300,13 @@
     foodLabel.text = food;
     foodLabel.font = [UIFont systemFontOfSize:46];
     foodLabel.backgroundColor = [UIColor clearColor];
+    [foodLabel sizeToFit]; // Views with intrinsic size can do this
     [self setRandomLocationForView:foodLabel];
     [self.kitchenSink addSubview:foodLabel];
 }
 
 -(void)setRandomLocationForView:(UIView *)view
 {
-    [view sizeToFit]; // Views with intrinsic size can do this
     CGRect sinkBounds = CGRectInset(self.kitchenSink.bounds, view.frame.size.width / 2, view.frame.size.height / 2);
     CGFloat x = arc4random() % (int)sinkBounds.size.width + view.frame.size.width / 2;
     CGFloat y = arc4random() % (int)sinkBounds.size.height + view.frame.size.height / 2;

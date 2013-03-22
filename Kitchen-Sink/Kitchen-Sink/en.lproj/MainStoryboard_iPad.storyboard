@@ -27,6 +27,16 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="h8L-gy-o9N"/>
                                     <barButtonItem title="Kitchen Sink" style="plain" id="zZ6-sX-Ful"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="rw6-tL-RyK"/>
+                                    <barButtonItem title="Take Photo" id="fiL-yc-DCE">
+                                        <connections>
+                                            <action selector="addFoodPhoto:" destination="02C-fZ-pvo" id="Xs9-V9-YUW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Add Photo" id="ERA-nD-YAy">
+                                        <connections>
+                                            <action selector="takeFoodPhoto:" destination="02C-fZ-pvo" id="Z6s-M0-MTl"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Restart" id="5uG-V7-c3G">
                                         <connections>
                                             <action selector="restart:" destination="02C-fZ-pvo" id="hE2-8P-jE9"/>
@@ -140,6 +150,35 @@
             <point key="canvasLocation" x="-1083" y="-245"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AskerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AskerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="answerTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="questionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="KitchenSinkViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KitchenSinkViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addFoodPhoto:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="cancelAsking:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="controlSink:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="doneAsking:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="restart:"/>
+                <relationship kind="action" name="takeFoodPhoto:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="tap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="kitchenSink" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scoreButtonItem" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
