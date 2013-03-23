@@ -9,6 +9,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "KitchenSinkViewController.h"
 #import "AskerViewController.h"
+#import "CMMotionManager+Shared.h"
 
 @interface KitchenSinkViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *kitchenSink;
@@ -21,6 +22,8 @@
 @end
 
 @implementation KitchenSinkViewController
+
+#pragma mark - Timers
 
 #define MOVE_DURATION 2.0f
 #define DRAIN_DURATION 2.0f
@@ -51,18 +54,56 @@
     self.drainTimer = nil;
 }
 
+#pragma mark - View Lifecycle
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self startDrainTimer];
     [self cleanDish];
+    [self startDrift];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self stopDrainTimer];
+    [self stopDrift];
 }
+
+#pragma mark - Drift
+
+#define DRIFT_HZ 10
+#define DRIFT_RATE 1
+
+-(void)startDrift
+{
+    CMMotionManager *motionManager = [CMMotionManager sharedMotionManager];
+    if([motionManager isAccelerometerAvailable])
+    {
+        [motionManager setAccelerometerUpdateInterval:1 / DRIFT_HZ];
+        [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+            for(UIView *view in self.kitchenSink.subviews)
+            {
+                CGPoint centerPoint = view.center;
+                centerPoint.x += accelerometerData.acceleration.x * DRIFT_RATE;
+                centerPoint.y -= accelerometerData.acceleration.y * DRIFT_RATE;
+                view.center = centerPoint;
+                if(!CGRectContainsRect(self.kitchenSink.bounds, view.frame) && !CGRectIntersectsRect(self.kitchenSink.bounds, view.frame))
+                {
+                    [view removeFromSuperview];
+                }
+            }
+        }];
+    }
+}
+
+-(void)stopDrift
+{
+    [[CMMotionManager sharedMotionManager] stopAccelerometerUpdates];
+}
+
+#pragma mark - Action Sheet
 
 #define SINK_CONTROL @"Sink Controls"
 #define SINK_CONTROL_STOP_DRAIN @"Stopper Drain"
@@ -89,6 +130,22 @@
         }
     }
 }
+
+- (IBAction)controlSink:(UIBarButtonItem *)sender {
+    if(!self.sinkControlActionSheet)
+    {
+        NSString *drainButton = self.drainTimer ? SINK_CONTROL_STOP_DRAIN : SINK_CONTROL_UNSTOP_DRAIN;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SINK_CONTROL
+                                                                 delegate:self
+                                                        cancelButtonTitle:SINK_CONTROL_CANCEL
+                                                   destructiveButtonTitle:SINK_CONTROL_EMPTY
+                                                        otherButtonTitles:drainButton, nil];
+        [actionSheet showFromBarButtonItem:sender animated:YES];
+        self.sinkControlActionSheet = actionSheet;
+    }
+}
+
+#pragma mark - Image Picker
 
 -(void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType sender:(UIBarButtonItem *)sender
 {
@@ -169,26 +226,6 @@
     [self presentImagePicker:UIImagePickerControllerSourceTypeCamera sender:sender];
 }
 
-- (IBAction)controlSink:(UIBarButtonItem *)sender {
-    if(!self.sinkControlActionSheet)
-    {
-        NSString *drainButton = self.drainTimer ? SINK_CONTROL_STOP_DRAIN : SINK_CONTROL_UNSTOP_DRAIN;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SINK_CONTROL
-                                                                 delegate:self
-                                                        cancelButtonTitle:SINK_CONTROL_CANCEL
-                                                   destructiveButtonTitle:SINK_CONTROL_EMPTY
-                                                        otherButtonTitles:drainButton, nil];
-        [actionSheet showFromBarButtonItem:sender animated:YES];
-        self.sinkControlActionSheet = actionSheet;
-    }
-}
-
-- (IBAction)restart:(id)sender {
-    self.scoreButtonItem.title = @"Points: 0";
-    self.score = 0;
-    [self startDrainTimer];
-}
-
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     CGPoint tapLocation = [sender locationInView:self.kitchenSink];
     for(UIView *view in self.kitchenSink.subviews)
@@ -209,17 +246,25 @@
     }
 }
 
--(void)drain:(NSTimer *)timer
-{
-    [self drain];
-}
-
 -(void)gameOver:(NSTimer *)timer
 {
     [self stopDrainTimer];
     [self.kitchenSink.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     NSString *score = [NSString stringWithFormat:@"Way to go champ! You only lost %d foods!", self.score];
     [[[UIAlertView alloc] initWithTitle:@"Game Over!" message:score delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil] show];
+}
+
+- (IBAction)restart:(id)sender {
+    self.scoreButtonItem.title = @"Points: 0";
+    self.score = 0;
+    [self startDrainTimer];
+}
+
+#pragma mark View Animation
+
+-(void)drain:(NSTimer *)timer
+{
+    [self drain];
 }
 
 -(IBAction)drain
@@ -312,6 +357,8 @@
     CGFloat y = arc4random() % (int)sinkBounds.size.height + view.frame.size.height / 2;
     view.center = CGPointMake(x, y);
 }
+
+#pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

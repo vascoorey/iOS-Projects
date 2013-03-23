@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCC375D116FCD25000F58ECA /* CMMotionManager+Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC375D016FCD25000F58ECA /* CMMotionManager+Shared.m */; };
 		BCC7F74B16F34E8700FFF003 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC7F74A16F34E8700FFF003 /* UIKit.framework */; };
 		BCC7F74D16F34E8700FFF003 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC7F74C16F34E8700FFF003 /* Foundation.framework */; };
 		BCC7F74F16F34E8700FFF003 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCC7F74E16F34E8700FFF003 /* CoreGraphics.framework */; };
@@ -19,10 +20,13 @@
 		BCC7F76716F34E8700FFF003 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCC7F76516F34E8700FFF003 /* MainStoryboard_iPad.storyboard */; };
 		BCC7F77216F34EBD00FFF003 /* KitchenSinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC7F77116F34EBD00FFF003 /* KitchenSinkViewController.m */; };
 		BCC7F77516F34F4D00FFF003 /* AskerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC7F77416F34F4D00FFF003 /* AskerViewController.m */; };
+		BCD0974616FDF1F300A9C393 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCD0974516FDF1F300A9C393 /* CoreMotion.framework */; };
 		BCFA029616FCAD6200021B72 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFA029516FCAD6200021B72 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BCC375CF16FCD25000F58ECA /* CMMotionManager+Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMMotionManager+Shared.h"; sourceTree = "<group>"; };
+		BCC375D016FCD25000F58ECA /* CMMotionManager+Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CMMotionManager+Shared.m"; sourceTree = "<group>"; };
 		BCC7F74716F34E8700FFF003 /* Kitchen-Sink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kitchen-Sink.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC7F74A16F34E8700FFF003 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BCC7F74C16F34E8700FFF003 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -41,6 +45,7 @@
 		BCC7F77116F34EBD00FFF003 /* KitchenSinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KitchenSinkViewController.m; sourceTree = "<group>"; };
 		BCC7F77316F34F4D00FFF003 /* AskerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskerViewController.h; sourceTree = "<group>"; };
 		BCC7F77416F34F4D00FFF003 /* AskerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskerViewController.m; sourceTree = "<group>"; };
+		BCD0974516FDF1F300A9C393 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		BCFA029516FCAD6200021B72 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCD0974616FDF1F300A9C393 /* CoreMotion.framework in Frameworks */,
 				BCFA029616FCAD6200021B72 /* MobileCoreServices.framework in Frameworks */,
 				BCC7F74B16F34E8700FFF003 /* UIKit.framework in Frameworks */,
 				BCC7F74D16F34E8700FFF003 /* Foundation.framework in Frameworks */,
@@ -62,6 +68,7 @@
 		BCC7F73E16F34E8700FFF003 = {
 			isa = PBXGroup;
 			children = (
+				BCD0974516FDF1F300A9C393 /* CoreMotion.framework */,
 				BCFA029516FCAD6200021B72 /* MobileCoreServices.framework */,
 				BCC7F75016F34E8700FFF003 /* Kitchen-Sink */,
 				BCC7F74916F34E8700FFF003 /* Frameworks */,
@@ -93,6 +100,8 @@
 				BCC7F76516F34E8700FFF003 /* MainStoryboard_iPad.storyboard */,
 				BCC7F77016F34EBD00FFF003 /* KitchenSinkViewController.h */,
 				BCC7F77116F34EBD00FFF003 /* KitchenSinkViewController.m */,
+				BCC375CF16FCD25000F58ECA /* CMMotionManager+Shared.h */,
+				BCC375D016FCD25000F58ECA /* CMMotionManager+Shared.m */,
 				BCC7F77316F34F4D00FFF003 /* AskerViewController.h */,
 				BCC7F77416F34F4D00FFF003 /* AskerViewController.m */,
 				BCC7F75116F34E8700FFF003 /* Supporting Files */,
@@ -186,6 +195,7 @@
 				BCC7F75B16F34E8700FFF003 /* AppDelegate.m in Sources */,
 				BCC7F77216F34EBD00FFF003 /* KitchenSinkViewController.m in Sources */,
 				BCC7F77516F34F4D00FFF003 /* AskerViewController.m in Sources */,
+				BCC375D116FCD25000F58ECA /* CMMotionManager+Shared.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
