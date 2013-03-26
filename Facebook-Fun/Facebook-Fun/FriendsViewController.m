@@ -78,6 +78,7 @@
     NSDictionary *friendInfo = self.data[indexPath.row];
     cell.textLabel.text = friendInfo[@"name"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
+    cell.imageView.image = nil;
     
     dispatch_queue_t profileQ = dispatch_queue_create("Profile Picture Fetcher", NULL);
     dispatch_async(profileQ, ^{
@@ -85,7 +86,7 @@
         UIImage *profilePicture = [UIImage imageWithData:pictureData];
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.imageView.image = profilePicture;
-            [cell.imageView setNeedsLayout];
+            [cell setNeedsLayout];
         });
     });
     
