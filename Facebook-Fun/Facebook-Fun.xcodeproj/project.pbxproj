@@ -24,6 +24,11 @@
 		BC92F769170200A300154444 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F768170200A300154444 /* Accounts.framework */; };
 		BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F76A170200D300154444 /* AdSupport.framework */; };
 		BC92F76E1702052300154444 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F76D1702052300154444 /* HomeViewController.m */; };
+		BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F770170214DD00154444 /* FacebookTableViewController.m */; };
+		BC92F7761702150000154444 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7731702150000154444 /* SVProgressHUD.bundle */; };
+		BC92F7771702150000154444 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7751702150000154444 /* SVProgressHUD.m */; };
+		BC92F7791702150D00154444 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7781702150D00154444 /* LICENSE.txt */; };
+		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,13 @@
 		BC92F76A170200D300154444 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		BC92F76C1702052300154444 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		BC92F76D1702052300154444 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		BC92F76F170214DD00154444 /* FacebookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookTableViewController.h; sourceTree = "<group>"; };
+		BC92F770170214DD00154444 /* FacebookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookTableViewController.m; sourceTree = "<group>"; };
+		BC92F7731702150000154444 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		BC92F7741702150000154444 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		BC92F7751702150000154444 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		BC92F7781702150D00154444 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		BC92F77A1702164700154444 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */,
 				BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */,
 				BC92F769170200A300154444 /* Accounts.framework in Frameworks */,
 				BC92F7671702005100154444 /* libsqlite3.dylib in Frameworks */,
@@ -73,6 +86,8 @@
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
+				BC92F77A1702164700154444 /* QuartzCore.framework */,
+				BC92F7721702150000154444 /* SVProgressHUD */,
 				BC92F7411701FA6900154444 /* Facebook-Fun */,
 				BC92F73A1701FA6900154444 /* Frameworks */,
 				BC92F7391701FA6900154444 /* Products */,
@@ -110,6 +125,8 @@
 				BC92F7621701FA9D00154444 /* LoginViewController.m */,
 				BC92F76C1702052300154444 /* HomeViewController.h */,
 				BC92F76D1702052300154444 /* HomeViewController.m */,
+				BC92F76F170214DD00154444 /* FacebookTableViewController.h */,
+				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
 				BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */,
 				BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */,
 				BC92F7421701FA6900154444 /* Supporting Files */,
@@ -129,6 +146,17 @@
 				BC92F7511701FA6900154444 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC92F7721702150000154444 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				BC92F7781702150D00154444 /* LICENSE.txt */,
+				BC92F7731702150000154444 /* SVProgressHUD.bundle */,
+				BC92F7741702150000154444 /* SVProgressHUD.h */,
+				BC92F7751702150000154444 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +216,8 @@
 				BC92F7521701FA6900154444 /* Default-568h@2x.png in Resources */,
 				BC92F7551701FA6900154444 /* MainStoryboard_iPhone.storyboard in Resources */,
 				BC92F7581701FA6900154444 /* MainStoryboard_iPad.storyboard in Resources */,
+				BC92F7761702150000154444 /* SVProgressHUD.bundle in Resources */,
+				BC92F7791702150D00154444 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +232,8 @@
 				BC92F74C1701FA6900154444 /* AppDelegate.m in Sources */,
 				BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */,
 				BC92F76E1702052300154444 /* HomeViewController.m in Sources */,
+				BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */,
+				BC92F7771702150000154444 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

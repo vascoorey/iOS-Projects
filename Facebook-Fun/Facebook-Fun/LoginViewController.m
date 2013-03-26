@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "SVProgressHUD.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface LoginViewController ()
@@ -26,12 +27,14 @@
 }
 
 - (IBAction)performLogin {
+    [SVProgressHUD showWithStatus:@"Logging in..." maskType:SVProgressHUDMaskTypeGradient];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate openSessionWithAllowLoginUI:YES];
 }
 
 -(void)sessionStateChanged:(NSNotification *)notification
 {
+    [SVProgressHUD popActivity];
     if ([[FBSession activeSession] isOpen]) {
         // Rewind segue
         [self performSegueWithIdentifier:@"loginComplete:" sender:self];

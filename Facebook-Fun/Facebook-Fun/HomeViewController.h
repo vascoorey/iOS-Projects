@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FacebookTableViewController.h"
 
-@interface HomeViewController : UITableViewController
+@interface HomeViewController : FacebookTableViewController
 
 @end

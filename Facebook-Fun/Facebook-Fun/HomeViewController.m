@@ -11,14 +11,19 @@
 #import "AppDelegate.h"
 
 @interface HomeViewController ()
-
 @end
 
 @implementation HomeViewController
 
 -(IBAction)loginComplete:(UIStoryboardSegue *)segue
 {
-    NSLog(@"Login done! Hooray!");
+    // Setup the query
+    NSString *query =
+    @"{"
+    @"'friends':'SELECT uid2 FROM friend WHERE uid1 = me()',"
+    @"'friendsInfo':'SELECT name, uid, pic_square FROM user WHERE uid IN (SELECT uid2 FROM #friends)',"
+    @"}";
+    [self executeFacebookQuery:query usingIndex:1];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -33,13 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate closeSession];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //[appDelegate closeSession];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -59,80 +59,29 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"Friend";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    // Get our friend's info
+    // The dictionary keys are tied to the query (see above)
+    NSDictionary *friendInfo = self.data[indexPath.row];
+    cell.textLabel.text = friendInfo[@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
+    
+    dispatch_queue_t profileQ = dispatch_queue_create("Profile Picture Fetcher", NULL);
+    dispatch_async(profileQ, ^{
+        NSData *pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:friendInfo[@"pic_square"]]];
+        UIImage *profilePicture = [UIImage imageWithData:pictureData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.imageView.image = profilePicture;
+            [cell.imageView setNeedsLayout];
+        });
+    });
     
     return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end
