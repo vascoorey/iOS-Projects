@@ -20,6 +20,10 @@
 		BC92F7581701FA6900154444 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */; };
 		BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7621701FA9D00154444 /* LoginViewController.m */; };
 		BC92F7651701FB6C00154444 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F7641701FB6C00154444 /* FacebookSDK.framework */; };
+		BC92F7671702005100154444 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F7661702005100154444 /* libsqlite3.dylib */; };
+		BC92F769170200A300154444 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F768170200A300154444 /* Accounts.framework */; };
+		BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F76A170200D300154444 /* AdSupport.framework */; };
+		BC92F76E1702052300154444 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F76D1702052300154444 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +45,11 @@
 		BC92F7611701FA9D00154444 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BC92F7621701FA9D00154444 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BC92F7641701FB6C00154444 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		BC92F7661702005100154444 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BC92F768170200A300154444 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		BC92F76A170200D300154444 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		BC92F76C1702052300154444 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		BC92F76D1702052300154444 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */,
+				BC92F769170200A300154444 /* Accounts.framework in Frameworks */,
+				BC92F7671702005100154444 /* libsqlite3.dylib in Frameworks */,
 				BC92F73C1701FA6900154444 /* UIKit.framework in Frameworks */,
 				BC92F73E1701FA6900154444 /* Foundation.framework in Frameworks */,
 				BC92F7401701FA6900154444 /* CoreGraphics.framework in Frameworks */,
@@ -78,6 +90,9 @@
 		BC92F73A1701FA6900154444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC92F76A170200D300154444 /* AdSupport.framework */,
+				BC92F768170200A300154444 /* Accounts.framework */,
+				BC92F7661702005100154444 /* libsqlite3.dylib */,
 				BC92F7641701FB6C00154444 /* FacebookSDK.framework */,
 				BC92F73B1701FA6900154444 /* UIKit.framework */,
 				BC92F73D1701FA6900154444 /* Foundation.framework */,
@@ -93,6 +108,8 @@
 				BC92F74B1701FA6900154444 /* AppDelegate.m */,
 				BC92F7611701FA9D00154444 /* LoginViewController.h */,
 				BC92F7621701FA9D00154444 /* LoginViewController.m */,
+				BC92F76C1702052300154444 /* HomeViewController.h */,
+				BC92F76D1702052300154444 /* HomeViewController.m */,
 				BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */,
 				BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */,
 				BC92F7421701FA6900154444 /* Supporting Files */,
@@ -184,6 +201,7 @@
 				BC92F7481701FA6900154444 /* main.m in Sources */,
 				BC92F74C1701FA6900154444 /* AppDelegate.m in Sources */,
 				BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */,
+				BC92F76E1702052300154444 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
