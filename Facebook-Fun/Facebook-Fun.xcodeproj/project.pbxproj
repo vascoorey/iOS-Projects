@@ -23,7 +23,7 @@
 		BC92F7671702005100154444 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F7661702005100154444 /* libsqlite3.dylib */; };
 		BC92F769170200A300154444 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F768170200A300154444 /* Accounts.framework */; };
 		BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F76A170200D300154444 /* AdSupport.framework */; };
-		BC92F76E1702052300154444 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F76D1702052300154444 /* HomeViewController.m */; };
+		BC92F76E1702052300154444 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F76D1702052300154444 /* FriendsViewController.m */; };
 		BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F770170214DD00154444 /* FacebookTableViewController.m */; };
 		BC92F7761702150000154444 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7731702150000154444 /* SVProgressHUD.bundle */; };
 		BC92F7771702150000154444 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7751702150000154444 /* SVProgressHUD.m */; };
@@ -55,8 +55,8 @@
 		BC92F7661702005100154444 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC92F768170200A300154444 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		BC92F76A170200D300154444 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		BC92F76C1702052300154444 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		BC92F76D1702052300154444 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		BC92F76C1702052300154444 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		BC92F76D1702052300154444 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		BC92F76F170214DD00154444 /* FacebookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookTableViewController.h; sourceTree = "<group>"; };
 		BC92F770170214DD00154444 /* FacebookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookTableViewController.m; sourceTree = "<group>"; };
 		BC92F7731702150000154444 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -131,8 +131,8 @@
 				BC92F7621701FA9D00154444 /* LoginViewController.m */,
 				BC92F76F170214DD00154444 /* FacebookTableViewController.h */,
 				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
-				BC92F76C1702052300154444 /* HomeViewController.h */,
-				BC92F76D1702052300154444 /* HomeViewController.m */,
+				BC92F76C1702052300154444 /* FriendsViewController.h */,
+				BC92F76D1702052300154444 /* FriendsViewController.m */,
 				BC92F77C17021F5B00154444 /* FriendDetailCVC.h */,
 				BC92F77D17021F5B00154444 /* FriendDetailCVC.m */,
 				BC92F77F1702204700154444 /* PageCollectionViewCell.h */,
@@ -241,7 +241,7 @@
 				BC92F7481701FA6900154444 /* main.m in Sources */,
 				BC92F74C1701FA6900154444 /* AppDelegate.m in Sources */,
 				BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */,
-				BC92F76E1702052300154444 /* HomeViewController.m in Sources */,
+				BC92F76E1702052300154444 /* FriendsViewController.m in Sources */,
 				BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */,
 				BC92F7771702150000154444 /* SVProgressHUD.m in Sources */,
 				BC92F77E17021F5B00154444 /* FriendDetailCVC.m in Sources */,
@@ -386,6 +386,7 @@
 				BC92F7601701FA6900154444 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

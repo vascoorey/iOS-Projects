@@ -7,13 +7,20 @@
 //
 
 #import <FacebookSDK/FacebookSDK.h>
-#import "HomeViewController.h"
+#import "FriendsViewController.h"
 #import "AppDelegate.h"
 
-@interface HomeViewController ()
+@interface FriendsViewController ()
 @end
 
-@implementation HomeViewController
+@implementation FriendsViewController
+
+-(void)setData:(NSArray *)data
+{
+    super.data = [data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1[@"name"] compare:obj2[@"name"] options:NSCaseInsensitiveSearch];
+    }];
+}
 
 -(IBAction)loginComplete:(UIStoryboardSegue *)segue
 {

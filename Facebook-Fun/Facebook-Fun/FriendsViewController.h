@@ -10,6 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "FacebookTableViewController.h"
 
-@interface HomeViewController : FacebookTableViewController
+@interface FriendsViewController : FacebookTableViewController
 
 @end
