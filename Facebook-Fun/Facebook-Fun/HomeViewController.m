@@ -45,6 +45,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+#warning Is there any other method to see if the user is logged in & with valid token ?
     if(![[FBSession activeSession] isOpen])
     {
         [self performSegueWithIdentifier:@"performLogin" sender:self];
@@ -82,6 +83,28 @@
     });
     
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = nil;
+    
+    if([sender isKindOfClass:[UITableViewCell class]])
+    {
+        indexPath = [self.tableView indexPathForCell:sender];
+    }
+    if(indexPath)
+    {
+        if([segue.identifier isEqualToString:@"setFriendUID:"])
+        {
+            NSNumber *friendUID = self.data[indexPath.row][@"uid"];
+            if([segue.destinationViewController respondsToSelector:@selector(setFriendUID:)])
+            {
+                ((UIViewController *)segue.destinationViewController).title = ((UITableViewCell *)sender).textLabel.text;
+                [segue.destinationViewController performSelector:@selector(setFriendUID:) withObject:friendUID];
+            }
+        }
+    }
 }
 
 @end

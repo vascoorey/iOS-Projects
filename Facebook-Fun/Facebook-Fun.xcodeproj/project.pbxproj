@@ -29,6 +29,8 @@
 		BC92F7771702150000154444 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7751702150000154444 /* SVProgressHUD.m */; };
 		BC92F7791702150D00154444 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7781702150D00154444 /* LICENSE.txt */; };
 		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
+		BC92F77E17021F5B00154444 /* FriendDetailCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendDetailCVC.m */; };
+		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,10 @@
 		BC92F7751702150000154444 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		BC92F7781702150D00154444 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BC92F77A1702164700154444 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BC92F77C17021F5B00154444 /* FriendDetailCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailCVC.h; sourceTree = "<group>"; };
+		BC92F77D17021F5B00154444 /* FriendDetailCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailCVC.m; sourceTree = "<group>"; };
+		BC92F77F1702204700154444 /* PageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCollectionViewCell.h; sourceTree = "<group>"; };
+		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,10 +129,14 @@
 				BC92F74B1701FA6900154444 /* AppDelegate.m */,
 				BC92F7611701FA9D00154444 /* LoginViewController.h */,
 				BC92F7621701FA9D00154444 /* LoginViewController.m */,
-				BC92F76C1702052300154444 /* HomeViewController.h */,
-				BC92F76D1702052300154444 /* HomeViewController.m */,
 				BC92F76F170214DD00154444 /* FacebookTableViewController.h */,
 				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
+				BC92F76C1702052300154444 /* HomeViewController.h */,
+				BC92F76D1702052300154444 /* HomeViewController.m */,
+				BC92F77C17021F5B00154444 /* FriendDetailCVC.h */,
+				BC92F77D17021F5B00154444 /* FriendDetailCVC.m */,
+				BC92F77F1702204700154444 /* PageCollectionViewCell.h */,
+				BC92F7801702204700154444 /* PageCollectionViewCell.m */,
 				BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */,
 				BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */,
 				BC92F7421701FA6900154444 /* Supporting Files */,
@@ -234,6 +244,8 @@
 				BC92F76E1702052300154444 /* HomeViewController.m in Sources */,
 				BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */,
 				BC92F7771702150000154444 /* SVProgressHUD.m in Sources */,
+				BC92F77E17021F5B00154444 /* FriendDetailCVC.m in Sources */,
+				BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

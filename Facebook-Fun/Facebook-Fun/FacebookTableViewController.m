@@ -80,7 +80,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSAssert(false, @"You must subclass this class and implement tableView:cellForRowAtIndexPath: as I have no idea what self.data has!");
+    NSAssert(false, @"You must subclass this class and implement tableView:cellForRowAtIndexPath:");
     return nil;
 }
 
