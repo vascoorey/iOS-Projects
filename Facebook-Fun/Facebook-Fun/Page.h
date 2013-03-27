@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface Page : NSObject
+@interface Page : NSObject <MKAnnotation>
+
+@property (nonatomic, strong) NSString *thumbnailURL;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *longitude;
+
+// Blocks
+-(UIImage *)thumbnail;
 
 @end
