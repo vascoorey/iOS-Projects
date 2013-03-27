@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 
 @interface FriendsViewController ()
+@property (nonatomic) BOOL loginOK;
 @end
 
 @implementation FriendsViewController
@@ -24,6 +25,7 @@
 
 -(IBAction)loginComplete:(UIStoryboardSegue *)segue
 {
+    self.loginOK = YES;
     // Setup the query
     NSString *query =
     @"{"
@@ -34,6 +36,7 @@
 }
 
 - (IBAction)logout:(id)sender {
+    self.loginOK = NO;
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate closeSession];
     [self performSegueWithIdentifier:@"performLogin" sender:self];
@@ -48,10 +51,13 @@
     return self;
 }
 
--(void)viewDidLoad
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
-    [self performSegueWithIdentifier:@"performLogin" sender:self];
+    [super viewDidAppear:animated];
+    if(!self.loginOK)
+    {
+        [self performSegueWithIdentifier:@"performLogin" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
