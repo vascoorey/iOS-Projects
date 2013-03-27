@@ -113,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="81" y="-193"/>
         </scene>
-        <!--Friend DetailCVC-->
+        <!--Friend Page LikesCVC-->
         <scene sceneID="hw5-oa-yIy">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="rZ1-bJ-a5v" customClass="FriendDetailCVC" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="rZ1-bJ-a5v" customClass="FriendPageLikesCVC" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="8qV-BK-U4g">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,9 +167,6 @@
         <class className="FacebookTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookTableViewController.h"/>
         </class>
-        <class className="FriendDetailCVC" superclassName="UICollectionViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendDetailCVC.h"/>
-        </class>
         <class className="FriendsViewController" superclassName="FacebookTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendsViewController.h"/>
         </class>
@@ -190,9 +187,6 @@
         </class>
         <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>

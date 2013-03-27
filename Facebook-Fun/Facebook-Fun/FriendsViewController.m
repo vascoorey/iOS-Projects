@@ -33,6 +33,12 @@
     [self executeFacebookQuery:query usingIndex:1];
 }
 
+- (IBAction)logout:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate closeSession];
+    [self performSegueWithIdentifier:@"performLogin" sender:self];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -42,21 +48,10 @@
     return self;
 }
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
-    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    //[appDelegate closeSession];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-#warning Is there any other method to see if the user is logged in & with valid token ?
-    if(![[FBSession activeSession] isOpen])
-    {
-        [self performSegueWithIdentifier:@"performLogin" sender:self];
-    }
+    [self performSegueWithIdentifier:@"performLogin" sender:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +72,7 @@
     // The dictionary keys are tied to the query (see above)
     NSDictionary *friendInfo = self.data[indexPath.row];
     cell.textLabel.text = friendInfo[@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
+    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
     cell.imageView.image = nil;
     
     dispatch_queue_t profileQ = dispatch_queue_create("Profile Picture Fetcher", NULL);
@@ -87,6 +82,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.imageView.image = profilePicture;
             [cell setNeedsLayout];
+            cell.imageView.alpha = 0.0f;
+            [UIView animateWithDuration:0.2f animations:^{
+                cell.imageView.alpha = 1.0f;
+            }];
         });
     });
     
@@ -105,6 +104,7 @@
     {
         if([segue.identifier isEqualToString:@"setFriendUID:"])
         {
+            NSLog(@"setFriendUID:");
             NSNumber *friendUID = self.data[indexPath.row][@"uid"];
             if([segue.destinationViewController respondsToSelector:@selector(setFriendUID:)])
             {

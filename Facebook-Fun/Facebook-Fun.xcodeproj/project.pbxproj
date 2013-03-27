@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC57AEFB1703174600CD9125 /* FriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */; };
+		BC57AEFE17031CD700CD9125 /* FriendPageLikesMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */; };
+		BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0017031D1400CD9125 /* MapViewController.m */; };
+		BC57AF0417031DA300CD9125 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0317031DA300CD9125 /* Page.m */; };
+		BC57AF0617031DBA00CD9125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57AF0517031DBA00CD9125 /* MapKit.framework */; };
 		BC92F73C1701FA6900154444 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73B1701FA6900154444 /* UIKit.framework */; };
 		BC92F73E1701FA6900154444 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73D1701FA6900154444 /* Foundation.framework */; };
 		BC92F7401701FA6900154444 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73F1701FA6900154444 /* CoreGraphics.framework */; };
@@ -29,11 +34,20 @@
 		BC92F7771702150000154444 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7751702150000154444 /* SVProgressHUD.m */; };
 		BC92F7791702150D00154444 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7781702150D00154444 /* LICENSE.txt */; };
 		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
-		BC92F77E17021F5B00154444 /* FriendDetailCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendDetailCVC.m */; };
+		BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */; };
 		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC57AEF91703174600CD9125 /* FriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailViewController.h; sourceTree = "<group>"; };
+		BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailViewController.m; sourceTree = "<group>"; };
+		BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPageLikesMVC.h; sourceTree = "<group>"; };
+		BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPageLikesMVC.m; sourceTree = "<group>"; };
+		BC57AEFF17031D1400CD9125 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		BC57AF0017031D1400CD9125 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		BC57AF0217031DA300CD9125 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
+		BC57AF0317031DA300CD9125 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		BC57AF0517031DBA00CD9125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BC92F7381701FA6900154444 /* Facebook-Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook-Fun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC92F73B1701FA6900154444 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC92F73D1701FA6900154444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,8 +78,8 @@
 		BC92F7751702150000154444 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		BC92F7781702150D00154444 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BC92F77A1702164700154444 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		BC92F77C17021F5B00154444 /* FriendDetailCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailCVC.h; sourceTree = "<group>"; };
-		BC92F77D17021F5B00154444 /* FriendDetailCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailCVC.m; sourceTree = "<group>"; };
+		BC92F77C17021F5B00154444 /* FriendPageLikesCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPageLikesCVC.h; sourceTree = "<group>"; };
+		BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPageLikesCVC.m; sourceTree = "<group>"; };
 		BC92F77F1702204700154444 /* PageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCollectionViewCell.h; sourceTree = "<group>"; };
 		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC57AF0617031DBA00CD9125 /* MapKit.framework in Frameworks */,
 				BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */,
 				BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */,
 				BC92F769170200A300154444 /* Accounts.framework in Frameworks */,
@@ -92,6 +107,7 @@
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
+				BC57AF0517031DBA00CD9125 /* MapKit.framework */,
 				BC92F77A1702164700154444 /* QuartzCore.framework */,
 				BC92F7721702150000154444 /* SVProgressHUD */,
 				BC92F7411701FA6900154444 /* Facebook-Fun */,
@@ -133,10 +149,18 @@
 				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
 				BC92F76C1702052300154444 /* FriendsViewController.h */,
 				BC92F76D1702052300154444 /* FriendsViewController.m */,
-				BC92F77C17021F5B00154444 /* FriendDetailCVC.h */,
-				BC92F77D17021F5B00154444 /* FriendDetailCVC.m */,
+				BC57AEF91703174600CD9125 /* FriendDetailViewController.h */,
+				BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */,
+				BC92F77C17021F5B00154444 /* FriendPageLikesCVC.h */,
+				BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */,
 				BC92F77F1702204700154444 /* PageCollectionViewCell.h */,
 				BC92F7801702204700154444 /* PageCollectionViewCell.m */,
+				BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */,
+				BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */,
+				BC57AEFF17031D1400CD9125 /* MapViewController.h */,
+				BC57AF0017031D1400CD9125 /* MapViewController.m */,
+				BC57AF0217031DA300CD9125 /* Page.h */,
+				BC57AF0317031DA300CD9125 /* Page.m */,
 				BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */,
 				BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */,
 				BC92F7421701FA6900154444 /* Supporting Files */,
@@ -244,8 +268,12 @@
 				BC92F76E1702052300154444 /* FriendsViewController.m in Sources */,
 				BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */,
 				BC92F7771702150000154444 /* SVProgressHUD.m in Sources */,
-				BC92F77E17021F5B00154444 /* FriendDetailCVC.m in Sources */,
+				BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */,
 				BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */,
+				BC57AEFB1703174600CD9125 /* FriendDetailViewController.m in Sources */,
+				BC57AEFE17031CD700CD9125 /* FriendPageLikesMVC.m in Sources */,
+				BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */,
+				BC57AF0417031DA300CD9125 /* Page.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

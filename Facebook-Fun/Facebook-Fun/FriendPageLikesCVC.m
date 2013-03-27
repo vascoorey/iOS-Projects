@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "FriendDetailCVC.h"
+#import "FriendPageLikesCVC.h"
 #import "SVProgressHUD.h"
 #import "PageCollectionViewCell.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface FriendDetailCVC ()
+@interface FriendPageLikesCVC ()
 @property (nonatomic, strong) NSArray *data;
 @end
 
-@implementation FriendDetailCVC
+@implementation FriendPageLikesCVC
 
 -(void)setData:(NSArray *)data
 {
@@ -26,7 +26,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = [self.title stringByAppendingString:@"'s Liked Pages"];
     NSString *query = [NSString stringWithFormat:
                        @"{"
                        @"'friendLikes':'SELECT uid, page_id FROM page_fan WHERE uid = %@',"
@@ -36,6 +36,7 @@
     [self executeFacebookQuery:query usingIndex:1];
 }
 
+#warning Reused code.
 -(void)executeFacebookQuery:(NSString *)query usingIndex:(NSUInteger)index
 {
     // Set up the query parameter
@@ -68,13 +69,22 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Page" forIndexPath:indexPath];
     PageCollectionViewCell *pcvCell = (PageCollectionViewCell *)cell;
     pcvCell.imageView.image = nil;
+    
+    // Fetch the image asynchronously
     dispatch_queue_t pictureQ = dispatch_queue_create("Page Picture Fetcher", NULL);
     dispatch_async(pictureQ, ^{
         NSData *pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.data[indexPath.row][@"pic"]]];
-        UIImage *pageImage = [UIImage imageWithData:pictureData];
+        // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *pageImage = [UIImage imageWithData:pictureData];
             pcvCell.imageView.image = pageImage;
-            [pcvCell setNeedsLayout];
+            pcvCell.alpha = 0.0f;
+            // 0.2f is just an example...
+            [UIView animateWithDuration:0.2f animations:^{
+                // In this case just change the alpha
+                pcvCell.alpha = 1.0f;
+                // For gleam you could now set the target image for the cell and it would fade to that.
+            }];
         });
     });
     
