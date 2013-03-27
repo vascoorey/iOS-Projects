@@ -154,8 +154,6 @@
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
-				BC57AF0517031DBA00CD9125 /* MapKit.framework */,
-				BC92F77A1702164700154444 /* QuartzCore.framework */,
 				BC92F7721702150000154444 /* SVProgressHUD */,
 				BC92F7411701FA6900154444 /* Facebook-Fun */,
 				BC92F73A1701FA6900154444 /* Frameworks */,
@@ -174,6 +172,8 @@
 		BC92F73A1701FA6900154444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC57AF0517031DBA00CD9125 /* MapKit.framework */,
+				BC92F77A1702164700154444 /* QuartzCore.framework */,
 				BC92F76A170200D300154444 /* AdSupport.framework */,
 				BC92F768170200A300154444 /* Accounts.framework */,
 				BC92F7661702005100154444 /* libsqlite3.dylib */,

@@ -102,14 +102,17 @@
                 [CacheControl pushDataToCache:pictureData identifier:identifier];
             }
         }
-        UIImage *profilePicture = [UIImage imageWithData:pictureData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            cell.imageView.image = profilePicture;
-            [cell setNeedsLayout];
-            cell.imageView.alpha = 0.0f;
-            [UIView animateWithDuration:0.2f animations:^{
-                cell.imageView.alpha = 1.0f;
-            }];
+            if([[tableView indexPathsForVisibleRows] containsObject:indexPath])
+            {
+                UIImage *profilePicture = [UIImage imageWithData:pictureData];
+                cell.imageView.image = profilePicture;
+                [cell setNeedsLayout];
+                cell.imageView.alpha = 0.0f;
+                [UIView animateWithDuration:0.05f animations:^{
+                    cell.imageView.alpha = 1.0f;
+                }];
+            }
         });
     });
     

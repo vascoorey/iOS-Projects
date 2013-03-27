@@ -71,7 +71,6 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Page" forIndexPath:indexPath];
     PageCollectionViewCell *pcvCell = (PageCollectionViewCell *)cell;
     pcvCell.imageView.image = nil;
-    pcvCell.pageID = self.data[indexPath.row][@"page_id"];
     
     // Fetch the image asynchronously
     dispatch_queue_t pictureQ = dispatch_queue_create("Page Picture Fetcher", NULL);
@@ -95,13 +94,14 @@
         }
         // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
-            if([pcvCell.pageID integerValue] == [self.data[indexPath.row][@"page_id"] integerValue])
+            if([[collectionView indexPathsForVisibleItems] containsObject:indexPath])
             {
                 UIImage *pageImage = [UIImage imageWithData:pictureData];
                 pcvCell.imageView.image = pageImage;
                 pcvCell.alpha = 0.0f;
+                [cell setNeedsLayout];
                 // 0.2f is just an example...
-                [UIView animateWithDuration:0.2f animations:^{
+                [UIView animateWithDuration:0.1f animations:^{
                     // In this case just change the alpha
                     pcvCell.alpha = 1.0f;
                 }];
