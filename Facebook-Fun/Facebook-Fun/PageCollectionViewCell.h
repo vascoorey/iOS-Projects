@@ -11,6 +11,6 @@
 @interface PageCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, strong) NSNumber *pageID;
+@property (nonatomic, strong) NSDecimalNumber *pageID;
 
 @end

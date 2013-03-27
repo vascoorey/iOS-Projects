@@ -8,6 +8,7 @@
 
 #import "FacebookTableViewController.h"
 #import "SVProgressHUD.h"
+#import "NetworkActivity.h"
 
 @interface FacebookTableViewController ()
 @end
@@ -29,6 +30,7 @@
     NSDictionary *queryParam = @{ @"q" : query };
     CFTimeInterval old = CACurrentMediaTime();
     [SVProgressHUD showWithStatus:@"Fetching Data..." maskType:SVProgressHUDMaskTypeGradient];
+    [NetworkActivity addRequest];
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam
                                  HTTPMethod:@"GET"
@@ -37,6 +39,7 @@
                                               NSError *error) {
                               NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
                               [SVProgressHUD popActivity];
+                              [NetworkActivity popRequest];
                               if (error) {
                                   NSLog(@"Error: %@", error);
                               } else {

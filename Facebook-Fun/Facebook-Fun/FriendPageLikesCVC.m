@@ -9,6 +9,8 @@
 #import "FriendPageLikesCVC.h"
 #import "SVProgressHUD.h"
 #import "PageCollectionViewCell.h"
+#import "CacheControl.h"
+#import "NetworkActivity.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface FriendPageLikesCVC ()
@@ -74,10 +76,26 @@
     // Fetch the image asynchronously
     dispatch_queue_t pictureQ = dispatch_queue_create("Page Picture Fetcher", NULL);
     dispatch_async(pictureQ, ^{
-        NSData *pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.data[indexPath.row][@"pic"]]];
+        NSString *urlString = self.data[indexPath.row][@"pic"];
+        NSString *identifier = [urlString lastPathComponent];
+        NSData *pictureData;
+        if([CacheControl containsIdentifier:identifier])
+        {
+            pictureData = [CacheControl fetchDataWithIdentifier:identifier];
+        }
+        else
+        {
+            [NetworkActivity addRequest];
+            pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+            [NetworkActivity popRequest];
+            if(![CacheControl containsIdentifier:identifier])
+            {
+                [CacheControl pushDataToCache:pictureData identifier:identifier];
+            }
+        }
         // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
-            if([pcvCell.pageID isEqualToNumber:self.data[indexPath.row][@"page_id"]])
+            if([pcvCell.pageID integerValue] == [self.data[indexPath.row][@"page_id"] integerValue])
             {
                 UIImage *pageImage = [UIImage imageWithData:pictureData];
                 pcvCell.imageView.image = pageImage;

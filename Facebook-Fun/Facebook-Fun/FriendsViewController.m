@@ -9,6 +9,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "FriendsViewController.h"
 #import "AppDelegate.h"
+#import "CacheControl.h"
+#import "NetworkActivity.h"
 
 @interface FriendsViewController ()
 @property (nonatomic) BOOL loginOK;
@@ -83,7 +85,23 @@
     
     dispatch_queue_t profileQ = dispatch_queue_create("Profile Picture Fetcher", NULL);
     dispatch_async(profileQ, ^{
-        NSData *pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:friendInfo[@"pic_square"]]];
+        NSString *urlString = friendInfo[@"pic_square"];
+        NSString *identifier = [urlString lastPathComponent];
+        NSData *pictureData;
+        if([CacheControl containsIdentifier:identifier])
+        {
+            pictureData = [CacheControl fetchDataWithIdentifier:identifier];
+        }
+        else
+        {
+            [NetworkActivity addRequest];
+            pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+            [NetworkActivity popRequest];
+            if(![CacheControl containsIdentifier:identifier])
+            {
+                [CacheControl pushDataToCache:pictureData identifier:identifier];
+            }
+        }
         UIImage *profilePicture = [UIImage imageWithData:pictureData];
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.imageView.image = profilePicture;

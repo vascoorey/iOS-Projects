@@ -12,6 +12,8 @@
 		BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0017031D1400CD9125 /* MapViewController.m */; };
 		BC57AF0417031DA300CD9125 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0317031DA300CD9125 /* Page.m */; };
 		BC57AF0617031DBA00CD9125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC57AF0517031DBA00CD9125 /* MapKit.framework */; };
+		BC7768001703550500FB949B /* CacheControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7767FF1703550500FB949B /* CacheControl.m */; };
+		BC7768031703569400FB949B /* NetworkActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7768021703569400FB949B /* NetworkActivity.m */; };
 		BC92F73C1701FA6900154444 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73B1701FA6900154444 /* UIKit.framework */; };
 		BC92F73E1701FA6900154444 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73D1701FA6900154444 /* Foundation.framework */; };
 		BC92F7401701FA6900154444 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F73F1701FA6900154444 /* CoreGraphics.framework */; };
@@ -48,6 +50,10 @@
 		BC57AF0217031DA300CD9125 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		BC57AF0317031DA300CD9125 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		BC57AF0517031DBA00CD9125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BC7767FE1703550500FB949B /* CacheControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheControl.h; sourceTree = "<group>"; };
+		BC7767FF1703550500FB949B /* CacheControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheControl.m; sourceTree = "<group>"; };
+		BC7768011703569400FB949B /* NetworkActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivity.h; sourceTree = "<group>"; };
+		BC7768021703569400FB949B /* NetworkActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivity.m; sourceTree = "<group>"; };
 		BC92F7381701FA6900154444 /* Facebook-Fun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook-Fun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC92F73B1701FA6900154444 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC92F73D1701FA6900154444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC7768041703569900FB949B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BC7767FE1703550500FB949B /* CacheControl.h */,
+				BC7767FF1703550500FB949B /* CacheControl.m */,
+				BC7768011703569400FB949B /* NetworkActivity.h */,
+				BC7768021703569400FB949B /* NetworkActivity.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		BC776805170356AF00FB949B /* Friends List */ = {
+			isa = PBXGroup;
+			children = (
+				BC92F76F170214DD00154444 /* FacebookTableViewController.h */,
+				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
+				BC92F76C1702052300154444 /* FriendsViewController.h */,
+				BC92F76D1702052300154444 /* FriendsViewController.m */,
+			);
+			name = "Friends List";
+			sourceTree = "<group>";
+		};
+		BC776806170356BD00FB949B /* Friends Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BC57AEF91703174600CD9125 /* FriendDetailViewController.h */,
+				BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */,
+				BC92F77C17021F5B00154444 /* FriendPageLikesCVC.h */,
+				BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */,
+				BC92F77F1702204700154444 /* PageCollectionViewCell.h */,
+				BC92F7801702204700154444 /* PageCollectionViewCell.m */,
+				BC57AEFF17031D1400CD9125 /* MapViewController.h */,
+				BC57AF0017031D1400CD9125 /* MapViewController.m */,
+				BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */,
+				BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */,
+				BC57AF0217031DA300CD9125 /* Page.h */,
+				BC57AF0317031DA300CD9125 /* Page.m */,
+			);
+			name = "Friends Detail";
+			sourceTree = "<group>";
+		};
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
@@ -141,26 +188,11 @@
 		BC92F7411701FA6900154444 /* Facebook-Fun */ = {
 			isa = PBXGroup;
 			children = (
-				BC92F74A1701FA6900154444 /* AppDelegate.h */,
-				BC92F74B1701FA6900154444 /* AppDelegate.m */,
+				BC7768041703569900FB949B /* Utilities */,
 				BC92F7611701FA9D00154444 /* LoginViewController.h */,
 				BC92F7621701FA9D00154444 /* LoginViewController.m */,
-				BC92F76F170214DD00154444 /* FacebookTableViewController.h */,
-				BC92F770170214DD00154444 /* FacebookTableViewController.m */,
-				BC92F76C1702052300154444 /* FriendsViewController.h */,
-				BC92F76D1702052300154444 /* FriendsViewController.m */,
-				BC57AEF91703174600CD9125 /* FriendDetailViewController.h */,
-				BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */,
-				BC92F77C17021F5B00154444 /* FriendPageLikesCVC.h */,
-				BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */,
-				BC92F77F1702204700154444 /* PageCollectionViewCell.h */,
-				BC92F7801702204700154444 /* PageCollectionViewCell.m */,
-				BC57AEFF17031D1400CD9125 /* MapViewController.h */,
-				BC57AF0017031D1400CD9125 /* MapViewController.m */,
-				BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */,
-				BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */,
-				BC57AF0217031DA300CD9125 /* Page.h */,
-				BC57AF0317031DA300CD9125 /* Page.m */,
+				BC776805170356AF00FB949B /* Friends List */,
+				BC776806170356BD00FB949B /* Friends Detail */,
 				BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */,
 				BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */,
 				BC92F7421701FA6900154444 /* Supporting Files */,
@@ -171,6 +203,8 @@
 		BC92F7421701FA6900154444 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC92F74A1701FA6900154444 /* AppDelegate.h */,
+				BC92F74B1701FA6900154444 /* AppDelegate.m */,
 				BC92F7431701FA6900154444 /* Facebook-Fun-Info.plist */,
 				BC92F7441701FA6900154444 /* InfoPlist.strings */,
 				BC92F7471701FA6900154444 /* main.m */,
@@ -274,6 +308,8 @@
 				BC57AEFE17031CD700CD9125 /* FriendPageLikesMVC.m in Sources */,
 				BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */,
 				BC57AF0417031DA300CD9125 /* Page.m in Sources */,
+				BC7768001703550500FB949B /* CacheControl.m in Sources */,
+				BC7768031703569400FB949B /* NetworkActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
