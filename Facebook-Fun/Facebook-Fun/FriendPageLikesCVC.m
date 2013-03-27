@@ -69,6 +69,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Page" forIndexPath:indexPath];
     PageCollectionViewCell *pcvCell = (PageCollectionViewCell *)cell;
     pcvCell.imageView.image = nil;
+    pcvCell.pageID = self.data[indexPath.row][@"page_id"];
     
     // Fetch the image asynchronously
     dispatch_queue_t pictureQ = dispatch_queue_create("Page Picture Fetcher", NULL);
@@ -76,15 +77,22 @@
         NSData *pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.data[indexPath.row][@"pic"]]];
         // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIImage *pageImage = [UIImage imageWithData:pictureData];
-            pcvCell.imageView.image = pageImage;
-            pcvCell.alpha = 0.0f;
-            // 0.2f is just an example...
-            [UIView animateWithDuration:0.2f animations:^{
-                // In this case just change the alpha
-                pcvCell.alpha = 1.0f;
-                // For gleam you could now set the target image for the cell and it would fade to that.
-            }];
+            if([pcvCell.pageID isEqualToNumber:self.data[indexPath.row][@"page_id"]])
+            {
+                UIImage *pageImage = [UIImage imageWithData:pictureData];
+                pcvCell.imageView.image = pageImage;
+                pcvCell.alpha = 0.0f;
+                // 0.2f is just an example...
+                [UIView animateWithDuration:0.2f animations:^{
+                    // In this case just change the alpha
+                    pcvCell.alpha = 1.0f;
+                }];
+            }
+            else
+            {
+                // The cell has been scrolled off-screen
+                NSLog(@"Throwing away %@", self.data[indexPath.row][@"page_id"]);
+            }
         });
     });
     
