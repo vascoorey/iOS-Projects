@@ -22,8 +22,10 @@
 
 -(void)popRequest
 {
-    NSAssert(self.count > 0, @"Seems like you called removeRequest one too many times!");
-    self.count --;
+    if(self.count)
+    {
+        self.count --;
+    }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = self.count > 0;
 }
 

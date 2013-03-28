@@ -7,6 +7,7 @@
 //
 
 #import "CacheControl.h"
+#import "NSString+MD5.h"
 
 @interface CacheControl ()
 @property (atomic, strong) NSMutableSet *identifiers;
@@ -14,8 +15,6 @@
 @end
 
 @implementation CacheControl
-
-#warning Refactor CacheControl (use NSURL)
 
 -(id)init
 {
@@ -38,8 +37,7 @@
             NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:filePath] error:nil];
             _folderSize += [fileDictionary fileSize];
         }
-        //NSLog(@"%@", _identifiers);
-        NSLog(@"%@: %d", folderPath, _folderSize);
+        NSLog(@"Path: %@\nSize: %d", folderPath, _folderSize);
     }
     return self;
 }
@@ -59,21 +57,23 @@
 
 +(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
 {
-    NSLog(@"Adding %@ (%d)", identifier, [data length]);
-    NSAssert(![self containsIdentifier:identifier], @"CacheControl already has this identifier: %@", identifier);
+    NSString *filename = [identifier md5];
+    NSAssert(![self containsIdentifier:filename], @"CacheControl already has this identifier: %@", filename);
+    
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *folderPath = [self folderPath];
     NSError *error;
     NSUInteger maxSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? MAX_CACHE_IPAD : MAX_CACHE_IPHONE);
     CacheControl *sharedControl = [self sharedControl];
+    
     if(![fileManager fileExistsAtPath:folderPath])
     {
         [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
     NSAssert(!error, @"ERROR: %@", [error description]);
-    NSLog(@"Folder: %@", [folderPath stringByAppendingPathComponent:identifier]);
-    [fileManager createFileAtPath:[folderPath stringByAppendingPathComponent:identifier] contents:data attributes:nil];
-    [sharedControl.identifiers addObject:identifier];
+
+    [fileManager createFileAtPath:[folderPath stringByAppendingPathComponent:filename] contents:data attributes:nil];
+    [sharedControl.identifiers addObject:filename];
     sharedControl.folderSize += [data length];
     while(sharedControl.folderSize >= maxSize)
     {
@@ -114,27 +114,27 @@
 
 +(NSData *)fetchDataWithIdentifier:(NSString *)identifier
 {
-    NSAssert([self containsIdentifier:identifier], @"Can't get contents for identifier: %@", identifier);
-    //NSLog(@"Fetching %@", identifier);
+    NSString *filename = [identifier md5];
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:identifier]];
+    NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:filename]];
     return data;
 }
 
 +(BOOL)containsIdentifier:(NSString *)identifier
 {
-    return [[self sharedControl].identifiers containsObject:identifier];
+    return [[self sharedControl].identifiers containsObject:[identifier md5]];
 }
 
 +(void)removeIdentifierAndDeleteFile:(NSString *)identifier
 {
     NSError *error;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSString *filePath = [[self folderPath] stringByAppendingPathComponent:identifier];
+    NSString *filename = [identifier md5];
+    NSString *filePath = [[self folderPath] stringByAppendingPathComponent:filename];
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:filePath error:nil];
     [fileManager removeItemAtPath:filePath error:&error];
     NSAssert(!error, @"ERROR: %@", [error description]);
-    [[self sharedControl].identifiers removeObject:identifier];
+    [[self sharedControl].identifiers removeObject:filename];
     [self sharedControl].folderSize -= [fileDictionary fileSize];
 }
 

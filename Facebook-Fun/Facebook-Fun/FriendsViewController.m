@@ -109,7 +109,7 @@
                 cell.imageView.image = profilePicture;
                 [cell setNeedsLayout];
                 cell.imageView.alpha = 0.0f;
-                [UIView animateWithDuration:0.05f animations:^{
+                [UIView animateWithDuration:0.2f animations:^{
                     cell.imageView.alpha = 1.0f;
                 }];
             }

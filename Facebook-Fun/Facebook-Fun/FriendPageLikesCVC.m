@@ -101,15 +101,10 @@
                 pcvCell.alpha = 0.0f;
                 [cell setNeedsLayout];
                 // 0.2f is just an example...
-                [UIView animateWithDuration:0.1f animations:^{
+                [UIView animateWithDuration:0.2f animations:^{
                     // In this case just change the alpha
                     pcvCell.alpha = 1.0f;
                 }];
-            }
-            else
-            {
-                // The cell has been scrolled off-screen
-                NSLog(@"Throwing away %@", self.data[indexPath.row][@"page_id"]);
             }
         });
     });

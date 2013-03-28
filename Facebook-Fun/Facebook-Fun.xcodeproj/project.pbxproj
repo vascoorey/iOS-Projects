@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EF9291703AEFA000C1876 /* NSString+MD5.m */; };
 		BC57AEFB1703174600CD9125 /* FriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */; };
 		BC57AEFE17031CD700CD9125 /* FriendPageLikesMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */; };
 		BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0017031D1400CD9125 /* MapViewController.m */; };
@@ -41,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC0EF9281703AEFA000C1876 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		BC0EF9291703AEFA000C1876 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		BC57AEF91703174600CD9125 /* FriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailViewController.h; sourceTree = "<group>"; };
 		BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailViewController.m; sourceTree = "<group>"; };
 		BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPageLikesMVC.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 			children = (
 				BC7767FE1703550500FB949B /* CacheControl.h */,
 				BC7767FF1703550500FB949B /* CacheControl.m */,
+				BC0EF9281703AEFA000C1876 /* NSString+MD5.h */,
+				BC0EF9291703AEFA000C1876 /* NSString+MD5.m */,
 				BC7768011703569400FB949B /* NetworkActivity.h */,
 				BC7768021703569400FB949B /* NetworkActivity.m */,
 			);
@@ -310,6 +315,7 @@
 				BC57AF0417031DA300CD9125 /* Page.m in Sources */,
 				BC7768001703550500FB949B /* CacheControl.m in Sources */,
 				BC7768031703569400FB949B /* NetworkActivity.m in Sources */,
+				BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
