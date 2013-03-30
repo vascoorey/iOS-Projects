@@ -78,12 +78,14 @@
         NSString *urlString = self.data[indexPath.row][@"pic"];
         NSString *identifier = [urlString lastPathComponent];
         NSData *pictureData;
-        if(!(pictureData = [CacheControl fetchDataWithIdentifier:identifier]))
+        BOOL fetchedFromNetwork = NO;
+        if(!(pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier]))
         {
             [NetworkActivity addRequest];
             pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
             [NetworkActivity popRequest];
-            [CacheControl pushDataToCache:pictureData identifier:identifier];
+            [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
+            fetchedFromNetwork = YES;
         }
         // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -91,13 +93,17 @@
             {
                 UIImage *pageImage = [UIImage imageWithData:pictureData];
                 pcvCell.imageView.image = pageImage;
-                pcvCell.alpha = 0.0f;
                 [cell setNeedsLayout];
-                // 0.2f is just an example...
-                [UIView animateWithDuration:0.2f animations:^{
-                    // In this case just change the alpha
-                    pcvCell.alpha = 1.0f;
-                }];
+                // Only fade-in if it was fetched from the network
+                if(fetchedFromNetwork)
+                {
+                    pcvCell.alpha = 0.0f;
+                    // 0.2f is just an example...
+                    [UIView animateWithDuration:0.2f animations:^{
+                        // In this case just change the alpha
+                        pcvCell.alpha = 1.0f;
+                    }];
+                }
             }
         });
     });

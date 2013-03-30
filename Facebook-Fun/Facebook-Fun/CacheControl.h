@@ -10,9 +10,10 @@
 
 @interface CacheControl : NSObject
 
++(CacheControl *)sharedControl;
 // Returns nil if the identifier doesn't exist in cache
-+(NSData *)fetchDataWithIdentifier:(NSString *)identifier;
+-(NSData *)fetchDataWithIdentifier:(NSString *)identifier;
 // Behavior is undefined if the identifier already exists in cache
-+(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier;
+-(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier;
 
 @end

@@ -88,12 +88,15 @@
         NSString *urlString = friendInfo[@"pic_square"];
         NSString *identifier = [urlString lastPathComponent];
         NSData *pictureData;
-        if(!(pictureData = [CacheControl fetchDataWithIdentifier:identifier]))
+        BOOL fetchedFromNetwork = NO;
+        // Normal cache access time for profile pictures: 0.0001-0.0003s
+        if(!(pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier]))
         {
             [NetworkActivity addRequest];
             pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
             [NetworkActivity popRequest];
-            [CacheControl pushDataToCache:pictureData identifier:identifier];
+            [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
+            fetchedFromNetwork = YES;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if([[tableView indexPathsForVisibleRows] containsObject:indexPath])
@@ -101,10 +104,13 @@
                 UIImage *profilePicture = [UIImage imageWithData:pictureData];
                 cell.imageView.image = profilePicture;
                 [cell setNeedsLayout];
-                cell.imageView.alpha = 0.0f;
-                [UIView animateWithDuration:0.2f animations:^{
-                    cell.imageView.alpha = 1.0f;
-                }];
+                if(fetchedFromNetwork)
+                {
+                    cell.imageView.alpha = 0.0f;
+                    [UIView animateWithDuration:0.2f animations:^{
+                        cell.imageView.alpha = 1.0f;
+                    }];
+                }
             }
         });
     });
