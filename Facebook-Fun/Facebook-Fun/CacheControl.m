@@ -11,7 +11,7 @@
 
 @interface CacheControl ()
 @property (atomic) NSUInteger folderSize; // In bytes
-@property (atomic, strong) NSTimer *cleanupTimer;
+@property (nonatomic, strong) NSTimer *cleanupTimer;
 @end
 
 @implementation CacheControl
@@ -45,7 +45,7 @@
 
 -(void)startCleanupTimer
 {
-    self.cleanupTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(performCleanup:) userInfo:nil repeats:YES];
+    self.cleanupTimer = [NSTimer scheduledTimerWithTimeInterval:CLEANUP_INTERVAL target:self selector:@selector(performCleanup:) userInfo:nil repeats:YES];
 }
 
 -(void)performCleanup:(NSTimer *)timer
