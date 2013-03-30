@@ -10,10 +10,9 @@
 
 @interface CacheControl : NSObject
 
-+(BOOL)containsIdentifier:(NSString *)identifier;
-+(void)removeIdentifierAndDeleteFile:(NSString *)identifier;
-+(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier;
-// Behavior is undefined if the identifier is not present. Guard by calling containsIdentifier:
+// Returns nil if the identifier doesn't exist in cache
 +(NSData *)fetchDataWithIdentifier:(NSString *)identifier;
+// Behavior is undefined if the identifier already exists in cache
++(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier;
 
 @end

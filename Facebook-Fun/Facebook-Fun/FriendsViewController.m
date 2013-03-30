@@ -88,19 +88,12 @@
         NSString *urlString = friendInfo[@"pic_square"];
         NSString *identifier = [urlString lastPathComponent];
         NSData *pictureData;
-        if([CacheControl containsIdentifier:identifier])
-        {
-            pictureData = [CacheControl fetchDataWithIdentifier:identifier];
-        }
-        else
+        if(!(pictureData = [CacheControl fetchDataWithIdentifier:identifier]))
         {
             [NetworkActivity addRequest];
             pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
             [NetworkActivity popRequest];
-            if(![CacheControl containsIdentifier:identifier])
-            {
-                [CacheControl pushDataToCache:pictureData identifier:identifier];
-            }
+            [CacheControl pushDataToCache:pictureData identifier:identifier];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if([[tableView indexPathsForVisibleRows] containsObject:indexPath])

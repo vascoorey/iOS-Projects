@@ -55,10 +55,11 @@
 #define MAX_CACHE_IPHONE 8388608
 #define MAX_CACHE_IPAD 33554432
 
+#warning Use NSTimer to schedule cache cleanup
+
 +(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
 {
     NSString *filename = [identifier md5];
-    NSAssert(![self containsIdentifier:filename], @"CacheControl already has this identifier: %@", filename);
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *folderPath = [self folderPath];
@@ -75,11 +76,39 @@
     [fileManager createFileAtPath:[folderPath stringByAppendingPathComponent:filename] contents:data attributes:nil];
     [sharedControl.identifiers addObject:filename];
     sharedControl.folderSize += [data length];
-    while(sharedControl.folderSize >= maxSize)
-    {
-        [self removeOldestFile];
-    }
+//    while(sharedControl.folderSize >= maxSize)
+//    {
+//        [self removeOldestFile];
+//    }
+//    if(sharedControl.folderSize >= maxSize)
+//    {
+//        [self purgeCacheWithTargetBytes:(sharedControl.folderSize - maxSize)];
+//    }
     //NSLog(@"Added %@", identifier);
+}
+
++(void)purgeCacheWithTargetBytes:(NSUInteger)target
+{
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSLog(@"%@", [NSURL URLWithString:[self folderPath]]);
+    NSArray *files = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:[self folderPath]] includingPropertiesForKeys:@[NSURLCreationDateKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    
+    if ([files count]){
+        NSArray *sortedFileList = [files sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSDate * mDate1 = nil;
+            NSDate * mDate2 = nil;
+            if ([(NSURL*)obj1 getResourceValue:&mDate1 forKey:NSURLCreationDateKey error:nil] &&
+                [(NSURL*)obj2 getResourceValue:&mDate2 forKey:NSURLCreationDateKey error:nil]) {
+                if ([mDate1 timeIntervalSince1970] < [mDate2 timeIntervalSince1970]) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }else{
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+            }
+            return (NSComparisonResult)NSOrderedSame; // there was an error in getting the value
+        }];
+        NSLog(@"%@", sortedFileList);
+    }
 }
 
 +(void)removeOldestFile
@@ -118,11 +147,6 @@
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:filename]];
     return data;
-}
-
-+(BOOL)containsIdentifier:(NSString *)identifier
-{
-    return [[self sharedControl].identifiers containsObject:[identifier md5]];
 }
 
 +(void)removeIdentifierAndDeleteFile:(NSString *)identifier
