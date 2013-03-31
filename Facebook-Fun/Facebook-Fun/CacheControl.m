@@ -41,21 +41,28 @@
     return self;
 }
 
-#define CLEANUP_INTERVAL 5 // Seconds
+#define CLEANUP_INTERVAL 60 // Seconds
+#define MAX_CACHE_IPHONE 8388608
+#define MAX_CACHE_IPAD 33554432
 
 -(void)startCleanupTimer
 {
-    self.cleanupTimer = [NSTimer scheduledTimerWithTimeInterval:CLEANUP_INTERVAL target:self selector:@selector(performCleanup:) userInfo:nil repeats:YES];
+    // Guard against being called outside of the main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.cleanupTimer = [NSTimer scheduledTimerWithTimeInterval:CLEANUP_INTERVAL target:self selector:@selector(performCleanup:) userInfo:nil repeats:YES];
+    });
 }
 
 -(void)performCleanup:(NSTimer *)timer
 {
     NSLog(@"Current size: %d", self.folderSize);
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSArray *files = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:[self folderPath]] includingPropertiesForKeys:@[NSURLCreationDateKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
-    
-    if ([files count]){
-        NSArray *sortedFileList = [files sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    NSUInteger maxSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? MAX_CACHE_IPAD : MAX_CACHE_IPHONE);
+    if(self.folderSize > maxSize)
+    {
+        NSLog(@"Max cache size passed! Cleaning up...");
+        NSFileManager *fileManager = [[NSFileManager alloc] init];
+        NSArray *files = [fileManager contentsOfDirectoryAtURL:[NSURL fileURLWithPath:[self folderPath]] includingPropertiesForKeys:@[NSURLCreationDateKey] options:NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+        NSMutableArray *sortedFileList = [[files sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSDate * mDate1 = nil;
             NSDate * mDate2 = nil;
             if ([(NSURL*)obj1 getResourceValue:&mDate1 forKey:NSURLCreationDateKey error:nil] &&
@@ -67,13 +74,18 @@
                 }
             }
             return (NSComparisonResult)NSOrderedSame; // there was an error in getting the value
-        }];
-        NSLog(@"%@", sortedFileList);
+        }] mutableCopy];
+        while(self.folderSize > maxSize)
+        {
+            NSURL *fileToDelete = [sortedFileList lastObject];
+            [sortedFileList removeLastObject];
+            NSLog(@"Deleting: %@", fileToDelete);
+            NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[fileToDelete path] error:nil];
+            self.folderSize -= [fileDictionary fileSize];
+            [fileManager removeItemAtURL:fileToDelete error:nil];
+        }
     }
 }
-
-#define MAX_CACHE_IPHONE 8388608
-#define MAX_CACHE_IPAD 33554432
 
 -(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
 {
@@ -93,30 +105,6 @@
     self.folderSize += [data length];
 }
 
--(void)removeOldestFile
-{
-    NSError *filePathsError, *attributesError;
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSArray *filePaths = [fileManager subpathsOfDirectoryAtPath:[self folderPath] error:&filePathsError];
-    NSAssert(!filePathsError, @"ERROR: %@", [filePathsError description]);
-    NSDate *oldestDate = [NSDate date];
-    NSString *oldestFile;
-    for(NSString *filePath in filePaths)
-    {
-        //NSLog(@"Checking %@", filePath);
-        NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[[self folderPath] stringByAppendingPathComponent:filePath] error:&attributesError];
-        NSAssert(!attributesError, @"ERROR: %@", [attributesError description]);
-        if([[fileDictionary fileModificationDate] compare:oldestDate] == NSOrderedAscending)
-        {
-            oldestDate = [fileDictionary fileModificationDate];
-            oldestFile = filePath;
-        }
-    }
-    NSAssert(oldestFile, @"ERROR: Couldn't find a file to delete!");
-    //NSLog(@"Deleting: %@", oldestFile);
-    [self removeIdentifierAndDeleteFile:oldestFile];
-}
-
 -(NSString *)folderPath
 {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // App's root folder
@@ -129,18 +117,6 @@
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:filename]];
     return data;
-}
-
--(void)removeIdentifierAndDeleteFile:(NSString *)identifier
-{
-    NSError *error;
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSString *filename = [identifier md5];
-    NSString *filePath = [[self folderPath] stringByAppendingPathComponent:filename];
-    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:filePath error:nil];
-    [fileManager removeItemAtPath:filePath error:&error];
-    NSAssert(!error, @"ERROR: %@", [error description]);
-    self.folderSize -= [fileDictionary fileSize];
 }
 
 +(CacheControl *)sharedControl
