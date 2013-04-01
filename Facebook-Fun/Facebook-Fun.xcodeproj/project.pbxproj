@@ -39,6 +39,7 @@
 		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
 		BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */; };
 		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
+		BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPageLikesCVC.m; sourceTree = "<group>"; };
 		BC92F77F1702204700154444 /* PageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCollectionViewCell.h; sourceTree = "<group>"; };
 		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
+		BC9BA4871708C76B00A4EE36 /* UICollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +162,7 @@
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
-				BC92F7721702150000154444 /* SVProgressHUD */,
+				BC9BA48A1708C77200A4EE36 /* Addons */,
 				BC92F7411701FA6900154444 /* Facebook-Fun */,
 				BC92F73A1701FA6900154444 /* Frameworks */,
 				BC92F7391701FA6900154444 /* Products */,
@@ -230,6 +233,16 @@
 				BC92F7751702150000154444 /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		BC9BA48A1708C77200A4EE36 /* Addons */ = {
+			isa = PBXGroup;
+			children = (
+				BC9BA4871708C76B00A4EE36 /* UICollectionViewWaterfallLayout.h */,
+				BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */,
+				BC92F7721702150000154444 /* SVProgressHUD */,
+			);
+			name = Addons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +329,7 @@
 				BC7768001703550500FB949B /* CacheControl.m in Sources */,
 				BC7768031703569400FB949B /* NetworkActivity.m in Sources */,
 				BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */,
+				BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

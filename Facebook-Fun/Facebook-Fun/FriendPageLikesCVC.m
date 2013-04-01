@@ -38,7 +38,6 @@
     [self executeFacebookQuery:query usingIndex:1];
 }
 
-#warning Reused code.
 -(void)executeFacebookQuery:(NSString *)query usingIndex:(NSUInteger)index
 {
     // Set up the query parameter

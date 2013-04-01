@@ -28,13 +28,25 @@
 -(IBAction)loginComplete:(UIStoryboardSegue *)segue
 {
     self.loginOK = YES;
-    // Setup the query
-    NSString *query =
-    @"{"
-    @"'friends':'SELECT uid2 FROM friend WHERE uid1 = me()',"
-    @"'friendsInfo':'SELECT name, uid, pic_square FROM user WHERE uid IN (SELECT uid2 FROM #friends)',"
-    @"}";
-    [self executeFacebookQuery:query usingIndex:1];
+    // Check for cached results
+    NSString *token = [[[FBSession activeSession] accessTokenData] accessToken];
+    token = [token stringByAppendingString:@"-Friends"];
+    NSData *data = [[CacheControl sharedControl] fetchExpiringDataWithIdentifier:token];
+    if(data)
+    {
+        NSLog(@"Got useful data from cache!");
+        self.data = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    else
+    {
+        // Setup the query
+        NSString *query =
+        @"{"
+        @"'friends':'SELECT uid2 FROM friend WHERE uid1 = me()',"
+        @"'friendsInfo':'SELECT name, uid, pic_square FROM user WHERE uid IN (SELECT uid2 FROM #friends)',"
+        @"}";
+        [self executeFacebookQuery:query usingIndex:1];
+    }
 }
 
 - (IBAction)logout:(id)sender {

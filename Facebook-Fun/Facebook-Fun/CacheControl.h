@@ -13,7 +13,10 @@
 +(CacheControl *)sharedControl;
 // Returns nil if the identifier doesn't exist in cache
 -(NSData *)fetchDataWithIdentifier:(NSString *)identifier;
-// Behavior is undefined if the identifier already exists in cache
+-(NSData *)fetchExpiringDataWithIdentifier:(NSString *)identifier;
+// If the identifier already exists in cache this will do nothing
 -(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier;
+// If still in cache after expiration date it will be deleted
+-(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier expiration:(NSDate *)expirationDate;
 
 @end

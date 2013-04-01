@@ -9,6 +9,7 @@
 #import "FacebookTableViewController.h"
 #import "SVProgressHUD.h"
 #import "NetworkActivity.h"
+#import "CacheControl.h"
 
 @interface FacebookTableViewController ()
 @end
@@ -43,6 +44,9 @@
                               if (error) {
                                   NSLog(@"Error: %@", error);
                               } else {
+                                  [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
+                                                                      identifier:[[[[FBSession activeSession] accessTokenData] accessToken] stringByAppendingString:@"-Friends"]
+                                                                      expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
                                   self.data = result[@"data"][index][@"fql_result_set"];
                               }
                           }];

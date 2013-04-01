@@ -16,6 +16,8 @@
 
 @implementation CacheControl
 
+#warning Refactor the expiration date logic: create a file with key(filename)-value(expiration) pairs.
+
 -(id)init
 {
     if((self = [super init]))
@@ -44,6 +46,8 @@
 #define CLEANUP_INTERVAL 60 // Seconds
 #define MAX_CACHE_IPHONE 8388608
 #define MAX_CACHE_IPAD 33554432
+
+#pragma mark - Timer
 
 -(void)startCleanupTimer
 {
@@ -87,9 +91,21 @@
     }
 }
 
+#pragma mark - Push Data
+
 -(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
 {
+    [self pushDataToCache:data identifier:identifier expiration:nil];
+}
+
+-(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier expiration:(NSDate *)expirationDate
+{
     NSString *filename = [identifier md5];
+    if(expirationDate)
+    {
+        filename = [filename stringByAppendingFormat:@"_%g", [expirationDate timeIntervalSince1970]];
+        NSLog(@"Array filename: %@", filename);
+    }
     
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *folderPath = [self folderPath];
@@ -101,22 +117,68 @@
     }
     NSAssert(!error, @"ERROR: %@", [error description]);
 
-    [fileManager createFileAtPath:[folderPath stringByAppendingPathComponent:filename] contents:data attributes:nil];
-    self.folderSize += [data length];
+    NSString *filePath = [folderPath stringByAppendingPathComponent:filename];
+    if(![fileManager fileExistsAtPath:filePath])
+    {
+        NSLog(@"Writing to %@", filePath);
+        [fileManager createFileAtPath:filePath contents:data attributes:nil];
+        self.folderSize += [data length];
+    }
+}
+
+#pragma mark - Fetch Data
+
+-(NSData *)fetchDataWithIdentifier:(NSString *)identifier
+{
+    NSUInteger old = CACurrentMediaTime();
+    NSString *filename = [identifier md5];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:filename]];
+    NSLog(@"Normal: %g", CACurrentMediaTime() - old);
+    return data;
+}
+
+-(NSData *)fetchExpiringDataWithIdentifier:(NSString *)identifier
+{
+    NSUInteger old = CACurrentMediaTime();
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:[self folderPath] error:nil];
+    NSArray *filesWithSelectedPrefix = [files filteredArrayUsingPredicate: [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"self BEGINSWITH[cd] '%@_'", [identifier md5]]]];
+    NSString *selectedFile = [filesWithSelectedPrefix lastObject];
+    NSLog(@"Expiring: %g", CACurrentMediaTime() - old);
+    return [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:selectedFile]];
+}
+
+-(NSArray *)fetchArrayWithIdentifier:(NSString *)identifier
+{
+    NSArray *ret;
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:[self folderPath] error:nil];
+    NSArray *filesWithSelectedPrefix = [files filteredArrayUsingPredicate:
+                                        [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"self BEGINSWITH[cd] '%@_'", [identifier md5]]]];
+    NSString *filename = [filesWithSelectedPrefix lastObject];
+    if(filename)
+    {
+        NSString *filePath = [[self folderPath] stringByAppendingPathComponent:filename];
+        NSArray *parts = [filename componentsSeparatedByString:@"_"];
+        if([[parts lastObject] doubleValue] < [[NSDate date] timeIntervalSince1970])
+        {
+            NSLog(@"Deleting the array, was too old!\n%@", filePath);
+            [fileManager removeItemAtPath:filePath error:nil];
+        }
+        else
+        {
+            ret = [NSArray arrayWithContentsOfFile:filePath];
+            NSLog(@"Fetched: %@", ret);
+        }
+    }
+    return ret;
 }
 
 -(NSString *)folderPath
 {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]; // App's root folder
     return [documentsDirectory stringByAppendingPathComponent:@"FBFun"];
-}
-
--(NSData *)fetchDataWithIdentifier:(NSString *)identifier
-{
-    NSString *filename = [identifier md5];
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSData *data = [fileManager contentsAtPath:[[self folderPath] stringByAppendingPathComponent:filename]];
-    return data;
 }
 
 +(CacheControl *)sharedControl
