@@ -15,6 +15,7 @@
 
 @interface FriendPageLikesCVC ()
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSString *queryIdentifier;
 @end
 
 @implementation FriendPageLikesCVC
@@ -29,13 +30,24 @@
 {
     [super viewDidLoad];
     self.title = [self.title stringByAppendingString:@"'s Liked Pages"];
-    NSString *query = [NSString stringWithFormat:
+    // Check for cached results
+    NSString *token = [[[FBSession activeSession] accessTokenData] accessToken];
+    self.queryIdentifier = [token stringByAppendingString:[self.friendUID description]];
+    NSData *data = [[CacheControl sharedControl] fetchDataWithIdentifier:self.queryIdentifier];
+    if(data)
+    {
+        NSLog(@"Got useful data from cache!");
+        self.data = (NSArray *)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+    else
+    {
+        NSString *query = [NSString stringWithFormat:
                        @"{"
                        @"'friendLikes':'SELECT uid, page_id FROM page_fan WHERE uid = %@',"
                        @"'pages':'SELECT page_id, name, pic FROM page WHERE page_id IN (SELECT page_id FROM #friendLikes)',"
                        @"}", self.friendUID];
-    
-    [self executeFacebookQuery:query usingIndex:1];
+        [self executeFacebookQuery:query usingIndex:1];
+    }
 }
 
 -(void)executeFacebookQuery:(NSString *)query usingIndex:(NSUInteger)index
@@ -55,6 +67,9 @@
                               if (error) {
                                   NSLog(@"Error: %@", error);
                               } else {
+                                  [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
+                                                                     identifier:self.queryIdentifier
+                                                                     expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
                                   self.data = result[@"data"][index][@"fql_result_set"];
                               }
                           }];

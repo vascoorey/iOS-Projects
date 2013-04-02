@@ -1,25 +1,29 @@
 //
-//  NSString+MD5.m
+//  NSData+MD5.m
 //  Facebook-Fun
 //
-//  Created by Vasco Orey on 3/27/13.
+//  Created by Vasco Orey on 4/2/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
-#import "NSString+MD5.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "NSData+MD5.h"
 
-@implementation NSString (MD5)
+@implementation NSData (MD5)
 
--(NSString *)md5
+- (NSString*)md5
 {
-    const char *cStr = [self UTF8String];
+    // Create byte array of unsigned chars
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, strlen(cStr), md5Buffer ); // This is the md5 call
-    // Convert MD5 value in the buffer to NSString of hex values
+    
+    // Create 16 byte MD5 hash value, store in buffer
+    CC_MD5(self.bytes, self.length, md5Buffer);
+    
+    // Convert unsigned char buffer to NSString of hex values
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
     for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
         [output appendFormat:@"%02x",md5Buffer[i]];
+    
     return output;
 }
 

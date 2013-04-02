@@ -31,7 +31,7 @@
     // Check for cached results
     NSString *token = [[[FBSession activeSession] accessTokenData] accessToken];
     token = [token stringByAppendingString:@"-Friends"];
-    NSData *data = [[CacheControl sharedControl] fetchExpiringDataWithIdentifier:token];
+    NSData *data = [[CacheControl sharedControl] fetchDataWithIdentifier:token];
     if(data)
     {
         NSLog(@"Got useful data from cache!");

@@ -40,6 +40,7 @@
 		BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */; };
 		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
 		BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */; };
+		BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCEC5C0170B107D0011C83F /* NSData+MD5.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,8 @@
 		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
 		BC9BA4871708C76B00A4EE36 /* UICollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
+		BCCEC5BF170B107D0011C83F /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
+		BCCEC5C0170B107D0011C83F /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				BC7767FF1703550500FB949B /* CacheControl.m */,
 				BC0EF9281703AEFA000C1876 /* NSString+MD5.h */,
 				BC0EF9291703AEFA000C1876 /* NSString+MD5.m */,
+				BCCEC5BF170B107D0011C83F /* NSData+MD5.h */,
+				BCCEC5C0170B107D0011C83F /* NSData+MD5.m */,
 				BC7768011703569400FB949B /* NetworkActivity.h */,
 				BC7768021703569400FB949B /* NetworkActivity.m */,
 			);
@@ -330,6 +335,7 @@
 				BC7768031703569400FB949B /* NetworkActivity.m in Sources */,
 				BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */,
 				BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */,
+				BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
