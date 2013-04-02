@@ -59,6 +59,13 @@
     [self.locationManager startUpdatingLocation];
 }
 
+-(void)editTableView:(id)sender
+{
+    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
+    // Update the edit button
+    self.navigationItem.rightBarButtonItem.title = self.tableView.isEditing ? @"Done" : @"Edit";
+}
+
 -(void)updateView
 {
     if([self.geofences count])
@@ -144,19 +151,20 @@
     return YES;
 }
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Fetch the monitored region
+        CLRegion *region = self.geofences[indexPath.row];
+        // Stop monitoring
+        [self.locationManager stopMonitoringForRegion:region];
+        [self.geofences removeObjectAtIndex:indexPath.row];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self updateView];
+    } 
 }
-*/
 
 /*
 // Override to support rearranging the table view.
