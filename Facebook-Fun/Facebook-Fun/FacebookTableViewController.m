@@ -39,7 +39,7 @@
                                               id result,
                                               NSError *error) {
                               NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
-                              [SVProgressHUD popActivity];
+                              [SVProgressHUD dismiss];
                               [NetworkActivity popRequest];
                               if (error) {
                                   NSLog(@"Error: %@", error);

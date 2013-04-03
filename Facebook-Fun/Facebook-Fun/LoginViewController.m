@@ -34,7 +34,7 @@
 
 -(void)sessionStateChanged:(NSNotification *)notification
 {
-    [SVProgressHUD popActivity];
+    [SVProgressHUD dismiss];
     if ([[FBSession activeSession] isOpen]) {
         // Rewind segue
         [self performSegueWithIdentifier:@"loginComplete:" sender:self];

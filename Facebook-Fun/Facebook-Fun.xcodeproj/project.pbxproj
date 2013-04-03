@@ -27,23 +27,21 @@
 		BC92F7551701FA6900154444 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7531701FA6900154444 /* MainStoryboard_iPhone.storyboard */; };
 		BC92F7581701FA6900154444 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7561701FA6900154444 /* MainStoryboard_iPad.storyboard */; };
 		BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7621701FA9D00154444 /* LoginViewController.m */; };
-		BC92F7651701FB6C00154444 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F7641701FB6C00154444 /* FacebookSDK.framework */; };
 		BC92F7671702005100154444 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F7661702005100154444 /* libsqlite3.dylib */; };
 		BC92F769170200A300154444 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F768170200A300154444 /* Accounts.framework */; };
 		BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F76A170200D300154444 /* AdSupport.framework */; };
 		BC92F76E1702052300154444 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F76D1702052300154444 /* FriendsViewController.m */; };
 		BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F770170214DD00154444 /* FacebookTableViewController.m */; };
-		BC92F7761702150000154444 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7731702150000154444 /* SVProgressHUD.bundle */; };
-		BC92F7771702150000154444 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7751702150000154444 /* SVProgressHUD.m */; };
-		BC92F7791702150D00154444 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC92F7781702150D00154444 /* LICENSE.txt */; };
 		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
 		BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */; };
 		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
-		BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */; };
 		BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCEC5C0170B107D0011C83F /* NSData+MD5.m */; };
+		D15B70F4E8A246E498EB7E85 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B08A6D9021174C23B1574B07 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8299A45DDFAF4DDF865DBD0F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B08A6D9021174C23B1574B07 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0EF9281703AEFA000C1876 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		BC0EF9291703AEFA000C1876 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		BC57AEF91703174600CD9125 /* FriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailViewController.h; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 		BC92F7571701FA6900154444 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		BC92F7611701FA9D00154444 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BC92F7621701FA9D00154444 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		BC92F7641701FB6C00154444 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		BC92F7661702005100154444 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BC92F768170200A300154444 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		BC92F76A170200D300154444 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -84,17 +81,11 @@
 		BC92F76D1702052300154444 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
 		BC92F76F170214DD00154444 /* FacebookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookTableViewController.h; sourceTree = "<group>"; };
 		BC92F770170214DD00154444 /* FacebookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookTableViewController.m; sourceTree = "<group>"; };
-		BC92F7731702150000154444 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		BC92F7741702150000154444 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		BC92F7751702150000154444 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		BC92F7781702150D00154444 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BC92F77A1702164700154444 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BC92F77C17021F5B00154444 /* FriendPageLikesCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPageLikesCVC.h; sourceTree = "<group>"; };
 		BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPageLikesCVC.m; sourceTree = "<group>"; };
 		BC92F77F1702204700154444 /* PageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCollectionViewCell.h; sourceTree = "<group>"; };
 		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
-		BC9BA4871708C76B00A4EE36 /* UICollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
-		BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		BCCEC5BF170B107D0011C83F /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		BCCEC5C0170B107D0011C83F /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +103,7 @@
 				BC92F73C1701FA6900154444 /* UIKit.framework in Frameworks */,
 				BC92F73E1701FA6900154444 /* Foundation.framework in Frameworks */,
 				BC92F7401701FA6900154444 /* CoreGraphics.framework in Frameworks */,
-				BC92F7651701FB6C00154444 /* FacebookSDK.framework in Frameworks */,
+				D15B70F4E8A246E498EB7E85 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,10 +158,10 @@
 		BC92F72F1701FA6900154444 = {
 			isa = PBXGroup;
 			children = (
-				BC9BA48A1708C77200A4EE36 /* Addons */,
 				BC92F7411701FA6900154444 /* Facebook-Fun */,
 				BC92F73A1701FA6900154444 /* Frameworks */,
 				BC92F7391701FA6900154444 /* Products */,
+				8299A45DDFAF4DDF865DBD0F /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,10 +181,10 @@
 				BC92F76A170200D300154444 /* AdSupport.framework */,
 				BC92F768170200A300154444 /* Accounts.framework */,
 				BC92F7661702005100154444 /* libsqlite3.dylib */,
-				BC92F7641701FB6C00154444 /* FacebookSDK.framework */,
 				BC92F73B1701FA6900154444 /* UIKit.framework */,
 				BC92F73D1701FA6900154444 /* Foundation.framework */,
 				BC92F73F1701FA6900154444 /* CoreGraphics.framework */,
+				B08A6D9021174C23B1574B07 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,27 +220,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BC92F7721702150000154444 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				BC92F7781702150D00154444 /* LICENSE.txt */,
-				BC92F7731702150000154444 /* SVProgressHUD.bundle */,
-				BC92F7741702150000154444 /* SVProgressHUD.h */,
-				BC92F7751702150000154444 /* SVProgressHUD.m */,
-			);
-			path = SVProgressHUD;
-			sourceTree = "<group>";
-		};
-		BC9BA48A1708C77200A4EE36 /* Addons */ = {
-			isa = PBXGroup;
-			children = (
-				BC9BA4871708C76B00A4EE36 /* UICollectionViewWaterfallLayout.h */,
-				BC9BA4881708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m */,
-				BC92F7721702150000154444 /* SVProgressHUD */,
-			);
-			name = Addons;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +230,7 @@
 				BC92F7341701FA6900154444 /* Sources */,
 				BC92F7351701FA6900154444 /* Frameworks */,
 				BC92F7361701FA6900154444 /* Resources */,
+				34AE59580DCB4F1793E7B21B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -307,12 +278,27 @@
 				BC92F7521701FA6900154444 /* Default-568h@2x.png in Resources */,
 				BC92F7551701FA6900154444 /* MainStoryboard_iPhone.storyboard in Resources */,
 				BC92F7581701FA6900154444 /* MainStoryboard_iPad.storyboard in Resources */,
-				BC92F7761702150000154444 /* SVProgressHUD.bundle in Resources */,
-				BC92F7791702150D00154444 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34AE59580DCB4F1793E7B21B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BC92F7341701FA6900154444 /* Sources */ = {
@@ -324,7 +310,6 @@
 				BC92F7631701FA9D00154444 /* LoginViewController.m in Sources */,
 				BC92F76E1702052300154444 /* FriendsViewController.m in Sources */,
 				BC92F771170214DD00154444 /* FacebookTableViewController.m in Sources */,
-				BC92F7771702150000154444 /* SVProgressHUD.m in Sources */,
 				BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */,
 				BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */,
 				BC57AEFB1703174600CD9125 /* FriendDetailViewController.m in Sources */,
@@ -334,7 +319,6 @@
 				BC7768001703550500FB949B /* CacheControl.m in Sources */,
 				BC7768031703569400FB949B /* NetworkActivity.m in Sources */,
 				BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */,
-				BC9BA4891708C76B00A4EE36 /* UICollectionViewWaterfallLayout.m in Sources */,
 				BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +413,7 @@
 		};
 		BC92F75F1701FA6900154444 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8299A45DDFAF4DDF865DBD0F /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,6 +429,7 @@
 		};
 		BC92F7601701FA6900154444 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8299A45DDFAF4DDF865DBD0F /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -63,7 +63,7 @@
                                               id result,
                                               NSError *error) {
                               NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
-                              [SVProgressHUD popActivity];
+                              [SVProgressHUD dismiss];
                               if (error) {
                                   NSLog(@"Error: %@", error);
                               } else {

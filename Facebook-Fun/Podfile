@@ -1,0 +1,4 @@
+platform :ios, '6.0'
+
+pod 'SVProgressHUD'
+pod 'Facebook-iOS-SDK', '3.2.0'
