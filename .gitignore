@@ -1,3 +1,4 @@
+*.lock
 Pods
 FacebookSDK.framework
 Anypic-iOS/
