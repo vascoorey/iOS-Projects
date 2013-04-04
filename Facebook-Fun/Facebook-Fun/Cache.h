@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSDate * expirationDate;
 @property (nonatomic, retain) NSData * data;
+@property (nonatomic, retain) NSNumber * size;
 
 @end

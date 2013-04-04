@@ -4,8 +4,9 @@
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="expirationDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cache" positionX="-63" positionY="-27" width="128" height="88"/>
+        <element name="Cache" positionX="-63" positionY="-27" width="128" height="103"/>
     </elements>
 </model>

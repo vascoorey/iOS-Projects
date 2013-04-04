@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0EF9291703AEFA000C1876 /* NSString+MD5.m */; };
 		BC3B31E7170DFC34000F49E7 /* Cache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC3B31E5170DFC34000F49E7 /* Cache.xcdatamodeld */; };
-		BC3B31EA170DFC7B000F49E7 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3B31E9170DFC7B000F49E7 /* Cache.m */; };
 		BC3B31ED170DFC92000F49E7 /* Cache+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3B31EC170DFC92000F49E7 /* Cache+Create.m */; };
+		BC3B31F0170E0005000F49E7 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3B31EF170E0005000F49E7 /* Cache.m */; };
 		BC57AEFB1703174600CD9125 /* FriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */; };
 		BC57AEFE17031CD700CD9125 /* FriendPageLikesMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AEFD17031CD700CD9125 /* FriendPageLikesMVC.m */; };
 		BC57AF0117031D1400CD9125 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC57AF0017031D1400CD9125 /* MapViewController.m */; };
@@ -48,10 +48,10 @@
 		BC0EF9281703AEFA000C1876 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		BC0EF9291703AEFA000C1876 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		BC3B31E6170DFC34000F49E7 /* Cache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cache.xcdatamodel; sourceTree = "<group>"; };
-		BC3B31E8170DFC7B000F49E7 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
-		BC3B31E9170DFC7B000F49E7 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
 		BC3B31EB170DFC92000F49E7 /* Cache+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cache+Create.h"; sourceTree = "<group>"; };
 		BC3B31EC170DFC92000F49E7 /* Cache+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cache+Create.m"; sourceTree = "<group>"; };
+		BC3B31EE170E0005000F49E7 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		BC3B31EF170E0005000F49E7 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
 		BC57AEF91703174600CD9125 /* FriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailViewController.h; sourceTree = "<group>"; };
 		BC57AEFA1703174600CD9125 /* FriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailViewController.m; sourceTree = "<group>"; };
 		BC57AEFC17031CD700CD9125 /* FriendPageLikesMVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendPageLikesMVC.h; sourceTree = "<group>"; };
@@ -123,9 +123,9 @@
 			children = (
 				BC7767FE1703550500FB949B /* CacheControl.h */,
 				BC7767FF1703550500FB949B /* CacheControl.m */,
+				BC3B31EE170E0005000F49E7 /* Cache.h */,
+				BC3B31EF170E0005000F49E7 /* Cache.m */,
 				BC3B31E5170DFC34000F49E7 /* Cache.xcdatamodeld */,
-				BC3B31E8170DFC7B000F49E7 /* Cache.h */,
-				BC3B31E9170DFC7B000F49E7 /* Cache.m */,
 				BC3B31EB170DFC92000F49E7 /* Cache+Create.h */,
 				BC3B31EC170DFC92000F49E7 /* Cache+Create.m */,
 				BC0EF9281703AEFA000C1876 /* NSString+MD5.h */,
@@ -334,8 +334,8 @@
 				BC0EF92A1703AEFA000C1876 /* NSString+MD5.m in Sources */,
 				BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */,
 				BC3B31E7170DFC34000F49E7 /* Cache.xcdatamodeld in Sources */,
-				BC3B31EA170DFC7B000F49E7 /* Cache.m in Sources */,
 				BC3B31ED170DFC92000F49E7 /* Cache+Create.m in Sources */,
+				BC3B31F0170E0005000F49E7 /* Cache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

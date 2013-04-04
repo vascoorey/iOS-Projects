@@ -14,5 +14,6 @@
 @dynamic identifier;
 @dynamic expirationDate;
 @dynamic data;
+@dynamic size;
 
 @end
