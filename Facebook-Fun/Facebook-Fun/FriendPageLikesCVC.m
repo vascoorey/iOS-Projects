@@ -59,20 +59,21 @@
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam
                                  HTTPMethod:@"GET"
-                          completionHandler:^(FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error) {
-                              NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
-                              [SVProgressHUD dismiss];
-                              if (error) {
-                                  NSLog(@"Error: %@", error);
-                              } else {
-                                  [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
-                                                                     identifier:self.queryIdentifier
-                                                                     expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
-                                  self.data = result[@"data"][index][@"fql_result_set"];
-                              }
-                          }];
+                          completionHandler:
+     ^(FBRequestConnection *connection, id result, NSError *error) {
+         NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
+         [SVProgressHUD dismiss];
+         if (error) {
+             NSLog(@"Error: %@", error);
+         } else {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
+                                                    identifier:self.queryIdentifier
+                                                    expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
+             });
+             self.data = result[@"data"][index][@"fql_result_set"];
+         }
+     }];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -83,26 +84,30 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Page" forIndexPath:indexPath];
+    NSString *urlString = self.data[indexPath.row][@"pic"];
+    NSString *identifier = [urlString lastPathComponent];
+    __block NSData *pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier];
+    
     PageCollectionViewCell *pcvCell = (PageCollectionViewCell *)cell;
     pcvCell.imageView.image = nil;
     
     // Fetch the image asynchronously
     dispatch_queue_t pictureQ = dispatch_queue_create("Page Picture Fetcher", NULL);
     dispatch_async(pictureQ, ^{
-        NSString *urlString = self.data[indexPath.row][@"pic"];
-        NSString *identifier = [urlString lastPathComponent];
-        NSData *pictureData;
         BOOL fetchedFromNetwork = NO;
-        if(!(pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier]))
+        if(!pictureData)
         {
             [NetworkActivity addRequest];
             pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
             [NetworkActivity popRequest];
-            [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
             fetchedFromNetwork = YES;
         }
         // Go back to the main queue to do UIKit calls
         dispatch_async(dispatch_get_main_queue(), ^{
+            if(fetchedFromNetwork)
+            {
+                [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
+            }
             if([[collectionView indexPathsForVisibleItems] containsObject:indexPath])
             {
                 UIImage *pageImage = [UIImage imageWithData:pictureData];
