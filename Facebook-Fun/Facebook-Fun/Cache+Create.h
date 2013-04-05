@@ -10,6 +10,6 @@
 
 @interface Cache (Create)
 
-+(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context;
++(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context create:(BOOL)create;
 
 @end

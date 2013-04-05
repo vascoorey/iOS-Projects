@@ -86,31 +86,35 @@
 {
     static NSString *CellIdentifier = @"Friend";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    NSUInteger old = CACurrentMediaTime();
     // Configure the cell...
     // Get our friend's info
     // The dictionary keys are tied to the query (see above)
     NSDictionary *friendInfo = self.data[indexPath.row];
+    NSString *urlString = friendInfo[@"pic_square"];
+    NSString *identifier = [urlString lastPathComponent];
+    __block NSData *pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier];
+    
     cell.textLabel.text = friendInfo[@"name"];
     //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
     cell.imageView.image = nil;
     
     dispatch_queue_t profileQ = dispatch_queue_create("Profile Picture Fetcher", NULL);
     dispatch_async(profileQ, ^{
-        NSString *urlString = friendInfo[@"pic_square"];
-        NSString *identifier = [urlString lastPathComponent];
-        NSData *pictureData;
         BOOL fetchedFromNetwork = NO;
         // Normal cache access time for profile pictures: 0.0001-0.0003s
-        if(!(pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier]))
+        if(!pictureData)
         {
             [NetworkActivity addRequest];
             pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
             [NetworkActivity popRequest];
-            [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
             fetchedFromNetwork = YES;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            if(fetchedFromNetwork)
+            {
+                [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
+            }
             if([[tableView indexPathsForVisibleRows] containsObject:indexPath])
             {
                 UIImage *profilePicture = [UIImage imageWithData:pictureData];
@@ -124,6 +128,7 @@
                     }];
                 }
             }
+            NSLog(@"Time: %g", CACurrentMediaTime() - old);
         });
     });
     

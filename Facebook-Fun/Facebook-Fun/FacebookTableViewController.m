@@ -35,21 +35,22 @@
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam
                                  HTTPMethod:@"GET"
-                          completionHandler:^(FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error) {
-                              NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
-                              [SVProgressHUD dismiss];
-                              [NetworkActivity popRequest];
-                              if (error) {
-                                  NSLog(@"Error: %@", error);
-                              } else {
-                                  [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
-                                                                      identifier:[[[[FBSession activeSession] accessTokenData] accessToken] stringByAppendingString:@"-Friends"]
-                                                                      expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
-                                  self.data = result[@"data"][index][@"fql_result_set"];
-                              }
-                          }];
+                          completionHandler:
+     ^(FBRequestConnection *connection, id result, NSError *error) {
+         NSLog(@"Time taken for query: %g", CACurrentMediaTime() - old);
+         [SVProgressHUD dismiss];
+         [NetworkActivity popRequest];
+         if (error) {
+             NSLog(@"Error: %@", error);
+         } else {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [[CacheControl sharedControl] pushDataToCache:[NSKeyedArchiver archivedDataWithRootObject:result[@"data"][index][@"fql_result_set"]]
+                                                    identifier:[[[[FBSession activeSession] accessTokenData] accessToken] stringByAppendingString:@"-Friends"]
+                                                    expiration:[[NSDate date] dateByAddingTimeInterval:24*60*60]];
+             });
+             self.data = result[@"data"][index][@"fql_result_set"];
+         }
+     }];
 }
 
 -(void)executeFacebookQuery:(NSString *)query

@@ -10,10 +10,9 @@
 
 @implementation Cache (Create)
 
-+(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context
++(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context create:(BOOL)create
 {
     Cache *cache = nil;
-    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Cache"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"identifier" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
     request.predicate = [NSPredicate predicateWithFormat:@"identifier = %@", identifier];
@@ -25,12 +24,12 @@
     {
         // Handle error
     }
-    else if(![matches count])
+    else if(![matches count] && create)
     {
-        cache = [NSEntityDescription insertNewObjectForEntityForName:@"Identifier" inManagedObjectContext:context];
-        cache.name = name;
+        cache = [NSEntityDescription insertNewObjectForEntityForName:@"Cache" inManagedObjectContext:context];
+        cache.identifier = identifier;
     }
-    else
+    else if([matches count] && !create)
     {
         cache = [matches lastObject];
     }

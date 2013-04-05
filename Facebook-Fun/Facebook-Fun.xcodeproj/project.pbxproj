@@ -38,6 +38,7 @@
 		BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC92F77A1702164700154444 /* QuartzCore.framework */; };
 		BC92F77E17021F5B00154444 /* FriendPageLikesCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */; };
 		BC92F7811702204700154444 /* PageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC92F7801702204700154444 /* PageCollectionViewCell.m */; };
+		BCB1020A170EF4EA007DD86C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB10209170EF4EA007DD86C /* CoreData.framework */; };
 		BCCEC5C1170B107D0011C83F /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCEC5C0170B107D0011C83F /* NSData+MD5.m */; };
 		D15B70F4E8A246E498EB7E85 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B08A6D9021174C23B1574B07 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		BC92F77D17021F5B00154444 /* FriendPageLikesCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendPageLikesCVC.m; sourceTree = "<group>"; };
 		BC92F77F1702204700154444 /* PageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCollectionViewCell.h; sourceTree = "<group>"; };
 		BC92F7801702204700154444 /* PageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCollectionViewCell.m; sourceTree = "<group>"; };
+		BCB10209170EF4EA007DD86C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BCCEC5BF170B107D0011C83F /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MD5.h"; sourceTree = "<group>"; };
 		BCCEC5C0170B107D0011C83F /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MD5.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB1020A170EF4EA007DD86C /* CoreData.framework in Frameworks */,
 				BC57AF0617031DBA00CD9125 /* MapKit.framework in Frameworks */,
 				BC92F77B1702164700154444 /* QuartzCore.framework in Frameworks */,
 				BC92F76B170200D300154444 /* AdSupport.framework in Frameworks */,
@@ -189,6 +192,7 @@
 		BC92F73A1701FA6900154444 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCB10209170EF4EA007DD86C /* CoreData.framework */,
 				BC57AF0517031DBA00CD9125 /* MapKit.framework */,
 				BC92F77A1702164700154444 /* QuartzCore.framework */,
 				BC92F76A170200D300154444 /* AdSupport.framework */,
