@@ -16,10 +16,11 @@
 
 @implementation CacheControl
 
-#warning Todo: clean up when cache expires or max size is passed.
+#warning Todo: clean up when max size is passed.
 
-#define MAX_CACHE_IPHONE 8388608
-#define MAX_CACHE_IPAD 33554432
+#define MAX_CACHE_IPHONE 8388608 // Bytes
+#define MAX_CACHE_IPAD 33554432 // Bytes
+#define CLEANUP_INTERVAL 5 // Seconds
 
 #pragma mark - Singleton
 
@@ -33,38 +34,15 @@
     return sharedControl;
 }
 
-#pragma mark - CacheControl instance methods
-
-// Returns nil if the identifier doesn't exist in cache
--(NSData *)fetchDataWithIdentifier:(NSString *)identifier
-{
-    return [Cache cacheWithIndentifier:identifier inManagegObjectContext:self.context create:NO].data;
-}
-
-// If the identifier already exists in cache this will replace it's data
--(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
-{
-    [self pushDataToCache:data identifier:identifier expiration:nil];
-}
-
-// If still in cache after expiration date it will be deleted
-// If the identifier already exists in cache this will replace it's data
--(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier expiration:(NSDate *)expirationDate
-{
-    Cache *cache = [Cache cacheWithIndentifier:identifier inManagegObjectContext:self.context create:YES];
-    cache.data = data;
-    cache.identifier = identifier;
-    cache.expirationDate = expirationDate;
-    cache.size = @([data length]);
-}
-
-#pragma mark - Initialization
+#pragma mark - Initialization and Dealloc
 
 -(id)init
 {
     if((self = [super init]))
     {
+        NSLog(@"Using cache document...");
         [self useCacheDocument];
+        self.cleanupTimer = [NSTimer scheduledTimerWithTimeInterval:CLEANUP_INTERVAL target:self selector:@selector(performCleanup:) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -73,7 +51,7 @@
 {
     NSAssert(!self.context, @"Attempting to load a document when one was already loaded!");
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"Caches"];
+    url = [url URLByAppendingPathComponent:@"FBFunCaches"];
     UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
     if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]])
     {
@@ -101,6 +79,63 @@
     else
     {
         self.context = document.managedObjectContext;
+    }
+}
+
+-(void)dealloc
+{
+    [self.cleanupTimer invalidate];
+    self.cleanupTimer = nil;
+}
+
+#pragma mark - CacheControl instance methods
+
+// Returns nil if the identifier doesn't exist in cache
+-(NSData *)dataWithIdentifier:(NSString *)identifier
+{
+    return [Cache cacheWithIndentifier:identifier inManagegObjectContext:self.context].data;
+}
+
+// If the identifier already exists in cache this will replace it's data
+-(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier
+{
+    [self pushDataToCache:data identifier:identifier expiration:nil];
+}
+
+// If still in cache after expiration date it will be deleted
+// If the identifier already exists in cache this will replace it's data
+-(void)pushDataToCache:(NSData *)data identifier:(NSString *)identifier expiration:(NSDate *)expirationDate
+{
+    Cache *cache = [Cache cacheWithIndentifier:identifier inManagegObjectContext:self.context];
+    cache.data = data;
+    cache.identifier = identifier;
+    cache.expirationDate = expirationDate;
+    cache.size = @([data length]);
+    cache.timestamp = [NSDate date];
+}
+
+#pragma mark - Cleanup
+
+-(void)performCleanup:(NSTimer *)timer
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Cache"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES]];
+    NSArray *cacheEntries = [self.context executeFetchRequest:request error:nil];
+    NSUInteger totalSize = [[cacheEntries valueForKeyPath:@"@sum.size"] unsignedIntValue];
+    NSLog(@"Total size: %d", totalSize);
+    NSUInteger maxSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? MAX_CACHE_IPAD : MAX_CACHE_IPHONE;
+    NSUInteger index = 0;
+    while(totalSize > maxSize)
+    {
+        Cache *cacheToDelete = cacheEntries[index];
+        NSLog(@"Deleting %@", cacheToDelete.identifier);
+        totalSize -= [cacheToDelete.size unsignedIntValue];
+        cacheToDelete.data = nil;
+        cacheToDelete.timestamp = nil;
+        cacheToDelete.size = 0;
+        cacheToDelete.expirationDate = nil;
+        index ++;
     }
 }
 

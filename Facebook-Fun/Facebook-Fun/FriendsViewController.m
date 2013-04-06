@@ -31,7 +31,7 @@
     // Check for cached results
     NSString *token = [[[FBSession activeSession] accessTokenData] accessToken];
     token = [token stringByAppendingString:@"-Friends"];
-    NSData *data = [[CacheControl sharedControl] fetchDataWithIdentifier:token];
+    NSData *data = [[CacheControl sharedControl] dataWithIdentifier:token];
     if(data)
     {
         NSLog(@"Got useful data from cache!");
@@ -86,14 +86,14 @@
 {
     static NSString *CellIdentifier = @"Friend";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSUInteger old = CACurrentMediaTime();
+    CFTimeInterval old = CACurrentMediaTime();
     // Configure the cell...
     // Get our friend's info
     // The dictionary keys are tied to the query (see above)
     NSDictionary *friendInfo = self.data[indexPath.row];
     NSString *urlString = friendInfo[@"pic_square"];
     NSString *identifier = [urlString lastPathComponent];
-    __block NSData *pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier];
+    __block NSData *pictureData = [[CacheControl sharedControl] dataWithIdentifier:identifier];
     
     cell.textLabel.text = friendInfo[@"name"];
     //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", friendInfo[@"uid"]];
@@ -113,6 +113,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if(fetchedFromNetwork)
             {
+                NSLog(@"Adding %@", identifier);
                 [[CacheControl sharedControl] pushDataToCache:pictureData identifier:identifier];
             }
             if([[tableView indexPathsForVisibleRows] containsObject:indexPath])

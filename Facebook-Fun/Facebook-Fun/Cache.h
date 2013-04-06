@@ -2,7 +2,7 @@
 //  Cache.h
 //  Facebook-Fun
 //
-//  Created by Vasco Orey on 4/4/13.
+//  Created by Vasco Orey on 4/5/13.
 //  Copyright (c) 2013 Delta Dog Studios. All rights reserved.
 //
 
@@ -12,9 +12,10 @@
 
 @interface Cache : NSManagedObject
 
-@property (nonatomic, retain) NSString * identifier;
-@property (nonatomic, retain) NSDate * expirationDate;
 @property (nonatomic, retain) NSData * data;
+@property (nonatomic, retain) NSDate * expirationDate;
+@property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSNumber * size;
+@property (nonatomic, retain) NSDate * timestamp;
 
 @end

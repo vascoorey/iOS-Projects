@@ -10,7 +10,7 @@
 
 @implementation Cache (Create)
 
-+(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context create:(BOOL)create
++(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context
 {
     Cache *cache = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Cache"];
@@ -24,12 +24,12 @@
     {
         // Handle error
     }
-    else if(![matches count] && create)
+    else if(![matches count])
     {
         cache = [NSEntityDescription insertNewObjectForEntityForName:@"Cache" inManagedObjectContext:context];
         cache.identifier = identifier;
     }
-    else if([matches count] && !create)
+    else
     {
         cache = [matches lastObject];
     }

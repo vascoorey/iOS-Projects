@@ -33,7 +33,7 @@
     // Check for cached results
     NSString *token = [[[FBSession activeSession] accessTokenData] accessToken];
     self.queryIdentifier = [token stringByAppendingString:[self.friendUID description]];
-    NSData *data = [[CacheControl sharedControl] fetchDataWithIdentifier:self.queryIdentifier];
+    NSData *data = [[CacheControl sharedControl] dataWithIdentifier:self.queryIdentifier];
     if(data)
     {
         NSLog(@"Got useful data from cache!");
@@ -86,7 +86,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Page" forIndexPath:indexPath];
     NSString *urlString = self.data[indexPath.row][@"pic"];
     NSString *identifier = [urlString lastPathComponent];
-    __block NSData *pictureData = [[CacheControl sharedControl] fetchDataWithIdentifier:identifier];
+    __block NSData *pictureData = [[CacheControl sharedControl] dataWithIdentifier:identifier];
     
     PageCollectionViewCell *pcvCell = (PageCollectionViewCell *)cell;
     pcvCell.imageView.image = nil;
