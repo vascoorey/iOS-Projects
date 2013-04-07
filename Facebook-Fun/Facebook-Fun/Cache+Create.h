@@ -10,6 +10,7 @@
 
 @interface Cache (Create)
 
+-(void)erase;
 +(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context;
 
 @end

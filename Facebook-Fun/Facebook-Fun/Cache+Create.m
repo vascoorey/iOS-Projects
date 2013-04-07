@@ -10,6 +10,14 @@
 
 @implementation Cache (Create)
 
+-(void)erase
+{
+    self.data = nil;
+    self.timestamp = nil;
+    self.size = 0;
+    self.expirationDate = nil;
+}
+
 +(Cache *)cacheWithIndentifier:(NSString *)identifier inManagegObjectContext:(NSManagedObjectContext *)context
 {
     Cache *cache = nil;

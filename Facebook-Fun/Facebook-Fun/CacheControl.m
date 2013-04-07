@@ -118,6 +118,8 @@
 
 -(void)performCleanup:(NSTimer *)timer
 {
+    // First get rid of any expired caches
+    [self cleanExpiredCaches];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Cache"];
     request.predicate = nil;
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES]];
@@ -131,14 +133,21 @@
         Cache *cacheToDelete = cacheEntries[index];
         NSLog(@"Deleting %@", cacheToDelete.identifier);
         totalSize -= [cacheToDelete.size unsignedIntValue];
-        cacheToDelete.data = nil;
-        cacheToDelete.timestamp = nil;
-        cacheToDelete.size = 0;
-        cacheToDelete.expirationDate = nil;
+        [cacheToDelete erase];
         index ++;
     }
     NSLog(@"Saving the current context...");
     [self.context save:nil];
+}
+
+-(void)cleanExpiredCaches
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Cache"];
+    request.predicate = [NSPredicate predicateWithFormat:@"expirationDate < %@", [NSDate date]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"identifier" ascending:YES]];
+    NSArray *expiredEntries = [self.context executeFetchRequest:request error:nil];
+    NSLog(@"Cleaning expired caches: %@", expiredEntries);
+    [expiredEntries makeObjectsPerformSelector:@selector(erase)];
 }
 
 @end
