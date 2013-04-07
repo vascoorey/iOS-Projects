@@ -16,11 +16,9 @@
 
 @implementation CacheControl
 
-#warning Todo: clean up when max size is passed.
-
 #define MAX_CACHE_IPHONE 8388608 // Bytes
 #define MAX_CACHE_IPAD 33554432 // Bytes
-#define CLEANUP_INTERVAL 5 // Seconds
+#define CLEANUP_INTERVAL 60 // Seconds
 
 #pragma mark - Singleton
 
@@ -84,6 +82,8 @@
 
 -(void)dealloc
 {
+    [self.context save:nil];
+    self.context = nil;
     [self.cleanupTimer invalidate];
     self.cleanupTimer = nil;
 }
@@ -137,6 +137,8 @@
         cacheToDelete.expirationDate = nil;
         index ++;
     }
+    NSLog(@"Saving the current context...");
+    [self.context save:nil];
 }
 
 @end
