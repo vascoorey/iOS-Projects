@@ -26,6 +26,7 @@
 #define NUM_ROWS (HEIGHT_GAME / CELL_WIDTH)
 #define NUM_COLS (WIDTH_GAME / CELL_WIDTH)
 #define DELAY_IN_SECONDS 0.15f
+#define FONT_SIZE 18.0f
 
 -(NSMutableArray *)gameNeighbors
 {
@@ -52,6 +53,12 @@
         [self reset];
         [self schedule:@selector(stepGrid) interval:DELAY_IN_SECONDS];
         [self scheduleUpdate];
+        CCLabelTTF *resetButton = [CCLabelTTF labelWithString:@"Reset" fontName:@"Helvetica" fontSize:FONT_SIZE];
+        resetButton.position = CGPointMake(WIDTH_WINDOW / 4, HEIGHT_WINDOW - Y_OFF_SET);
+        CCLabelTTF *startButton = [CCLabelTTF labelWithString:@"Toggle" fontName:@"Helvetica" fontSize:FONT_SIZE];
+        startButton.position = CGPointMake((WIDTH_WINDOW / 4) * 3, HEIGHT_WINDOW - Y_OFF_SET);
+        [self addChild:resetButton];
+        [self addChild:startButton];
 	}
 	return self;
 }
