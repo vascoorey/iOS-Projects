@@ -17,13 +17,13 @@ local config =
 	KKStartupConfig = 
 	{
 		-- load first scene from a class with this name, or from a Lua script with this name with .lua appended
-		FirstSceneClassName = "HelloWorldLayer",
+		FirstSceneClassName = "GameOfLifeLayer",
 
 		MaxFrameRate = 60,
 		DisplayFPS = YES,
 
 		EnableUserInteraction = YES,
-		EnableMultiTouch = NO,
+		EnableMultiTouch = YES,
 
 		-- Render settings
 		DefaultTexturePixelFormat = TexturePixelFormat.RGBA8888,

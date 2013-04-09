@@ -7,7 +7,7 @@
 
 #import "kobold2d.h"
 
-@interface HelloWorldLayer : CCLayer
+@interface GameOfLifeLayer : CCLayer
 {
 }
 
