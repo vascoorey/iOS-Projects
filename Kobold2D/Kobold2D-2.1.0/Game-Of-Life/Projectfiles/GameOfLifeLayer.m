@@ -50,9 +50,19 @@
 	if ((self = [super init]))
 	{
         [self reset];
+        [self schedule:@selector(stepGrid) interval:DELAY_IN_SECONDS];
         [self scheduleUpdate];
 	}
 	return self;
+}
+
+-(void)stepGrid
+{
+    if(!self.done)
+    {
+        [self countNeighbors];
+        [self updateGrid];
+    }
 }
 
 -(void)reset
@@ -94,6 +104,46 @@
     return (col + 1) % NUM_COLS;
 }
 
+-(void)countNeighbors
+{
+    for(int row = 0; row < NUM_ROWS; row ++)
+    {
+        for(int col = 0; col < NUM_COLS; col ++)
+        {
+            //Must test all 8 cells
+            self.gameNeighbors[row][col] =
+              @([self.gameGrid[[self previousRow:row]][col] unsignedIntValue] +
+                [self.gameGrid[[self nextRow:row]][col] unsignedIntValue] +
+                [self.gameGrid[row][[self previousCol:col]] unsignedIntValue] +
+                [self.gameGrid[row][[self nextCol:col]] unsignedIntValue] +
+                [self.gameGrid[[self previousRow:row]][[self previousCol:col]] unsignedIntValue] +
+                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue] +
+                [self.gameGrid[[self nextRow:row]][[self previousCol:col]] unsignedIntValue] +
+                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue]);
+        }
+    }
+}
+
+-(void)updateGrid
+{
+    //Go through all the cells in gameNeighbors and change grid accordingly
+    for(int row = 0; row < NUM_ROWS; row ++)
+    {
+        for(int col = 0; col < NUM_COLS; col ++)
+        {
+            NSUInteger numNeighbors = [self.gameNeighbors[row][col] unsignedIntValue];
+            if((numNeighbors <= 1) || (numNeighbors >= 4))
+            {
+                self.gameGrid[row][col] = @(0);
+            }
+            else
+            {
+                self.gameGrid[row][col] = @(1);
+            }
+        }
+    }
+}
+
 -(void)update:(ccTime)delta
 {
     //React to touch input
@@ -115,7 +165,6 @@
                 else if(touchLocation.x < WIDTH_WINDOW / 2 && touchLocation.y > HEIGHT_GAME + Y_OFF_SET)
                 {
                     [self reset];
-                    self.done = YES;
                 }
                 else
                 {
