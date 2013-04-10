@@ -174,11 +174,9 @@
 
 -(void)playSoundForRow:(NSUInteger)row col:(NSUInteger)col
 {
-    NSLog(@"PLaying sound for %d, %d", row, col);
-    Float32 pitch = (440.0f / 10.0f * (col + 1)) / 440.0f; //Based on column
-    Float32 gain = ((row + 1.0f) / NUM_ROWS); //Based on row
-    NSLog(@"pitch: %g, gain: %g", pitch, gain);
-    [self.audioEngine playEffect:@"a-sound.WAV" pitch:1.0f pan:0 gain:gain];
+    Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
+    Float32 gain = ((row + 1.0f) / (NUM_ROWS * 3)); //Based on row
+    [self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
 }
 
 -(void)updateGrid
