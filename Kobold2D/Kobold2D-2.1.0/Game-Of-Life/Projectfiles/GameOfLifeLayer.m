@@ -22,12 +22,13 @@
 
 @implementation GameOfLifeLayer
 
-#define Y_OFF_SET 21
-#define WIDTH_WINDOW 320
-#define HEIGHT_WINDOW 480
-#define CELL_WIDTH 20
+#define WIDTH_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
+#define HEIGHT_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480)
+#define Y_OFF_SET (HEIGHT_WINDOW * .04375f)
+#define CELL_WIDTH (NSInteger)(WIDTH_WINDOW * .0625f)
 #define WIDTH_GAME WIDTH_WINDOW
-#define HEIGHT_GAME (HEIGHT_WINDOW - 60)
+#define GAME_OFFSET (NSInteger)(HEIGHT_WINDOW * .125)
+#define HEIGHT_GAME (HEIGHT_WINDOW - GAME_OFFSET)
 #define NUM_ROWS (HEIGHT_GAME / CELL_WIDTH)
 #define NUM_COLS (WIDTH_GAME / CELL_WIDTH)
 #define DELAY_IN_SECONDS 0.15f //6.67 updates per second
