@@ -13,6 +13,9 @@
 @property (nonatomic) BOOL done;
 @property (nonatomic) NSUInteger priorCol;
 @property (nonatomic) NSUInteger priorRow;
+@property (nonatomic) ccColor4F toggleButtonColor;
+@property (nonatomic) ccColor4F resetButtonColor;
+@property (nonatomic, weak) CCLabelTTF *toggleLabel;
 @end
 
 @implementation GameOfLifeLayer
@@ -25,8 +28,11 @@
 #define HEIGHT_GAME (HEIGHT_WINDOW - 60)
 #define NUM_ROWS (HEIGHT_GAME / CELL_WIDTH)
 #define NUM_COLS (WIDTH_GAME / CELL_WIDTH)
-#define DELAY_IN_SECONDS 0.15f
+#define DELAY_IN_SECONDS 0.15f //6.67 updates per second
 #define FONT_SIZE 18.0f
+#define TOGGLE_BUTTON_COLOR_NORMAL ccc4f(150.0/255.0, 0.0, 1.0, 1.0)
+#define BUTTON_COLOR_PRESSED ccc4f(1.0, 0.0, 1.0, 1.0)
+#define RESET_BUTTON_COLOR_NORMAL ccc4f(50.0/255.0, 0.0, 1.0, 1.0)
 
 -(NSMutableArray *)gameNeighbors
 {
@@ -50,20 +56,36 @@
 {
 	if ((self = [super init]))
 	{
-        [self reset];
-        [self schedule:@selector(stepGrid) interval:DELAY_IN_SECONDS];
+        NSLog(@"%d, %d", NUM_ROWS, NUM_COLS);
+        [self reset:NO];
+        [self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
         [self scheduleUpdate];
         CCLabelTTF *resetButton = [CCLabelTTF labelWithString:@"Reset" fontName:@"Helvetica" fontSize:FONT_SIZE];
         resetButton.position = CGPointMake(WIDTH_WINDOW / 4, HEIGHT_WINDOW - Y_OFF_SET);
-        CCLabelTTF *startButton = [CCLabelTTF labelWithString:@"Toggle" fontName:@"Helvetica" fontSize:FONT_SIZE];
-        startButton.position = CGPointMake((WIDTH_WINDOW / 4) * 3, HEIGHT_WINDOW - Y_OFF_SET);
+        self.toggleLabel = [CCLabelTTF labelWithString:@"Running" fontName:@"Helvetica" fontSize:FONT_SIZE];
+        self.toggleLabel.position = CGPointMake((WIDTH_WINDOW / 4) * 3, HEIGHT_WINDOW - Y_OFF_SET);
         [self addChild:resetButton];
-        [self addChild:startButton];
+        [self addChild:self.toggleLabel];
 	}
 	return self;
 }
 
--(void)stepGrid
+-(void)setDone:(BOOL)done
+{
+    _done = done;
+    if(done)
+    {
+        self.toggleButtonColor = BUTTON_COLOR_PRESSED;
+        self.toggleLabel.string = @"Stopped";
+    }
+    else
+    {
+        self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
+        self.toggleLabel.string = @"Running";
+    }
+}
+
+-(void)nextStep
 {
     if(!self.done)
     {
@@ -72,12 +94,14 @@
     }
 }
 
--(void)reset
+-(void)reset:(BOOL)withColorChange
 {
     self.gameGrid = nil;
     self.gameNeighbors = nil;
     self.priorCol = -1;
     self.priorRow = -1;
+    self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
+    self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
     for(int row = 0; row < NUM_ROWS; row ++)
     {
         NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:NUM_COLS];
@@ -88,6 +112,16 @@
         self.gameGrid[row] = line;
         self.gameNeighbors[row] = [line mutableCopy];
     }
+    if(withColorChange)
+    {
+        self.resetButtonColor = BUTTON_COLOR_PRESSED;
+        [self scheduleOnce:@selector(resetButtonNormal) delay:DELAY_IN_SECONDS];
+    }
+}
+
+-(void)resetButtonNormal
+{
+    self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
 }
 
 -(NSUInteger)previousRow:(NSUInteger)row
@@ -118,15 +152,16 @@
         for(int col = 0; col < NUM_COLS; col ++)
         {
             //Must test all 8 cells
-            self.gameNeighbors[row][col] =
-              @([self.gameGrid[[self previousRow:row]][col] unsignedIntValue] +
+            NSUInteger numNeighbors =
+                [self.gameGrid[[self previousRow:row]][col] unsignedIntValue] +
                 [self.gameGrid[[self nextRow:row]][col] unsignedIntValue] +
                 [self.gameGrid[row][[self previousCol:col]] unsignedIntValue] +
                 [self.gameGrid[row][[self nextCol:col]] unsignedIntValue] +
                 [self.gameGrid[[self previousRow:row]][[self previousCol:col]] unsignedIntValue] +
                 [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue] +
                 [self.gameGrid[[self nextRow:row]][[self previousCol:col]] unsignedIntValue] +
-                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue]);
+                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue];
+            self.gameNeighbors[row][col] = @(numNeighbors);
         }
     }
 }
@@ -143,7 +178,7 @@
             {
                 self.gameGrid[row][col] = @(0);
             }
-            else
+            else if(numNeighbors == 3)
             {
                 self.gameGrid[row][col] = @(1);
             }
@@ -171,7 +206,7 @@
                 //Handle touches on the left button
                 else if(touchLocation.x < WIDTH_WINDOW / 2 && touchLocation.y > HEIGHT_GAME + Y_OFF_SET)
                 {
-                    [self reset];
+                    [self reset:YES];
                 }
                 else
                 {
@@ -191,7 +226,15 @@
                 {
                     NSUInteger previousValue = [self.gameGrid[row][col] unsignedIntValue];
                     NSLog(@"Cell pressed: %d, %d", row, col);
-                    self.gameGrid[row][col] = previousValue ? @(0) : @(1);
+                    if(previousValue)
+                    {
+                        self.gameGrid[row][col] = @(0);
+                    }
+                    else
+                    {
+                        self.gameGrid[row][col] = @(1);
+                        //And play the corresponding sound
+                    }
                     self.priorCol = col;
                     self.priorRow = row;
                 }
@@ -235,7 +278,7 @@
             if(cellValue)
             {
                 ccDrawSolidRect(CGPointMake(col * CELL_WIDTH, row * CELL_WIDTH),
-                                CGPointMake(col * CELL_WIDTH + CELL_WIDTH, row * CELL_WIDTH + CELL_WIDTH),
+                                CGPointMake((col + 1) * CELL_WIDTH, (row + 1) * CELL_WIDTH),
                                 ccc4f(100.0/255.0, 0, 1.0, 1.0));
             }
         }
@@ -244,12 +287,12 @@
     //Draw the button
     ccDrawSolidRect(CGPointMake(WIDTH_WINDOW / 2, HEIGHT_GAME + Y_OFF_SET),
                     CGPointMake(WIDTH_WINDOW, HEIGHT_WINDOW),
-                    ccc4f(150.0/255.0, 0.0, 1.0, 1.0));
+                    self.toggleButtonColor);
     
     //Draw the clear button
     ccDrawSolidRect(CGPointMake(0, HEIGHT_GAME + Y_OFF_SET),
                     CGPointMake(WIDTH_WINDOW / 2, HEIGHT_WINDOW),
-                    ccc4f(50.0/255.0, 0.0, 1.0, 1.0));
+                    self.resetButtonColor);
 }
 
 @end

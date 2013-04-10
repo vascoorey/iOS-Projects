@@ -310,7 +310,7 @@
 		DCC1A0D813A94EC0005BD75D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "Game-Of-Life" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -441,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
@@ -448,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
