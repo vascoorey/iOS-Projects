@@ -6,16 +6,18 @@
  */
 
 #import "GameOfLifeLayer.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameOfLifeLayer ()
 @property (nonatomic, strong) NSMutableArray *gameGrid;
 @property (nonatomic, strong) NSMutableArray *gameNeighbors;
 @property (nonatomic) BOOL done;
-@property (nonatomic) NSUInteger priorCol;
-@property (nonatomic) NSUInteger priorRow;
+@property (nonatomic) NSInteger priorCol;
+@property (nonatomic) NSInteger priorRow;
 @property (nonatomic) ccColor4F toggleButtonColor;
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
+@property (nonatomic, strong) SimpleAudioEngine *audioEngine;
 @end
 
 @implementation GameOfLifeLayer
@@ -57,6 +59,9 @@
 	if ((self = [super init]))
 	{
         NSLog(@"%d, %d", NUM_ROWS, NUM_COLS);
+        self.audioEngine = [SimpleAudioEngine sharedEngine];
+        NSLog(@"%@", self.audioEngine);
+        [self.audioEngine preloadEffect:@"a-sound.WAV"];
         [self reset:NO];
         [self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
         [self scheduleUpdate];
@@ -166,6 +171,15 @@
     }
 }
 
+-(void)playSoundForRow:(NSUInteger)row col:(NSUInteger)col
+{
+    NSLog(@"PLaying sound for %d, %d", row, col);
+    Float32 pitch = (440.0f / 10.0f * (col + 1)) / 440.0f; //Based on column
+    Float32 gain = ((row + 1.0f) / NUM_ROWS); //Based on row
+    NSLog(@"pitch: %g, gain: %g", pitch, gain);
+    [self.audioEngine playEffect:@"a-sound.WAV" pitch:1.0f pan:0 gain:gain];
+}
+
 -(void)updateGrid
 {
     //Go through all the cells in gameNeighbors and change grid accordingly
@@ -180,6 +194,7 @@
             }
             else if(numNeighbors == 3)
             {
+                [self playSoundForRow:row col:col];
                 self.gameGrid[row][col] = @(1);
             }
         }
@@ -195,6 +210,8 @@
         KKTouch *touch;
         CCARRAY_FOREACH(input.touches, touch)
         {
+            NSInteger row = -1;
+            NSInteger col = -1;
             CGPoint touchLocation = touch.location;
             if(touch.phase == KKTouchPhaseBegan)
             {
@@ -210,9 +227,10 @@
                 }
                 else
                 {
-                    NSUInteger row = touchLocation.y / CELL_WIDTH;
-                    NSUInteger col = touchLocation.x / CELL_WIDTH;
+                    row = touchLocation.y / CELL_WIDTH;
+                    col = touchLocation.x / CELL_WIDTH;
                     NSUInteger previousValue = [self.gameGrid[row][col] unsignedIntValue];
+                    [self playSoundForRow:row col:col];
                     self.gameGrid[row][col] = previousValue ? @(0) : @(1);
                     self.priorCol = col;
                     self.priorRow = row;
@@ -220,12 +238,12 @@
             }
             else if(touchLocation.y <= HEIGHT_GAME + Y_OFF_SET)
             {
-                NSUInteger row = touchLocation.y / CELL_WIDTH;
-                NSUInteger col = touchLocation.x / CELL_WIDTH;
+                row = touchLocation.y / CELL_WIDTH;
+                col = touchLocation.x / CELL_WIDTH;
                 if(self.priorRow != row || self.priorCol != col)
                 {
+                    [self playSoundForRow:row col:col];
                     NSUInteger previousValue = [self.gameGrid[row][col] unsignedIntValue];
-                    NSLog(@"Cell pressed: %d, %d", row, col);
                     if(previousValue)
                     {
                         self.gameGrid[row][col] = @(0);
@@ -233,7 +251,6 @@
                     else
                     {
                         self.gameGrid[row][col] = @(1);
-                        //And play the corresponding sound
                     }
                     self.priorCol = col;
                     self.priorRow = row;

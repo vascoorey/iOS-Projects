@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCB238061715778D00BE864E /* g-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BCB238051715778D00BE864E /* g-sound.wav */; };
+		BCB23808171579C300BE864E /* a-sound.WAV in Resources */ = {isa = PBXBuildFile; fileRef = BCB23807171579C300BE864E /* a-sound.WAV */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BCB238051715778D00BE864E /* g-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "g-sound.wav"; sourceTree = "<group>"; };
+		BCB23807171579C300BE864E /* a-sound.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-sound.WAV"; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 		DCC1A3CF13A94F2C005BD75D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BCB238051715778D00BE864E /* g-sound.wav */,
+				BCB23807171579C300BE864E /* a-sound.WAV */,
 				DCC1A39113A94F1A005BD75D /* main.m */,
 				DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */,
 				DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */,
@@ -349,6 +355,8 @@
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
+				BCB238061715778D00BE864E /* g-sound.wav in Resources */,
+				BCB23808171579C300BE864E /* a-sound.WAV in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
