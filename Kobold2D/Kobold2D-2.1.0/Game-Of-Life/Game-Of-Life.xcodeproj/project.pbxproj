@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A2E1716FDC700E7D5C2 /* Cell.m */; };
+		BC709A321717033D00E7D5C2 /* LifePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A311717033D00E7D5C2 /* LifePool.m */; };
 		BCB238061715778D00BE864E /* g-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BCB238051715778D00BE864E /* g-sound.wav */; };
 		BCB23808171579C300BE864E /* a-sound.WAV in Resources */ = {isa = PBXBuildFile; fileRef = BCB23807171579C300BE864E /* a-sound.WAV */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
@@ -53,6 +55,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC709A2D1716FDC700E7D5C2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		BC709A2E1716FDC700E7D5C2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		BC709A301717033D00E7D5C2 /* LifePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifePool.h; sourceTree = "<group>"; };
+		BC709A311717033D00E7D5C2 /* LifePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LifePool.m; sourceTree = "<group>"; };
 		BCB238051715778D00BE864E /* g-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "g-sound.wav"; sourceTree = "<group>"; };
 		BCB23807171579C300BE864E /* a-sound.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-sound.WAV"; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
@@ -232,6 +238,10 @@
 			children = (
 				DCC1A38F13A94F1A005BD75D /* GameOfLifeLayer.h */,
 				DCC1A39013A94F1A005BD75D /* GameOfLifeLayer.m */,
+				BC709A2D1716FDC700E7D5C2 /* Cell.h */,
+				BC709A2E1716FDC700E7D5C2 /* Cell.m */,
+				BC709A301717033D00E7D5C2 /* LifePool.h */,
+				BC709A311717033D00E7D5C2 /* LifePool.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
@@ -382,6 +392,8 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AB13A94F1A005BD75D /* GameOfLifeLayer.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */,
+				BC709A321717033D00E7D5C2 /* LifePool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

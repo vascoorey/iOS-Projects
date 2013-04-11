@@ -7,11 +7,18 @@
 
 #import "GameOfLifeLayer.h"
 #import "SimpleAudioEngine.h"
+#import "Cell.h"
 
 @interface GameOfLifeLayer ()
 @property (nonatomic, strong) NSMutableArray *gameGrid;
 @property (nonatomic, strong) NSMutableArray *gameNeighbors;
+@property (nonatomic, strong) NSMutableArray *gameFood;
 @property (nonatomic) BOOL done;
+//Define next grid update. Maybe a from an rng.
+@property (nonatomic) ccTime nextUpdateTime;
+@property (nonatomic) ccTime currentTime;
+@property (nonatomic) NSInteger cellsCurrentlyActive;
+@property (nonatomic) NSInteger foodCurentlyActive;
 @property (nonatomic) NSInteger priorCol;
 @property (nonatomic) NSInteger priorRow;
 @property (nonatomic) ccColor4F toggleButtonColor;
@@ -22,6 +29,7 @@
 
 @implementation GameOfLifeLayer
 
+#define ARC4RANDOM_MAX 0x100000000
 #define WIDTH_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
 #define HEIGHT_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480)
 #define Y_OFF_SET (HEIGHT_WINDOW * .04375f)
@@ -36,6 +44,10 @@
 #define TOGGLE_BUTTON_COLOR_NORMAL ccc4f(150.0/255.0, 0.0, 1.0, 1.0)
 #define BUTTON_COLOR_PRESSED ccc4f(1.0, 0.0, 1.0, 1.0)
 #define RESET_BUTTON_COLOR_NORMAL ccc4f(50.0/255.0, 0.0, 1.0, 1.0)
+#define CELL_COLOR ccc4f(100.0/255.0, 0, 1.0, 1.0)
+#define FOOD_COLOR ccc4f(188.0/255.0, 143.0/255.0, 143.0/255.0, 1.0) //188-143-143 = "Rosy Brown"
+
+#pragma mark - Properties
 
 -(NSMutableArray *)gameNeighbors
 {
@@ -55,25 +67,13 @@
     return _gameGrid;
 }
 
--(id) init
+-(NSMutableArray *)gameFood
 {
-	if ((self = [super init]))
-	{
-        NSLog(@"%d, %d", NUM_ROWS, NUM_COLS);
-        self.audioEngine = [SimpleAudioEngine sharedEngine];
-        NSLog(@"%@", self.audioEngine);
-        [self.audioEngine preloadEffect:@"a-sound.WAV"];
-        [self reset:NO];
-        [self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
-        [self scheduleUpdate];
-        CCLabelTTF *resetButton = [CCLabelTTF labelWithString:@"Reset" fontName:@"Helvetica" fontSize:FONT_SIZE];
-        resetButton.position = CGPointMake(WIDTH_WINDOW / 4, HEIGHT_WINDOW - Y_OFF_SET);
-        self.toggleLabel = [CCLabelTTF labelWithString:@"Running" fontName:@"Helvetica" fontSize:FONT_SIZE];
-        self.toggleLabel.position = CGPointMake((WIDTH_WINDOW / 4) * 3, HEIGHT_WINDOW - Y_OFF_SET);
-        [self addChild:resetButton];
-        [self addChild:self.toggleLabel];
-	}
-	return self;
+    if(!_gameFood)
+    {
+        _gameFood = [[NSMutableArray alloc] initWithCapacity:NUM_ROWS];
+    }
+    return _gameFood;
 }
 
 -(void)setDone:(BOOL)done
@@ -91,13 +91,26 @@
     }
 }
 
--(void)nextStep
+#pragma mark Lifecycle
+
+-(id) init
 {
-    if(!self.done)
-    {
-        [self countNeighbors];
-        [self updateGrid];
-    }
+	if ((self = [super init]))
+	{
+        self.audioEngine = [SimpleAudioEngine sharedEngine];
+        [self.audioEngine preloadEffect:@"g-sound.WAV"];
+        [self reset:NO];
+        //[self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
+        [self scheduleUpdate];
+        CCLabelTTF *resetButton = [CCLabelTTF labelWithString:@"Reset" fontName:@"Helvetica" fontSize:FONT_SIZE];
+        resetButton.position = CGPointMake(WIDTH_WINDOW / 4, HEIGHT_WINDOW - Y_OFF_SET);
+        self.toggleLabel = [CCLabelTTF labelWithString:@"Running" fontName:@"Helvetica" fontSize:FONT_SIZE];
+        self.toggleLabel.position = CGPointMake((WIDTH_WINDOW / 4) * 3, HEIGHT_WINDOW - Y_OFF_SET);
+        self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
+        [self addChild:resetButton];
+        [self addChild:self.toggleLabel];
+	}
+	return self;
 }
 
 -(void)reset:(BOOL)withColorChange
@@ -106,17 +119,24 @@
     self.gameNeighbors = nil;
     self.priorCol = -1;
     self.priorRow = -1;
-    self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
     self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
     for(int row = 0; row < NUM_ROWS; row ++)
     {
         NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:NUM_COLS];
+        NSMutableArray *foodLine = [[NSMutableArray alloc] initWithCapacity:NUM_COLS];
         for(int col = 0; col < NUM_COLS; col ++)
         {
+            foodLine[col] = @(0);
+            if(arc4random() % 100 > 90)
+            {
+                self.foodCurentlyActive ++;
+                foodLine[col] = @(1);
+            }
             line[col] = @(0);
         }
         self.gameGrid[row] = line;
         self.gameNeighbors[row] = [line mutableCopy];
+        self.gameFood[row] = foodLine;
     }
     if(withColorChange)
     {
@@ -128,6 +148,91 @@
 -(void)resetButtonNormal
 {
     self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
+}
+
+#pragma mark Grid
+
+-(void)nextStep
+{
+    if(!self.done)
+    {
+        //CFTimeInterval old = CACurrentMediaTime();
+        [self countNeighbors];
+        [self updateGrid];
+        [self updateFood];
+        //NSLog(@"Step time: %g", CACurrentMediaTime() - old);
+    }
+}
+
+-(void)updateFood
+{
+    //Check if any cell is on a food cell, if so activate its adjacent cells.
+    //Spawned cells should not spawn new cells
+    NSMutableArray *cellsToSpawn = [[NSMutableArray alloc] init];
+    for(int row = 0; row < NUM_ROWS; row ++)
+    {
+        for(int col = 0; col < NUM_COLS; col ++)
+        {
+            if([self.gameGrid[row][col] intValue] && [self.gameFood[row][col] intValue])
+            {
+                NSLog(@"Adding cell to spawn!");
+                [cellsToSpawn addObject:[Cell cellWithRow:row col:col]];
+                self.gameFood[row][col] = @(0);
+            }
+        }
+    }
+    for(Cell *cell in cellsToSpawn)
+    {
+        NSLog(@"Spawning cells at: %d, %d", cell.col, cell.row);
+        self.gameGrid[[self previousRow:cell.row]][cell.col] = @(1);
+        self.gameGrid[[self nextRow:cell.row]][cell.col] = @(1);
+        self.gameGrid[cell.row][[self nextCol:cell.col]] = @(1);
+        self.gameGrid[cell.row][[self previousCol:cell.col]] = @(1);
+    }
+}
+
+-(void)countNeighbors
+{
+    for(int row = 0; row < NUM_ROWS; row ++)
+    {
+        for(int col = 0; col < NUM_COLS; col ++)
+        {
+            //Must test all 8 cells
+            NSUInteger numNeighbors =
+            [self.gameGrid[[self previousRow:row]][col] intValue] +
+            [self.gameGrid[[self nextRow:row]][col] intValue] +
+            [self.gameGrid[row][[self previousCol:col]] intValue] +
+            [self.gameGrid[row][[self nextCol:col]] intValue] +
+            [self.gameGrid[[self previousRow:row]][[self previousCol:col]] intValue] +
+            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue] +
+            [self.gameGrid[[self nextRow:row]][[self previousCol:col]] intValue] +
+            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue];
+            self.gameNeighbors[row][col] = @(numNeighbors);
+        }
+    }
+}
+
+-(void)updateGrid
+{
+    //Go through all the cells in gameNeighbors and change grid accordingly
+    self.cellsCurrentlyActive = 1;
+    for(int row = 0; row < NUM_ROWS; row ++)
+    {
+        for(int col = 0; col < NUM_COLS; col ++)
+        {
+            NSUInteger numNeighbors = [self.gameNeighbors[row][col] unsignedIntValue];
+            if((numNeighbors <= 1) || (numNeighbors >= 4))
+            {
+                self.gameGrid[row][col] = @(0);
+            }
+            else if(numNeighbors == 3)
+            {
+                [self playSoundForRow:row col:col];
+                self.gameGrid[row][col] = @(1);
+                self.cellsCurrentlyActive ++;
+            }
+        }
+    }
 }
 
 -(NSUInteger)previousRow:(NSUInteger)row
@@ -151,57 +256,29 @@
     return (col + 1) % NUM_COLS;
 }
 
--(void)countNeighbors
-{
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            //Must test all 8 cells
-            NSUInteger numNeighbors =
-                [self.gameGrid[[self previousRow:row]][col] unsignedIntValue] +
-                [self.gameGrid[[self nextRow:row]][col] unsignedIntValue] +
-                [self.gameGrid[row][[self previousCol:col]] unsignedIntValue] +
-                [self.gameGrid[row][[self nextCol:col]] unsignedIntValue] +
-                [self.gameGrid[[self previousRow:row]][[self previousCol:col]] unsignedIntValue] +
-                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue] +
-                [self.gameGrid[[self nextRow:row]][[self previousCol:col]] unsignedIntValue] +
-                [self.gameGrid[[self previousRow:row]][[self nextCol:col]] unsignedIntValue];
-            self.gameNeighbors[row][col] = @(numNeighbors);
-        }
-    }
-}
-
 -(void)playSoundForRow:(NSUInteger)row col:(NSUInteger)col
 {
     Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
-    Float32 gain = ((row + 1.0f) / (NUM_ROWS * 3)); //Based on row
+    Float32 gain = ((row + 1.0f) / (3 * NUM_ROWS)) * (1.0f / self.cellsCurrentlyActive); //Based on row
+    //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
     [self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
 }
 
--(void)updateGrid
-{
-    //Go through all the cells in gameNeighbors and change grid accordingly
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            NSUInteger numNeighbors = [self.gameNeighbors[row][col] unsignedIntValue];
-            if((numNeighbors <= 1) || (numNeighbors >= 4))
-            {
-                self.gameGrid[row][col] = @(0);
-            }
-            else if(numNeighbors == 3)
-            {
-                [self playSoundForRow:row col:col];
-                self.gameGrid[row][col] = @(1);
-            }
-        }
-    }
-}
+#pragma mark -
 
 -(void)update:(ccTime)delta
 {
+    self.currentTime += delta;
+    //Check if it's time for the next grid update
+    if(self.currentTime > self.nextUpdateTime)
+    {
+        //Perform the next step
+        [self nextStep];
+        //Set the next update time
+        ccTime nextDelta = (arc4random() % 100) / 100.0f;
+        self.nextUpdateTime = self.currentTime + nextDelta;
+        //NSLog(@"Next delta: %g, updating: %g", nextDelta, self.nextUpdateTime);
+    }
     //React to touch input
     KKInput *input = [KKInput sharedInput];
     if(input.touchesAvailable)
@@ -256,7 +333,6 @@
                 }
             }
         }
-        
     }
 }
 
@@ -290,12 +366,13 @@
     {
         for(int col = 0; col < NUM_COLS; col ++)
         {
-            NSUInteger cellValue = [self.gameGrid[row][col] unsignedIntValue];
-            if(cellValue)
+            NSInteger cellValue = [self.gameGrid[row][col] intValue];
+            NSInteger foodValue = [self.gameFood[row][col] intValue];
+            if(cellValue || foodValue)
             {
                 ccDrawSolidRect(CGPointMake(col * CELL_WIDTH, row * CELL_WIDTH),
                                 CGPointMake((col + 1) * CELL_WIDTH, (row + 1) * CELL_WIDTH),
-                                ccc4f(100.0/255.0, 0, 1.0, 1.0));
+                                (cellValue ? CELL_COLOR : FOOD_COLOR));
             }
         }
     }
