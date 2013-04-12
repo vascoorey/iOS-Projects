@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		BC208E75171869B500301189 /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC208E74171869B500301189 /* OptionsLayer.m */; };
+		BC208E7E1718729D00301189 /* A3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E771718729D00301189 /* A3.aif */; };
+		BC208E7F1718729D00301189 /* B3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E781718729D00301189 /* B3.aif */; };
+		BC208E801718729D00301189 /* C3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E791718729D00301189 /* C3.aif */; };
+		BC208E811718729D00301189 /* D3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E7A1718729D00301189 /* D3.aif */; };
+		BC208E821718729D00301189 /* E3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E7B1718729D00301189 /* E3.aif */; };
+		BC208E831718729D00301189 /* F3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E7C1718729D00301189 /* F3.aif */; };
+		BC208E841718729D00301189 /* G3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E7D1718729D00301189 /* G3.aif */; };
 		BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A2E1716FDC700E7D5C2 /* Cell.m */; };
 		BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A311717033D00E7D5C2 /* PoolOfLife.m */; };
-		BCB238061715778D00BE864E /* g-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BCB238051715778D00BE864E /* g-sound.wav */; };
-		BCB23808171579C300BE864E /* a-sound.WAV in Resources */ = {isa = PBXBuildFile; fileRef = BCB23807171579C300BE864E /* a-sound.WAV */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -58,12 +63,17 @@
 /* Begin PBXFileReference section */
 		BC208E73171869B500301189 /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
 		BC208E74171869B500301189 /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
+		BC208E771718729D00301189 /* A3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3.aif; sourceTree = "<group>"; };
+		BC208E781718729D00301189 /* B3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = B3.aif; sourceTree = "<group>"; };
+		BC208E791718729D00301189 /* C3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = C3.aif; sourceTree = "<group>"; };
+		BC208E7A1718729D00301189 /* D3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = D3.aif; sourceTree = "<group>"; };
+		BC208E7B1718729D00301189 /* E3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = E3.aif; sourceTree = "<group>"; };
+		BC208E7C1718729D00301189 /* F3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = F3.aif; sourceTree = "<group>"; };
+		BC208E7D1718729D00301189 /* G3.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = G3.aif; sourceTree = "<group>"; };
 		BC709A2D1716FDC700E7D5C2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		BC709A2E1716FDC700E7D5C2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		BC709A301717033D00E7D5C2 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
 		BC709A311717033D00E7D5C2 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
-		BCB238051715778D00BE864E /* g-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "g-sound.wav"; sourceTree = "<group>"; };
-		BCB23807171579C300BE864E /* a-sound.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-sound.WAV"; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -152,6 +162,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC208E761718729D00301189 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BC208E771718729D00301189 /* A3.aif */,
+				BC208E781718729D00301189 /* B3.aif */,
+				BC208E791718729D00301189 /* C3.aif */,
+				BC208E7A1718729D00301189 /* D3.aif */,
+				BC208E7B1718729D00301189 /* E3.aif */,
+				BC208E7C1718729D00301189 /* F3.aif */,
+				BC208E7D1718729D00301189 /* G3.aif */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +273,7 @@
 				BC709A311717033D00E7D5C2 /* PoolOfLife.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
+				BC208E761718729D00301189 /* Sounds */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
 			);
@@ -266,8 +291,6 @@
 		DCC1A3CF13A94F2C005BD75D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BCB238051715778D00BE864E /* g-sound.wav */,
-				BCB23807171579C300BE864E /* a-sound.WAV */,
 				DCC1A39113A94F1A005BD75D /* main.m */,
 				DCC1A39213A94F1A005BD75D /* Prefix-iOS.pch */,
 				DCC1A39313A94F1A005BD75D /* Prefix-Mac.pch */,
@@ -370,8 +393,13 @@
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
-				BCB238061715778D00BE864E /* g-sound.wav in Resources */,
-				BCB23808171579C300BE864E /* a-sound.WAV in Resources */,
+				BC208E7E1718729D00301189 /* A3.aif in Resources */,
+				BC208E7F1718729D00301189 /* B3.aif in Resources */,
+				BC208E801718729D00301189 /* C3.aif in Resources */,
+				BC208E811718729D00301189 /* D3.aif in Resources */,
+				BC208E821718729D00301189 /* E3.aif in Resources */,
+				BC208E831718729D00301189 /* F3.aif in Resources */,
+				BC208E841718729D00301189 /* G3.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

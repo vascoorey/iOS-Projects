@@ -10,6 +10,8 @@
 
 @implementation OptionsLayer
 
+#pragma mark todo - maybe with sprites or some such
+
 -(void)layerWillAppear
 {
     [self scheduleUpdate];

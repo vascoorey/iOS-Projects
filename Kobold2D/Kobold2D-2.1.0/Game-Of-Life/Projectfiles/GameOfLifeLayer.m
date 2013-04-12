@@ -42,6 +42,7 @@
 #define RESET_BUTTON_COLOR_NORMAL ccc4f(50.0/255.0, 0.0, 1.0, 1.0)
 #define CELL_COLOR ccc4f(100.0/255.0, 0, 1.0, 1.0)
 #define FOOD_COLOR ccc4f(188.0/255.0, 143.0/255.0, 143.0/255.0, 1.0) //188-143-143 = "Rosy Brown"
+#define SOUNDS @[@"C3.aif", @"D3.aif", @"E3.aif", @"F3.aif", @"G3.aif", @"A3.aif", @"B3.aif"]
 
 #pragma mark -
 
@@ -76,7 +77,10 @@
 	if ((self = [super init]))
 	{
         self.audioEngine = [SimpleAudioEngine sharedEngine];
-        [self.audioEngine preloadEffect:@"g-sound.WAV"];
+        for(NSString *sound in SOUNDS)
+        {
+            [self.audioEngine preloadEffect:sound];
+        }
         
         self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS gameMode:kPoolOfLifeGameModeNormal];
         self.game.delegate = self;
@@ -118,10 +122,11 @@
 
 -(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
 {
-    Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
+    //Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
     Float32 gain = ((row + 1.0f) / (3 * NUM_ROWS)) * (1.0f / numActive); //Based on row
     //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
-    [self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
+    //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
+    [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
 }
 
 #pragma mark -
