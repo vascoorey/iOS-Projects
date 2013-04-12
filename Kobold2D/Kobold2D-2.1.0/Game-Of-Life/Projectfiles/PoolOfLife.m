@@ -15,6 +15,8 @@
 @property (nonatomic) NSInteger cols;
 @property (nonatomic) NSInteger priorRow;
 @property (nonatomic) NSInteger priorCol;
+@property (nonatomic) NSInteger currentCycleStep;
+@property (nonatomic) NSInteger lastRowIndex;
 @property (nonatomic) NSInteger foodCurrentlyActive;
 @property (nonatomic) NSInteger cellsCurrentlyActive;
 @property (nonatomic, strong) NSMutableArray *grid;
@@ -73,6 +75,8 @@
         self.cols = cols;
         self.gameMode = gameMode;
         self.foodSpawnProbability = 0.05f;
+        self.cycleSize = 10;
+        self.lastRowIndex = 0;
     }
     return self;
 }
@@ -90,12 +94,15 @@
         for(int col = 0; col < self.cols; col ++)
         {
             foodLine[col] = @(0);
-            if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
-            {
-                self.foodCurrentlyActive ++;
-                foodLine[col] = @(1);
-            }
             line[col] = @(0);
+            if(self.gameMode == kPoolOfLifeGameModeEvolutionary || self.gameMode == kPoolOfLifeGameModeCrazy)
+            {
+                if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
+                {
+                    self.foodCurrentlyActive ++;
+                    foodLine[col] = @(1);
+                }
+            }
         }
         self.grid[row] = line;
         self.neighbors[row] = [line mutableCopy];
@@ -103,71 +110,54 @@
     }
 }
 
--(void)nextStep
-{
-    //CFTimeInterval old = CACurrentMediaTime();
-    //[self countNeighbors];
-    [self updateGrid];
-    [self updateFood];
-    //NSLog(@"Step time: %g", CACurrentMediaTime() - old);
-}
-
 -(void)updateFood
 {
     //Check if any cell is on a food cell, if so activate its adjacent cells.
     //Spawned cells should not spawn new cells
     /*
-    NSMutableArray *cellsToSpawn = [[NSMutableArray alloc] init];
-    for(int row = 0; row < self.rows; row ++)
-    {
-        for(int col = 0; col < self.cols; col ++)
-        {
-            if([self.gameGrid[row][col] intValue] && [self.gameFood[row][col] intValue])
-            {
-                NSLog(@"Adding cell to spawn!");
-                [cellsToSpawn addObject:[Cell cellWithRow:row col:col]];
-                self.gameFood[row][col] = @(0);
-            }
-        }
-    }
-    for(Cell *cell in cellsToSpawn)
-    {
-        NSLog(@"Spawning cells at: %d, %d", cell.col, cell.row);
-        self.gameGrid[[self previousRow:cell.row]][cell.col] = @(1);
-        self.gameGrid[[self nextRow:cell.row]][cell.col] = @(1);
-        self.gameGrid[cell.row][[self nextCol:cell.col]] = @(1);
-        self.gameGrid[cell.row][[self previousCol:cell.col]] = @(1);
-    }
+     NSMutableArray *cellsToSpawn = [[NSMutableArray alloc] init];
+     for(int row = 0; row < self.rows; row ++)
+     {
+     for(int col = 0; col < self.cols; col ++)
+     {
+     if([self.gameGrid[row][col] intValue] && [self.gameFood[row][col] intValue])
+     {
+     NSLog(@"Adding cell to spawn!");
+     [cellsToSpawn addObject:[Cell cellWithRow:row col:col]];
+     self.gameFood[row][col] = @(0);
+     }
+     }
+     }
+     for(Cell *cell in cellsToSpawn)
+     {
+     NSLog(@"Spawning cells at: %d, %d", cell.col, cell.row);
+     self.gameGrid[[self previousRow:cell.row]][cell.col] = @(1);
+     self.gameGrid[[self nextRow:cell.row]][cell.col] = @(1);
+     self.gameGrid[cell.row][[self nextCol:cell.col]] = @(1);
+     self.gameGrid[cell.row][[self previousCol:cell.col]] = @(1);
+     }
      */
 }
 
-//-(void)countNeighbors
-//{
-//    for(int row = 0; row < NUM_ROWS; row ++)
-//    {
-//        for(int col = 0; col < NUM_COLS; col ++)
-//        {
-//            //Must test all 8 cells
-//            NSUInteger numNeighbors =
-//            [self.gameGrid[[self previousRow:row]][col] intValue] +
-//            [self.gameGrid[[self nextRow:row]][col] intValue] +
-//            [self.gameGrid[row][[self previousCol:col]] intValue] +
-//            [self.gameGrid[row][[self nextCol:col]] intValue] +
-//            [self.gameGrid[[self previousRow:row]][[self previousCol:col]] intValue] +
-//            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue] +
-//            [self.gameGrid[[self nextRow:row]][[self previousCol:col]] intValue] +
-//            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue];
-//            self.gameNeighbors[row][col] = @(numNeighbors);
-//        }
-//    }
-//}
+-(void)stepThroughCycle
+{
+    
+    [self updateGrid];
+    [self updateFood];
+}
 
 -(void)updateGrid
 {
     //Go through all the cells in gameNeighbors and change grid accordingly
     self.cellsCurrentlyActive = 1;
-    for(int row = 0; row < self.rows; row ++)
+    if(self.currentCycleStep > self.cycleSize)
     {
+        self.currentCycleStep = 1;
+        self.lastRowIndex = 0;
+    }
+    for(int row = self.lastRowIndex; row < (self.currentCycleStep * (self.rows / self.cycleSize)); row ++)
+    {
+        self.lastRowIndex = row;
         for(int col = 0; col < self.cols; col ++)
         {
             NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
@@ -187,6 +177,7 @@
             }
         }
     }
+    self.currentCycleStep ++;
 }
 
 -(void)updateNeighborsForRow:(NSInteger)row col:(NSInteger)col increment:(BOOL)increment

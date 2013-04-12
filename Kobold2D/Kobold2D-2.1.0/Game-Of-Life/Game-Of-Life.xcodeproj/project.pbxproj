@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC208E75171869B500301189 /* OptionsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC208E74171869B500301189 /* OptionsLayer.m */; };
 		BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A2E1716FDC700E7D5C2 /* Cell.m */; };
 		BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A311717033D00E7D5C2 /* PoolOfLife.m */; };
 		BCB238061715778D00BE864E /* g-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BCB238051715778D00BE864E /* g-sound.wav */; };
@@ -55,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC208E73171869B500301189 /* OptionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsLayer.h; sourceTree = "<group>"; };
+		BC208E74171869B500301189 /* OptionsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsLayer.m; sourceTree = "<group>"; };
 		BC709A2D1716FDC700E7D5C2 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		BC709A2E1716FDC700E7D5C2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		BC709A301717033D00E7D5C2 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 			children = (
 				DCC1A38F13A94F1A005BD75D /* GameOfLifeLayer.h */,
 				DCC1A39013A94F1A005BD75D /* GameOfLifeLayer.m */,
+				BC208E73171869B500301189 /* OptionsLayer.h */,
+				BC208E74171869B500301189 /* OptionsLayer.m */,
 				BC709A2D1716FDC700E7D5C2 /* Cell.h */,
 				BC709A2E1716FDC700E7D5C2 /* Cell.m */,
 				BC709A301717033D00E7D5C2 /* PoolOfLife.h */,
@@ -394,6 +399,7 @@
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */,
 				BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */,
+				BC208E75171869B500301189 /* OptionsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

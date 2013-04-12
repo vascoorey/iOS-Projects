@@ -11,6 +11,4 @@
 {
 }
 
--(void)draw;
-
 @end

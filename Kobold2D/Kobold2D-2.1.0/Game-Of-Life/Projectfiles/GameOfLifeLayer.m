@@ -6,8 +6,8 @@
  */
 
 #import "GameOfLifeLayer.h"
+#import "OptionsLayer.h"
 #import "SimpleAudioEngine.h"
-#import "Cell.h"
 #import "PoolOfLife.h"
 
 @interface GameOfLifeLayer () <PoolOfLifeDelegate>
@@ -20,6 +20,8 @@
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
 @property (nonatomic, strong) SimpleAudioEngine *audioEngine;
+@property (nonatomic, readonly) CGFloat widthGame;
+@property (nonatomic, strong) OptionsLayer *optionsLayer;
 @end
 
 @implementation GameOfLifeLayer
@@ -27,7 +29,7 @@
 #define WIDTH_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
 #define HEIGHT_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480)
 #define Y_OFF_SET (HEIGHT_WINDOW * .04375f)
-#define CELL_WIDTH (NSInteger)(WIDTH_WINDOW * .015625f)
+#define CELL_WIDTH (NSInteger)(WIDTH_WINDOW * .0625f)
 #define WIDTH_GAME WIDTH_WINDOW
 #define GAME_OFFSET (NSInteger)(HEIGHT_WINDOW * .125)
 #define HEIGHT_GAME (HEIGHT_WINDOW - GAME_OFFSET)
@@ -42,6 +44,15 @@
 #define FOOD_COLOR ccc4f(188.0/255.0, 143.0/255.0, 143.0/255.0, 1.0) //188-143-143 = "Rosy Brown"
 
 #pragma mark -
+
+-(OptionsLayer *)optionsLayer
+{
+    if(!_optionsLayer)
+    {
+        _optionsLayer = [OptionsLayer node];
+    }
+    return _optionsLayer;
+}
 
 -(void)setDone:(BOOL)done
 {
@@ -124,16 +135,16 @@
         if(!self.done)
         {
             //Perform the next step
-            [self.game nextStep];
+            [self.game stepThroughCycle];
         }
         //Set the next update time
-        ccTime nextDelta = (arc4random() % 100) / 100.0f;
+        ccTime nextDelta = /* ((arc4random() % 100) / 100.0f) **/ .428571429f;
         self.nextUpdateTime = self.currentTime + nextDelta;
         //NSLog(@"Next delta: %g, updating: %g", nextDelta, self.nextUpdateTime);
     }
     //React to touch input
     KKInput *input = [KKInput sharedInput];
-    if(input.touchesAvailable)
+    if(input.touchesAvailable && !self.optionsLayer.isLayerCurrentlyVisible)
     {
         KKTouch *touch;
         CCARRAY_FOREACH(input.touches, touch)
@@ -152,6 +163,16 @@
                 else if(touchLocation.x < WIDTH_WINDOW / 2 && touchLocation.y > HEIGHT_GAME + Y_OFF_SET)
                 {
                     [self reset:YES];
+                    if(self.optionsLayer.isLayerCurrentlyVisible)
+                    {
+                        [self.optionsLayer layerWillDisappear];
+                        [self removeChild:self.optionsLayer];
+                    }
+                    else
+                    {
+                        [self.optionsLayer layerWillAppear];
+                        [self addChild:self.optionsLayer];
+                    }
                 }
                 else
                 {
