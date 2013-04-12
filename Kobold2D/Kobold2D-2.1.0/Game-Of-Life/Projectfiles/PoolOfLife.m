@@ -89,12 +89,14 @@
     self.priorRow = -1;
     for(int row = 0; row < self.rows; row ++)
     {
-        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.rows];
+        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.cols];
         NSMutableArray *foodLine = [[NSMutableArray alloc] initWithCapacity:self.cols];
+        NSMutableArray *neighborsLine = [[NSMutableArray alloc] initWithCapacity:self.cols];
         for(int col = 0; col < self.cols; col ++)
         {
             foodLine[col] = @(0);
             line[col] = @(0);
+            neighborsLine[col] = @(0);
             if(self.gameMode == kPoolOfLifeGameModeEvolutionary || self.gameMode == kPoolOfLifeGameModeCrazy)
             {
                 if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
@@ -105,7 +107,7 @@
             }
         }
         self.grid[row] = line;
-        self.neighbors[row] = [line mutableCopy];
+        self.neighbors[row] = neighborsLine;
         self.food[row] = foodLine;
     }
 }

@@ -123,7 +123,7 @@
 -(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
 {
     //Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
-    Float32 gain = ((row + 1.0f) / (3 * NUM_ROWS)) * (1.0f / numActive); //Based on row
+    Float32 gain = ((row + 1.0f) / (4 * NUM_ROWS)) * (1.0f / numActive); //Based on row
     //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
     //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
     [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
