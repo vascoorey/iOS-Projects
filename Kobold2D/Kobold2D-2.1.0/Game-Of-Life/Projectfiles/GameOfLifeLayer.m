@@ -27,7 +27,7 @@
 #define WIDTH_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
 #define HEIGHT_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480)
 #define Y_OFF_SET (HEIGHT_WINDOW * .04375f)
-#define CELL_WIDTH (NSInteger)(WIDTH_WINDOW * .0625f)
+#define CELL_WIDTH (NSInteger)(WIDTH_WINDOW * .015625f)
 #define WIDTH_GAME WIDTH_WINDOW
 #define GAME_OFFSET (NSInteger)(HEIGHT_WINDOW * .125)
 #define HEIGHT_GAME (HEIGHT_WINDOW - GAME_OFFSET)
@@ -67,7 +67,7 @@
         self.audioEngine = [SimpleAudioEngine sharedEngine];
         [self.audioEngine preloadEffect:@"g-sound.WAV"];
         
-        self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS];
+        self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS gameMode:kPoolOfLifeGameModeNormal];
         self.game.delegate = self;
         
         [self reset:NO];
@@ -121,8 +121,11 @@
     //Check if it's time for the next grid update
     if(self.currentTime > self.nextUpdateTime)
     {
-        //Perform the next step
-        [self.game nextStep];
+        if(!self.done)
+        {
+            //Perform the next step
+            [self.game nextStep];
+        }
         //Set the next update time
         ccTime nextDelta = (arc4random() % 100) / 100.0f;
         self.nextUpdateTime = self.currentTime + nextDelta;

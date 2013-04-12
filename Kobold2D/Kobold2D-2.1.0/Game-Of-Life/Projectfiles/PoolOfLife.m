@@ -10,6 +10,7 @@
 #import "Cell.h"
 
 @interface PoolOfLife ()
+@property (nonatomic) kPoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger rows;
 @property (nonatomic) NSInteger cols;
 @property (nonatomic) NSInteger priorRow;
@@ -50,14 +51,28 @@
     return _neighbors;
 }
 
-#pragma mark - 
+-(void)setFoodSpawnProbability:(float)foodSpawnProbability
+{
+    if(foodSpawnProbability > 1.0f)
+    {
+        _foodSpawnProbability = 1.0f;
+    }
+    else
+    {
+        _foodSpawnProbability = foodSpawnProbability;
+    }
+}
 
--(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols
+#pragma mark -
+
+-(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(kPoolOfLifeGameMode)gameMode
 {
     if((self = [super init]))
     {
         self.rows = rows;
         self.cols = cols;
+        self.gameMode = gameMode;
+        self.foodSpawnProbability = 0.05f;
     }
     return self;
 }
@@ -75,7 +90,7 @@
         for(int col = 0; col < self.cols; col ++)
         {
             foodLine[col] = @(0);
-            if(arc4random() % 100 > 90)
+            if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
             {
                 self.foodCurrentlyActive ++;
                 foodLine[col] = @(1);
@@ -156,22 +171,16 @@
         for(int col = 0; col < self.cols; col ++)
         {
             NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
-            if((numNeighbors <= 1) || (numNeighbors >= 4))
+            if(((numNeighbors <= 1) || (numNeighbors >= 4)) && [self.grid[row][col] intValue])
             {
                 //Only update neighbors if theres an actual change to the board
-                if([self.grid[row][col] intValue])
-                {
-                    [self updateNeighborsForRow:row col:col increment:NO];
-                }
+                [self updateNeighborsForRow:row col:col increment:NO];
                 self.grid[row][col] = @(0);
             }
-            else if(numNeighbors == 3)
+            else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
             {
                 //Ditto
-                if(![self.grid[row][col] intValue])
-                {
-                    [self updateNeighborsForRow:row col:col increment:YES];
-                }
+                [self updateNeighborsForRow:row col:col increment:YES];
                 self.grid[row][col] = @(1);
                 self.cellsCurrentlyActive ++;
                 [self.delegate didActivateCellAtRow:row col:col active:self.cellsCurrentlyActive];
@@ -182,7 +191,6 @@
 
 -(void)updateNeighborsForRow:(NSInteger)row col:(NSInteger)col increment:(BOOL)increment
 {
-    NSLog(@"Updating neighbors for %d,%d: %d", row, col, increment);
     NSInteger previousRow = [self previousRow:row];
     NSInteger nextRow = [self nextRow:row];
     NSInteger previousCol = [self previousCol:col];
