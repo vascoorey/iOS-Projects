@@ -19,7 +19,7 @@ typedef enum
 } kPoolOfLifeGameMode;
 
 @protocol PoolOfLifeDelegate <NSObject>
--(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col active:(NSInteger)active;
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive;
 @end
 
 @interface PoolOfLife : NSObject

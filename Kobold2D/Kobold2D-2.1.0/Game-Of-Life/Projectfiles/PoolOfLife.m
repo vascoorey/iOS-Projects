@@ -183,7 +183,7 @@
                 [self updateNeighborsForRow:row col:col increment:YES];
                 self.grid[row][col] = @(1);
                 self.cellsCurrentlyActive ++;
-                [self.delegate didActivateCellAtRow:row col:col active:self.cellsCurrentlyActive];
+                [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
             }
         }
     }
@@ -233,7 +233,7 @@
 {
     if(started || self.priorRow != row || self.priorCol != col)
     {
-        [self.delegate didActivateCellAtRow:row col:col active:self.cellsCurrentlyActive];
+        [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
         NSUInteger previousValue = [self.grid[row][col] unsignedIntValue];
         if(previousValue)
         {
