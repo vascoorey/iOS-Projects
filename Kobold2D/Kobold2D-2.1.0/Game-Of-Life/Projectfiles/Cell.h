@@ -10,10 +10,6 @@
 
 @interface Cell : NSObject
 
-@property (nonatomic) NSInteger row;
-@property (nonatomic) NSInteger col;
 @property (nonatomic) NSInteger life;
-
-+(Cell *)cellWithRow:(NSInteger)row col:(NSInteger)col;
 
 @end

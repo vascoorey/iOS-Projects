@@ -8,19 +8,14 @@
 #import "GameOfLifeLayer.h"
 #import "SimpleAudioEngine.h"
 #import "Cell.h"
+#import "PoolOfLife.h"
 
-@interface GameOfLifeLayer ()
-@property (nonatomic, strong) NSMutableArray *gameGrid;
-@property (nonatomic, strong) NSMutableArray *gameNeighbors;
-@property (nonatomic, strong) NSMutableArray *gameFood;
+@interface GameOfLifeLayer () <PoolOfLifeDelegate>
 @property (nonatomic) BOOL done;
+@property (nonatomic, strong) PoolOfLife *game;
 //Define next grid update. Maybe a from an rng.
 @property (nonatomic) ccTime nextUpdateTime;
 @property (nonatomic) ccTime currentTime;
-@property (nonatomic) NSInteger cellsCurrentlyActive;
-@property (nonatomic) NSInteger foodCurentlyActive;
-@property (nonatomic) NSInteger priorCol;
-@property (nonatomic) NSInteger priorRow;
 @property (nonatomic) ccColor4F toggleButtonColor;
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
@@ -29,7 +24,6 @@
 
 @implementation GameOfLifeLayer
 
-#define ARC4RANDOM_MAX 0x100000000
 #define WIDTH_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320)
 #define HEIGHT_WINDOW (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480)
 #define Y_OFF_SET (HEIGHT_WINDOW * .04375f)
@@ -47,34 +41,7 @@
 #define CELL_COLOR ccc4f(100.0/255.0, 0, 1.0, 1.0)
 #define FOOD_COLOR ccc4f(188.0/255.0, 143.0/255.0, 143.0/255.0, 1.0) //188-143-143 = "Rosy Brown"
 
-#pragma mark - Properties
-
--(NSMutableArray *)gameNeighbors
-{
-    if(!_gameNeighbors)
-    {
-        _gameNeighbors = [[NSMutableArray alloc] initWithCapacity:NUM_ROWS];
-    }
-    return _gameNeighbors;
-}
-
--(NSMutableArray *)gameGrid
-{
-    if(!_gameGrid)
-    {
-        _gameGrid = [[NSMutableArray alloc] initWithCapacity:NUM_ROWS];
-    }
-    return _gameGrid;
-}
-
--(NSMutableArray *)gameFood
-{
-    if(!_gameFood)
-    {
-        _gameFood = [[NSMutableArray alloc] initWithCapacity:NUM_ROWS];
-    }
-    return _gameFood;
-}
+#pragma mark -
 
 -(void)setDone:(BOOL)done
 {
@@ -99,6 +66,10 @@
 	{
         self.audioEngine = [SimpleAudioEngine sharedEngine];
         [self.audioEngine preloadEffect:@"g-sound.WAV"];
+        
+        self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS];
+        self.game.delegate = self;
+        
         [self reset:NO];
         //[self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
         [self scheduleUpdate];
@@ -115,33 +86,15 @@
 
 -(void)reset:(BOOL)withColorChange
 {
-    self.gameGrid = nil;
-    self.gameNeighbors = nil;
-    self.priorCol = -1;
-    self.priorRow = -1;
-    self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:NUM_COLS];
-        NSMutableArray *foodLine = [[NSMutableArray alloc] initWithCapacity:NUM_COLS];
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            foodLine[col] = @(0);
-            if(arc4random() % 100 > 90)
-            {
-                self.foodCurentlyActive ++;
-                foodLine[col] = @(1);
-            }
-            line[col] = @(0);
-        }
-        self.gameGrid[row] = line;
-        self.gameNeighbors[row] = [line mutableCopy];
-        self.gameFood[row] = foodLine;
-    }
+    [self.game reset];
     if(withColorChange)
     {
         self.resetButtonColor = BUTTON_COLOR_PRESSED;
         [self scheduleOnce:@selector(resetButtonNormal) delay:DELAY_IN_SECONDS];
+    }
+    else
+    {
+        self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
     }
 }
 
@@ -150,116 +103,12 @@
     self.resetButtonColor = RESET_BUTTON_COLOR_NORMAL;
 }
 
-#pragma mark Grid
+#pragma mark -
 
--(void)nextStep
-{
-    if(!self.done)
-    {
-        //CFTimeInterval old = CACurrentMediaTime();
-        [self countNeighbors];
-        [self updateGrid];
-        [self updateFood];
-        //NSLog(@"Step time: %g", CACurrentMediaTime() - old);
-    }
-}
-
--(void)updateFood
-{
-    //Check if any cell is on a food cell, if so activate its adjacent cells.
-    //Spawned cells should not spawn new cells
-    NSMutableArray *cellsToSpawn = [[NSMutableArray alloc] init];
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            if([self.gameGrid[row][col] intValue] && [self.gameFood[row][col] intValue])
-            {
-                NSLog(@"Adding cell to spawn!");
-                [cellsToSpawn addObject:[Cell cellWithRow:row col:col]];
-                self.gameFood[row][col] = @(0);
-            }
-        }
-    }
-    for(Cell *cell in cellsToSpawn)
-    {
-        NSLog(@"Spawning cells at: %d, %d", cell.col, cell.row);
-        self.gameGrid[[self previousRow:cell.row]][cell.col] = @(1);
-        self.gameGrid[[self nextRow:cell.row]][cell.col] = @(1);
-        self.gameGrid[cell.row][[self nextCol:cell.col]] = @(1);
-        self.gameGrid[cell.row][[self previousCol:cell.col]] = @(1);
-    }
-}
-
--(void)countNeighbors
-{
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            //Must test all 8 cells
-            NSUInteger numNeighbors =
-            [self.gameGrid[[self previousRow:row]][col] intValue] +
-            [self.gameGrid[[self nextRow:row]][col] intValue] +
-            [self.gameGrid[row][[self previousCol:col]] intValue] +
-            [self.gameGrid[row][[self nextCol:col]] intValue] +
-            [self.gameGrid[[self previousRow:row]][[self previousCol:col]] intValue] +
-            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue] +
-            [self.gameGrid[[self nextRow:row]][[self previousCol:col]] intValue] +
-            [self.gameGrid[[self previousRow:row]][[self nextCol:col]] intValue];
-            self.gameNeighbors[row][col] = @(numNeighbors);
-        }
-    }
-}
-
--(void)updateGrid
-{
-    //Go through all the cells in gameNeighbors and change grid accordingly
-    self.cellsCurrentlyActive = 1;
-    for(int row = 0; row < NUM_ROWS; row ++)
-    {
-        for(int col = 0; col < NUM_COLS; col ++)
-        {
-            NSUInteger numNeighbors = [self.gameNeighbors[row][col] unsignedIntValue];
-            if((numNeighbors <= 1) || (numNeighbors >= 4))
-            {
-                self.gameGrid[row][col] = @(0);
-            }
-            else if(numNeighbors == 3)
-            {
-                [self playSoundForRow:row col:col];
-                self.gameGrid[row][col] = @(1);
-                self.cellsCurrentlyActive ++;
-            }
-        }
-    }
-}
-
--(NSUInteger)previousRow:(NSUInteger)row
-{
-    //Wrap around if row == 0
-    return (row - 1) % NUM_ROWS;
-}
-
--(NSUInteger)previousCol:(NSUInteger)col
-{
-    return (col - 1) % NUM_COLS;
-}
-
--(NSUInteger)nextRow:(NSUInteger)row
-{
-    return (row + 1) % NUM_ROWS;
-}
-
--(NSUInteger)nextCol:(NSUInteger)col
-{
-    return (col + 1) % NUM_COLS;
-}
-
--(void)playSoundForRow:(NSUInteger)row col:(NSUInteger)col
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col active:(NSInteger)active
 {
     Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
-    Float32 gain = ((row + 1.0f) / (3 * NUM_ROWS)) * (1.0f / self.cellsCurrentlyActive); //Based on row
+    Float32 gain = ((row + 1.0f) / (3 * NUM_ROWS)) * (1.0f / active); //Based on row
     //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
     [self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
 }
@@ -273,7 +122,7 @@
     if(self.currentTime > self.nextUpdateTime)
     {
         //Perform the next step
-        [self nextStep];
+        [self.game nextStep];
         //Set the next update time
         ccTime nextDelta = (arc4random() % 100) / 100.0f;
         self.nextUpdateTime = self.currentTime + nextDelta;
@@ -286,9 +135,9 @@
         KKTouch *touch;
         CCARRAY_FOREACH(input.touches, touch)
         {
-            NSInteger row = -1;
-            NSInteger col = -1;
             CGPoint touchLocation = touch.location;
+            NSInteger row = touchLocation.y / CELL_WIDTH;
+            NSInteger col = touchLocation.x / CELL_WIDTH;
             if(touch.phase == KKTouchPhaseBegan)
             {
                 //Handle touches on the right button
@@ -303,34 +152,12 @@
                 }
                 else
                 {
-                    row = touchLocation.y / CELL_WIDTH;
-                    col = touchLocation.x / CELL_WIDTH;
-                    NSUInteger previousValue = [self.gameGrid[row][col] unsignedIntValue];
-                    [self playSoundForRow:row col:col];
-                    self.gameGrid[row][col] = previousValue ? @(0) : @(1);
-                    self.priorCol = col;
-                    self.priorRow = row;
+                    [self.game flipCellAtRow:row col:col started:YES];
                 }
             }
             else if(touchLocation.y <= HEIGHT_GAME + Y_OFF_SET)
             {
-                row = touchLocation.y / CELL_WIDTH;
-                col = touchLocation.x / CELL_WIDTH;
-                if(self.priorRow != row || self.priorCol != col)
-                {
-                    [self playSoundForRow:row col:col];
-                    NSUInteger previousValue = [self.gameGrid[row][col] unsignedIntValue];
-                    if(previousValue)
-                    {
-                        self.gameGrid[row][col] = @(0);
-                    }
-                    else
-                    {
-                        self.gameGrid[row][col] = @(1);
-                    }
-                    self.priorCol = col;
-                    self.priorRow = row;
-                }
+                [self.game flipCellAtRow:row col:col started:NO];
             }
         }
     }
@@ -366,8 +193,8 @@
     {
         for(int col = 0; col < NUM_COLS; col ++)
         {
-            NSInteger cellValue = [self.gameGrid[row][col] intValue];
-            NSInteger foodValue = [self.gameFood[row][col] intValue];
+            NSInteger cellValue = [self.game cellAtRow:row col:col];
+            NSInteger foodValue = [self.game foodAtRow:row col:col];
             if(cellValue || foodValue)
             {
                 ccDrawSolidRect(CGPointMake(col * CELL_WIDTH, row * CELL_WIDTH),
