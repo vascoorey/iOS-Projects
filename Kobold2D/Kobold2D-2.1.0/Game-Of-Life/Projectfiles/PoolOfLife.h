@@ -12,9 +12,11 @@ typedef enum
 {
     kPoolOfLifeGameModeNone = 0,
     //Regular Conway's Game Of Life
-    kPoolOfLifeGameModeNormal,
-    //Evolutionary Conway's Game Of Life. In addition to spawning at places with 3 neighbors will also spawn food that cells can "eat" and spawn aditional cells.
-    kPoolOfLifeGameModeEvolutionary,
+    kPoolOfLifeGameModeConway,
+    //In addition to spawning at places with 3 neighbors will also spawn food that cells can "eat" and spawn aditional cells.
+    kPoolOfLifeGameModeConwayWithFood,
+    //Each active cell has some life and will randomly chose to move to an adjacent empty spot. It will look for food, which when "eaten" will spawn aditional cells.
+    //Will spawn food and cells randomly.
     kPoolOfLifeGameModeCrazy
 } kPoolOfLifeGameMode;
 

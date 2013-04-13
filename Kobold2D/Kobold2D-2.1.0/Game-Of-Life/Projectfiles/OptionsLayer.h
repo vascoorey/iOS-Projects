@@ -9,7 +9,7 @@
 #import "CCLayer.h"
 
 @protocol OptionsLayerDelegate <NSObject>
-
+-(void)didFinishWithOptionsLayer;
 @end
 
 @interface OptionsLayer : CCLayer

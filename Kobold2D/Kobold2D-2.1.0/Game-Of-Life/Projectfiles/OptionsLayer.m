@@ -26,8 +26,9 @@
 
 -(void)draw
 {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     ccDrawSolidRect(CGPointMake(0, 0),
-                    CGPointMake(100, 100),
+                    CGPointMake(winSize.width, winSize.height),
                     ccc4f(0, 1, 1, 1));
 }
 
@@ -42,7 +43,7 @@
         {
             if([input isAnyTouchOnNode:self touchPhase:KKTouchPhaseBegan])
             {
-                NSLog(@"Options layer got a touch!");
+                [self.delegate didFinishWithOptionsLayer];
             }
         }
     }

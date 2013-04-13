@@ -17,6 +17,7 @@
 		BC208E841718729D00301189 /* G3.aif in Resources */ = {isa = PBXBuildFile; fileRef = BC208E7D1718729D00301189 /* G3.aif */; };
 		BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A2E1716FDC700E7D5C2 /* Cell.m */; };
 		BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A311717033D00E7D5C2 /* PoolOfLife.m */; };
+		BCED6C3517189E3D00ADB66C /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED6C3417189E3D00ADB66C /* SoundManager.m */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -74,6 +75,8 @@
 		BC709A2E1716FDC700E7D5C2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		BC709A301717033D00E7D5C2 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
 		BC709A311717033D00E7D5C2 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
+		BCED6C3317189E3D00ADB66C /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		BCED6C3417189E3D00ADB66C /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				BC709A2E1716FDC700E7D5C2 /* Cell.m */,
 				BC709A301717033D00E7D5C2 /* PoolOfLife.h */,
 				BC709A311717033D00E7D5C2 /* PoolOfLife.m */,
+				BCED6C3317189E3D00ADB66C /* SoundManager.h */,
+				BCED6C3417189E3D00ADB66C /* SoundManager.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				BC208E761718729D00301189 /* Sounds */,
@@ -428,6 +433,7 @@
 				BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */,
 				BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */,
 				BC208E75171869B500301189 /* OptionsLayer.m in Sources */,
+				BCED6C3517189E3D00ADB66C /* SoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

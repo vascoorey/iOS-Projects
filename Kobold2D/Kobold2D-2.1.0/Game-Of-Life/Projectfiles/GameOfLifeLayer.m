@@ -10,7 +10,7 @@
 #import "SimpleAudioEngine.h"
 #import "PoolOfLife.h"
 
-@interface GameOfLifeLayer () <PoolOfLifeDelegate>
+@interface GameOfLifeLayer () <PoolOfLifeDelegate, OptionsLayerDelegate>
 @property (nonatomic) BOOL done;
 @property (nonatomic, strong) PoolOfLife *game;
 //Define next grid update. Maybe a from an rng.
@@ -51,6 +51,7 @@
     if(!_optionsLayer)
     {
         _optionsLayer = [OptionsLayer node];
+        _optionsLayer.delegate = self;
     }
     return _optionsLayer;
 }
@@ -82,7 +83,7 @@
             [self.audioEngine preloadEffect:sound];
         }
         
-        self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS gameMode:kPoolOfLifeGameModeNormal];
+        self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS gameMode:kPoolOfLifeGameModeConway];
         self.game.delegate = self;
         
         [self reset:NO];
@@ -129,6 +130,12 @@
     [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
 }
 
+-(void)didFinishWithOptionsLayer
+{
+    [self.optionsLayer layerWillDisappear];
+    [self removeChild:self.optionsLayer];
+}
+
 #pragma mark -
 
 -(void)update:(ccTime)delta
@@ -168,25 +175,13 @@
                 else if(touchLocation.x < WIDTH_WINDOW / 2 && touchLocation.y > HEIGHT_GAME + Y_OFF_SET)
                 {
                     [self reset:YES];
-                    if(self.optionsLayer.isLayerCurrentlyVisible)
-                    {
-                        [self.optionsLayer layerWillDisappear];
-                        [self removeChild:self.optionsLayer];
-                    }
-                    else
-                    {
-                        [self.optionsLayer layerWillAppear];
-                        [self addChild:self.optionsLayer];
-                    }
-                }
-                else
-                {
-                    [self.game flipCellAtRow:row col:col started:YES];
+                    [self.optionsLayer layerWillAppear];
+                    [self addChild:self.optionsLayer];
                 }
             }
-            else if(touchLocation.y <= HEIGHT_GAME + Y_OFF_SET)
+            if(row >= 0 && row < NUM_ROWS && col >= 0 && col < NUM_COLS)
             {
-                [self.game flipCellAtRow:row col:col started:NO];
+                [self.game flipCellAtRow:row col:col started:(touch.phase == KKTouchPhaseBegan)];
             }
         }
     }

@@ -75,7 +75,7 @@
         self.cols = cols;
         self.gameMode = gameMode;
         self.foodSpawnProbability = 0.05f;
-        self.cycleSize = 10;
+        self.cycleSize = 9;
         self.lastRowIndex = 0;
     }
     return self;
@@ -97,7 +97,7 @@
             foodLine[col] = @(0);
             line[col] = @(0);
             neighborsLine[col] = @(0);
-            if(self.gameMode == kPoolOfLifeGameModeEvolutionary || self.gameMode == kPoolOfLifeGameModeCrazy)
+            if(self.gameMode == kPoolOfLifeGameModeConwayWithFood || self.gameMode == kPoolOfLifeGameModeCrazy)
             {
                 if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
                 {
@@ -151,13 +151,29 @@
 -(void)updateGrid
 {
     //Go through all the cells in gameNeighbors and change grid accordingly
+    //1 row at a time
     self.cellsCurrentlyActive = 1;
-    if(self.currentCycleStep > self.cycleSize)
+    if(self.currentCycleStep >= self.cycleSize && self.lastRowIndex < (self.rows - 1))
     {
-        self.currentCycleStep = 1;
-        self.lastRowIndex = 0;
+        [self stepThroughGrid:self.lastRowIndex toRow:self.rows];
     }
-    for(int row = self.lastRowIndex; row < (self.currentCycleStep * (self.rows / self.cycleSize)); row ++)
+    else if(self.currentCycleStep >= self.cycleSize)
+    {
+        self.currentCycleStep = 0;
+        self.lastRowIndex = 0;
+        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.rows / self.cycleSize))];
+    }
+    else
+    {
+        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.rows / self.cycleSize))];
+    }
+    NSLog(@"Last row: %d, %d", self.lastRowIndex, self.rows / self.cycleSize);
+    self.currentCycleStep ++;
+}
+
+-(void)stepThroughGrid:(NSInteger)fromRow toRow:(NSInteger)toRow
+{
+    for(int row = fromRow; row < toRow; row ++)
     {
         self.lastRowIndex = row;
         for(int col = 0; col < self.cols; col ++)
@@ -179,7 +195,6 @@
             }
         }
     }
-    self.currentCycleStep ++;
 }
 
 -(void)updateNeighborsForRow:(NSInteger)row col:(NSInteger)col increment:(BOOL)increment
@@ -238,8 +253,8 @@
             self.grid[row][col] = @(1);
             [self updateNeighborsForRow:row col:col increment:YES];
         }
-        self.priorCol = col;
         self.priorRow = row;
+        self.priorCol = col;
     }
 }
 
