@@ -10,6 +10,8 @@
 
 @implementation OptionsLayer
 
+#warning TODO: options for tempo, scale, mode (music), game mode, grid size...
+
 #pragma mark todo - maybe with sprites or some such
 
 -(void)layerWillAppear

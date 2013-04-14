@@ -8,8 +8,20 @@
 
 #import "CCLayer.h"
 
+typedef enum
+{
+    kGameOfLifeOptionNone = 0,
+    kGameOfLifeOptionScale,
+    kGameOfLifeOptionMusicMode,
+    kGameOfLifeOptionTempo,
+    kGameOfLifeOptionPatch,
+    kGameOfLifeOptionGridSize,
+    kGameOfLifeOptionGameMode
+} kGameOfLifeOption;
+
 @protocol OptionsLayerDelegate <NSObject>
 -(void)didFinishWithOptionsLayer;
+-(void)didSetOption:(kGameOfLifeOption)option withValue:(id)value;
 @end
 
 @interface OptionsLayer : CCLayer
