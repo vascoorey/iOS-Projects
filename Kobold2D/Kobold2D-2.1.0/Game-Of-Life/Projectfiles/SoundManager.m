@@ -19,7 +19,7 @@ enum {
 	kMIDIMessage_NoteOff   = 0x8,
 };
 
-@interface SoundManager () <AVAudioSessionDelegate>
+@interface SoundManager ()
 @property (nonatomic, strong) NSMutableArray *notesBeingPlayed;
 @property (readwrite) Float64   graphSampleRate;
 @property (readwrite) AUGraph   processingGraph;
