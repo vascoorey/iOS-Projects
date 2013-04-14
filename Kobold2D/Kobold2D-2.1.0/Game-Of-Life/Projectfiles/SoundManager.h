@@ -10,10 +10,10 @@
 
 typedef enum
 {
-    kSoundManagerScaleNone = 0,
+    kSoundManagerScaleNone = -1,
+    kSoundManagerScaleIonian,
     kSoundManagerScaleAeolian,
     kSoundManagerScaleLocrian,
-    kSoundManagerScaleIonian,
     kSoundManagerScaleDorian,
     kSoundManagerScalePhrygian,
     kSoundManagerScaleLydian,
@@ -23,8 +23,10 @@ typedef enum
 @interface SoundManager : NSObject
 
 @property (nonatomic) kSoundManagerScale scale;
+@property (nonatomic, getter = isPlaying) BOOL playing;
 
--(void)pushNoteAtRow:(NSInteger)row col:(NSInteger)col;
--(void)play;
+//Designated Initializer
+-(id)initWithScale:(kSoundManagerScale)scale;
+-(void)pushRow:(NSArray *)row intensity:(float)intensity;
 
 @end

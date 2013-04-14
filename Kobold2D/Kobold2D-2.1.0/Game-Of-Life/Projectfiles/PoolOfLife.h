@@ -10,6 +10,7 @@
 
 typedef enum
 {
+    //No reproduction. Will just report cells that the user has activated.
     kPoolOfLifeGameModeNone = 0,
     //Regular Conway's Game Of Life
     kPoolOfLifeGameModeConway,
@@ -21,7 +22,9 @@ typedef enum
 } kPoolOfLifeGameMode;
 
 @protocol PoolOfLifeDelegate <NSObject>
+@optional
 -(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive;
+-(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row;
 @end
 
 @interface PoolOfLife : NSObject

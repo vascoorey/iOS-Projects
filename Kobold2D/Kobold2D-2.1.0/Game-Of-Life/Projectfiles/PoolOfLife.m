@@ -167,32 +167,42 @@
     {
         [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.rows / self.cycleSize))];
     }
-    NSLog(@"Last row: %d, %d", self.lastRowIndex, self.rows / self.cycleSize);
     self.currentCycleStep ++;
 }
 
 -(void)stepThroughGrid:(NSInteger)fromRow toRow:(NSInteger)toRow
 {
+    self.cellsCurrentlyActive = 0;
     for(int row = fromRow; row < toRow; row ++)
     {
         self.lastRowIndex = row;
-        for(int col = 0; col < self.cols; col ++)
+        if(self.gameMode != kPoolOfLifeGameModeNone)
         {
-            NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
-            if(((numNeighbors <= 1) || (numNeighbors >= 4)) && [self.grid[row][col] intValue])
+            for(int col = 0; col < self.cols; col ++)
             {
-                //Only update neighbors if theres an actual change to the board
-                [self updateNeighborsForRow:row col:col increment:NO];
-                self.grid[row][col] = @(0);
+                NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
+                if(((numNeighbors <= 1) || (numNeighbors >= 4)) && [self.grid[row][col] intValue])
+                {
+                    //Only update neighbors if theres an actual change to the board
+                    [self updateNeighborsForRow:row col:col increment:NO];
+                    self.grid[row][col] = @(0);
+                }
+                else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
+                {
+                    //Ditto
+                    [self updateNeighborsForRow:row col:col increment:YES];
+                    self.grid[row][col] = @(1);
+                    self.cellsCurrentlyActive ++;
+                    if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:numActive:)])
+                    {
+                        [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
+                    }
+                }
             }
-            else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
-            {
-                //Ditto
-                [self updateNeighborsForRow:row col:col increment:YES];
-                self.grid[row][col] = @(1);
-                self.cellsCurrentlyActive ++;
-                [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
-            }
+        }
+        if([self.delegate respondsToSelector:@selector(didFinishUpdatingRowWithResultingRow:)])
+        {
+            [self.delegate didFinishUpdatingRowWithResultingRow:[self.grid[row] copy]];
         }
     }
 }
@@ -241,7 +251,10 @@
 {
     if(started || self.priorRow != row || self.priorCol != col)
     {
-        [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
+        if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:numActive:)])
+        {
+            [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
+        }
         NSUInteger previousValue = [self.grid[row][col] unsignedIntValue];
         if(previousValue)
         {

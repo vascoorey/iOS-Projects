@@ -7,8 +7,8 @@
 
 #import "GameOfLifeLayer.h"
 #import "OptionsLayer.h"
-#import "SimpleAudioEngine.h"
 #import "PoolOfLife.h"
+#import "SoundManager.h"
 
 @interface GameOfLifeLayer () <PoolOfLifeDelegate, OptionsLayerDelegate>
 @property (nonatomic) BOOL done;
@@ -19,9 +19,11 @@
 @property (nonatomic) ccColor4F toggleButtonColor;
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
-@property (nonatomic, strong) SimpleAudioEngine *audioEngine;
+@property (nonatomic, strong) SoundManager *soundManager;
 @property (nonatomic, readonly) CGFloat widthGame;
 @property (nonatomic, strong) OptionsLayer *optionsLayer;
+@property (nonatomic, weak) KKRotationRate *rotationRate;
+@property (nonatomic) float currentIntensity;
 @end
 
 @implementation GameOfLifeLayer
@@ -61,11 +63,13 @@
     _done = done;
     if(done)
     {
+        self.soundManager.playing = NO;
         self.toggleButtonColor = BUTTON_COLOR_PRESSED;
         self.toggleLabel.string = @"Stopped";
     }
     else
     {
+        self.soundManager.playing = YES;
         self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
         self.toggleLabel.string = @"Running";
     }
@@ -77,14 +81,18 @@
 {
 	if ((self = [super init]))
 	{
-        self.audioEngine = [SimpleAudioEngine sharedEngine];
-        for(NSString *sound in SOUNDS)
-        {
-            [self.audioEngine preloadEffect:sound];
-        }
-        
+        //Natural Major scale
+        self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
         self.game = [[PoolOfLife alloc] initWithRows:NUM_ROWS cols:NUM_COLS gameMode:kPoolOfLifeGameModeConway];
         self.game.delegate = self;
+        
+        KKInput *input = [KKInput sharedInput];
+        if(input.gyroAvailable)
+        {
+            input.gyroActive = YES;
+            self.rotationRate = input.rotationRate;
+            self.currentIntensity = 0.5f;
+        }
         
         [self reset:NO];
         //[self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
@@ -121,13 +129,39 @@
 
 #pragma mark -
 
--(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
+//-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
+//{
+//    //Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
+//    Float32 gain = ((row + 1.0f) / (4 * NUM_ROWS)) * (1.0f / numActive); //Based on row
+//    //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
+//    //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
+//    [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
+//}
+
+-(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row
 {
-    //Float32 pitch = ((440.0f / NUM_COLS) * (col + 1)) / 440.0f; //Based on column
-    Float32 gain = ((row + 1.0f) / (4 * NUM_ROWS)) * (1.0f / numActive); //Based on row
-    //NSLog(@"pitch: %g, gain: %g, active: %d", pitch, gain, self.cellsCurrentlyActive);
-    //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
-    [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
+    if(!self.soundManager.isPlaying)
+    {
+        self.soundManager.playing = YES;
+    }
+//    float intensity = self.currentIntensity;
+//    float intensityStep = 0.15f;
+//    if(self.rotationRate)
+//    {
+//        //NSLog(@"x: %g, y: %g, z: %g", self.rotationRate.x, self.rotationRate.y, self.rotationRate.z);
+//        intensity += self.rotationRate.x * intensityStep;
+//        NSLog(@"Intensity: %g", intensity);
+//        if(intensity < 0.0f)
+//        {
+//            intensity = 0.0f;
+//        }
+//        if(intensity > 1.0f)
+//        {
+//            intensity = 1.0f;
+//        }
+//        self.currentIntensity = intensity;
+//    }
+    [self.soundManager pushRow:row intensity:self.currentIntensity];
 }
 
 -(void)didFinishWithOptionsLayer
@@ -150,7 +184,7 @@
             [self.game stepThroughCycle];
         }
         //Set the next update time
-        ccTime nextDelta = /* ((arc4random() % 100) / 100.0f) **/ .428571429f;
+        ccTime nextDelta = /* ((arc4random() % 100) / 100.0f) **/ .15f;
         self.nextUpdateTime = self.currentTime + nextDelta;
         //NSLog(@"Next delta: %g, updating: %g", nextDelta, self.nextUpdateTime);
     }
@@ -175,8 +209,10 @@
                 else if(touchLocation.x < WIDTH_WINDOW / 2 && touchLocation.y > HEIGHT_GAME + Y_OFF_SET)
                 {
                     [self reset:YES];
+                    /*
                     [self.optionsLayer layerWillAppear];
                     [self addChild:self.optionsLayer];
+                     */
                 }
             }
             if(row >= 0 && row < NUM_ROWS && col >= 0 && col < NUM_COLS)
