@@ -11,8 +11,8 @@
 
 @interface PoolOfLife ()
 @property (nonatomic) PoolOfLifeGameMode gameMode;
-@property (nonatomic) NSInteger rows;
-@property (nonatomic) NSInteger cols;
+@property (nonatomic) NSInteger numRows;
+@property (nonatomic) NSInteger numCols;
 @property (nonatomic) NSInteger priorRow;
 @property (nonatomic) NSInteger priorCol;
 @property (nonatomic) NSInteger currentCycleStep;
@@ -30,7 +30,7 @@
 {
     if(!_food)
     {
-        _food = [[NSMutableArray alloc] initWithCapacity:self.rows];
+        _food = [[NSMutableArray alloc] initWithCapacity:self.numRows];
     }
     return _food;
 }
@@ -39,7 +39,7 @@
 {
     if(!_grid)
     {
-        _grid = [[NSMutableArray alloc] initWithCapacity:self.rows];
+        _grid = [[NSMutableArray alloc] initWithCapacity:self.numRows];
     }
     return _grid;
 }
@@ -48,7 +48,7 @@
 {
     if(!_neighbors)
     {
-        _neighbors = [[NSMutableArray alloc] initWithCapacity:self.rows];
+        _neighbors = [[NSMutableArray alloc] initWithCapacity:self.numRows];
     }
     return _neighbors;
 }
@@ -71,8 +71,8 @@
 {
     if((self = [super init]))
     {
-        self.rows = rows;
-        self.cols = cols;
+        self.numRows = rows;
+        self.numCols = cols;
         self.gameMode = gameMode;
         self.foodSpawnProbability = 0.05f;
         self.eatenFoodSpawnsNewCellsProbability = 0.33f;
@@ -90,12 +90,12 @@
     self.priorCol = -1;
     self.priorRow = -1;
     self.foodCurrentlyActive = 0;
-    for(int row = 0; row < self.rows; row ++)
+    for(int row = 0; row < self.numRows; row ++)
     {
-        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.cols];
-        NSMutableArray *foodLine = [[NSMutableArray alloc] initWithCapacity:self.cols];
-        NSMutableArray *neighborsLine = [[NSMutableArray alloc] initWithCapacity:self.cols];
-        for(int col = 0; col < self.cols; col ++)
+        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.numCols];
+        NSMutableArray *foodLine = [[NSMutableArray alloc] initWithCapacity:self.numCols];
+        NSMutableArray *neighborsLine = [[NSMutableArray alloc] initWithCapacity:self.numCols];
+        for(int col = 0; col < self.numCols; col ++)
         {
             foodLine[col] = @(0);
             line[col] = @(0);
@@ -121,12 +121,12 @@
 
 -(void)plantSomeFood
 {
-    NSInteger row = arc4random() % self.rows;
-    NSInteger col = arc4random() % self.cols;
+    NSInteger row = arc4random() % self.numRows;
+    NSInteger col = arc4random() % self.numCols;
     while([self.grid[row][col] intValue] || [self.food[row][col] intValue])
     {
-        row = arc4random() % self.rows;
-        col = arc4random() % self.cols;
+        row = arc4random() % self.numRows;
+        col = arc4random() % self.numCols;
     }
     self.food[row][col] = @(1);
     self.foodCurrentlyActive ++;
@@ -137,19 +137,19 @@
     //Go through all the cells in gameNeighbors and change grid accordingly
     //1 row at a time
     self.cellsCurrentlyActive = 1;
-    if(self.currentCycleStep >= self.cycleSize && self.lastRowIndex < (self.rows - 1))
+    if(self.currentCycleStep >= self.cycleSize && self.lastRowIndex < (self.numRows - 1))
     {
-        [self stepThroughGrid:self.lastRowIndex toRow:self.rows];
+        [self stepThroughGrid:self.lastRowIndex toRow:self.numRows];
     }
     else if(self.currentCycleStep >= self.cycleSize)
     {
         self.currentCycleStep = 0;
         self.lastRowIndex = 0;
-        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.rows / self.cycleSize))];
+        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.numRows / self.cycleSize))];
     }
     else
     {
-        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.rows / self.cycleSize))];
+        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.numRows / self.cycleSize))];
     }
     self.currentCycleStep ++;
 }
@@ -162,7 +162,7 @@
         self.lastRowIndex = row;
         if(self.gameMode != PoolOfLifeGameModeNone)
         {
-            for(int col = 0; col < self.cols; col ++)
+            for(int col = 0; col < self.numCols; col ++)
             {
                 NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
                 if(((numNeighbors <= 1) || (numNeighbors >= 4)) && [self.grid[row][col] intValue])
@@ -311,22 +311,22 @@
 -(NSUInteger)previousRow:(NSUInteger)row
 {
     //Wrap around if row == 0
-    return (row - 1) % self.rows;
+    return (row - 1) % self.numRows;
 }
 
 -(NSUInteger)previousCol:(NSUInteger)col
 {
-    return (col - 1) % self.cols;
+    return (col - 1) % self.numCols;
 }
 
 -(NSUInteger)nextRow:(NSUInteger)row
 {
-    return (row + 1) % self.rows;
+    return (row + 1) % self.numRows;
 }
 
 -(NSUInteger)nextCol:(NSUInteger)col
 {
-    return (col + 1) % self.cols;
+    return (col + 1) % self.numCols;
 }
 
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started

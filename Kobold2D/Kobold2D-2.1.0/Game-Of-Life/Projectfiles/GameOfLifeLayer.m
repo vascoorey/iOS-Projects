@@ -22,6 +22,9 @@
 @property (nonatomic, strong) SoundManager *soundManager;
 @property (nonatomic, strong) OptionsLayer *optionsLayer;
 @property (nonatomic, weak) KKRotationRate *rotationRate;
+@property (nonatomic, weak) KKAcceleration *acceleration;
+@property (nonatomic) float currentIntensity;
+@property (nonatomic) float lastYAcceleration;
 //Window properties
 @property (nonatomic) NSInteger widthWindow;
 @property (nonatomic) NSInteger heightWindow;
@@ -86,6 +89,20 @@
     return _game;
 }
 
+-(KKAcceleration *)acceleration
+{
+    if(!_acceleration)
+    {
+        KKInput *input = [KKInput sharedInput];
+        if(input.accelerometerAvailable)
+        {
+            input.accelerometerActive = YES;
+            _acceleration = input.acceleration;
+        }
+    }
+    return _acceleration;
+}
+
 #pragma mark Lifecycle
 
 -(id) init
@@ -98,7 +115,7 @@
         self.widthWindow = winSize.width;
         self.yOffset = (self.heightWindow * .04375f);
         //Cells
-        self.cellWidthPercentage = 10.0f / self.widthWindow;
+        self.cellWidthPercentage = 20.0f / self.widthWindow;
         self.cellWidth = (NSInteger)(self.widthWindow * self.cellWidthPercentage);
         //Game
         self.widthGame = self.widthWindow;
@@ -111,11 +128,13 @@
         self.delayInSeconds = 0.17f;
         self.fontSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 26.0f : 18.0f);
         self.gameMode = PoolOfLifeGameModeConwayWithFood;
-        self.currentBeatDelta = 0.1f;
+        self.currentBeatDelta = 0.16667f;
         
         //Natural Major scale
         self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
+        self.soundManager.numCols = self.numCols;
         self.game.delegate = self;
+        self.currentIntensity = 1.0f;
         
         [self reset:NO];
         //[self schedule:@selector(nextStep) interval:DELAY_IN_SECONDS];
@@ -160,9 +179,38 @@
 //    //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
 //    [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
 //}
+-(void)updateIntensity
+{
+    if(self.acceleration)
+    {
+        //NSLog(@"x: %g, y: %g, z: %g", self.rotationRate.x, self.rotationRate.y, self.rotationRate.z);
+        //intensity += self.rotationRate.x * intensityStep;
+        //NSLog(@"x: %g, y: %g, z: %g", self.acceleration.smoothedX, self.acceleration.smoothedY, self.acceleration.smoothedZ);
+        float currentAcceleration = self.acceleration.smoothedY;
+        float deltaY = self.lastYAcceleration - currentAcceleration;
+        //NSLog(@"y: %g, deltaY: %g", self.acceleration.smoothedY, deltaY);
+        self.lastYAcceleration = currentAcceleration;
+        self.currentIntensity += deltaY;
+        if(self.currentIntensity > 1.0f)
+        {
+            self.currentIntensity = 1.0f;
+        }
+        else if(self.currentIntensity < 0.0f)
+        {
+            self.currentIntensity = 0.0f;
+        }
+        //NSLog(@"current intensity: %g", self.currentIntensity);
+    }
+}
+
 -(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
 {
-    [self.soundManager playNoteForCol:col];
+    if(!self.soundManager.isPlaying)
+    {
+        self.soundManager.playing = YES;
+    }
+    [self updateIntensity];
+    [self.soundManager playNoteForCol:col intensity:self.currentIntensity];
 }
 
 -(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row
@@ -171,24 +219,8 @@
     {
         self.soundManager.playing = YES;
     }
-//    float intensity = self.currentIntensity;
-//    float intensityStep = 0.15f;
-//    if(self.rotationRate)
-//    {
-//        //NSLog(@"x: %g, y: %g, z: %g", self.rotationRate.x, self.rotationRate.y, self.rotationRate.z);
-//        intensity += self.rotationRate.x * intensityStep;
-//        NSLog(@"Intensity: %g", intensity);
-//        if(intensity < 0.0f)
-//        {
-//            intensity = 0.0f;
-//        }
-//        if(intensity > 1.0f)
-//        {
-//            intensity = 1.0f;
-//        }
-//        self.currentIntensity = intensity;
-//    }
-    [self.soundManager pushRow:row];
+    [self updateIntensity];
+    [self.soundManager pushRow:row intensity:self.currentIntensity];
 }
 
 -(void)didFinishWithOptionsLayer

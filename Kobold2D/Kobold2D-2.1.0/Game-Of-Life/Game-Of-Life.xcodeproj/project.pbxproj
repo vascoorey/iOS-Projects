@@ -11,6 +11,7 @@
 		BC5B910317199B090042DDBC /* Sample.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BC5B910217199B090042DDBC /* Sample.aupreset */; };
 		BC709A2F1716FDC700E7D5C2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A2E1716FDC700E7D5C2 /* Cell.m */; };
 		BC709A321717033D00E7D5C2 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC709A311717033D00E7D5C2 /* PoolOfLife.m */; };
+		BCA2FC29171C43C80009CD8B /* WithReverb.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCA2FC28171C43C80009CD8B /* WithReverb.aupreset */; };
 		BCCCFC3F1719D60D00A84337 /* RngGen.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCCCFC3E1719D60D00A84337 /* RngGen.aupreset */; };
 		BCCCFC41171AD55000A84337 /* Another.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCCCFC40171AD55000A84337 /* Another.aupreset */; };
 		BCED6C3517189E3D00ADB66C /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCED6C3417189E3D00ADB66C /* SoundManager.m */; };
@@ -65,6 +66,7 @@
 		BC709A2E1716FDC700E7D5C2 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		BC709A301717033D00E7D5C2 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
 		BC709A311717033D00E7D5C2 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
+		BCA2FC28171C43C80009CD8B /* WithReverb.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WithReverb.aupreset; sourceTree = "<group>"; };
 		BCCCFC3E1719D60D00A84337 /* RngGen.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RngGen.aupreset; sourceTree = "<group>"; };
 		BCCCFC40171AD55000A84337 /* Another.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Another.aupreset; sourceTree = "<group>"; };
 		BCED6C3317189E3D00ADB66C /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				BC5B910217199B090042DDBC /* Sample.aupreset */,
 				BCCCFC3E1719D60D00A84337 /* RngGen.aupreset */,
 				BCCCFC40171AD55000A84337 /* Another.aupreset */,
+				BCA2FC28171C43C80009CD8B /* WithReverb.aupreset */,
 			);
 			name = "Audio Unit Presets";
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				BC5B910317199B090042DDBC /* Sample.aupreset in Resources */,
 				BCCCFC3F1719D60D00A84337 /* RngGen.aupreset in Resources */,
 				BCCCFC41171AD55000A84337 /* Another.aupreset in Resources */,
+				BCA2FC29171C43C80009CD8B /* WithReverb.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

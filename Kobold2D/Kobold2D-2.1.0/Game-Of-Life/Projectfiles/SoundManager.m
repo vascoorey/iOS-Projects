@@ -283,19 +283,22 @@ enum {
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
 #define C_MAJ_NOTES @[@(36), @(38), @(40), @(41), @(43), @(45), @(47)]
 //C D E G A C
-#define A_PENT_MAJ_NOTES @[@(24), @(26), @(28), @(31), @(33), @(36)]
+#define C_PENT_MAJ_NOTES @[@(24), @(26), @(28), @(31), @(33), @(36)]
+//A C D E G A
+#define A_PENT_MIN_NOTES @[@(21), @(24), @(26), @(28), @(31), @(33)]
 
 // http://www.midimountain.com/midi/midi_note_numbers.html
 -(UInt32)convertToMidi:(NSInteger)note
 {
-    NSInteger count = [A_PENT_MAJ_NOTES count];
-    return [[A_PENT_MAJ_NOTES objectAtIndex:((note + self.scale) % count)] unsignedIntValue] + 12 + (12 * (note / count));
+    NSInteger count = [A_PENT_MIN_NOTES count];
+    return [[A_PENT_MIN_NOTES objectAtIndex:((note + self.scale) % count)] unsignedIntValue] + 12 + (12 * (note / count));
 }
 
--(void)startPlayNote:(NSInteger)note
+-(void)startPlayNote:(NSInteger)note intensity:(float)intensity
 {
     UInt32 noteNum = [self convertToMidi:note];
-	UInt32 onVelocity = (UInt32)(127 * 1.00f);
+	UInt32 onVelocity = (UInt32)(127.0f * intensity);
+    NSLog(@"velocity: %d (%g)", (int)onVelocity, intensity);
 	UInt32 noteCommand = 	kMIDIMessage_NoteOn << 4 | 0;
     
     [self.notesBeingPlayed addObject:@(note)];
@@ -487,6 +490,11 @@ logTheError:
 
 -(void)pushRow:(NSArray *)row
 {
+    [self pushRow:row intensity:1.0f];
+}
+
+-(void)pushRow:(NSArray *)row intensity:(float)intensity
+{
     if(self.isPlaying)
     {
         for(NSUInteger noteIndex = 0; noteIndex < [row count]; noteIndex ++)
@@ -495,7 +503,7 @@ logTheError:
             if(on && ![self.notesBeingPlayed containsObject:@(noteIndex)])
             {
                 //Start this note
-                [self startPlayNote:noteIndex];
+                [self startPlayNote:noteIndex intensity:intensity];
             }
             else if(!on && [self.notesBeingPlayed containsObject:@(noteIndex)])
             {
@@ -508,7 +516,12 @@ logTheError:
 
 -(void)playNoteForCol:(NSInteger)col
 {
-    [self startPlayNote:col];
+    [self playNoteForCol:col intensity:1.0f];
+}
+
+-(void)playNoteForCol:(NSInteger)col intensity:(float)intensity
+{
+    [self startPlayNote:col intensity:intensity];
 }
 
 -(void)stopPlaying
