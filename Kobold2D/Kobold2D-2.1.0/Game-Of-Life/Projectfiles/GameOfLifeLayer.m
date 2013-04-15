@@ -22,7 +22,6 @@
 @property (nonatomic, strong) SoundManager *soundManager;
 @property (nonatomic, strong) OptionsLayer *optionsLayer;
 @property (nonatomic, weak) KKRotationRate *rotationRate;
-@property (nonatomic) float currentIntensity;
 //Window properties
 @property (nonatomic) NSInteger widthWindow;
 @property (nonatomic) NSInteger heightWindow;
@@ -37,7 +36,8 @@
 @property (nonatomic) float delayInSeconds;
 @property (nonatomic) CGFloat fontSize;
 //Game properties
-@property (nonatomic) kPoolOfLifeGameMode gameMode;
+@property (nonatomic) PoolOfLifeGameMode gameMode;
+@property (nonatomic) ccTime currentBeatDelta;
 @end
 
 @implementation GameOfLifeLayer
@@ -67,13 +67,13 @@
     {
         self.soundManager.playing = NO;
         self.toggleButtonColor = BUTTON_COLOR_PRESSED;
-        self.toggleLabel.string = @"Stopped";
+        self.toggleLabel.string = @"Paused";
     }
     else
     {
         self.soundManager.playing = YES;
         self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
-        self.toggleLabel.string = @"Running";
+        self.toggleLabel.string = @"Pause";
     }
 }
 
@@ -93,19 +93,25 @@
 	if ((self = [super init]))
 	{
         //Properties
-        self.heightWindow = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 1024 : 480);
-        self.widthWindow = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 768 : 320);
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        self.heightWindow = winSize.height;
+        self.widthWindow = winSize.width;
         self.yOffset = (self.heightWindow * .04375f);
-        self.cellWidthPercentage = 0.0625f;
+        //Cells
+        self.cellWidthPercentage = 10.0f / self.widthWindow;
         self.cellWidth = (NSInteger)(self.widthWindow * self.cellWidthPercentage);
+        //Game
         self.widthGame = self.widthWindow;
         self.gameOffset = (NSInteger)(self.heightWindow * .125);
         self.heightGame = self.heightWindow - self.gameOffset;
+        //Cols/Rows
         self.numCols = self.widthGame / self.cellWidth;
         self.numRows = self.heightGame / self.cellWidth;
-        self.delayInSeconds = 0.15f;
+        //Other
+        self.delayInSeconds = 0.17f;
         self.fontSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 26.0f : 18.0f);
-        self.gameMode = kPoolOfLifeGameModeConway;
+        self.gameMode = PoolOfLifeGameModeConwayWithFood;
+        self.currentBeatDelta = 0.1f;
         
         //Natural Major scale
         self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
@@ -116,7 +122,7 @@
         [self scheduleUpdate];
         CCLabelTTF *resetButton = [CCLabelTTF labelWithString:@"Reset" fontName:@"Helvetica" fontSize:self.fontSize];
         resetButton.position = CGPointMake(self.widthWindow / 4, self.heightWindow - self.yOffset);
-        self.toggleLabel = [CCLabelTTF labelWithString:@"Running" fontName:@"Helvetica" fontSize:self.fontSize];
+        self.toggleLabel = [CCLabelTTF labelWithString:@"Pause" fontName:@"Helvetica" fontSize:self.fontSize];
         self.toggleLabel.position = CGPointMake((self.widthWindow / 4) * 3, self.heightWindow - self.yOffset);
         self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
         [self addChild:resetButton];
@@ -154,6 +160,10 @@
 //    //[self.audioEngine playEffect:@"a-sound.WAV" pitch:pitch pan:0 gain:gain];
 //    [self.audioEngine playEffect:[SOUNDS objectAtIndex:(col % [SOUNDS count])] pitch:1.0f pan:0.0f gain:gain];
 //}
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive
+{
+    [self.soundManager playNoteForCol:col];
+}
 
 -(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row
 {
@@ -178,20 +188,22 @@
 //        }
 //        self.currentIntensity = intensity;
 //    }
-    [self.soundManager pushRow:row intensity:self.currentIntensity];
+    [self.soundManager pushRow:row];
 }
 
 -(void)didFinishWithOptionsLayer
 {
     [self.optionsLayer layerWillDisappear];
     [self removeChild:self.optionsLayer];
+    self.done = NO;
+    self.toggleButtonColor = TOGGLE_BUTTON_COLOR_NORMAL;
 }
 
--(void)didSetOption:(kGameOfLifeOption)option withValue:(id)value
+-(void)didSetOption:(PoolOfLifeOption)option withValue:(id)value
 {
     switch (option) {
-        case kGameOfLifeOptionGameMode:
-            self.gameMode = (kPoolOfLifeGameMode)value;
+        case PoolOfLifeOptionGameMode:
+            self.gameMode = (PoolOfLifeGameMode)value;
             break;
         default:
             break;
@@ -212,8 +224,7 @@
             [self.game stepThroughCycle];
         }
         //Set the next update time
-        ccTime nextDelta = /* ((arc4random() % 100) / 100.0f) **/ .15f;
-        self.nextUpdateTime = self.currentTime + nextDelta;
+        self.nextUpdateTime = self.currentTime + self.currentBeatDelta;
         //NSLog(@"Next delta: %g, updating: %g", nextDelta, self.nextUpdateTime);
     }
     //React to touch input
@@ -232,15 +243,25 @@
                 if(touchLocation.x >= self.widthWindow / 2 && touchLocation.y > self.heightGame + self.yOffset)
                 {
                     self.done = !self.done;
+                    if(self.done)
+                    {
+                        [self.soundManager stopPlaying];
+                    }
+//                    if(self.optionsLayer.isLayerCurrentlyVisible)
+//                    {
+//                        [self.optionsLayer layerWillDisappear];
+//                        [self removeChild:self.optionsLayer];
+//                    }
+//                    else
+//                    {
+//                        [self.optionsLayer layerWillAppear];
+//                        [self addChild:self.optionsLayer];
+//                    }
                 }
                 //Handle touches on the left button
                 else if(touchLocation.x < self.widthWindow / 2 && touchLocation.y > self.heightGame + self.yOffset)
                 {
                     [self reset:YES];
-                    /*
-                    [self.optionsLayer layerWillAppear];
-                    [self addChild:self.optionsLayer];
-                     */
                 }
             }
             if(row >= 0 && row < self.numRows && col >= 0 && col < self.numCols)
@@ -301,6 +322,13 @@
     ccDrawSolidRect(CGPointMake(0, self.heightGame + self.yOffset),
                     CGPointMake(self.widthWindow / 2, self.heightWindow),
                     self.resetButtonColor);
+}
+
++(CCScene *)scene
+{
+    CCScene *scene = [CCScene node];
+    [scene addChild:[self node]];
+    return scene;
 }
 
 @end

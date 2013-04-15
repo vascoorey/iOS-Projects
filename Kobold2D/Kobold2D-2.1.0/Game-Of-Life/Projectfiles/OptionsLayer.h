@@ -10,18 +10,18 @@
 
 typedef enum
 {
-    kGameOfLifeOptionNone = 0,
-    kGameOfLifeOptionScale,
-    kGameOfLifeOptionMusicMode,
-    kGameOfLifeOptionTempo,
-    kGameOfLifeOptionPatch,
-    kGameOfLifeOptionGridSize,
-    kGameOfLifeOptionGameMode
-} kGameOfLifeOption;
+    PoolOfLifeOptionNone = 0,
+    PoolOfLifeOptionScale,
+    PoolOfLifeOptionMusicMode,
+    PoolOfLifeOptionTempo,
+    PoolOfLifeOptionPatch,
+    PoolOfLifeOptionGridSize,
+    PoolOfLifeOptionGameMode
+} PoolOfLifeOption;
 
 @protocol OptionsLayerDelegate <NSObject>
 -(void)didFinishWithOptionsLayer;
--(void)didSetOption:(kGameOfLifeOption)option withValue:(id)value;
+-(void)didSetOption:(PoolOfLifeOption)option withValue:(id)value;
 @end
 
 @interface OptionsLayer : CCLayer
@@ -31,5 +31,7 @@ typedef enum
 
 -(void)layerWillAppear;
 -(void)layerWillDisappear;
+
++(CCScene *)scene;
 
 @end

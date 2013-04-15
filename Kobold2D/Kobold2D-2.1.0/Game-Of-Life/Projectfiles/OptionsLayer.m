@@ -8,11 +8,27 @@
 
 #import "OptionsLayer.h"
 
+@interface OptionsLayer ()
+@property (nonatomic, strong) CCLabelTTF *tempoLabel;
+@end
+
 @implementation OptionsLayer
 
 #warning TODO: options for tempo, scale, mode (music), game mode, grid size...
 
-#pragma mark todo - maybe with sprites or some such
+-(id)init
+{
+    if((self = [super init]))
+    {
+        self.tempoLabel = [CCLabelTTF labelWithString:@"Not Selected" fontName:@"Helvetica" fontSize:24.0f];
+        CCMenu *menu = [CCMenu menuWithItems:
+                        [CCMenuItemLabel itemWithLabel:self.tempoLabel block:^(id sender) {
+            self.tempoLabel.string = @"Selected";
+        }], nil];
+        [self addChild:menu];
+    }
+    return self;
+}
 
 -(void)layerWillAppear
 {
@@ -31,7 +47,7 @@
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     ccDrawSolidRect(CGPointMake(0, 0),
                     CGPointMake(winSize.width, winSize.height),
-                    ccc4f(0, 1, 1, 1));
+                    ccc4f(0, 0, 0, 0.25f));
 }
 
 -(void)update:(ccTime)delta
@@ -49,6 +65,13 @@
             }
         }
     }
+}
+
++(CCScene *)scene
+{
+    CCScene *scene = [CCScene node];
+    [scene addChild:[self node]];
+    return scene;
 }
 
 @end

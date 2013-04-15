@@ -27,6 +27,8 @@ typedef enum
 
 //Designated Initializer
 -(id)initWithScale:(kSoundManagerScale)scale;
--(void)pushRow:(NSArray *)row intensity:(float)intensity;
+-(void)pushRow:(NSArray *)row;
+-(void)playNoteForCol:(NSInteger)col;
+-(void)stopPlaying;
 
 @end

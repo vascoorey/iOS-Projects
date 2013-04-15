@@ -10,7 +10,7 @@
 #import "Cell.h"
 
 @interface PoolOfLife ()
-@property (nonatomic) kPoolOfLifeGameMode gameMode;
+@property (nonatomic) PoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger rows;
 @property (nonatomic) NSInteger cols;
 @property (nonatomic) NSInteger priorRow;
@@ -67,7 +67,7 @@
 
 #pragma mark -
 
--(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(kPoolOfLifeGameMode)gameMode
+-(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode
 {
     if((self = [super init]))
     {
@@ -75,6 +75,8 @@
         self.cols = cols;
         self.gameMode = gameMode;
         self.foodSpawnProbability = 0.05f;
+        self.eatenFoodSpawnsNewCellsProbability = 0.33f;
+        self.maxFood = 10;
         self.cycleSize = 9;
         self.lastRowIndex = 0;
     }
@@ -87,6 +89,7 @@
     self.neighbors = nil;
     self.priorCol = -1;
     self.priorRow = -1;
+    self.foodCurrentlyActive = 0;
     for(int row = 0; row < self.rows; row ++)
     {
         NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.cols];
@@ -97,58 +100,39 @@
             foodLine[col] = @(0);
             line[col] = @(0);
             neighborsLine[col] = @(0);
-            if(self.gameMode == kPoolOfLifeGameModeConwayWithFood || self.gameMode == kPoolOfLifeGameModeCrazy)
-            {
-                if((arc4random() % 100) / 100.0f <= self.foodSpawnProbability)
-                {
-                    self.foodCurrentlyActive ++;
-                    foodLine[col] = @(1);
-                }
-            }
         }
         self.grid[row] = line;
         self.neighbors[row] = neighborsLine;
         self.food[row] = foodLine;
     }
+    if(self.gameMode == PoolOfLifeGameModeConwayWithFood || self.gameMode == PoolOfLifeGameModeCrazy)
+    {
+        [self seedRandomFood];
+    }
 }
 
--(void)updateFood
+-(void)seedRandomFood
 {
-    //Check if any cell is on a food cell, if so activate its adjacent cells.
-    //Spawned cells should not spawn new cells
-    /*
-     NSMutableArray *cellsToSpawn = [[NSMutableArray alloc] init];
-     for(int row = 0; row < self.rows; row ++)
-     {
-     for(int col = 0; col < self.cols; col ++)
-     {
-     if([self.gameGrid[row][col] intValue] && [self.gameFood[row][col] intValue])
-     {
-     NSLog(@"Adding cell to spawn!");
-     [cellsToSpawn addObject:[Cell cellWithRow:row col:col]];
-     self.gameFood[row][col] = @(0);
-     }
-     }
-     }
-     for(Cell *cell in cellsToSpawn)
-     {
-     NSLog(@"Spawning cells at: %d, %d", cell.col, cell.row);
-     self.gameGrid[[self previousRow:cell.row]][cell.col] = @(1);
-     self.gameGrid[[self nextRow:cell.row]][cell.col] = @(1);
-     self.gameGrid[cell.row][[self nextCol:cell.col]] = @(1);
-     self.gameGrid[cell.row][[self previousCol:cell.col]] = @(1);
-     }
-     */
+    while(self.foodCurrentlyActive < self.maxFood)
+    {
+        [self plantSomeFood];
+    }
+}
+
+-(void)plantSomeFood
+{
+    NSInteger row = arc4random() % self.rows;
+    NSInteger col = arc4random() % self.cols;
+    while([self.grid[row][col] intValue] || [self.food[row][col] intValue])
+    {
+        row = arc4random() % self.rows;
+        col = arc4random() % self.cols;
+    }
+    self.food[row][col] = @(1);
+    self.foodCurrentlyActive ++;
 }
 
 -(void)stepThroughCycle
-{
-    
-    [self updateGrid];
-    [self updateFood];
-}
-
--(void)updateGrid
 {
     //Go through all the cells in gameNeighbors and change grid accordingly
     //1 row at a time
@@ -176,7 +160,7 @@
     for(int row = fromRow; row < toRow; row ++)
     {
         self.lastRowIndex = row;
-        if(self.gameMode != kPoolOfLifeGameModeNone)
+        if(self.gameMode != PoolOfLifeGameModeNone)
         {
             for(int col = 0; col < self.cols; col ++)
             {
@@ -198,11 +182,109 @@
                         [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
                     }
                 }
+                if(self.gameMode == PoolOfLifeGameModeConwayWithFood || self.gameMode == PoolOfLifeGameModeCrazy)
+                {
+                    if([self.grid[row][col] intValue] && [self.food[row][col] intValue])
+                    {
+                        //A cell just ate some food! Reproduction?
+                        [self cellAteFoodAtRow:row col:col];
+                    }
+                    else if(![self.food[row][col] intValue] && self.foodCurrentlyActive < self.maxFood)
+                    {
+                        //Spawn food according to food spawn percentage on empty cells
+                        if(((arc4random() % 1000) + 1) / 1000.0f <= self.foodSpawnProbability)
+                        {
+                            [self plantSomeFood];
+                        }
+                    }
+                }
             }
         }
         if([self.delegate respondsToSelector:@selector(didFinishUpdatingRowWithResultingRow:)])
         {
             [self.delegate didFinishUpdatingRowWithResultingRow:[self.grid[row] copy]];
+        }
+    }
+}
+
+-(void)cellAteFoodAtRow:(NSInteger)row col:(NSInteger)col
+{
+    NSInteger previousRow = [self previousRow:row];
+    NSInteger nextRow = [self nextRow:row];
+    NSInteger previousCol = [self previousCol:col];
+    NSInteger nextCol = [self nextCol:col];
+    self.food[row][col] = @(0);
+    self.foodCurrentlyActive --;
+    //Top-left
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[previousRow][previousCol] intValue])
+        {
+            self.grid[previousRow][previousCol] = @(1);
+            [self updateNeighborsForRow:previousRow col:previousCol increment:YES];
+        }
+    }
+    //Top
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[previousRow][col] intValue])
+        {
+            self.grid[previousRow][col] = @(1);
+            [self updateNeighborsForRow:previousRow col:col increment:YES];
+        }
+    }
+    //Top-right
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[previousRow][nextCol] intValue])
+        {
+            self.grid[previousRow][nextCol] = @(1);
+            [self updateNeighborsForRow:previousRow col:nextCol increment:YES];
+        }
+    }
+    //Left
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[row][previousCol] intValue])
+        {
+            self.grid[row][previousCol] = @(1);
+            [self updateNeighborsForRow:row col:previousCol increment:YES];
+        }
+    }
+    //Right
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[row][nextCol] intValue])
+        {
+            self.grid[row][nextCol] = @(1);
+            [self updateNeighborsForRow:row col:nextCol increment:YES];
+        }
+    }
+    //Bottom-left
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[nextRow][previousCol] intValue])
+        {
+            self.grid[nextRow][previousCol] = @(1);
+            [self updateNeighborsForRow:nextRow col:previousCol increment:YES];
+        }
+    }
+    //Bottom
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[nextRow][col] intValue])
+        {
+            self.grid[nextRow][col] = @(1);
+            [self updateNeighborsForRow:nextRow col:col increment:YES];
+        }
+    }
+    //Bottom-right
+    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    {
+        if(![self.grid[nextRow][nextCol] intValue])
+        {
+            self.grid[nextRow][nextCol] = @(1);
+            [self updateNeighborsForRow:nextRow col:nextCol increment:YES];
         }
     }
 }
@@ -265,6 +347,13 @@
         {
             self.grid[row][col] = @(1);
             [self updateNeighborsForRow:row col:col increment:YES];
+            if(self.gameMode == PoolOfLifeGameModeConwayWithFood || self.gameMode == PoolOfLifeGameModeCrazy)
+            {
+                if([self.food[row][col] intValue])
+                {
+                    [self cellAteFoodAtRow:row col:col];
+                }
+            }
         }
         self.priorRow = row;
         self.priorCol = col;

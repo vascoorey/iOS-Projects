@@ -282,15 +282,17 @@ enum {
 
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
 #define C_MAJ_NOTES @[@(36), @(38), @(40), @(41), @(43), @(45), @(47)]
+//C D E G A C
+#define A_PENT_MAJ_NOTES @[@(24), @(26), @(28), @(31), @(33), @(36)]
 
 // http://www.midimountain.com/midi/midi_note_numbers.html
 -(UInt32)convertToMidi:(NSInteger)note
 {
-    NSInteger count = [C_MAJ_NOTES count];
-    return [[C_MAJ_NOTES objectAtIndex:((note + self.scale) % count)] unsignedIntValue] + 12 + (12 * (note / count));
+    NSInteger count = [A_PENT_MAJ_NOTES count];
+    return [[A_PENT_MAJ_NOTES objectAtIndex:((note + self.scale) % count)] unsignedIntValue] + 12 + (12 * (note / count));
 }
 
--(void)startPlayNote:(NSInteger)note intensity:(float)intensity
+-(void)startPlayNote:(NSInteger)note
 {
     UInt32 noteNum = [self convertToMidi:note];
 	UInt32 onVelocity = (UInt32)(127 * 1.00f);
@@ -321,11 +323,11 @@ logTheError:
 
 -(void)stopAllNotes
 {
-    for(NSNumber *note in self.notesBeingPlayed)
+    NSArray *notesToStop = [self.notesBeingPlayed copy];
+    for(NSNumber *note in notesToStop)
     {
         [self stopPlayNote:[note intValue]];
     }
-    [self.notesBeingPlayed removeAllObjects];
 }
 
 // Stop the audio processing graph
@@ -483,7 +485,7 @@ logTheError:
     return self;
 }
 
--(void)pushRow:(NSArray *)row intensity:(float)intensity
+-(void)pushRow:(NSArray *)row
 {
     if(self.isPlaying)
     {
@@ -493,7 +495,7 @@ logTheError:
             if(on && ![self.notesBeingPlayed containsObject:@(noteIndex)])
             {
                 //Start this note
-                [self startPlayNote:noteIndex intensity:intensity];
+                [self startPlayNote:noteIndex];
             }
             else if(!on && [self.notesBeingPlayed containsObject:@(noteIndex)])
             {
@@ -502,6 +504,16 @@ logTheError:
             }
         }
     }
+}
+
+-(void)playNoteForCol:(NSInteger)col
+{
+    [self startPlayNote:col];
+}
+
+-(void)stopPlaying
+{
+    [self stopAllNotes];
 }
 
 @end
