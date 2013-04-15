@@ -1,0 +1,169 @@
+Legend:
+	[API] <== Changes to public API
+	[NEW] <== New feature or functionality
+	[FIX] <== Issue fixed or internal changes (refactoring)
+	[UPD] <== Updated library source code (cocos2d, box2d, etc)
+	[DOC] <== New or significantly updated documentation
+
+===================================================================
+====================== KoboldTouch CHANGELOG ======================
+===================================================================
+
+Version 6.1.12		24-Mar-2013
+	[NEW] Feature-Demo template project - used to test and demonstrate new KT features. Demos included in first version:
+		Tilemap with stop-at-border scrolling, draws objects
+		Tilemap with parallaxing, horizontal endless scrolling, iPad scale factor 2x, iPad hi-res tilesets
+		Multi-Touch Events, track individual fingers (touch finger 1, 2, 3, lift fingers 1&2, item 3 still dragged by finger 3)
+		Motion Events: raw, smoothed, instantaneous with moving label for each to demonstrate differences
+		Push/Pop scenes: push, pop, pop to root, and pop to new scene. Pop scenes with transitions!
+		ScrollLayer: demo for KTScrollLayerViewController
+	[NEW] push, pop, pop all, pop all & replace support for scene view controllers
+	[NEW] KTModel: added setObject:ForKey: and objectForKey: to store generic objects in model
+	[NEW] KTTilemapLayer: endlessScrollingHorizontal & endlessScrollingVertical properties to allow endless scrolling in only one direction
+	[NEW] KTScrollLayerViewController: controller for CCScrollLayer (cocos2d-iphone-extensions)
+	[NEW] KTRenderTextureViewController: controller for CCRenderTexture
+	[NEW] KTMultiTouchController: keeps track of a specific finger's touch by keeping it in the same position of touchEvents array
+	[FIX] KTMultiTouchController: fix always swallowing touches issue (touches not propagating to other controllers)
+	[FIX] Tilemaps: possibly wrong tilesets loaded on Retina iPhone and iPads, depending on tileset extensions & file format
+	[UPD] cocos2d-iphone v2.1 rc1
+	[UPD] cocos2d-iphone-extensions (develop-v2, commit from Jan 15, 2013)
+
+Version 6.1.11		18-Mar-2013
+	[NEW] KTMouseController: receive mouse events with KTMouseEvent object (game-relevant & properly converted properties)
+	[NEW] KTKeyboardController: receive key events with KTKeyEvent object (game-relevant & properly converted properties)
+	[NEW] KTTilemapViewController: tileCoordFromPoint:relativeToMapSize: returns coords guaranteed to be within tilemap.mapSize boundary
+	[NEW] KTTilemap: restoreTileset for removing a tileset alias created with replaceTileset:withTileset:
+	[NEW] KTMultiTouchController: can now receive all touch events in one method -> touchesEvent: and touchEvent:
+	[FIX] KTMultiTouchController: did not properly swallow touches when multiple controllers registered for touch events
+	[FIX] Tilemap setTileGid: did not update all layers right away, other layers required a scroll operation to update
+	[FIX] KTSceneViewController: optimized access to common scene controllers like motion, multitouch, mouse, physics controllers.
+	[FIX] Renamed KTMotionProtocol & KTMultiTouchProtocol to KTMotionDelegate & KTMultiTouchDelegate
+	[DOC] Changed API references to use SVG for class & inheritance diagrams (ability to pan & zoom, reduced doc size)
+	[DOC] Controller & Model subclassing notes: http://www.koboldtouch.com/x/tIFq
+	[DOC] Working with Tilemaps Guide: http://www.koboldtouch.com/x/iIBq
+
+Version 6.1.10		13-Mar-2013
+	[NEW] KTTilemap: added _iPadScaleFactor & _scaleTilesetSpacingAndMargin - with properly sized -ipad(hd) tilesets, iPad tilemaps
+		can be scaled up versions similar in size to iPhone but using higher detailed tileset images. Eg scale x2 creates a tilemap
+		that's only ~1-3 tile rows/colums larger on iPad. For universal apps where same/similar number of visible tiles is important.
+	[NEW] Tile Layers: _drawTileCoordinates will draw tile coords over tile layer for better orientation
+	[NEW] KTTilemapViewController: can be initialized with existing KTTilemap object
+	[NEW] Added color property to KTTextMenuItem to set text color
+	[NEW] KoboldTouch-Template: simple "start from scratch" template with 3 scenes, each with a menu to switch scenes
+	[NEW] KTTilemapViewController: scrollToTileCoordOrigin will center the tile's origin in view, otherwise (default) centers the tile's center in view
+	[FIX] KTTilemapViewController: scrollToTileCoordinate scrolled to wrong coord
+	[FIX] Tilemap renderer: some rotated tiles were drawn offset by one tile size
+	[FIX] Tilemap renderer: crash if an empty gid (0) has one of its flip flags set
+	[FIX] Scene Transition: new scene's visuals were different during transition, fully updated only after transition ended
+
+Version 6.1.9		08-Mar-2013
+	[FIX] Controllers did not automatically apply model positions to view
+	[FIX] renamed Ability pre/postProcessing methods
+	[DOC] new KoboldTouch pitch page: http://www.koboldtouch.com/x/64Bq
+
+Version 6.1.8		07-Mar-2013
+	[NEW] KTTilemap: parallax scrolling! Usage: parallaxFactor property in KTTilemapLayer or edit layer properties in Tiled: _parallaxFactor = {0.7,0.7}
+	[NEW] KTTilemapLayer: added setTileGid* methods and clearTileAt:
+	[NEW] KTEntityModel: stopActionByClass: stops first action of the given class
+	[NEW] KTEntityModel: actionWillRun/actionDidRun callbacks
+	[NEW] KTAbility: added ability system for models (game components, code plugins, whatever you want to call it - see API ref class description)
+	[NEW] KTParallaxFollowAbility: gets another model's position, multiplies it by parallaxFactor and applies position to ability's model
+	[FIX] KTTilemapVC: tileCoordFromPoint & point..OfTileAtCoord returned wrong coordinates
+	[DOC] Tilemap Feature List and Comparison with CCTMXTiledMap & HKTMXTiledMap: http://www.koboldtouch.com/x/cYBq
+	[DOC] Tilemap Classes Explained: http://www.koboldtouch.com/x/i4Bq
+	[DOC] Tilemap Editing Properties in Tiled: http://www.koboldtouch.com/x/YIBq
+
+Version 6.1.7		22-Feb-2013
+	[NEW] Tilemap: write tilemap to TMX file (can be used for save/load and editors)
+	[NEW] Tilemap: endless scrolling mode (tile layers wrap around at borders)		Note: objects are not wrapped.
+	[NEW] Tilemap: get tile coordinate from view position (KTTilemapViewController).
+	[NEW] Tilemap: get view position from tile coordinate (KTTilemapViewController). Can get both tile's origin and tile's center position.
+	[FIX] Memory Leak: loadViewBlock & createModelBlock were not freed, causing references copied by the block to be retained indefinetely.
+	[FIX] Physics Controllers: assertion when adding/removing body that is already nil (due to weak references, fixes crash in example game).
+	[FIX] Removing view controller sends viewWill/DidDisappear messages to removed controller
+	[DOC] Introduction to the MVC Framework: http://www.koboldtouch.com/x/CYBl
+	[DOC] Working with the MVC Framework: http://www.koboldtouch.com/x/EIBq
+	[DOC] Dissecting Controllers & Models: http://www.koboldtouch.com/x/G4Bq
+	[DOC] How to compress & encode data with zlib & base64: http://www.koboldtouch.com/x/RYBq
+	[DOC] How to write XML on iOS with xswi (XML Stream Writer): http://www.koboldtouch.com/x/O4Bq
+
+Version 6.1.6		17-Feb-2013
+	[FIX] Controllers: fix for most recent createModelBlock fix (caused model to be nil if no custom model used, also fixes Example Game)
+	[DOC] Launched Website: http://www.koboldtouch.com
+
+Version 6.1.5		09-Feb-2013
+	[FIX] Physics: fixed situations where KTPhysicsBody was released prematurely, causing crashes (ie during contact callback)
+	[FIX] Controllers: assert that KTSceneViewController is not added as subController but only presented via KTGameController
+	[FIX] Controllers: createModelBlock did not execute in KTSceneViewController objects.
+
+Version 6.1.4		01-Feb-2013
+	[NEW] Tilemap View Controller has tilemap property for easier access to KTTilemap
+	[NEW] Tilemap: tilesetForName:(NSString*)name to get a tileset from KTTilemp by its name
+	[NEW] Tilemap: replaceTileset:withTileset: method on KTTilemap to render tiles from a different tileset (change atmosphere, ie summer -> winter)
+	[FIX] Tilemap: some tiles incorrectly flipped
+	[FIX] Tilemap: tile sprites use lower left corner as origin as in Tiled
+	[FIX] Tilemap: added missing headers to KoboldTouch.h
+	[FIX] Tilemap: changing visible property of KTTilemapLayer will also change its view's visible property
+	[FIX] Controller by name/class/tag now correctly returns controller even during step method
+
+Version 6.1.3		29-Jan-2013
+	[NEW] Tilemap: supports multiple tilesets per tile layer
+	[NEW] Tilemap: Tilesets have properties
+	[NEW] Tilemap: get object/layer by name
+	[FIX] Compatibility with Xcode 4.6 (fixed compile errors)
+
+Version 6.1.2		23-Jan-2013
+	[API] KTObjectLayerSpawnProtocol: simplified to willCreate & didCreate message for all objects
+	[API] KTTilemap: static initializer tilemapWithTMXFile: replaces alloc/init followed by parseTMXFile:
+	[API] KTTilemapLayer: tileAt* methods renamed to tileGidAt*
+	[NEW] KTTilemapProperties wrapper around NSMutableDictionary for all sorts of tilemap properties
+	[NEW] Tilemap: bounding box for polygon/polyline is calculated, and drawn if enabled
+	[NEW] Tilemap: get layers and objects by name
+	[FIX] Tilemap: sprite batch node initialized with correct capacity, prevents "increase capacity" spamming the log
+	[FIX] Tilemap: added missing tileset properties
+	[FIX] Tilemap: typedef uint32_t as gid_t, all gids now use gid_t as their datatype (prevents mistakes, emphasize special meaning)
+	[FIX] Tilemap: Improved TMX loading time, cleaned up TMX parser code
+	[FIX] Tilemap: Support for & drawing of zero-sized Rectangle objects
+
+Version 6.1.1		20-Jan-2013
+	[NEW] KTDebugController: can get and log instance size of a Class
+	[FIX] Tilemap: object layer position may have incorrect position after scrolling (offset from tile layer)
+	[FIX] Tilemap: Refactored tilemap layer models and views
+
+Version 6.1.0		20-Jan-2013
+	[NEW] KTTilemapViewController: improved tilemap renderer (orthogonal tilemaps). 
+		Loads fast, supports very large tilemaps (millions of tiles) and renders them at 60 fps regardless of size, free of artifacts.
+		All TMX features supported: Opacity, Properties, Tile flipping, Objects, etc.
+	[NEW] Tilemap: TMX will upscale TMX content automatically on Retina devices. 
+		You do not need to create upscaled TMX file versions (-hd/-ipad/-ipadhd)! Simply provide higher resolution tileset images.
+	[NEW] Tilemap: Supports PVR tileset images. Will load .pvr.ccz/.pvr.gz/.pvr versions of tileset image automatically (if existing).
+		Otherwise will default to loading the tileset image used by Tiled as specified in the TMX.
+	[NEW] Tilemap: flexible scrolling API. Scroll to or by position / tile coordinate with either speed or duration, or instantly.
+	[NEW] Tilemap: scrolling respects tilemap borders. You can not scroll outside the tilemap borders when using the scrolling API.
+	[NEW] Tilemap: object spawn protocol for delegates to interact/modify each object created on an object layer.
+	[NEW] Tilemap: can draw objects on object layer as drawing primitives.
+	[NEW] KTAction: Run & stop actions for KTEntityModel. Similar to cocos2d actions but completely rewritten.
+	[NEW] KTMoveAction: combines functionality of CCMoveTo and CCMoveBy, can also use speed instead of duration.
+	[NEW] KTMultiTouchController: can emulate touch events on OS X to turn mouse into touch input device (click = touch, click & drag = move).
+	[NEW] KTDrawingPrimitivesViewController: wrapper for CCDrawNode. Can add & remove individual drawing primitives.
+	[FIX] Some Xcode docsets incorrectly named, the other docsets were not installed/updated
+	[FIX] Add/Remove of subcontrollers in a step method caused a crash (array modified during enumeration)
+	[FIX] LOG_EXPR now prints out char/unsigned char values
+
+Version 6.0.5		09-Jan-2013
+	[NEW] This change log! W00t!
+	[NEW] KTAutoscaleController: scales position of nodes depending on winSize and orientation
+	[NEW] Autoscale Example Template: demo project for KTAutoscaleController
+	[UPD] cocos2d-iphone v2.1 beta 4 (see ccDeprecated.h/.m for replacements of deprecated methods)
+	[FIX] several orientation issues
+	[FIX] Lua.h not found on case-sensitive filesystem partitions
+	[FIX] kkprep issue causing download page not to display the latest KT version
+
+Version 6.0.4		21-Dec-2012
+Version 6.0.3		19-Dec-2012
+Version 6.0.2		11-Dec-2012
+Version 6.0.1		05-Dec-2012
+Version 6.0.0		03-Dec-2012
+Version 5.9.x		01-Nov-2012
+	These versions had no changelog.
+	

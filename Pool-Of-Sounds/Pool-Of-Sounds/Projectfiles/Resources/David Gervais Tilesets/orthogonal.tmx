@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="120" height="40" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="PropertyOnMap" value="yay!"/>
+ </properties>
+ <tileset firstgid="1" name="dg_grounds32" tilewidth="32" tileheight="32">
+  <image source="dg_grounds32.png" width="288" height="608"/>
+  <tile id="9">
+   <properties>
+    <property name="PRoperttyOnGrass" value="YES"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="172" name="game-events" tilewidth="32" tileheight="32">
+  <image source="game-events.png" width="96" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="isCloseToWater" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="isWater" value="1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="isDesert" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="120" height="40">
+  <properties>
+   <property name="Chapter" value="10"/>
+   <property name="PropertiesOnLayer" value="hurray!"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzNmcFOGzEQhi0OPdAjkGo5odJSJA49RgpKlXAAqaqaNwDeoVKl3uitVVWkSn0Arn0LHoVHqQ0zyjAZ22PvJuPDr6x3vbuz83k89uTcOXfu3J3Xvdf1+VP7xuvBa+Z1AG16/bH/2Pd57du/vX6BvngdgbZBM9AcdOb1XdAClLq2UPRL3aO9t0T0mann576p5t05UV7Ibwu43BJGVHj+nVfg+xPYHgLfQ+Eeynee4Sox0vKo8W3NOBqSVckYrOC7EqvIFzVmv1PGF5nirxS7qBjf1LfnfFPDt/QdMZ+nxkkNj9I5R8GXzsGPnJHvmCi0J4z7ERNnK/FFDcWX91kH35T/U8/oG4PSO0p5S3mV8p0SrsiZH0uiLHeJON/S+FwH3xrGkr+HjOPYmNKcp9qKaAJsp241jqVcHIvVXbfKd3cgvhLXdfJNzdExvw+pEhtQf7yO3TKn0rjF2KUxnIvVFFvkO2qUb6lPS8ZF39jVxLTU7y9hfOyWeXYKHEZuyX7iVsdBB8x2Ijz78k31iX1bbT7V+nZTfLX38bFIr52AXoCQMa6TUTxmO+C7Q5RjOwK+2xX+yc1JUszV+kS7ftHGVQ3jPv3pcWAb1rxhr/MG2pTvJRHm245xRWG8U970vMQ3xUmzbin1ce5ZNessrc9z36VZL5WO1x9ebwlbOkd/dk8x+tXrH5w7JXwnbjk/o0YR0fk5xrfk2zRxmhofNfFaE18l7x9C3LZQnzgEYey+BAW+l8D2G3C+InxhTX2DQsa5/Mvn5z58S3y9abZahn1tTz3zhIiuo0PMvQLGp8D1Cq7ve31U8t0Dpfhyu6WaqVVNvA/b1Bw8BEuNbTRecV/UAd8OdEqOkW3QJ8Z37lb3RnvuOWPKN/adLdTEa/lq43LIPJ/ji/vbjrDDNdI+8MU2Xu8SfPmczPnOBH8wvuY18ZT/hpprNf21fWL93oNu3TI296FNee6Q8x3jqoldylfyJbWxhZq4xFE712w6l6TGAN/jIN/AkNYncX6me6cJ4cz5SmxTfKmtVjXxmli0ziU5OzF+kR9lGfz4wT2vcyBvcvyM7zzBldqY4mtdEy+RZS7RjMHwrrDvwf3PmPgH+VKhb7edzDe2Zp67/FoG7W2hJq6VZS7R8L1wbeWQ8GtVE69ZI1nmkgIbm8gh+GtVE6+pF1nlkpI9k3UOkWouFjXxmrqDVS7R7s0sc4hkV2hb1sRL6w4t/b8a82crOQTbYT5opSaeYrtw9v+vSmOS29/KfoTnX6uaeC4e6Hqhhf9XY/OO9X6Ezy14TON10zXxVKxK9rbw/2qKcZBlDpFiBMe+VU08Fa/cXutcomFsmUMkn1nXxFNrUn6tlVyS42uVQ6Q5z6omnltXSbm4tVwi2dlaDmmtJi6NQ2y3lEtifFvJIei3lmri3Gecs1UuydXVpPxrmUOoTRdPuvO697qG9o3Xg9fM6wDa9Ppjf+qvOXk/H1+c7VmGbWzubu3/Vcle6xwSq3NovoEfl/KR+mjqfqjWcolkr3UOkdZYpYz5vVo+mjk5pdZyiRQr1jlEsq+kRlgSp1qu2me0lEtiNreSQ1L7zdT5XB1x6JjtO3ZSsRZbp/ex2yqHlOTdmC9KYzzXb6i5vYRtLM9ovyFnp1UOSX2TlsFQfo89a8j39c0l0j2a+61ySMlaal3q4+NSxVj3sXsd80zt9+bGtAVXi/ev450xf/8Hfld06w==
+  </data>
+ </layer>
+ <layer name="WinterLayer" width="120" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl81Kw1AQRmflItuA4NbfQh8gUOkLdOOqtTWNC4X6Ux/ElSD4Er6ld8gM/TpGQSjlRr4Dh97cZHc6N20hIkVybBbmCNYVrHfhlZB9gW1j4zfp7vPT/l8k+8H7jmAdW1Ths+sZ9s2T3xpUYDyz2bcfDOT7eYvzirNddTzDvnkzMOO7VZv6+zjO8S7exWQ/vEvbF9+pPrc+uzjDPJ/7xYdsGvsce9NDcxz28XtwJOybM0PzwMSzuus/k6tdtW/ZcY9980Hbnicvkqd2jX1vQX/fatsSZN98eU2eyaYtntFP0s7oPPlpe5fJZ2m7Lm3NvvlynDwxfXavTe17J23buanX2Hcq7JszQ1Bnt07OkitTGzfJe1ObviQnwr59YAbWps7nyj7VBtbedmLPsG/exK7ezn87ac8Grv3+Wti3Dzya2tdnc23X2LOEff0eTEH2zZcy6H21YS3bs41dfZ998+bB9H51WC9lu3OUffNGG81B7OZ90XifffNGmy6SN+DC1J5NMLZlX0IIIYQQQgghhBBCCCGEEEIIIYQQQggh/5EvJOxZDA==
+  </data>
+ </layer>
+ <objectgroup name="ObjectLayer" width="120" height="40">
+  <properties>
+   <property name="ObjectLayerProperty" value="12345"/>
+  </properties>
+  <object x="283" y="317" width="103" height="71"/>
+  <object x="-3" y="287" width="130" height="127"/>
+  <object x="0" y="571" width="538" height="68"/>
+  <object name="Polygooone" type="TestObjectType" x="512" y="64">
+   <properties>
+    <property name="PropertyOnPolygonObject" value="34"/>
+   </properties>
+   <polygon points="0,0 -32,128 128,96 128,-32 32,-64 -32,-32 -96,32 -96,96"/>
+  </object>
+  <object x="768" y="96">
+   <properties>
+    <property name="PropertyOnPolyLine" value="7989"/>
+   </properties>
+   <polyline points="0,0 0,192 -96,288 64,384 128,256 128,0"/>
+  </object>
+  <object x="704" y="64" width="128" height="96">
+   <properties>
+    <property name="I'mARectangle" value="YUP"/>
+   </properties>
+  </object>
+  <object x="832" y="96"/>
+ </objectgroup>
+ <layer name="GameEventLayer" width="120" height="40" visible="0" opacity="0.62">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEOgyAQQFEv0QP0/uoZmyY2sRZRsSCS95LZ4uJnhK7L57ky3I+ObbCTbdCxDSU6DrN5/Pls4sZpchm6375Dxu/xLWffZVv7W964mCP6ad5CLdeGcpZ99zTuZ3O0q75lpfaN7aV9rceZvvM93qL1NVLu33nfEHdvPVLvXn3vp985n1b63kvo3bT2To7du/rWI7SbW0233lT61iPUIPZvTj1T32ucbRmia7u0bZe2AAAAAAAAAAAAtOIFMC+T1g==
+  </data>
+ </layer>
+ <layer name="TestMixTilesetLayer" width="120" height="40" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJADAIBLAD9x+lO7qB/gpCAqkkNeS2twQAAAAAAAAAAAAAAAAAAAAAAPitAXKOBYE=
+  </data>
+ </layer>
+</map>
