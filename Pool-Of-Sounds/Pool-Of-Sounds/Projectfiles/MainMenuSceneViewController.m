@@ -9,6 +9,7 @@
 #import "MainMenuSceneViewController.h"
 #import "FirstSceneViewController.h"
 #import "SecondSceneViewController.h"
+#import "GameOfLifeLayer.h"
 
 @implementation MainMenuSceneViewController
 
@@ -18,9 +19,12 @@
 // Add subcontrollers, set createModelBlock and loadViewBlock here.
 -(void) initWithDefaults
 {
-	[self createBackground];
-	[self createMenu];
-	[self createLabel];
+	//[self createBackground];
+	//[self createMenu];
+	//[self createLabel];
+    self.loadViewBlock = ^(CCNode *rootNode){
+        [rootNode addChild:[GameOfLifeLayer node]];
+    };
 	
 	NSLog(@"%@", [self.gameController.debugController objectGraph]);
 	NSLog(@"-------");
@@ -28,14 +32,14 @@
 
 -(void) createBackground
 {
-	KTColorGradient* colorGradient = [[KTColorGradient alloc] init];
-	uint8_t startColor = CCRANDOM_0_1() * 255;
-	uint8_t endColor = CCRANDOM_0_1() * 255;
-	colorGradient.startColor = ccc4(startColor, startColor, startColor, 255);
-	colorGradient.endColor = ccc4(endColor, endColor, endColor, 255);
-	
-	KTColorGradientViewController* gradientVC = [KTColorGradientViewController colorGradientControllerWithColorGradient:colorGradient];
-	[self addSubController:gradientVC];
+//	KTColorGradient* colorGradient = [[KTColorGradient alloc] init];
+//	uint8_t startColor = CCRANDOM_0_1() * 255;
+//	uint8_t endColor = CCRANDOM_0_1() * 255;
+//	colorGradient.startColor = ccc4(startColor, startColor, startColor, 255);
+//	colorGradient.endColor = ccc4(endColor, endColor, endColor, 255);
+//	
+//	KTColorGradientViewController* gradientVC = [KTColorGradientViewController colorGradientControllerWithColorGradient:colorGradient];
+//	[self addSubController:gradientVC];
 }
 
 -(void) createMenu
