@@ -8,7 +8,7 @@
 
 #import "KoboldTouch.h"
 
-@interface MainMenuSceneViewController : KTSceneViewController
+@interface PoolOfLifeSceneViewController : KTSceneViewController
 {
 @protected
 @private

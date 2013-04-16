@@ -147,7 +147,6 @@ enum {
                                       );
     
     NSAssert (result == noErr, @"AudioUnitSetProperty (set Sampler unit output stream sample rate). Error code: %d '%.4s'", (int) result, (const char *)&result);
-    
     // Set the Sampler unit's maximum frames-per-slice.
     result =    AudioUnitSetProperty (
                                       self.samplerUnit,
@@ -159,7 +158,6 @@ enum {
                                       );
     
     NSAssert( result == noErr, @"AudioUnitSetProperty (set Sampler unit maximum frames per slice). Error code: %d '%.4s'", (int) result, (const char *)&result);
-    
     
     if (graph) {
         
@@ -298,7 +296,7 @@ enum {
 {
     UInt32 noteNum = [self convertToMidi:note];
 	UInt32 onVelocity = (UInt32)(127.0f * intensity);
-    NSLog(@"velocity: %d (%g)", (int)onVelocity, intensity);
+    //NSLog(@"velocity: %d (%g)", (int)onVelocity, intensity);
 	UInt32 noteCommand = 	kMIDIMessage_NoteOn << 4 | 0;
     
     [self.notesBeingPlayed addObject:@(note)];

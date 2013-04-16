@@ -7,7 +7,7 @@
 //
 
 #import "FirstSceneViewController.h"
-#import "MainMenuSceneViewController.h"
+#import "PoolOfLifeSceneViewController.h"
 
 @implementation FirstSceneViewController
 
@@ -40,7 +40,7 @@
 -(void) createMenu
 {
 	KTTextMenuItem* item1 = [KTTextMenuItem itemWithText:@"Back to Main Menu" executionBlock:^(id sender){
-		[self.gameController presentSceneViewController:[MainMenuSceneViewController controller]
+		[self.gameController presentSceneViewController:[PoolOfLifeSceneViewController controller]
 										 transitionType:CCRANDOM_0_1() * KTSceneTransitionType_Count
 									 transitionDuration:1.0f];
 	}];

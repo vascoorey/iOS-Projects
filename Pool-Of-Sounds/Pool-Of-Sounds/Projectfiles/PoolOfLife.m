@@ -16,9 +16,8 @@
 @property (nonatomic) NSInteger priorRow;
 @property (nonatomic) NSInteger priorCol;
 @property (nonatomic) NSInteger currentCycleStep;
-@property (nonatomic) NSInteger lastRowIndex;
+@property (nonatomic) NSInteger nextRowIndex;
 @property (nonatomic) NSInteger foodCurrentlyActive;
-@property (nonatomic) NSInteger cellsCurrentlyActive;
 @property (nonatomic, strong) NSMutableArray *grid;
 @property (nonatomic, strong) NSMutableArray *neighbors;
 @property (nonatomic, strong) NSMutableArray *food;
@@ -78,7 +77,7 @@
         self.eatenFoodSpawnsNewCellsProbability = 0.33f;
         self.maxFood = 10;
         self.cycleSize = 9;
-        self.lastRowIndex = 0;
+        self.nextRowIndex = 0;
     }
     return self;
 }
@@ -90,6 +89,7 @@
     self.priorCol = -1;
     self.priorRow = -1;
     self.foodCurrentlyActive = 0;
+    self.nextRowIndex = 0;
     for(int row = 0; row < self.numRows; row ++)
     {
         NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.numCols];
@@ -132,54 +132,66 @@
     self.foodCurrentlyActive ++;
 }
 
--(void)stepThroughCycle
+-(NSArray *)performStep
 {
-    //Go through all the cells in gameNeighbors and change grid accordingly
-    //1 row at a time
-    self.cellsCurrentlyActive = 1;
-    if(self.currentCycleStep >= self.cycleSize && self.lastRowIndex < (self.numRows - 1))
+    NSArray *ret = nil;
+    if(self.nextRowIndex % self.numRows == 0)
     {
-        [self stepThroughGrid:self.lastRowIndex toRow:self.numRows];
+        self.nextRowIndex = 0;
+        [self updateGrid];
+        ret = [self.grid copy];
     }
-    else if(self.currentCycleStep >= self.cycleSize)
+    if([self.delegate respondsToSelector:@selector(didFinishUpdatingRowWithResultingRow:)])
     {
-        self.currentCycleStep = 0;
-        self.lastRowIndex = 0;
-        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.numRows / self.cycleSize))];
+        [self.delegate didFinishUpdatingRowWithResultingRow:[self.grid[self.nextRowIndex] copy]];
     }
-    else
-    {
-        [self stepThroughGrid:self.lastRowIndex toRow:((1 + self.currentCycleStep) * (self.numRows / self.cycleSize))];
-    }
-    self.currentCycleStep ++;
+    self.nextRowIndex ++;
+    return ret;
 }
 
--(void)stepThroughGrid:(NSInteger)fromRow toRow:(NSInteger)toRow
+-(void)updateGrid
 {
-    self.cellsCurrentlyActive = 0;
-    for(int row = fromRow; row < toRow; row ++)
+    //Update neighbors
+    for(int row = 0; row < self.numRows; row ++)
     {
-        self.lastRowIndex = row;
+        for(int col = 0; col < self.numCols; col ++)
+        {
+            NSInteger previousRow = [self previousRow:row];
+            NSInteger nextRow = [self nextRow:row];
+            NSInteger previousCol = [self previousCol:col];
+            NSInteger nextCol = [self nextCol:col];
+            self.neighbors[row][col] =
+            @([self.grid[previousRow][previousCol] intValue] +
+            [self.grid[previousRow][col] intValue] +
+            [self.grid[previousRow][nextCol] intValue] +
+            [self.grid[row][previousCol] intValue] +
+            [self.grid[row][nextCol] intValue] +
+            [self.grid[nextRow][previousCol] intValue] +
+            [self.grid[nextRow][col] intValue] +
+            [self.grid[nextRow][nextCol] intValue]);
+        }
+    }
+    //Update grid
+    for(int row = 0; row < self.numRows; row ++)
+    {
         if(self.gameMode != PoolOfLifeGameModeNone)
         {
             for(int col = 0; col < self.numCols; col ++)
             {
-                NSUInteger numNeighbors = [self.neighbors[row][col] unsignedIntValue];
-                if(((numNeighbors <= 1) || (numNeighbors >= 4)) && [self.grid[row][col] intValue])
+                NSInteger numNeighbors = [self.neighbors[row][col] intValue];
+                //Only update neighbors if theres an actual change to the board
+                if(((numNeighbors < 2) || (numNeighbors > 3)) && [self.grid[row][col] intValue])
                 {
-                    //Only update neighbors if theres an actual change to the board
-                    [self updateNeighborsForRow:row col:col increment:NO];
+                    //[self updateNeighborsForRow:row col:col increment:NO];
                     self.grid[row][col] = @(0);
                 }
                 else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
                 {
-                    //Ditto
-                    [self updateNeighborsForRow:row col:col increment:YES];
+                    //[self updateNeighborsForRow:row col:col increment:YES];
                     self.grid[row][col] = @(1);
-                    self.cellsCurrentlyActive ++;
-                    if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:numActive:)])
+                    if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:)])
                     {
-                        [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
+                        [self.delegate didActivateCellAtRow:row col:col];
                     }
                 }
                 if(self.gameMode == PoolOfLifeGameModeConwayWithFood || self.gameMode == PoolOfLifeGameModeCrazy)
@@ -192,17 +204,13 @@
                     else if(![self.food[row][col] intValue] && self.foodCurrentlyActive < self.maxFood)
                     {
                         //Spawn food according to food spawn percentage on empty cells
-                        if(((arc4random() % 1000) + 1) / 1000.0f <= self.foodSpawnProbability)
+                        if(CCRANDOM_0_1() <= self.foodSpawnProbability)
                         {
                             [self plantSomeFood];
                         }
                     }
                 }
             }
-        }
-        if([self.delegate respondsToSelector:@selector(didFinishUpdatingRowWithResultingRow:)])
-        {
-            [self.delegate didFinishUpdatingRowWithResultingRow:[self.grid[row] copy]];
         }
     }
 }
@@ -221,7 +229,6 @@
         if(![self.grid[previousRow][previousCol] intValue])
         {
             self.grid[previousRow][previousCol] = @(1);
-            [self updateNeighborsForRow:previousRow col:previousCol increment:YES];
         }
     }
     //Top
@@ -230,7 +237,6 @@
         if(![self.grid[previousRow][col] intValue])
         {
             self.grid[previousRow][col] = @(1);
-            [self updateNeighborsForRow:previousRow col:col increment:YES];
         }
     }
     //Top-right
@@ -239,7 +245,6 @@
         if(![self.grid[previousRow][nextCol] intValue])
         {
             self.grid[previousRow][nextCol] = @(1);
-            [self updateNeighborsForRow:previousRow col:nextCol increment:YES];
         }
     }
     //Left
@@ -248,7 +253,6 @@
         if(![self.grid[row][previousCol] intValue])
         {
             self.grid[row][previousCol] = @(1);
-            [self updateNeighborsForRow:row col:previousCol increment:YES];
         }
     }
     //Right
@@ -257,96 +261,132 @@
         if(![self.grid[row][nextCol] intValue])
         {
             self.grid[row][nextCol] = @(1);
-            [self updateNeighborsForRow:row col:nextCol increment:YES];
         }
     }
     //Bottom-left
-    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    if(CCRANDOM_0_1() <= self.eatenFoodSpawnsNewCellsProbability)
     {
         if(![self.grid[nextRow][previousCol] intValue])
         {
             self.grid[nextRow][previousCol] = @(1);
-            [self updateNeighborsForRow:nextRow col:previousCol increment:YES];
         }
     }
     //Bottom
-    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    if(CCRANDOM_0_1() <= self.eatenFoodSpawnsNewCellsProbability)
     {
         if(![self.grid[nextRow][col] intValue])
         {
             self.grid[nextRow][col] = @(1);
-            [self updateNeighborsForRow:nextRow col:col increment:YES];
         }
     }
     //Bottom-right
-    if(((arc4random() % 100) + 1) / 100.0f <= self.eatenFoodSpawnsNewCellsProbability)
+    if(CCRANDOM_0_1() <= self.eatenFoodSpawnsNewCellsProbability)
     {
         if(![self.grid[nextRow][nextCol] intValue])
         {
             self.grid[nextRow][nextCol] = @(1);
-            [self updateNeighborsForRow:nextRow col:nextCol increment:YES];
+
         }
     }
 }
 
--(void)updateNeighborsForRow:(NSInteger)row col:(NSInteger)col increment:(BOOL)increment
-{
-    NSInteger previousRow = [self previousRow:row];
-    NSInteger nextRow = [self nextRow:row];
-    NSInteger previousCol = [self previousCol:col];
-    NSInteger nextCol = [self nextCol:col];
-    //Top
-    self.neighbors[previousRow][previousCol] = @([self.neighbors[previousRow][previousCol] intValue] + (increment ? 1 : -1));
-    self.neighbors[previousRow][col] = @([self.neighbors[previousRow][col] intValue] + (increment ? 1 : -1));
-    self.neighbors[previousRow][nextCol] = @([self.neighbors[previousRow][nextCol] intValue] + (increment ? 1 : -1));
-    //Middle
-    self.neighbors[row][previousCol] = @([self.neighbors[row][previousCol] intValue] + (increment ? 1 : -1));
-    self.neighbors[row][nextCol] = @([self.neighbors[row][nextCol] intValue] + (increment ? 1 : -1));
-    //Bottom
-    self.neighbors[nextRow][previousCol] = @([self.neighbors[nextRow][previousCol] intValue] + (increment ? 1 : -1));
-    self.neighbors[nextRow][col] = @([self.neighbors[nextRow][col] intValue] + (increment ? 1 : -1));
-    self.neighbors[nextRow][nextCol] = @([self.neighbors[nextRow][nextCol] intValue] + (increment ? 1 : -1));
-}
+// 0 0 0        1 1 1
+// 0 1 0        2 1 2
+// 0 1 0  ==>   3 3 3
+// 0 1 0        2 1 2
+// 0 0 0        1 1 1
+//-(void)updateNeighborsForRow:(NSInteger)row col:(NSInteger)col increment:(BOOL)increment
+//{
+//    NSInteger previousRow = [self previousRow:row];
+//    NSInteger nextRow = [self nextRow:row];
+//    NSInteger previousCol = [self previousCol:col];
+//    NSInteger nextCol = [self nextCol:col];
+//    //Top
+//    NSInteger prevPrev = [self.neighbors[previousRow][previousCol] intValue] + (increment ? 1 : -1);
+//    NSInteger prevSame = [self.neighbors[previousRow][col] intValue] + (increment ? 1 : -1);
+//    NSInteger prevNext = [self.neighbors[previousRow][nextCol] intValue] + (increment ? 1 : -1);
+//    self.neighbors[previousRow][previousCol] = @(prevPrev);
+//    self.neighbors[previousRow][col] = @(prevSame);
+//    self.neighbors[previousRow][nextCol] = @(prevNext);
+//    //Middle
+//    NSInteger samePrev = [self.neighbors[row][previousCol] intValue] + (increment ? 1 : -1);
+//    NSInteger sameNext = [self.neighbors[row][nextCol] intValue] + (increment ? 1 : -1);
+//    self.neighbors[row][previousCol] = @(samePrev);
+//    self.neighbors[row][nextCol] = @(sameNext);
+//    //Bottom
+//    NSInteger nextPrev = [self.neighbors[nextRow][previousCol] intValue] + (increment ? 1 : -1);
+//    NSInteger nextSame = [self.neighbors[nextRow][col] intValue] + (increment ? 1 : -1);
+//    NSInteger nextNext = [self.neighbors[nextRow][nextCol] intValue] + (increment ? 1 : -1);
+//    self.neighbors[nextRow][previousCol] = @(nextPrev);
+//    self.neighbors[nextRow][col] = @(nextSame);
+//    self.neighbors[nextRow][nextCol] = @(nextNext);
+//}
 
--(NSUInteger)previousRow:(NSUInteger)row
+-(NSInteger)previousRow:(NSInteger)row
 {
     //Wrap around if row == 0
-    return (row - 1) % self.numRows;
+    if(!row)
+    {
+        return self.numRows - 1;
+    }
+    else
+    {
+        return (row - 1) % self.numRows;
+    }
 }
 
--(NSUInteger)previousCol:(NSUInteger)col
+-(NSInteger)previousCol:(NSInteger)col
 {
-    return (col - 1) % self.numCols;
+    if(!col)
+    {
+        return self.numCols - 1;
+    }
+    else
+    {
+        return (col - 1) % self.numCols;
+    }
 }
 
--(NSUInteger)nextRow:(NSUInteger)row
+-(NSInteger)nextRow:(NSInteger)row
 {
-    return (row + 1) % self.numRows;
+    if(row == self.numRows - 1)
+    {
+        return 0;
+    }
+    else
+    {
+        return (row + 1) % self.numRows;
+    }
 }
 
--(NSUInteger)nextCol:(NSUInteger)col
+-(NSInteger)nextCol:(NSInteger)col
 {
-    return (col + 1) % self.numCols;
+    if(col == self.numCols - 1)
+    {
+        return 0;
+    }
+    else
+    {
+        return (col + 1) % self.numCols;
+    }
 }
 
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started
 {
     if(started || self.priorRow != row || self.priorCol != col)
     {
-        if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:numActive:)])
+        if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:)])
         {
-            [self.delegate didActivateCellAtRow:row col:col numActive:self.cellsCurrentlyActive];
+            [self.delegate didActivateCellAtRow:row col:col];
         }
-        NSUInteger previousValue = [self.grid[row][col] unsignedIntValue];
+        NSInteger previousValue = [self.grid[row][col] intValue];
         if(previousValue)
         {
             self.grid[row][col] = @(0);
-            [self updateNeighborsForRow:row col:col increment:NO];
         }
         else
         {
             self.grid[row][col] = @(1);
-            [self updateNeighborsForRow:row col:col increment:YES];
             if(self.gameMode == PoolOfLifeGameModeConwayWithFood || self.gameMode == PoolOfLifeGameModeCrazy)
             {
                 if([self.food[row][col] intValue])

@@ -6,7 +6,7 @@
  */
 
 #import "AppDelegate.h"
-#import "MainMenuSceneViewController.h"
+#import "PoolOfLifeSceneViewController.h"
 
 @implementation AppDelegate
 
@@ -15,8 +15,8 @@
 	// seed random function with current time
 	srandom((unsigned int)time(NULL));
 	
-	MainMenuSceneViewController* mainMenuVC = [MainMenuSceneViewController controller];
-	[self.gameController presentSceneViewController:mainMenuVC];
+	PoolOfLifeSceneViewController* poolOfLifeVC = [PoolOfLifeSceneViewController controller];
+	[self.gameController presentSceneViewController:poolOfLifeVC];
 }
 
 @end

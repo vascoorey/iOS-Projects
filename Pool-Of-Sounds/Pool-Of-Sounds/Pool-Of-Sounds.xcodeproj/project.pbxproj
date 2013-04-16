@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC4D2EF1171D625000AFA13F /* CompressorAndLimiter.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BC4D2EF0171D625000AFA13F /* CompressorAndLimiter.aupreset */; };
+		BC4D2EF5171DACCA00AFA13F /* GameOfLifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4D2EF4171DACCA00AFA13F /* GameOfLifeView.m */; };
 		BCA5FA5C171C830300550390 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA59171C830300550390 /* Cell.m */; };
 		BCA5FA5D171C830300550390 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA5B171C830300550390 /* PoolOfLife.m */; };
 		BCA5FA64171C838700550390 /* Another.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCA5FA5E171C838700550390 /* Another.aupreset */; };
@@ -14,9 +16,8 @@
 		BCA5FA66171C838700550390 /* Sample.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCA5FA60171C838700550390 /* Sample.aupreset */; };
 		BCA5FA67171C838700550390 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA62171C838700550390 /* SoundManager.m */; };
 		BCA5FA68171C838700550390 /* WithReverb.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCA5FA63171C838700550390 /* WithReverb.aupreset */; };
-		BCA5FA6C171C83A700550390 /* GameOfLifeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA6B171C83A700550390 /* GameOfLifeLayer.m */; };
-		DC218D0616ECD03E00E38DB2 /* MainMenuSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* MainMenuSceneViewController.m */; };
-		DC218D0716ECD03E00E38DB2 /* MainMenuSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* MainMenuSceneViewController.m */; };
+		DC218D0616ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */; };
+		DC218D0716ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */; };
 		DC218D0A16ECD18300E38DB2 /* FirstSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0916ECD18300E38DB2 /* FirstSceneViewController.m */; };
 		DC218D0B16ECD18300E38DB2 /* FirstSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0916ECD18300E38DB2 /* FirstSceneViewController.m */; };
 		DC218D0E16ECD18E00E38DB2 /* SecondSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0D16ECD18E00E38DB2 /* SecondSceneViewController.m */; };
@@ -80,6 +81,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC4D2EF0171D625000AFA13F /* CompressorAndLimiter.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CompressorAndLimiter.aupreset; sourceTree = "<group>"; };
+		BC4D2EF3171DACCA00AFA13F /* GameOfLifeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOfLifeView.h; sourceTree = "<group>"; };
+		BC4D2EF4171DACCA00AFA13F /* GameOfLifeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOfLifeView.m; sourceTree = "<group>"; };
 		BCA5FA58171C830300550390 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		BCA5FA59171C830300550390 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		BCA5FA5A171C830300550390 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
@@ -90,10 +94,8 @@
 		BCA5FA61171C838700550390 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		BCA5FA62171C838700550390 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		BCA5FA63171C838700550390 /* WithReverb.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WithReverb.aupreset; sourceTree = "<group>"; };
-		BCA5FA6A171C83A700550390 /* GameOfLifeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOfLifeLayer.h; sourceTree = "<group>"; };
-		BCA5FA6B171C83A700550390 /* GameOfLifeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOfLifeLayer.m; sourceTree = "<group>"; };
-		DC218D0416ECD03D00E38DB2 /* MainMenuSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuSceneViewController.h; sourceTree = "<group>"; };
-		DC218D0516ECD03D00E38DB2 /* MainMenuSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuSceneViewController.m; sourceTree = "<group>"; };
+		DC218D0416ECD03D00E38DB2 /* PoolOfLifeSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLifeSceneViewController.h; sourceTree = "<group>"; };
+		DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLifeSceneViewController.m; sourceTree = "<group>"; };
 		DC218D0816ECD18300E38DB2 /* FirstSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstSceneViewController.h; sourceTree = "<group>"; };
 		DC218D0916ECD18300E38DB2 /* FirstSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstSceneViewController.m; sourceTree = "<group>"; };
 		DC218D0C16ECD18E00E38DB2 /* SecondSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondSceneViewController.h; sourceTree = "<group>"; };
@@ -185,6 +187,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC4D2EF2171DACB200AFA13F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC4D2EF3171DACCA00AFA13F /* GameOfLifeView.h */,
+				BC4D2EF4171DACCA00AFA13F /* GameOfLifeView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		BCA5FA57171C82F100550390 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +214,7 @@
 				BCA5FA5F171C838700550390 /* RngGen.aupreset */,
 				BCA5FA60171C838700550390 /* Sample.aupreset */,
 				BCA5FA63171C838700550390 /* WithReverb.aupreset */,
+				BC4D2EF0171D625000AFA13F /* CompressorAndLimiter.aupreset */,
 				BCA5FA61171C838700550390 /* SoundManager.h */,
 				BCA5FA62171C838700550390 /* SoundManager.m */,
 			);
@@ -310,12 +322,11 @@
 			children = (
 				BCA5FA57171C82F100550390 /* Model */,
 				BCA5FA69171C838C00550390 /* Sound Manager */,
-				BCA5FA6A171C83A700550390 /* GameOfLifeLayer.h */,
-				BCA5FA6B171C83A700550390 /* GameOfLifeLayer.m */,
+				BC4D2EF2171DACB200AFA13F /* View */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
-				DC218D0416ECD03D00E38DB2 /* MainMenuSceneViewController.h */,
-				DC218D0516ECD03D00E38DB2 /* MainMenuSceneViewController.m */,
+				DC218D0416ECD03D00E38DB2 /* PoolOfLifeSceneViewController.h */,
+				DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */,
 				DC218D0816ECD18300E38DB2 /* FirstSceneViewController.h */,
 				DC218D0916ECD18300E38DB2 /* FirstSceneViewController.m */,
 				DC218D0C16ECD18E00E38DB2 /* SecondSceneViewController.h */,
@@ -460,6 +471,7 @@
 				BCA5FA65171C838700550390 /* RngGen.aupreset in Resources */,
 				BCA5FA66171C838700550390 /* Sample.aupreset in Resources */,
 				BCA5FA68171C838700550390 /* WithReverb.aupreset in Resources */,
+				BC4D2EF1171D625000AFA13F /* CompressorAndLimiter.aupreset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,13 +508,13 @@
 			files = (
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
-				DC218D0616ECD03E00E38DB2 /* MainMenuSceneViewController.m in Sources */,
+				DC218D0616ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */,
 				DC218D0A16ECD18300E38DB2 /* FirstSceneViewController.m in Sources */,
 				DC218D0E16ECD18E00E38DB2 /* SecondSceneViewController.m in Sources */,
 				BCA5FA5C171C830300550390 /* Cell.m in Sources */,
 				BCA5FA5D171C830300550390 /* PoolOfLife.m in Sources */,
 				BCA5FA67171C838700550390 /* SoundManager.m in Sources */,
-				BCA5FA6C171C83A700550390 /* GameOfLifeLayer.m in Sources */,
+				BC4D2EF5171DACCA00AFA13F /* GameOfLifeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +524,7 @@
 			files = (
 				DCC1A3AA13A94F1A005BD75D /* AppDelegate.m in Sources */,
 				DCC1A3AE13A94F1A005BD75D /* main.m in Sources */,
-				DC218D0716ECD03E00E38DB2 /* MainMenuSceneViewController.m in Sources */,
+				DC218D0716ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */,
 				DC218D0B16ECD18300E38DB2 /* FirstSceneViewController.m in Sources */,
 				DC218D0F16ECD18E00E38DB2 /* SecondSceneViewController.m in Sources */,
 			);

@@ -23,7 +23,7 @@ typedef enum
 
 @protocol PoolOfLifeDelegate <NSObject>
 @optional
--(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col numActive:(NSInteger)numActive;
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col;
 -(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row;
 @end
 
@@ -43,7 +43,8 @@ typedef enum
 //Designated initializer
 -(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
 -(void)reset;
--(void)stepThroughCycle;
+//Returns index of current row being played
+-(NSArray *)performStep;
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started;
 -(NSInteger)cellAtRow:(NSInteger)row col:(NSInteger)col;
 -(NSInteger)foodAtRow:(NSInteger)row col:(NSInteger)col;
