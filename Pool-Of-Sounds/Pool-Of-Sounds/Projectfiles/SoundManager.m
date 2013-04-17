@@ -284,12 +284,15 @@ enum {
 #define C_PENT_MAJ_NOTES @[@(24), @(26), @(28), @(31), @(33), @(36)]
 //A C D E G A
 #define A_PENT_MIN_NOTES @[@(21), @(24), @(26), @(28), @(31), @(33)]
+//Arpeggios
+//C - E - G, D - F - A, E - G - B
+#define C_MAJ_ARPEGGIOS @[@(24), @(28), @(31), /**/ @(26), @(29), @(33), /**/ @(28), @(31), @(35)]
 
 // http://www.midimountain.com/midi/midi_note_numbers.html
 -(UInt32)convertToMidi:(NSInteger)note
 {
-    NSInteger count = [A_PENT_MIN_NOTES count];
-    return [[A_PENT_MIN_NOTES objectAtIndex:((note + self.scale) % count)] unsignedIntValue] + 12 + (12 * (note / count));
+    NSInteger count = [C_MAJ_ARPEGGIOS count];
+    return [[C_MAJ_ARPEGGIOS objectAtIndex:(note % count)] unsignedIntValue] + 12 + (12 * (note / count));
 }
 
 -(void)startPlayNote:(NSInteger)note intensity:(float)intensity
@@ -456,18 +459,10 @@ logTheError:
     return _notesBeingPlayed;
 }
 
--(id)initWithScale:(kSoundManagerScale)scale
+-(id)initWithPatches:(NSInteger)numPatches
 {
     if((self = [super init]))
     {
-        if(scale != kSoundManagerScaleNone)
-        {
-            self.scale = scale;
-        }
-        else
-        {
-            self.scale = kSoundManagerScaleIonian;
-        }
         self.playing = YES;
         
         // Set up the audio session for this app, in the process obtaining the

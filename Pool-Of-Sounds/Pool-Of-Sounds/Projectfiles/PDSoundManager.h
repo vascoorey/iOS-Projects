@@ -1,26 +1,14 @@
 //
-//  SoundManager.h
-//  Game-Of-Life
+//  PDSoundManager.h
+//  Pool-Of-Sounds
 //
-//  Created by Vasco Orey on 4/12/13.
+//  Created by Vasco Orey on 4/17/13.
 //
 //
 
 #import <Foundation/Foundation.h>
 
-typedef enum
-{
-    kSoundManagerScaleNone = -1,
-    kSoundManagerScaleIonian,
-    kSoundManagerScaleAeolian,
-    kSoundManagerScaleLocrian,
-    kSoundManagerScaleDorian,
-    kSoundManagerScalePhrygian,
-    kSoundManagerScaleLydian,
-    kSoundManagerScaleMixolydian
-} kSoundManagerScale;
-
-@interface SoundManager : NSObject
+@interface PDSoundManager : NSObject
 
 @property (nonatomic, getter = isPlaying) BOOL playing;
 //Set this property to define the correct key for the grid

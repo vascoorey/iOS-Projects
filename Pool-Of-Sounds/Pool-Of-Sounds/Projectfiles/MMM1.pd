@@ -1,0 +1,247 @@
+#N canvas 0 22 524 398 10;
+#N canvas 436 421 471 666 synth1 1;
+#X obj 163 577 *~ 0.2;
+#X obj 162 463 bp~ 100 3;
+#X obj 162 489 hip~ 60;
+#N canvas 0 22 450 300 envelope 0;
+#X obj 175 243 line;
+#X msg 194 219 1 \$1;
+#X msg 150 218 0 \$1;
+#X obj 150 146 t b b;
+#X obj 175 267 outlet;
+#X obj 187 46 inlet attack;
+#X obj 289 45 inlet decay;
+#X obj 77 46 inlet trigger;
+#X obj 187 87 t f f;
+#X obj 150 196 f 50;
+#X obj 194 197 f 50;
+#X text 235 199 <-- default values 50 ms;
+#X text 236 88 <-- set floats nicely;
+#X obj 150 173 del 50;
+#X text 151 9 envelope subpatch;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 13 0;
+#X connect 3 1 10 0;
+#X connect 5 0 8 0;
+#X connect 6 0 9 1;
+#X connect 7 0 3 0;
+#X connect 8 0 13 1;
+#X connect 8 1 10 1;
+#X connect 9 0 2 0;
+#X connect 10 0 1 0;
+#X connect 13 0 9 0;
+#X restore 191 303 pd envelope;
+#X obj 191 371 * 3000;
+#N canvas 0 22 450 300 fatoscillator 0;
+#X obj 113 206 +~;
+#X obj 61 165 -~ 0.5;
+#X obj 147 164 -~ 0.5;
+#X obj 60 8 inlet pitch;
+#X obj 146 108 +;
+#X obj 60 109 -;
+#X obj 149 7 inlet fatness;
+#X obj 149 31 * 5;
+#X obj 112 238 outlet~;
+#X obj 60 137 phasor~ 55;
+#X obj 146 136 phasor~ 55;
+#X obj 149 53 t b b f f;
+#X connect 0 0 8 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 1;
+#X connect 3 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 10 0;
+#X connect 5 0 9 0;
+#X connect 6 0 7 0;
+#X connect 7 0 11 0;
+#X connect 9 0 1 0;
+#X connect 10 0 2 0;
+#X connect 11 0 5 0;
+#X connect 11 1 4 0;
+#X connect 11 2 5 1;
+#X connect 11 3 4 1;
+#X restore 162 240 pd fatoscillator;
+#X obj 201 414 t b f;
+#X obj 199 347 t b f;
+#X obj 191 438 + 20;
+#N canvas 0 22 450 300 envelope 0;
+#X obj 175 243 line;
+#X msg 194 219 1 \$1;
+#X msg 150 218 0 \$1;
+#X obj 150 146 t b b;
+#X obj 175 267 outlet;
+#X obj 187 46 inlet attack;
+#X obj 289 45 inlet decay;
+#X obj 77 46 inlet trigger;
+#X obj 187 87 t f f;
+#X obj 150 196 f 50;
+#X obj 194 197 f 50;
+#X text 235 199 <-- default values 50 ms;
+#X text 236 88 <-- set floats nicely;
+#X obj 150 173 del 50;
+#X text 151 9 envelope subpatch;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 13 0;
+#X connect 3 1 10 0;
+#X connect 5 0 8 0;
+#X connect 6 0 9 1;
+#X connect 7 0 3 0;
+#X connect 8 0 13 1;
+#X connect 8 1 10 1;
+#X connect 9 0 2 0;
+#X connect 10 0 1 0;
+#X connect 13 0 9 0;
+#X restore 179 517 pd envelope;
+#X obj 163 540 *~;
+#X obj 162 90 r \$0-oscf;
+#X obj 269 213 r \$0-oscfat;
+#X obj 227 277 r \$0-fenva;
+#X obj 264 256 r \$0-fenvd;
+#X obj 215 482 r \$0-aenva;
+#X obj 251 458 r \$0-aenvd;
+#X obj 200 552 r \$0-amp;
+#X obj 226 438 r \$0-fres;
+#X obj 199 325 r \$0-frng;
+#X obj 201 393 r \$0-frle;
+#X obj 162 607 outlet~;
+#X obj 231 64 inlet;
+#X obj 261 172 t b b;
+#X obj 231 89 t f b;
+#X obj 162 215 mtof;
+#X obj 162 139 * 12;
+#X obj 162 192 +;
+#X obj 162 115 - 2;
+#X obj 171 162 t b f;
+#X text -29 140 times 12 to get octaves ->;
+#X text -30 113 offset for negative ----->;
+#X text -31 85 octave shift in --------->;
+#X text -27 213 midi convert ------------>;
+#X text -29 189 add to incomming note --->;
+#X connect 0 0 21 0;
+#X connect 1 0 2 0;
+#X connect 2 0 10 0;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 5 0 1 0;
+#X connect 6 0 8 0;
+#X connect 6 1 8 1;
+#X connect 7 0 4 0;
+#X connect 7 1 4 1;
+#X connect 8 0 1 1;
+#X connect 9 0 10 1;
+#X connect 10 0 0 0;
+#X connect 11 0 28 0;
+#X connect 12 0 5 1;
+#X connect 13 0 3 1;
+#X connect 14 0 3 2;
+#X connect 15 0 9 1;
+#X connect 16 0 9 2;
+#X connect 17 0 0 1;
+#X connect 18 0 1 2;
+#X connect 19 0 7 0;
+#X connect 20 0 6 0;
+#X connect 22 0 24 0;
+#X connect 23 0 9 0;
+#X connect 23 1 3 0;
+#X connect 24 0 29 0;
+#X connect 24 1 23 0;
+#X connect 25 0 5 0;
+#X connect 26 0 27 0;
+#X connect 27 0 25 0;
+#X connect 28 0 26 0;
+#X connect 29 0 27 0;
+#X connect 29 1 27 1;
+#X restore 85 275 pd synth1;
+#X obj 86 314 dac~;
+#X text 141 11 Six simple synthesisers 112;
+#X text 143 37 Midi and control interfacing;
+#N canvas 614 223 579 466 interface 0;
+#X obj 100 222 cnv 15 100 120 empty empty OSC 8 12 1 14 -258699 -262144
+0;
+#X obj 201 222 cnv 15 200 120 empty empty AMP 8 12 1 14 -260818 -262144
+0;
+#X obj 101 101 cnv 15 300 120 empty empty FILTER 8 12 1 14 -62784 -262144
+0;
+#X obj 322 256 vsl 12 60 0 0.3 0 0 empty empty L 0 -8 1 8 -262144 -1
+-262144 0 1;
+#X obj 285 133 vsl 12 60 0 2000 0 0 empty empty LEV 0 -8 1 8 -262144
+-1 -262144 4200 1;
+#X obj 116 133 vsl 12 60 0 2000 0 1 empty empty A 0 -8 1 8 -262144
+-1 -262144 3000 1;
+#X obj 156 133 vsl 12 60 0 2000 0 1 empty empty D 0 -8 1 8 -262144
+-1 -262144 2100 1;
+#X obj 246 133 vsl 12 60 0 3000 0 0 empty empty AMT 0 -8 1 8 -262144
+-1 -262144 2800 1;
+#X obj 157 255 vsl 12 60 0 1 0 0 empty empty FAT 0 -8 1 8 -262144 -1
+-262144 2700 1;
+#X obj 324 133 vsl 12 60 0.5 6 0 0 empty empty RES 0 -8 1 8 -262144
+-33289 -262144 4500 1;
+#X obj 244 256 vsl 12 60 0 2000 0 1 empty empty A 0 -8 1 8 -262144
+-1 -262144 2900 1;
+#X obj 283 256 vsl 12 60 0 2000 0 1 empty empty D 0 -8 1 8 -262144
+-1 -262144 2600 1;
+#X obj 53 389 s \$0-oscf;
+#X obj 130 390 s \$0-oscfat;
+#X obj 54 360 s \$0-fenva;
+#X obj 131 359 s \$0-fenvd;
+#X obj 217 390 s \$0-aenva;
+#X obj 295 390 s \$0-aenvd;
+#X obj 374 390 s \$0-amp;
+#X obj 377 358 s \$0-fres;
+#X obj 218 360 s \$0-frng;
+#X obj 298 359 s \$0-frle;
+#X obj 322 324 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-260818 -1 -1 0 256;
+#X obj 283 324 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-260818 -1 -1 881.356 256;
+#X obj 244 324 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-260818 -1 -1 983.051 256;
+#X obj 157 321 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-258699 -262144 -1 0.457627 256;
+#X obj 112 322 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-258699 -262144 -1 0 256;
+#X obj 324 203 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-62784 -262144 -1 4.69492 256;
+#X obj 285 203 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-62784 -262144 -1 1423.73 256;
+#X obj 246 203 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-62784 -262144 -1 1423.73 256;
+#X obj 156 203 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-62784 -262144 -1 711.864 256;
+#X obj 116 203 nbx 3 14 -1e+37 1e+37 0 0 empty empty empty 0 -6 0 10
+-62784 -262144 -1 1016.95 256;
+#X obj 112 254 vradio 12 1 0 5 empty empty OCT 0 -6 1 8 -262144 -1
+-262144 0;
+#X connect 3 0 18 0;
+#X connect 3 0 22 0;
+#X connect 4 0 21 0;
+#X connect 4 0 28 0;
+#X connect 5 0 14 0;
+#X connect 5 0 31 0;
+#X connect 6 0 15 0;
+#X connect 6 0 30 0;
+#X connect 7 0 20 0;
+#X connect 7 0 29 0;
+#X connect 8 0 13 0;
+#X connect 8 0 25 0;
+#X connect 9 0 19 0;
+#X connect 9 0 27 0;
+#X connect 10 0 16 0;
+#X connect 10 0 24 0;
+#X connect 11 0 17 0;
+#X connect 11 0 23 0;
+#X connect 32 0 26 0;
+#X connect 32 0 12 0;
+#X coords 0 -1 1 1 300 240 1 100 100;
+#X restore 185 130 pd interface;
+#X text 40 73 The pitch control is replaced by an octave shifter and
+a midi note to frequency converter is added. For each new note we trigger
+the envelope.;
+#X floatatom 100 202 5 0 0 0 r:midinote midinote -;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 6 0 0 0;

@@ -12,13 +12,14 @@
 #import "GameOfLifeView.h"
 #import "PoolOfLife.h"
 #import "SoundManager.h"
+#import "PDSoundManager.h"
 
 @interface PoolOfLifeSceneViewController () <PoolOfLifeDelegate>
 @property (nonatomic, strong) PoolOfLife *game;
 @property (nonatomic) ccColor4F toggleButtonColor;
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
-@property (nonatomic, strong) SoundManager *soundManager;
+@property (nonatomic, strong) PDSoundManager *soundManager;
 @property (nonatomic) float currentIntensity;
 @property (nonatomic) float lastYAcceleration;
 //Window properties
@@ -73,8 +74,9 @@
     self.running = YES;
     
     //Natural Major scale
-    self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
-    self.soundManager.numCols = self.numCols;
+    //self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
+    //self.soundManager.numCols = self.numCols;
+    self.soundManager = [[PDSoundManager alloc] initWithPatches:self.numCols];
     self.game.delegate = self;
     self.currentIntensity = 1.0f;
     
@@ -125,6 +127,7 @@
     leftButton.color = ccRED;
     KTTextMenuItem *rightButton = [KTTextMenuItem itemWithText:@"Pause" executionBlock:^(id sender) {
         self.running = !self.running;
+        [self.soundManager stopPlaying];
     }];
     rightButton.color = ccBLUE;
     KTTextMenu *menu = [KTTextMenu menuWithTextMenuItems:@[leftButton, rightButton]];
@@ -148,7 +151,6 @@
         CGPoint touchLocation = [touch locationInGLView];
         if(touchLocation.x > 0 || touchLocation.y > 0)
         {
-            NSLog(@"%g, %g", touchLocation.x, touchLocation.y);
             NSInteger row = touchLocation.y / self.cellWidth;
             NSInteger col = touchLocation.x / self.cellWidth;
             if(self.yOffset > self.xOffset)

@@ -220,7 +220,7 @@
 								<key>stage</key>
 								<integer>1</integer>
 								<key>time</key>
-								<real>0.0</real>
+								<real>0.42710518836975098</real>
 							</dict>
 							<dict>
 								<key>curve</key>
@@ -228,7 +228,7 @@
 								<key>stage</key>
 								<integer>2</integer>
 								<key>time</key>
-								<real>0.0</real>
+								<real>2.3334851264953613</real>
 							</dict>
 							<dict>
 								<key>curve</key>
@@ -236,7 +236,7 @@
 								<key>stage</key>
 								<integer>3</integer>
 								<key>time</key>
-								<real>0.0</real>
+								<real>1.6328448057174683</real>
 							</dict>
 							<dict>
 								<key>level</key>
@@ -250,7 +250,7 @@
 								<key>stage</key>
 								<integer>5</integer>
 								<key>time</key>
-								<real>0.0</real>
+								<real>16.601232528686523</real>
 							</dict>
 							<dict>
 								<key>curve</key>
@@ -329,7 +329,7 @@
 	<key>manufacturer</key>
 	<integer>1634758764</integer>
 	<key>name</key>
-	<string>WithReverb</string>
+	<string>New</string>
 	<key>output</key>
 	<integer>0</integer>
 	<key>pan</key>
