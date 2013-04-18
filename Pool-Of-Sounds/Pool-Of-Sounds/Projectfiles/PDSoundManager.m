@@ -14,13 +14,17 @@
 #import "PdAudioController.h"
 #import "PdDispatcher.h"
 
+typedef enum {
+	kMIDIMessage_NoteOn    = 0x9,
+	kMIDIMessage_NoteOff   = 0x8,
+} kMIDIMessage;
+
 @interface PDSoundManager () <PdListener>
-{
-    void *_patch;
-}
 @property (nonatomic, strong) NSMutableArray *notesBeingPlayed;
+@property (nonatomic, strong) NSMutableArray *patches;
 @property (nonatomic, strong) PdAudioController *audioController;
 @property (nonatomic, strong) PdDispatcher *dispatcher;
+@property (nonatomic, strong) PdFile *patch;
 @property (nonatomic) NSInteger root;
 @property (nonatomic) NSInteger scale;
 @property (nonatomic) NSInteger tuning;
@@ -62,35 +66,42 @@
         [PdBase setDelegate:dispatcher];
         
         //added first iteration of new synth 28/03/12
-        
-        _patch = [PdBase openFile:@"MMM5_Poly.pd"
-                            path:[[NSBundle mainBundle] resourcePath]];
-        if (!_patch) {
-            NSLog(@"Failed to open patch!");
-            // Gracefully handle failure...
-        }
+        self.patch = [PdFile openFileNamed:@"mini_synth.pd" path:[[NSBundle mainBundle] resourcePath]];
+//        for(int i = 0; i < numPatches; i++)
+//        {
+//            PdFile *patch = [PdFile openFileNamed:@"MMM5_Poly.pd"
+//                        path:[[NSBundle mainBundle] resourcePath]];
+//            _patches[i] = patch;
+//            if (!patch) {
+//                NSLog(@"Failed to open patch!");
+//                // Gracefully handle failure...
+//            }
+//        }
     }
     return self;
 }
 
 -(void)dealloc
 {
-    [PdBase closeFile:_patch];
+    [self.patch closeFile];
     [PdBase setDelegate:nil];
 }
 
 /* Updates the MIDI note information in the dispatcher */
--(void) updateNote:(int)n
+-(void) stopNote:(int)n
 {
-    [PdBase sendFloat:n toReceiver:@"midinote"];
+    //[PdBase sendFloat:n toReceiver:@"midinote"];
+    [self.notesBeingPlayed removeObject:@(n)];
+    [PdBase sendNoteOn:0 pitch:[self convertToMidi:n] velocity:0];
 }
 
 /* Sends a MIDI note and a trigger to our dispatcher */
--(void) playNote:(int)n
+-(void) playNote:(int)n velocity:(int)velocity
 {
-    NSLog(@"Playing note %d", n);
-    [PdBase sendFloat:n toReceiver:@"midinote"];
+    //NSLog(@"%d", [PdBase sendFloat:n toReceiver:@"notein"]);
     //[PdBase sendBangToReceiver:@"trigger"];
+    [self.notesBeingPlayed addObject:@(n)];
+    [PdBase sendNoteOn:0 pitch:[self convertToMidi:n] velocity:127];
 }
 
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
@@ -108,7 +119,6 @@
 {
     NSInteger count = [C_MAJ_NOTES count];
     int midiNote = [[C_MAJ_NOTES objectAtIndex:(note % count)] intValue] + (12 * (note / count));
-    NSLog(@"%d -> %d", note, midiNote);
     return midiNote;
 }
 
@@ -122,9 +132,14 @@
     for(int col = 0; col < (int)[row count]; col ++)
     {
         int colValue = [row[col] intValue];
-        if(colValue)
+        BOOL playingNote = [self isPlayingNote:col];
+        if(colValue && !playingNote)
         {
             [self playNoteForCol:col intensity:intensity];
+        }
+        else if(playingNote)
+        {
+            [self stopNote:col];
         }
     }
 }
@@ -136,12 +151,29 @@
 
 -(void)playNoteForCol:(NSInteger)col intensity:(float)intensity
 {
-    [self playNote:[self convertToMidi:col]];
+    if(intensity > 1.0f)
+    {
+        intensity = 1.0f;
+    }
+    if(intensity < 0.0f)
+    {
+        intensity = 0.0f;
+    }
+    [self playNote:col velocity:(127 * intensity)];
 }
 
 -(void)stopPlaying
 {
-    self.notesBeingPlayed = nil;
+    NSArray *notes = [self.notesBeingPlayed copy];
+    for(NSNumber *note in notes)
+    {
+        [self stopNote:[note intValue]];
+    }
+}
+
+-(BOOL)isPlayingNote:(int)note
+{
+    return [self.notesBeingPlayed containsObject:@(note)];
 }
 
 @end

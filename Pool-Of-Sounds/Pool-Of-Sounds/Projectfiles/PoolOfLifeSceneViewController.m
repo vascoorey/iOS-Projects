@@ -70,7 +70,7 @@
     self.delayInSeconds = 0.17f;
     self.fontSize = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 34.0f : 26.0f);
     self.gameMode = PoolOfLifeGameModeConway;
-    self.currentBeatDelta = 5; //Frames
+    self.currentBeatDelta = 8; //Frames
     self.running = YES;
     
     //Natural Major scale
@@ -343,7 +343,7 @@
         self.soundManager.playing = YES;
     }
     [self updateIntensity];
-    [self.soundManager playNoteForCol:col intensity:self.currentIntensity];
+    //[self.soundManager playNoteForCol:col intensity:self.currentIntensity];
 }
 
 -(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row

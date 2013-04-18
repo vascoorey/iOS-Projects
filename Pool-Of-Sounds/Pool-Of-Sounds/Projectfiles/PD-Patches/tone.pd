@@ -1,0 +1,30 @@
+#N canvas 0 22 450 300 10;
+#X obj 175 29 inlet;
+#X obj 165 63 unpack 0 0;
+#X obj 150 127 mtof~;
+#X obj 165 251 *~;
+#X obj 167 274 outlet~;
+#X obj 228 102 select 0;
+#X obj 233 145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 223 127 attack;
+#X obj 290 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 279 126 release;
+#X msg 233 178 1 200 \, 0.2 1000 200;
+#X msg 292 199 0 300;
+#X obj 229 223 vline~;
+#X obj 150 173 osc~;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 5 0;
+#X connect 2 0 13 0;
+#X connect 3 0 4 0;
+#X connect 5 0 8 0;
+#X connect 5 1 6 0;
+#X connect 6 0 10 0;
+#X connect 8 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 12 0;
+#X connect 12 0 3 0;
+#X connect 13 0 3 0;

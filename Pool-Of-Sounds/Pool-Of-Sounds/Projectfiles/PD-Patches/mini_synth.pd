@@ -1,0 +1,34 @@
+#N canvas 84 63 708 609 10;
+#X obj 157 2 notein;
+#X obj 148 45 poly 4 1;
+#X obj 174 24 / 127;
+#X obj 144 328 *~ 0.2;
+#X obj 148 382 dac~;
+#X obj 93 141 mtof~;
+#X obj 163 151 select 0;
+#X obj 168 194 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 158 176 attack;
+#X obj 225 193 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 214 175 release;
+#X msg 168 227 1 200 \, 0.2 1000 200;
+#X msg 227 248 0 300;
+#X obj 164 272 vline~;
+#X obj 99 187 osc~;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 1 0 5 0;
+#X connect 1 1 6 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 3 0 4 1;
+#X connect 5 0 14 0;
+#X connect 6 0 9 0;
+#X connect 6 1 7 0;
+#X connect 7 0 11 0;
+#X connect 9 0 12 0;
+#X connect 11 0 13 0;
+#X connect 12 0 13 0;
+#X connect 13 0 3 0;
+#X connect 14 0 3 0;
