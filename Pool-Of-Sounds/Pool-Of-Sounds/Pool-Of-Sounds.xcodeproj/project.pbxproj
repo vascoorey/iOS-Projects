@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC24CDA4172097AC0011B51C /* poly_tutorial.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC24CDA3172097AC0011B51C /* poly_tutorial.mmb.pd */; };
 		BC2E900A171F0923000AB027 /* MMM5_Poly.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC2E9008171F0923000AB027 /* MMM5_Poly.pd */; };
 		BC2E900B171F0923000AB027 /* stringunit.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC2E9009171F0923000AB027 /* stringunit.pd */; };
 		BC4D2EF5171DACCA00AFA13F /* GameOfLifeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4D2EF4171DACCA00AFA13F /* GameOfLifeView.m */; };
+		BC74C926172196B700E9D634 /* adsr.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C924172196B700E9D634 /* adsr.pd */; };
+		BC74C927172196B700E9D634 /* chipwave.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C925172196B700E9D634 /* chipwave.pd */; };
+		BC74C92B172198E500E9D634 /* chip1.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C92A172198E500E9D634 /* chip1.pd */; };
+		BC74C92D1721B03A00E9D634 /* chip2.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C92C1721B03A00E9D634 /* chip2.pd */; };
 		BC8BE609171EC4DD008E0E3A /* New.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BC8BE608171EC4DD008E0E3A /* New.aupreset */; };
 		BC99E53A171FFCFD00F7A3DE /* BasicSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */; };
 		BC99E53B171FFCFD00F7A3DE /* Untitled-1.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */; };
@@ -31,6 +36,11 @@
 		BCAF8D26171EA5CB00173F0F /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = BCAF8D25171EA5CB00173F0F /* test.pd */; };
 		BCAF8D29171EA71000173F0F /* PDSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAF8D28171EA71000173F0F /* PDSoundManager.m */; };
 		BCAF8D4C171EB2BC00173F0F /* test2.pd in Resources */ = {isa = PBXBuildFile; fileRef = BCAF8D4B171EB2BC00173F0F /* test2.pd */; };
+		BCDAAC88172149900029ADAF /* attr.c in Sources */ = {isa = PBXBuildFile; fileRef = BCDAAC7A172149900029ADAF /* attr.c */; };
+		BCDAAC89172149900029ADAF /* canvas.c in Sources */ = {isa = PBXBuildFile; fileRef = BCDAAC81172149900029ADAF /* canvas.c */; };
+		BCDAAC8A172149900029ADAF /* dirty.c in Sources */ = {isa = PBXBuildFile; fileRef = BCDAAC83172149900029ADAF /* dirty.c */; };
+		BCDAAC8B172149900029ADAF /* dither.c in Sources */ = {isa = PBXBuildFile; fileRef = BCDAAC84172149900029ADAF /* dither.c */; };
+		BCDAAC8C172149900029ADAF /* frame.c in Sources */ = {isa = PBXBuildFile; fileRef = BCDAAC85172149900029ADAF /* frame.c */; };
 		DC218D0616ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */; };
 		DC218D0716ECD03E00E38DB2 /* PoolOfLifeSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */; };
 		DC218D0A16ECD18300E38DB2 /* FirstSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC218D0916ECD18300E38DB2 /* FirstSceneViewController.m */; };
@@ -113,10 +123,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC24CDA3172097AC0011B51C /* poly_tutorial.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = poly_tutorial.mmb.pd; sourceTree = "<group>"; };
 		BC2E9008171F0923000AB027 /* MMM5_Poly.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MMM5_Poly.pd; sourceTree = "<group>"; };
 		BC2E9009171F0923000AB027 /* stringunit.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stringunit.pd; sourceTree = "<group>"; };
 		BC4D2EF3171DACCA00AFA13F /* GameOfLifeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOfLifeView.h; sourceTree = "<group>"; };
 		BC4D2EF4171DACCA00AFA13F /* GameOfLifeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOfLifeView.m; sourceTree = "<group>"; };
+		BC74C924172196B700E9D634 /* adsr.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = adsr.pd; sourceTree = "<group>"; };
+		BC74C925172196B700E9D634 /* chipwave.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chipwave.pd; sourceTree = "<group>"; };
+		BC74C92A172198E500E9D634 /* chip1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chip1.pd; sourceTree = "<group>"; };
+		BC74C92C1721B03A00E9D634 /* chip2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chip2.pd; sourceTree = "<group>"; };
 		BC8BE608171EC4DD008E0E3A /* New.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = New.aupreset; sourceTree = "<group>"; };
 		BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicSynth.pd; sourceTree = "<group>"; };
 		BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Untitled-1.pd"; sourceTree = "<group>"; };
@@ -142,6 +157,18 @@
 		BCAF8D27171EA71000173F0F /* PDSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSoundManager.h; sourceTree = "<group>"; };
 		BCAF8D28171EA71000173F0F /* PDSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSoundManager.m; sourceTree = "<group>"; };
 		BCAF8D4B171EB2BC00173F0F /* test2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test2.pd; path = ../test2.pd; sourceTree = "<group>"; };
+		BCDAAC7A172149900029ADAF /* attr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attr.c; sourceTree = "<group>"; };
+		BCDAAC7B172149900029ADAF /* caca.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca.h; sourceTree = "<group>"; };
+		BCDAAC7C172149900029ADAF /* caca_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca_debug.h; sourceTree = "<group>"; };
+		BCDAAC7D172149900029ADAF /* caca_internals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca_internals.h; sourceTree = "<group>"; };
+		BCDAAC7E172149900029ADAF /* caca_prof.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca_prof.h; sourceTree = "<group>"; };
+		BCDAAC7F172149900029ADAF /* caca_stubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca_stubs.h; sourceTree = "<group>"; };
+		BCDAAC80172149900029ADAF /* caca_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = caca_types.h; sourceTree = "<group>"; };
+		BCDAAC81172149900029ADAF /* canvas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = canvas.c; sourceTree = "<group>"; };
+		BCDAAC82172149900029ADAF /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		BCDAAC83172149900029ADAF /* dirty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dirty.c; sourceTree = "<group>"; };
+		BCDAAC84172149900029ADAF /* dither.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dither.c; sourceTree = "<group>"; };
+		BCDAAC85172149900029ADAF /* frame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = frame.c; sourceTree = "<group>"; };
 		DC218D0416ECD03D00E38DB2 /* PoolOfLifeSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLifeSceneViewController.h; sourceTree = "<group>"; };
 		DC218D0516ECD03D00E38DB2 /* PoolOfLifeSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLifeSceneViewController.m; sourceTree = "<group>"; };
 		DC218D0816ECD18300E38DB2 /* FirstSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstSceneViewController.h; sourceTree = "<group>"; };
@@ -254,6 +281,11 @@
 				BC99E540172002F200F7A3DE /* tone.pd */,
 				BC99E54417202C4700F7A3DE /* simplesynthAB.pd */,
 				BC99E54817202ECF00F7A3DE /* mini_synth.pd */,
+				BC24CDA3172097AC0011B51C /* poly_tutorial.mmb.pd */,
+				BC74C924172196B700E9D634 /* adsr.pd */,
+				BC74C925172196B700E9D634 /* chipwave.pd */,
+				BC74C92A172198E500E9D634 /* chip1.pd */,
+				BC74C92C1721B03A00E9D634 /* chip2.pd */,
 			);
 			path = "PD-Patches";
 			sourceTree = "<group>";
@@ -315,6 +347,26 @@
 				BCAF8D28171EA71000173F0F /* PDSoundManager.m */,
 			);
 			name = "Sound Manager";
+			sourceTree = "<group>";
+		};
+		BCDAAC79172149900029ADAF /* hayCaca */ = {
+			isa = PBXGroup;
+			children = (
+				BCDAAC7A172149900029ADAF /* attr.c */,
+				BCDAAC7B172149900029ADAF /* caca.h */,
+				BCDAAC7C172149900029ADAF /* caca_debug.h */,
+				BCDAAC7D172149900029ADAF /* caca_internals.h */,
+				BCDAAC7E172149900029ADAF /* caca_prof.h */,
+				BCDAAC7F172149900029ADAF /* caca_stubs.h */,
+				BCDAAC80172149900029ADAF /* caca_types.h */,
+				BCDAAC81172149900029ADAF /* canvas.c */,
+				BCDAAC82172149900029ADAF /* config.h */,
+				BCDAAC83172149900029ADAF /* dirty.c */,
+				BCDAAC84172149900029ADAF /* dither.c */,
+				BCDAAC85172149900029ADAF /* frame.c */,
+			);
+			name = hayCaca;
+			path = ../../../../CCCaca/src/hayCaca;
 			sourceTree = "<group>";
 		};
 		DC912CEE1629998200AD381F /* David Gervais Tilesets */ = {
@@ -417,6 +469,7 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				BCDAAC79172149900029ADAF /* hayCaca */,
 				BCA5FA57171C82F100550390 /* Model */,
 				BCA5FA69171C838C00550390 /* Sound Manager */,
 				BC4D2EF2171DACB200AFA13F /* View */,
@@ -606,6 +659,11 @@
 				BC99E542172002F200F7A3DE /* tone.pd in Resources */,
 				BC99E54517202C4700F7A3DE /* simplesynthAB.pd in Resources */,
 				BC99E54917202ECF00F7A3DE /* mini_synth.pd in Resources */,
+				BC24CDA4172097AC0011B51C /* poly_tutorial.mmb.pd in Resources */,
+				BC74C926172196B700E9D634 /* adsr.pd in Resources */,
+				BC74C927172196B700E9D634 /* chipwave.pd in Resources */,
+				BC74C92B172198E500E9D634 /* chip1.pd in Resources */,
+				BC74C92D1721B03A00E9D634 /* chip2.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +708,11 @@
 				BCA5FA67171C838700550390 /* SoundManager.m in Sources */,
 				BC4D2EF5171DACCA00AFA13F /* GameOfLifeView.m in Sources */,
 				BCAF8D29171EA71000173F0F /* PDSoundManager.m in Sources */,
+				BCDAAC88172149900029ADAF /* attr.c in Sources */,
+				BCDAAC89172149900029ADAF /* canvas.c in Sources */,
+				BCDAAC8A172149900029ADAF /* dirty.c in Sources */,
+				BCDAAC8B172149900029ADAF /* dither.c in Sources */,
+				BCDAAC8C172149900029ADAF /* frame.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

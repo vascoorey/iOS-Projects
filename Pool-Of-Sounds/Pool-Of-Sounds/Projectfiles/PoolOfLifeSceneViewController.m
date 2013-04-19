@@ -19,6 +19,7 @@
 @property (nonatomic) ccColor4F toggleButtonColor;
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
+@property (nonatomic, weak) CCLabelTTF *intensityLabel;
 @property (nonatomic, strong) PDSoundManager *soundManager;
 @property (nonatomic) float currentIntensity;
 @property (nonatomic) float lastYAcceleration;
@@ -114,7 +115,7 @@
     self.loadViewBlock = ^(CCNode *rootNode){
         [rootNode addChild:view];
     };
-	
+    
 	//NSLog(@"%@", [self.gameController.debugController objectGraph]);
 	//NSLog(@"-------");
 }
