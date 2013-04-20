@@ -1,15 +1,15 @@
-#N canvas 233 341 562 203 10;
+#N canvas 233 341 646 318 10;
 #X obj 12 34 dac~;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array i1ws 8 float 1;
 #A 0 2 2 3 2 2 2 2 2;
 #X coords 0 3 7 0 64 8 1;
-#X restore 471 1 graph;
+#X restore 554 95 graph;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array i1ps 8 float 1;
 #A 0 12 -12 0 7 0 7 0 7;
 #X coords 0 48 7 -48 64 16 1;
-#X restore 471 16 graph;
+#X restore 554 110 graph;
 #N canvas 582 30 571 496 i1oscs 1;
 #X obj 101 327 phasor~;
 #X floatatom 151 330 5 0 0.5 0 - - -;
@@ -170,35 +170,35 @@
 #X array i2ws 8 float 1;
 #A 0 3 2 2 2 2 2 2 2;
 #X coords 0 3 7 0 64 8 1;
-#X restore 471 45 graph;
+#X restore 554 139 graph;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array i2ps 8 float 1;
 #A 0 18 -12 0 0 -6 -12 -24 -48;
 #X coords 0 48 7 -48 64 16 1;
-#X restore 471 60 graph;
+#X restore 554 154 graph;
 #N canvas 0 22 454 304 (subpatch) 0;
 #X array i3ws 8 float 1;
 #A 0 3 2 3 3 3 3 3 3;
 #X coords 0 3 7 0 64 8 1;
-#X restore 470 89 graph;
+#X restore 553 183 graph;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array i3ps 8 float 1;
 #A 0 18 0 3 12 18 24 36 36;
 #X coords 0 48 7 -48 64 16 1;
-#X restore 470 104 graph;
-#X msg 224 73 #snare \; i3ws 0 3 2 3 3 3 3 3 3 \; i3ps 0 18 0 3 12
+#X restore 553 198 graph;
+#X msg 287 110 #snare \; i3ws 0 3 2 3 3 3 3 3 3 \; i3ps 0 18 0 3 12
 18 24 36 36 \;;
 #N canvas 0 22 454 304 (subpatch) 0;
 #X array i4ws 8 float 1;
 #A 0 1 1 1 1 1 1 1 1;
 #X coords 0 3 7 0 64 8 1;
-#X restore 469 132 graph;
+#X restore 552 226 graph;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array i4ps 8 float 1;
 #A 0 24 0 12 0 -1 1 -1 0;
 #X coords 0 48 7 -48 64 16 1;
-#X restore 469 147 graph;
-#X msg 223 124 #bass \; i4ws 0 1 1 1 1 1 1 1 1 \; i4ps 0 24 0 12 0
+#X restore 552 241 graph;
+#X msg 284 212 #bass \; i4ws 0 1 1 1 1 1 1 1 1 \; i4ps 0 24 0 12 0
 -1 1 -1 0 \;;
 #X text 270 21 sub-patches to edit;
 #X text 274 34 ADSR waveforms;
@@ -674,11 +674,12 @@
 #X connect 72 0 39 0;
 #X connect 72 1 46 0;
 #X restore 203 9 pd i4oscs;
-#X msg 9 130 #kick \; i2ws 0 3 2 2 2 2 2 2 2 \; i2ps 0 18 -12 0 0 -6
+#X msg 8 217 #kick \; i2ws 0 3 2 2 2 2 2 2 2 \; i2ps 0 18 -12 0 0 -6
 -12 -24 -48 \;;
-#X msg 9 81 #arp \; i1ws 0 2 2 3 2 2 2 2 2 \; i1ps 0 12 -12 0 7 0 7
-0 7 \;;
-#X text 306 174 made by zenpho (http://www.zenpho.co.uk);
+#X msg 10 117 #arp \; i1ws 0 2 2 3 2 2 2 2 2 \; i1ps 0 12 -12 0 7 0
+7 0 7 \;;
+#X text 389 268 made by zenpho (http://www.zenpho.co.uk);
+#X obj 29 68 loadbang;
 #X connect 3 0 0 0;
 #X connect 3 0 0 1;
 #X connect 18 0 15 0;
@@ -687,3 +688,7 @@
 #X connect 19 0 16 1;
 #X connect 20 0 17 0;
 #X connect 20 0 17 1;
+#X connect 24 0 22 0;
+#X connect 24 0 8 0;
+#X connect 24 0 21 0;
+#X connect 24 0 11 0;

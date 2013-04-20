@@ -15,6 +15,7 @@
 		BC74C927172196B700E9D634 /* chipwave.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C925172196B700E9D634 /* chipwave.pd */; };
 		BC74C92B172198E500E9D634 /* chip1.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C92A172198E500E9D634 /* chip1.pd */; };
 		BC74C92D1721B03A00E9D634 /* chip2.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C92C1721B03A00E9D634 /* chip2.pd */; };
+		BC8398061722D5D600885313 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398051722D5D600885313 /* SoundManager.m */; };
 		BC8BE609171EC4DD008E0E3A /* New.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BC8BE608171EC4DD008E0E3A /* New.aupreset */; };
 		BC99E53A171FFCFD00F7A3DE /* BasicSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */; };
 		BC99E53B171FFCFD00F7A3DE /* Untitled-1.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */; };
@@ -32,7 +33,7 @@
 		BCA5FA5C171C830300550390 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA59171C830300550390 /* Cell.m */; };
 		BCA5FA5D171C830300550390 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA5B171C830300550390 /* PoolOfLife.m */; };
 		BCA5FA64171C838700550390 /* Another.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BCA5FA5E171C838700550390 /* Another.aupreset */; };
-		BCA5FA67171C838700550390 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA62171C838700550390 /* SoundManager.m */; };
+		BCA5FA67171C838700550390 /* AUSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA5FA62171C838700550390 /* AUSoundManager.m */; };
 		BCAF8D26171EA5CB00173F0F /* test.pd in Resources */ = {isa = PBXBuildFile; fileRef = BCAF8D25171EA5CB00173F0F /* test.pd */; };
 		BCAF8D29171EA71000173F0F /* PDSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAF8D28171EA71000173F0F /* PDSoundManager.m */; };
 		BCAF8D4C171EB2BC00173F0F /* test2.pd in Resources */ = {isa = PBXBuildFile; fileRef = BCAF8D4B171EB2BC00173F0F /* test2.pd */; };
@@ -132,6 +133,8 @@
 		BC74C925172196B700E9D634 /* chipwave.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chipwave.pd; sourceTree = "<group>"; };
 		BC74C92A172198E500E9D634 /* chip1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chip1.pd; sourceTree = "<group>"; };
 		BC74C92C1721B03A00E9D634 /* chip2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chip2.pd; sourceTree = "<group>"; };
+		BC8398041722D5D600885313 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		BC8398051722D5D600885313 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		BC8BE608171EC4DD008E0E3A /* New.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = New.aupreset; sourceTree = "<group>"; };
 		BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicSynth.pd; sourceTree = "<group>"; };
 		BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Untitled-1.pd"; sourceTree = "<group>"; };
@@ -151,8 +154,8 @@
 		BCA5FA5A171C830300550390 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
 		BCA5FA5B171C830300550390 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
 		BCA5FA5E171C838700550390 /* Another.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Another.aupreset; sourceTree = "<group>"; };
-		BCA5FA61171C838700550390 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
-		BCA5FA62171C838700550390 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
+		BCA5FA61171C838700550390 /* AUSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUSoundManager.h; sourceTree = "<group>"; };
+		BCA5FA62171C838700550390 /* AUSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUSoundManager.m; sourceTree = "<group>"; };
 		BCAF8D25171EA5CB00173F0F /* test.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.pd; sourceTree = "<group>"; };
 		BCAF8D27171EA71000173F0F /* PDSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDSoundManager.h; sourceTree = "<group>"; };
 		BCAF8D28171EA71000173F0F /* PDSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDSoundManager.m; sourceTree = "<group>"; };
@@ -272,6 +275,27 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		BC8398071722D67F00885313 /* AU */ = {
+			isa = PBXGroup;
+			children = (
+				BC99E54317202ADC00F7A3DE /* AudioUnit Presets */,
+				BCA5FA61171C838700550390 /* AUSoundManager.h */,
+				BCA5FA62171C838700550390 /* AUSoundManager.m */,
+			);
+			name = AU;
+			sourceTree = "<group>";
+		};
+		BC8398081722D68700885313 /* PD */ = {
+			isa = PBXGroup;
+			children = (
+				BC99E53E171FFD0B00F7A3DE /* Downloaded PD-Patches */,
+				BC99E537171FFCFD00F7A3DE /* PD-Patches */,
+				BCAF8D27171EA71000173F0F /* PDSoundManager.h */,
+				BCAF8D28171EA71000173F0F /* PDSoundManager.m */,
+			);
+			name = PD;
+			sourceTree = "<group>";
+		};
 		BC99E537171FFCFD00F7A3DE /* PD-Patches */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,13 +362,10 @@
 		BCA5FA69171C838C00550390 /* Sound Manager */ = {
 			isa = PBXGroup;
 			children = (
-				BC99E54317202ADC00F7A3DE /* AudioUnit Presets */,
-				BCA5FA61171C838700550390 /* SoundManager.h */,
-				BCA5FA62171C838700550390 /* SoundManager.m */,
-				BC99E53E171FFD0B00F7A3DE /* Downloaded PD-Patches */,
-				BC99E537171FFCFD00F7A3DE /* PD-Patches */,
-				BCAF8D27171EA71000173F0F /* PDSoundManager.h */,
-				BCAF8D28171EA71000173F0F /* PDSoundManager.m */,
+				BC8398071722D67F00885313 /* AU */,
+				BC8398081722D68700885313 /* PD */,
+				BC8398041722D5D600885313 /* SoundManager.h */,
+				BC8398051722D5D600885313 /* SoundManager.m */,
 			);
 			name = "Sound Manager";
 			sourceTree = "<group>";
@@ -705,7 +726,7 @@
 				DC218D0E16ECD18E00E38DB2 /* SecondSceneViewController.m in Sources */,
 				BCA5FA5C171C830300550390 /* Cell.m in Sources */,
 				BCA5FA5D171C830300550390 /* PoolOfLife.m in Sources */,
-				BCA5FA67171C838700550390 /* SoundManager.m in Sources */,
+				BCA5FA67171C838700550390 /* AUSoundManager.m in Sources */,
 				BC4D2EF5171DACCA00AFA13F /* GameOfLifeView.m in Sources */,
 				BCAF8D29171EA71000173F0F /* PDSoundManager.m in Sources */,
 				BCDAAC88172149900029ADAF /* attr.c in Sources */,
@@ -713,6 +734,7 @@
 				BCDAAC8A172149900029ADAF /* dirty.c in Sources */,
 				BCDAAC8B172149900029ADAF /* dither.c in Sources */,
 				BCDAAC8C172149900029ADAF /* frame.c in Sources */,
+				BC8398061722D5D600885313 /* SoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@
 #import "SecondSceneViewController.h"
 #import "GameOfLifeView.h"
 #import "PoolOfLife.h"
-#import "SoundManager.h"
+#import "AUSoundManager.h"
 #import "PDSoundManager.h"
 
 @interface PoolOfLifeSceneViewController () <PoolOfLifeDelegate>

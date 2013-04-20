@@ -66,7 +66,7 @@ typedef enum {
         [PdBase setDelegate:dispatcher];
         
         //added first iteration of new synth 28/03/12
-        self.patch = [PdFile openFileNamed:@"poly_tutorial.mmb.pd" path:[[NSBundle mainBundle] resourcePath]];
+        self.patch = [PdFile openFileNamed:@"chipwave.pd" path:[[NSBundle mainBundle] resourcePath]];
 //        for(int i = 0; i < numPatches; i++)
 //        {
 //            PdFile *patch = [PdFile openFileNamed:@"MMM5_Poly.pd"
@@ -95,6 +95,9 @@ typedef enum {
     //NSLog(@"Stopping %d", n);
     //[PdBase sendControlChange:0 controller:[self convertToMidi:n] value:0];
     [PdBase sendNoteOn:128 pitch:[self convertToMidi:n] velocity:0];
+    [PdBase sendNoteOn:129 pitch:[self convertToMidi:n] velocity:0];
+    [PdBase sendNoteOn:130 pitch:[self convertToMidi:n] velocity:0];
+    [PdBase sendNoteOn:131 pitch:[self convertToMidi:n] velocity:0];
 }
 
 /* Sends a MIDI note and a trigger to our dispatcher */
@@ -104,6 +107,9 @@ typedef enum {
     //NSLog(@"%d", [PdBase sendFloat:n toReceiver:@"notein"]);
     //[PdBase sendBangToReceiver:@"trigger"];
     [PdBase sendNoteOn:144 pitch:[self convertToMidi:n] velocity:velocity];
+    [PdBase sendNoteOn:145 pitch:[self convertToMidi:n] velocity:velocity];
+    [PdBase sendNoteOn:146 pitch:[self convertToMidi:n] velocity:velocity];
+    [PdBase sendNoteOn:147 pitch:[self convertToMidi:n] velocity:velocity];
 }
 
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
