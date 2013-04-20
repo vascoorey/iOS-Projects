@@ -13,6 +13,7 @@
 #import "PoolOfLife.h"
 #import "AUSoundManager.h"
 #import "PDSoundManager.h"
+#import "WTSSoundManager.h"
 
 @interface PoolOfLifeSceneViewController () <PoolOfLifeDelegate>
 @property (nonatomic, strong) PoolOfLife *game;
@@ -20,7 +21,7 @@
 @property (nonatomic) ccColor4F resetButtonColor;
 @property (nonatomic, weak) CCLabelTTF *toggleLabel;
 @property (nonatomic, weak) CCLabelTTF *intensityLabel;
-@property (nonatomic, strong) PDSoundManager *soundManager;
+@property (nonatomic, strong) SoundManager *soundManager;
 @property (nonatomic) float currentIntensity;
 @property (nonatomic) float lastYAcceleration;
 //Window properties
@@ -77,7 +78,7 @@
     //Natural Major scale
     //self.soundManager = [[SoundManager alloc] initWithScale:kSoundManagerScaleIonian];
     //self.soundManager.numCols = self.numCols;
-    self.soundManager = [[PDSoundManager alloc] initWithPatches:self.numCols];
+    self.soundManager = [[WTSSoundManager alloc] initWithPatches:self.numCols];
     self.game.delegate = self;
     self.currentIntensity = 1.0f;
     

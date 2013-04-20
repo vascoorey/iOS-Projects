@@ -25,6 +25,7 @@ enum {
 @property (readwrite) AUGraph   processingGraph;
 @property (readwrite) AudioUnit samplerUnit;
 @property (readwrite) AudioUnit ioUnit;
+@property (readwrite) AudioUnit limiterUnit;
 
 - (OSStatus)    loadSynthFromPresetURL:(NSURL *) presetURL;
 - (void)        registerForUIApplicationNotifications;
@@ -51,7 +52,7 @@ enum {
 - (BOOL) createAUGraph {
     
 	OSStatus result = noErr;
-	AUNode samplerNode, ioNode;
+	AUNode samplerNode, ioNode, limiterNode;
     
     // Specify the common portion of an audio unit's identify, used for both audio units
     // in the graph.
@@ -59,6 +60,10 @@ enum {
 	cd.componentManufacturer     = kAudioUnitManufacturer_Apple;
 	cd.componentFlags            = 0;
 	cd.componentFlagsMask        = 0;
+    AudioComponentDescription limiter = {};
+    limiter.componentManufacturer = kAudioUnitManufacturer_Apple;
+    limiter.componentFlags = 0;
+    limiter.componentFlagsMask = 0;
     
     // Instantiate an audio processing graph
 	result = NewAUGraph (&_processingGraph);
@@ -84,8 +89,14 @@ enum {
 	result = AUGraphOpen (self.processingGraph);
     NSCAssert (result == noErr, @"Unable to open the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
+    limiter.componentType = kAudioUnitType_Effect;
+    limiter.componentSubType = kAudioUnitSubType_PeakLimiter;
+    
+    result = AUGraphAddNode(self.processingGraph, &limiter, &limiterNode);
+    NSCAssert(result == noErr, @"Unable to add the peak limiter");
+    
     // Connect the Sampler unit to the output unit
-	result = AUGraphConnectNodeInput (self.processingGraph, samplerNode, 0, ioNode, 0);
+	result = AUGraphConnectNodeInput (self.processingGraph, samplerNode, 0, limiterNode, 0);
     NSCAssert (result == noErr, @"Unable to interconnect the nodes in the audio processing graph. Error code: %d '%.4s'", (int) result, (const char *)&result);
     
 	// Obtain a reference to the Sampler unit from its node
@@ -95,6 +106,8 @@ enum {
 	// Obtain a reference to the I/O unit from its node
 	result = AUGraphNodeInfo (self.processingGraph, ioNode, 0, &_ioUnit);
     NSCAssert (result == noErr, @"Unable to obtain a reference to the I/O unit. Error code: %d '%.4s'", (int) result, (const char *)&result);
+    
+    result = AUGraphNodeInfo(self.processingGraph, limiterNode, 0, &_limiterUnit);
     
     return YES;
 }
