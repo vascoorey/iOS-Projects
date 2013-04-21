@@ -17,16 +17,17 @@
 		BC74C92D1721B03A00E9D634 /* chip2.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC74C92C1721B03A00E9D634 /* chip2.pd */; };
 		BC8398061722D5D600885313 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398051722D5D600885313 /* SoundManager.m */; };
 		BC83980B1723052400885313 /* WTSSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83980A1723052400885313 /* WTSSoundManager.m */; };
-		BC8398251723053C00885313 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398101723053C00885313 /* AQPlayer.m */; };
-		BC8398261723053C00885313 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398121723053C00885313 /* AQSound.m */; };
-		BC8398271723053C00885313 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398141723053C00885313 /* AQSynth.m */; };
-		BC8398281723053C00885313 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BC8398151723053C00885313 /* README.md */; };
-		BC8398291723053C00885313 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398191723053C00885313 /* PulseOrgan.m */; };
-		BC83982A1723053C00885313 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83981B1723053C00885313 /* SawBrass.m */; };
-		BC83982B1723053C00885313 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83981D1723053C00885313 /* SinePiano.m */; };
-		BC83982C1723053C00885313 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83981F1723053C00885313 /* SquareStrings.m */; };
-		BC83982D1723053C00885313 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398211723053C00885313 /* TriangleFlute.m */; };
-		BC83982E1723053C00885313 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398231723053C00885313 /* Voice.m */; };
+		BC8398461723388000885313 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BC8398301723388000885313 /* .gitignore */; };
+		BC8398471723388000885313 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398321723388000885313 /* AQPlayer.m */; };
+		BC8398481723388000885313 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398341723388000885313 /* AQSound.m */; };
+		BC8398491723388000885313 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398361723388000885313 /* AQSynth.m */; };
+		BC83984A1723388000885313 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BC8398371723388000885313 /* README.md */; };
+		BC83984B1723388000885313 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83983B1723388000885313 /* PulseOrgan.m */; };
+		BC83984C1723388000885313 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83983D1723388000885313 /* SawBrass.m */; };
+		BC83984D1723388000885313 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BC83983F1723388000885313 /* SinePiano.m */; };
+		BC83984E1723388000885313 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398411723388000885313 /* SquareStrings.m */; };
+		BC83984F1723388000885313 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398431723388000885313 /* TriangleFlute.m */; };
+		BC8398501723388000885313 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8398451723388000885313 /* Voice.m */; };
 		BC8BE609171EC4DD008E0E3A /* New.aupreset in Resources */ = {isa = PBXBuildFile; fileRef = BC8BE608171EC4DD008E0E3A /* New.aupreset */; };
 		BC99E53A171FFCFD00F7A3DE /* BasicSynth.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */; };
 		BC99E53B171FFCFD00F7A3DE /* Untitled-1.pd in Resources */ = {isa = PBXBuildFile; fileRef = BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */; };
@@ -143,25 +144,26 @@
 		BC8398051722D5D600885313 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
 		BC8398091723052400885313 /* WTSSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTSSoundManager.h; sourceTree = "<group>"; };
 		BC83980A1723052400885313 /* WTSSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTSSoundManager.m; sourceTree = "<group>"; };
-		BC83980F1723053C00885313 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
-		BC8398101723053C00885313 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
-		BC8398111723053C00885313 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
-		BC8398121723053C00885313 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
-		BC8398131723053C00885313 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
-		BC8398141723053C00885313 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
-		BC8398151723053C00885313 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		BC8398181723053C00885313 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
-		BC8398191723053C00885313 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
-		BC83981A1723053C00885313 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
-		BC83981B1723053C00885313 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
-		BC83981C1723053C00885313 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
-		BC83981D1723053C00885313 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
-		BC83981E1723053C00885313 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
-		BC83981F1723053C00885313 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
-		BC8398201723053C00885313 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
-		BC8398211723053C00885313 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
-		BC8398221723053C00885313 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
-		BC8398231723053C00885313 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
+		BC8398301723388000885313 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BC8398311723388000885313 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		BC8398321723388000885313 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
+		BC8398331723388000885313 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
+		BC8398341723388000885313 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
+		BC8398351723388000885313 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
+		BC8398361723388000885313 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
+		BC8398371723388000885313 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		BC83983A1723388000885313 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
+		BC83983B1723388000885313 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
+		BC83983C1723388000885313 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
+		BC83983D1723388000885313 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
+		BC83983E1723388000885313 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
+		BC83983F1723388000885313 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
+		BC8398401723388000885313 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
+		BC8398411723388000885313 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
+		BC8398421723388000885313 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
+		BC8398431723388000885313 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
+		BC8398441723388000885313 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		BC8398451723388000885313 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
 		BC8BE608171EC4DD008E0E3A /* New.aupreset */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = New.aupreset; sourceTree = "<group>"; };
 		BC99E538171FFCFD00F7A3DE /* BasicSynth.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BasicSynth.pd; sourceTree = "<group>"; };
 		BC99E539171FFCFD00F7A3DE /* Untitled-1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Untitled-1.pd"; sourceTree = "<group>"; };
@@ -314,52 +316,53 @@
 		BC83980C1723052900885313 /* WTS */ = {
 			isa = PBXGroup;
 			children = (
-				BC83980D1723053C00885313 /* WaveTableSynth */,
+				BC83982F1723388000885313 /* WaveTableSynth */,
 				BC8398091723052400885313 /* WTSSoundManager.h */,
 				BC83980A1723052400885313 /* WTSSoundManager.m */,
 			);
 			name = WTS;
 			sourceTree = "<group>";
 		};
-		BC83980D1723053C00885313 /* WaveTableSynth */ = {
+		BC83982F1723388000885313 /* WaveTableSynth */ = {
 			isa = PBXGroup;
 			children = (
-				BC83980F1723053C00885313 /* AQPlayer.h */,
-				BC8398101723053C00885313 /* AQPlayer.m */,
-				BC8398111723053C00885313 /* AQSound.h */,
-				BC8398121723053C00885313 /* AQSound.m */,
-				BC8398131723053C00885313 /* AQSynth.h */,
-				BC8398141723053C00885313 /* AQSynth.m */,
-				BC8398151723053C00885313 /* README.md */,
-				BC8398161723053C00885313 /* Voices */,
+				BC8398301723388000885313 /* .gitignore */,
+				BC8398311723388000885313 /* AQPlayer.h */,
+				BC8398321723388000885313 /* AQPlayer.m */,
+				BC8398331723388000885313 /* AQSound.h */,
+				BC8398341723388000885313 /* AQSound.m */,
+				BC8398351723388000885313 /* AQSynth.h */,
+				BC8398361723388000885313 /* AQSynth.m */,
+				BC8398371723388000885313 /* README.md */,
+				BC8398381723388000885313 /* Voices */,
 			);
 			name = WaveTableSynth;
 			path = ../../../../WaveTableSynth;
 			sourceTree = "<group>";
 		};
-		BC8398161723053C00885313 /* Voices */ = {
+		BC8398381723388000885313 /* Voices */ = {
 			isa = PBXGroup;
 			children = (
-				BC8398171723053C00885313 /* The Sounds */,
-				BC8398221723053C00885313 /* Voice.h */,
-				BC8398231723053C00885313 /* Voice.m */,
+				BC8398391723388000885313 /* The Sounds */,
+				BC8398441723388000885313 /* Voice.h */,
+				BC8398451723388000885313 /* Voice.m */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
 		};
-		BC8398171723053C00885313 /* The Sounds */ = {
+		BC8398391723388000885313 /* The Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				BC8398181723053C00885313 /* PulseOrgan.h */,
-				BC8398191723053C00885313 /* PulseOrgan.m */,
-				BC83981A1723053C00885313 /* SawBrass.h */,
-				BC83981B1723053C00885313 /* SawBrass.m */,
-				BC83981C1723053C00885313 /* SinePiano.h */,
-				BC83981D1723053C00885313 /* SinePiano.m */,
-				BC83981E1723053C00885313 /* SquareStrings.h */,
-				BC83981F1723053C00885313 /* SquareStrings.m */,
-				BC8398201723053C00885313 /* TriangleFlute.h */,
-				BC8398211723053C00885313 /* TriangleFlute.m */,
+				BC83983A1723388000885313 /* PulseOrgan.h */,
+				BC83983B1723388000885313 /* PulseOrgan.m */,
+				BC83983C1723388000885313 /* SawBrass.h */,
+				BC83983D1723388000885313 /* SawBrass.m */,
+				BC83983E1723388000885313 /* SinePiano.h */,
+				BC83983F1723388000885313 /* SinePiano.m */,
+				BC8398401723388000885313 /* SquareStrings.h */,
+				BC8398411723388000885313 /* SquareStrings.m */,
+				BC8398421723388000885313 /* TriangleFlute.h */,
+				BC8398431723388000885313 /* TriangleFlute.m */,
 			);
 			path = "The Sounds";
 			sourceTree = "<group>";
@@ -733,7 +736,8 @@
 				BC74C927172196B700E9D634 /* chipwave.pd in Resources */,
 				BC74C92B172198E500E9D634 /* chip1.pd in Resources */,
 				BC74C92D1721B03A00E9D634 /* chip2.pd in Resources */,
-				BC8398281723053C00885313 /* README.md in Resources */,
+				BC8398461723388000885313 /* .gitignore in Resources */,
+				BC83984A1723388000885313 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,15 +784,15 @@
 				BCAF8D29171EA71000173F0F /* PDSoundManager.m in Sources */,
 				BC8398061722D5D600885313 /* SoundManager.m in Sources */,
 				BC83980B1723052400885313 /* WTSSoundManager.m in Sources */,
-				BC8398251723053C00885313 /* AQPlayer.m in Sources */,
-				BC8398261723053C00885313 /* AQSound.m in Sources */,
-				BC8398271723053C00885313 /* AQSynth.m in Sources */,
-				BC8398291723053C00885313 /* PulseOrgan.m in Sources */,
-				BC83982A1723053C00885313 /* SawBrass.m in Sources */,
-				BC83982B1723053C00885313 /* SinePiano.m in Sources */,
-				BC83982C1723053C00885313 /* SquareStrings.m in Sources */,
-				BC83982D1723053C00885313 /* TriangleFlute.m in Sources */,
-				BC83982E1723053C00885313 /* Voice.m in Sources */,
+				BC8398471723388000885313 /* AQPlayer.m in Sources */,
+				BC8398481723388000885313 /* AQSound.m in Sources */,
+				BC8398491723388000885313 /* AQSynth.m in Sources */,
+				BC83984B1723388000885313 /* PulseOrgan.m in Sources */,
+				BC83984C1723388000885313 /* SawBrass.m in Sources */,
+				BC83984D1723388000885313 /* SinePiano.m in Sources */,
+				BC83984E1723388000885313 /* SquareStrings.m in Sources */,
+				BC83984F1723388000885313 /* TriangleFlute.m in Sources */,
+				BC8398501723388000885313 /* Voice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

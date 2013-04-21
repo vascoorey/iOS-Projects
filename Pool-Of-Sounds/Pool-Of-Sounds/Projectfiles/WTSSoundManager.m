@@ -38,6 +38,7 @@
         self.sound = [[AQSound alloc] init];
         [self.sound start];
         self.sound.soundType = Strings;
+        self.sound.volume = 100;
     }
     return self;
 }
@@ -57,7 +58,7 @@
         if([row[i] intValue] && !playing)
         {
             //Start playing
-            [self startPlayingNote:midiNote];
+            [self startPlayingNote:midiNote intensity:intensity];
         }
         else if(![row[i] intValue] && playing)
         {
@@ -74,7 +75,7 @@
 -(void)playNoteForCol:(NSInteger)col intensity:(float)intensity
 {
     int midiNote = [self convertToMidi:col];
-    [self startPlayingNote:midiNote];
+    [self startPlayingNote:midiNote intensity:intensity];
     
 }
 //Stops playing all notes
@@ -87,7 +88,7 @@
     }
 }
 
--(void)startPlayingNote:(int)note
+-(void)startPlayingNote:(int)note intensity:(Float64)intensity
 {
     for(int i = 0; i < (int)[self.voicesPlaying count]; i ++)
     {
@@ -97,7 +98,7 @@
             NSLog(@"Playing: %d", note);
             //First available voice: play
             self.voicesPlaying[i] = @(note);
-            [self.sound midiNoteOn:note atVoiceIndex:i];
+            [self.sound midiNoteOn:note atVoiceIndex:i intensity:intensity];
             return;
         }
     }
@@ -109,7 +110,6 @@
     int voice = [self.voicesPlaying indexOfObject:@(note)];
     self.voicesPlaying[voice] = @(0);
     [self.sound midiNoteOff:note atVoiceIndex:voice];
-    NSLog(@"Stopping: %d", note);
 }
 
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
