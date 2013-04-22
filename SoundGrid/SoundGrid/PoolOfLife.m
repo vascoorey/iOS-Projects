@@ -51,6 +51,11 @@
     return _neighbors;
 }
 
+-(NSArray *)state
+{
+    return [self.grid copy];
+}
+
 #pragma mark -
 
 -(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode

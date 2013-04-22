@@ -10,7 +10,7 @@
 
 @protocol GridViewDelegate
 @required
--(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col;
+-(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col began:(BOOL)began;
 @end
 
 @interface GridView : UIView

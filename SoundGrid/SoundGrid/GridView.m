@@ -42,13 +42,14 @@
 {
     if((self = [super initWithFrame:frame]))
     {
-        self.multipleTouchEnabled = YES;
+        self.multipleTouchEnabled = NO;
     }
     return self;
 }
 
 -(UIColor *)colorForNumber:(int)number
 {
+    if(number) NSLog(@"Color for %d", number);
     switch (number) {
         case 1:
             return [UIColor blueColor];
@@ -110,7 +111,37 @@
     [path closePath];
 }
 
+#warning when touch is outside the grid
+#warning collapse repeated stuff into a function
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        UITouch *touch = (UITouch *)obj;
+        CGPoint location = [touch locationInView:self];
+        NSInteger row = (location.y - self.yPadding) / self.cellSide;
+        NSInteger col = (location.x - self.xPadding) / self.cellSide;
+        [self.delegate didDetectTouchAtRow:row col:col began:YES];
+    }];
+}
+
+#warning when touch is outside the grid
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        UITouch *touch = (UITouch *)obj;
+        CGPoint location = [touch locationInView:self];
+        NSInteger row = (location.y - self.yPadding) / self.cellSide;
+        NSInteger col = (location.x - self.xPadding) / self.cellSide;
+        [self.delegate didDetectTouchAtRow:row col:col began:NO];
+    }];
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
 }

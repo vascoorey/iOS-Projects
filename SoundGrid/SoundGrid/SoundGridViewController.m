@@ -27,7 +27,15 @@
 
 -(void)setCurrentSpecies:(NSInteger)currentSpecies
 {
-    switch (currentSpecies) {
+    if(currentSpecies > 0 && currentSpecies <= 4)
+    {
+        _currentSpecies = currentSpecies;
+    }
+    else
+    {
+        _currentSpecies = 1;
+    }
+    switch (_currentSpecies) {
         case 1:
             self.currentSpeciesLabel.text = @"Blue";
             self.currentSpeciesLabel.textColor = [UIColor blueColor];
@@ -58,7 +66,6 @@
     self.numRows = 24;
     self.numCols = 21;
     self.frameInterval = 6;
-    self.currentSpecies = 1;
     self.pool = [[PoolOfLife alloc] initWithRows:self.numRows cols:self.numCols gameMode:PoolOfLifeGameModeConway];
     self.pool.delegate = self;
     self.view.multipleTouchEnabled = YES;
@@ -68,12 +75,15 @@
 {
     [super viewWillAppear:animated];
     [self scheduleUpdate];
+    self.gridView.delegate = self;
+    self.currentSpecies = 1;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self unscheduleUpdate];
+    self.gridView.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +112,7 @@
     NSArray *currentState = [self.pool performStep];
     if(currentState)
     {
+        NSLog(@"Setting the new grid");
         self.gridView.grid = currentState;
     }
 }
@@ -121,12 +132,28 @@
 
 #pragma mark - PoolOfLife Delegate
 
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col
+{
+    [self didActivateCellAtRow:row col:col species:1];
+}
+
+-(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col species:(NSInteger)species
+{
+    //Play sound
+    //...
+    self.gridView.grid = self.pool.state;
+}
+
+-(void)didFinishUpdatingRowWithResultingRow:(NSArray *)row
+{
+    
+}
 
 #pragma mark - GridView Delegate
 
--(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col
+-(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col began:(BOOL)began
 {
-    [self.pool flipCellAtRow:row col:col started:YES species:self.currentSpecies];
+    [self.pool flipCellAtRow:row col:col started:began species:self.currentSpecies];
 }
 
 @end
