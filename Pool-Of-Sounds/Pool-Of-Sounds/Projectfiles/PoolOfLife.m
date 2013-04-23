@@ -164,7 +164,7 @@
 
 -(NSInteger)updateDictionary:(NSMutableDictionary *)speciesForCell cell:(NSNumber *)cell species:(NSInteger)species
 {
-    if(this.numSpecies > 1)
+    if(self.numSpecies > 1)
     {
         if([[speciesForCell allKeys] containsObject:cell])
         {
