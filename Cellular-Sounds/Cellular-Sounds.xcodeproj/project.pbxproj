@@ -1,0 +1,565 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BC12A52E1726924000FE77F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A52D1726924000FE77F4 /* UIKit.framework */; };
+		BC12A5301726924000FE77F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A52F1726924000FE77F4 /* Foundation.framework */; };
+		BC12A5321726924000FE77F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5311726924000FE77F4 /* CoreGraphics.framework */; };
+		BC12A5381726924000FE77F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5361726924000FE77F4 /* InfoPlist.strings */; };
+		BC12A53A1726924000FE77F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5391726924000FE77F4 /* main.m */; };
+		BC12A53E1726924000FE77F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A53D1726924000FE77F4 /* AppDelegate.m */; };
+		BC12A5401726924000FE77F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BC12A53F1726924000FE77F4 /* Default.png */; };
+		BC12A5421726924000FE77F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5411726924000FE77F4 /* Default@2x.png */; };
+		BC12A5441726924000FE77F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5431726924000FE77F4 /* Default-568h@2x.png */; };
+		BC12A5471726924000FE77F4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5451726924000FE77F4 /* MainStoryboard_iPhone.storyboard */; };
+		BC12A54A1726924000FE77F4 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5481726924000FE77F4 /* MainStoryboard_iPad.storyboard */; };
+		BC12A5551726947900FE77F4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5541726947900FE77F4 /* GridView.m */; };
+		BC12A559172695F800FE77F4 /* CellularSoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */; };
+		BC12A55C17269B6300FE77F4 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A55B17269B6300FE77F4 /* PoolOfLife.m */; };
+		BC12A5CB1726A67C00FE77F4 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B51726A67C00FE77F4 /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5CC1726A67C00FE77F4 /* BChannelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5CD1726A67C00FE77F4 /* BMidiClock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B91726A67C00FE77F4 /* BMidiClock.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5CE1726A67C00FE77F4 /* BMidiEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5CF1726A67C00FE77F4 /* BMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D01726A67C00FE77F4 /* BMidiNote.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D11726A67C00FE77F4 /* BObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C31726A67C00FE77F4 /* BObjectPool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D21726A67C00FE77F4 /* BSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C51726A67C00FE77F4 /* BSequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D31726A67C00FE77F4 /* BSequencePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D41726A67C00FE77F4 /* BTempoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC12A5D61726A6B300FE77F4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5D51726A6B300FE77F4 /* AudioToolbox.framework */; };
+		BC12A5D81726A6B600FE77F4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5D71726A6B600FE77F4 /* AVFoundation.framework */; };
+		BC12A5F61726AD7D00FE77F4 /* abba_dancing_queen.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5DF1726AD7D00FE77F4 /* abba_dancing_queen.mid */; };
+		BC12A5F71726AD7D00FE77F4 /* alla_turca_short.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5E01726AD7D00FE77F4 /* alla_turca_short.mid */; };
+		BC12A5FA1726AD7D00FE77F4 /* dancing_queen.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5E31726AD7D00FE77F4 /* dancing_queen.mid */; };
+		BC12A5FB1726AD7D00FE77F4 /* dancing_queen.mid.MSM.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5E41726AD7D00FE77F4 /* dancing_queen.mid.MSM.mid */; };
+		BC12A5FD1726AD7D00FE77F4 /* dream_on.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5E61726AD7D00FE77F4 /* dream_on.mid */; };
+		BC12A5FE1726AD7D00FE77F4 /* fluid_gm.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5E71726AD7D00FE77F4 /* fluid_gm.sf2 */; };
+		BC12A6021726AD7D00FE77F4 /* hallking.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5EB1726AD7D00FE77F4 /* hallking.mid */; };
+		BC12A60B1726AD7D00FE77F4 /* mountain_king.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */; };
+		BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F51726AD7D00FE77F4 /* november_rain.mid */; };
+		BC12A60E1726B0C500FE77F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */; };
+		BCBF35C91727351100444411 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BCBF35B31727351100444411 /* .gitignore */; };
+		BCBF35CA1727351100444411 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B51727351100444411 /* AQPlayer.m */; };
+		BCBF35CB1727351100444411 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B71727351100444411 /* AQSound.m */; };
+		BCBF35CC1727351100444411 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B91727351100444411 /* AQSynth.m */; };
+		BCBF35CD1727351100444411 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BCBF35BA1727351100444411 /* README.md */; };
+		BCBF35CE1727351100444411 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35BE1727351100444411 /* PulseOrgan.m */; };
+		BCBF35CF1727351100444411 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C01727351100444411 /* SawBrass.m */; };
+		BCBF35D01727351100444411 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C21727351100444411 /* SinePiano.m */; };
+		BCBF35D11727351100444411 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C41727351100444411 /* SquareStrings.m */; };
+		BCBF35D21727351100444411 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C61727351100444411 /* TriangleFlute.m */; };
+		BCBF35D31727351100444411 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C81727351100444411 /* Voice.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BC12A52A1726924000FE77F4 /* Cellular-Sounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cellular-Sounds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC12A52D1726924000FE77F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BC12A52F1726924000FE77F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BC12A5311726924000FE77F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BC12A5351726924000FE77F4 /* Cellular-Sounds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cellular-Sounds-Info.plist"; sourceTree = "<group>"; };
+		BC12A5371726924000FE77F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BC12A5391726924000FE77F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BC12A53B1726924000FE77F4 /* Cellular-Sounds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellular-Sounds-Prefix.pch"; sourceTree = "<group>"; };
+		BC12A53C1726924000FE77F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BC12A53D1726924000FE77F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BC12A53F1726924000FE77F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BC12A5411726924000FE77F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BC12A5431726924000FE77F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BC12A5461726924000FE77F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		BC12A5491726924000FE77F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		BC12A5531726947900FE77F4 /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		BC12A5541726947900FE77F4 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
+		BC12A557172695F800FE77F4 /* CellularSoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellularSoundsViewController.h; sourceTree = "<group>"; };
+		BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellularSoundsViewController.m; sourceTree = "<group>"; };
+		BC12A55A17269B6300FE77F4 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
+		BC12A55B17269B6300FE77F4 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
+		BC12A5B41726A67C00FE77F4 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = "../../MIDI-Library/co.deluge.advancedmidi/AudioManager.h"; sourceTree = "<group>"; };
+		BC12A5B51726A67C00FE77F4 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "../../MIDI-Library/co.deluge.advancedmidi/AudioManager.m"; sourceTree = "<group>"; };
+		BC12A5B61726A67C00FE77F4 /* BChannelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BChannelEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.h"; sourceTree = "<group>"; };
+		BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BChannelEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.m"; sourceTree = "<group>"; };
+		BC12A5B81726A67C00FE77F4 /* BMidiClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiClock.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.h"; sourceTree = "<group>"; };
+		BC12A5B91726A67C00FE77F4 /* BMidiClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiClock.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.m"; sourceTree = "<group>"; };
+		BC12A5BA1726A67C00FE77F4 /* BMidiEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.h"; sourceTree = "<group>"; };
+		BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.m"; sourceTree = "<group>"; };
+		BC12A5BC1726A67C00FE77F4 /* BMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiManager.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.h"; sourceTree = "<group>"; };
+		BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiManager.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.m"; sourceTree = "<group>"; };
+		BC12A5BE1726A67C00FE77F4 /* BMidiNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiNote.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.h"; sourceTree = "<group>"; };
+		BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiNote.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.m"; sourceTree = "<group>"; };
+		BC12A5C01726A67C00FE77F4 /* BNoteEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteEventHandler.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BNoteEventHandler.h"; sourceTree = "<group>"; };
+		BC12A5C11726A67C00FE77F4 /* BNoteProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteProcessor.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BNoteProcessor.h"; sourceTree = "<group>"; };
+		BC12A5C21726A67C00FE77F4 /* BObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BObjectPool.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.h"; sourceTree = "<group>"; };
+		BC12A5C31726A67C00FE77F4 /* BObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BObjectPool.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.m"; sourceTree = "<group>"; };
+		BC12A5C41726A67C00FE77F4 /* BSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequence.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequence.h"; sourceTree = "<group>"; };
+		BC12A5C51726A67C00FE77F4 /* BSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequence.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequence.m"; sourceTree = "<group>"; };
+		BC12A5C61726A67C00FE77F4 /* BSequencePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequencePlayer.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.h"; sourceTree = "<group>"; };
+		BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequencePlayer.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.m"; sourceTree = "<group>"; };
+		BC12A5C81726A67C00FE77F4 /* BTempoEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.h"; sourceTree = "<group>"; };
+		BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTempoEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.m"; sourceTree = "<group>"; };
+		BC12A5CA1726A67C00FE77F4 /* BTempoEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEventHandler.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEventHandler.h"; sourceTree = "<group>"; };
+		BC12A5D51726A6B300FE77F4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BC12A5D71726A6B600FE77F4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BC12A5DF1726AD7D00FE77F4 /* abba_dancing_queen.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = abba_dancing_queen.mid; sourceTree = "<group>"; };
+		BC12A5E01726AD7D00FE77F4 /* alla_turca_short.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = alla_turca_short.mid; sourceTree = "<group>"; };
+		BC12A5E31726AD7D00FE77F4 /* dancing_queen.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = dancing_queen.mid; sourceTree = "<group>"; };
+		BC12A5E41726AD7D00FE77F4 /* dancing_queen.mid.MSM.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = dancing_queen.mid.MSM.mid; sourceTree = "<group>"; };
+		BC12A5E61726AD7D00FE77F4 /* dream_on.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = dream_on.mid; sourceTree = "<group>"; };
+		BC12A5E71726AD7D00FE77F4 /* fluid_gm.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fluid_gm.sf2; sourceTree = "<group>"; };
+		BC12A5EB1726AD7D00FE77F4 /* hallking.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = hallking.mid; sourceTree = "<group>"; };
+		BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = mountain_king.mid; sourceTree = "<group>"; };
+		BC12A5F51726AD7D00FE77F4 /* november_rain.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = november_rain.mid; sourceTree = "<group>"; };
+		BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BCBF35B31727351100444411 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BCBF35B41727351100444411 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		BCBF35B51727351100444411 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
+		BCBF35B61727351100444411 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
+		BCBF35B71727351100444411 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
+		BCBF35B81727351100444411 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
+		BCBF35B91727351100444411 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
+		BCBF35BA1727351100444411 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		BCBF35BD1727351100444411 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
+		BCBF35BE1727351100444411 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
+		BCBF35BF1727351100444411 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
+		BCBF35C01727351100444411 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
+		BCBF35C11727351100444411 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
+		BCBF35C21727351100444411 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
+		BCBF35C31727351100444411 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
+		BCBF35C41727351100444411 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
+		BCBF35C51727351100444411 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
+		BCBF35C61727351100444411 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
+		BCBF35C71727351100444411 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		BCBF35C81727351100444411 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC12A5271726924000FE77F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC12A60E1726B0C500FE77F4 /* QuartzCore.framework in Frameworks */,
+				BC12A5D81726A6B600FE77F4 /* AVFoundation.framework in Frameworks */,
+				BC12A5D61726A6B300FE77F4 /* AudioToolbox.framework in Frameworks */,
+				BC12A52E1726924000FE77F4 /* UIKit.framework in Frameworks */,
+				BC12A5301726924000FE77F4 /* Foundation.framework in Frameworks */,
+				BC12A5321726924000FE77F4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BC12A5211726924000FE77F4 = {
+			isa = PBXGroup;
+			children = (
+				BC12A5331726924000FE77F4 /* Cellular-Sounds */,
+				BC12A52C1726924000FE77F4 /* Frameworks */,
+				BC12A52B1726924000FE77F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC12A52B1726924000FE77F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A52A1726924000FE77F4 /* Cellular-Sounds.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC12A52C1726924000FE77F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */,
+				BC12A5D71726A6B600FE77F4 /* AVFoundation.framework */,
+				BC12A5D51726A6B300FE77F4 /* AudioToolbox.framework */,
+				BC12A52D1726924000FE77F4 /* UIKit.framework */,
+				BC12A52F1726924000FE77F4 /* Foundation.framework */,
+				BC12A5311726924000FE77F4 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC12A5331726924000FE77F4 /* Cellular-Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A5B31726A67200FE77F4 /* Sound */,
+				BC12A5561726947D00FE77F4 /* View */,
+				BC12A55D17269B6A00FE77F4 /* Model */,
+				BC12A53C1726924000FE77F4 /* AppDelegate.h */,
+				BC12A53D1726924000FE77F4 /* AppDelegate.m */,
+				BC12A557172695F800FE77F4 /* CellularSoundsViewController.h */,
+				BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */,
+				BC12A5451726924000FE77F4 /* MainStoryboard_iPhone.storyboard */,
+				BC12A5481726924000FE77F4 /* MainStoryboard_iPad.storyboard */,
+				BC12A5DE1726AD7D00FE77F4 /* Resources */,
+				BC12A5341726924000FE77F4 /* Supporting Files */,
+			);
+			path = "Cellular-Sounds";
+			sourceTree = "<group>";
+		};
+		BC12A5341726924000FE77F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A5351726924000FE77F4 /* Cellular-Sounds-Info.plist */,
+				BC12A5361726924000FE77F4 /* InfoPlist.strings */,
+				BC12A5391726924000FE77F4 /* main.m */,
+				BC12A53B1726924000FE77F4 /* Cellular-Sounds-Prefix.pch */,
+				BC12A53F1726924000FE77F4 /* Default.png */,
+				BC12A5411726924000FE77F4 /* Default@2x.png */,
+				BC12A5431726924000FE77F4 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC12A5561726947D00FE77F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A5531726947900FE77F4 /* GridView.h */,
+				BC12A5541726947900FE77F4 /* GridView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BC12A55D17269B6A00FE77F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A55A17269B6300FE77F4 /* PoolOfLife.h */,
+				BC12A55B17269B6300FE77F4 /* PoolOfLife.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BC12A5B31726A67200FE77F4 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				BCBF35B21727351100444411 /* WaveTableSynth */,
+				BC12A5B41726A67C00FE77F4 /* AudioManager.h */,
+				BC12A5B51726A67C00FE77F4 /* AudioManager.m */,
+				BC12A5B61726A67C00FE77F4 /* BChannelEvent.h */,
+				BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */,
+				BC12A5B81726A67C00FE77F4 /* BMidiClock.h */,
+				BC12A5B91726A67C00FE77F4 /* BMidiClock.m */,
+				BC12A5BA1726A67C00FE77F4 /* BMidiEvent.h */,
+				BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */,
+				BC12A5BC1726A67C00FE77F4 /* BMidiManager.h */,
+				BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */,
+				BC12A5BE1726A67C00FE77F4 /* BMidiNote.h */,
+				BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */,
+				BC12A5C01726A67C00FE77F4 /* BNoteEventHandler.h */,
+				BC12A5C11726A67C00FE77F4 /* BNoteProcessor.h */,
+				BC12A5C21726A67C00FE77F4 /* BObjectPool.h */,
+				BC12A5C31726A67C00FE77F4 /* BObjectPool.m */,
+				BC12A5C41726A67C00FE77F4 /* BSequence.h */,
+				BC12A5C51726A67C00FE77F4 /* BSequence.m */,
+				BC12A5C61726A67C00FE77F4 /* BSequencePlayer.h */,
+				BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */,
+				BC12A5C81726A67C00FE77F4 /* BTempoEvent.h */,
+				BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */,
+				BC12A5CA1726A67C00FE77F4 /* BTempoEventHandler.h */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
+		BC12A5DE1726AD7D00FE77F4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC12A5DF1726AD7D00FE77F4 /* abba_dancing_queen.mid */,
+				BC12A5E01726AD7D00FE77F4 /* alla_turca_short.mid */,
+				BC12A5E31726AD7D00FE77F4 /* dancing_queen.mid */,
+				BC12A5E41726AD7D00FE77F4 /* dancing_queen.mid.MSM.mid */,
+				BC12A5E61726AD7D00FE77F4 /* dream_on.mid */,
+				BC12A5E71726AD7D00FE77F4 /* fluid_gm.sf2 */,
+				BC12A5EB1726AD7D00FE77F4 /* hallking.mid */,
+				BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */,
+				BC12A5F51726AD7D00FE77F4 /* november_rain.mid */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BCBF35B21727351100444411 /* WaveTableSynth */ = {
+			isa = PBXGroup;
+			children = (
+				BCBF35B31727351100444411 /* .gitignore */,
+				BCBF35B41727351100444411 /* AQPlayer.h */,
+				BCBF35B51727351100444411 /* AQPlayer.m */,
+				BCBF35B61727351100444411 /* AQSound.h */,
+				BCBF35B71727351100444411 /* AQSound.m */,
+				BCBF35B81727351100444411 /* AQSynth.h */,
+				BCBF35B91727351100444411 /* AQSynth.m */,
+				BCBF35BA1727351100444411 /* README.md */,
+				BCBF35BB1727351100444411 /* Voices */,
+			);
+			name = WaveTableSynth;
+			path = ../../WaveTableSynth;
+			sourceTree = "<group>";
+		};
+		BCBF35BB1727351100444411 /* Voices */ = {
+			isa = PBXGroup;
+			children = (
+				BCBF35BC1727351100444411 /* The Sounds */,
+				BCBF35C71727351100444411 /* Voice.h */,
+				BCBF35C81727351100444411 /* Voice.m */,
+			);
+			path = Voices;
+			sourceTree = "<group>";
+		};
+		BCBF35BC1727351100444411 /* The Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BCBF35BD1727351100444411 /* PulseOrgan.h */,
+				BCBF35BE1727351100444411 /* PulseOrgan.m */,
+				BCBF35BF1727351100444411 /* SawBrass.h */,
+				BCBF35C01727351100444411 /* SawBrass.m */,
+				BCBF35C11727351100444411 /* SinePiano.h */,
+				BCBF35C21727351100444411 /* SinePiano.m */,
+				BCBF35C31727351100444411 /* SquareStrings.h */,
+				BCBF35C41727351100444411 /* SquareStrings.m */,
+				BCBF35C51727351100444411 /* TriangleFlute.h */,
+				BCBF35C61727351100444411 /* TriangleFlute.m */,
+			);
+			path = "The Sounds";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BC12A5291726924000FE77F4 /* Cellular-Sounds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC12A5501726924000FE77F4 /* Build configuration list for PBXNativeTarget "Cellular-Sounds" */;
+			buildPhases = (
+				BC12A5261726924000FE77F4 /* Sources */,
+				BC12A5271726924000FE77F4 /* Frameworks */,
+				BC12A5281726924000FE77F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cellular-Sounds";
+			productName = "Cellular-Sounds";
+			productReference = BC12A52A1726924000FE77F4 /* Cellular-Sounds.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BC12A5221726924000FE77F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Delta Dog Studios";
+			};
+			buildConfigurationList = BC12A5251726924000FE77F4 /* Build configuration list for PBXProject "Cellular-Sounds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BC12A5211726924000FE77F4;
+			productRefGroup = BC12A52B1726924000FE77F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC12A5291726924000FE77F4 /* Cellular-Sounds */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BC12A5281726924000FE77F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC12A5381726924000FE77F4 /* InfoPlist.strings in Resources */,
+				BC12A5401726924000FE77F4 /* Default.png in Resources */,
+				BC12A5421726924000FE77F4 /* Default@2x.png in Resources */,
+				BC12A5441726924000FE77F4 /* Default-568h@2x.png in Resources */,
+				BC12A5471726924000FE77F4 /* MainStoryboard_iPhone.storyboard in Resources */,
+				BC12A54A1726924000FE77F4 /* MainStoryboard_iPad.storyboard in Resources */,
+				BC12A5F61726AD7D00FE77F4 /* abba_dancing_queen.mid in Resources */,
+				BC12A5F71726AD7D00FE77F4 /* alla_turca_short.mid in Resources */,
+				BC12A5FA1726AD7D00FE77F4 /* dancing_queen.mid in Resources */,
+				BC12A5FB1726AD7D00FE77F4 /* dancing_queen.mid.MSM.mid in Resources */,
+				BC12A5FD1726AD7D00FE77F4 /* dream_on.mid in Resources */,
+				BC12A5FE1726AD7D00FE77F4 /* fluid_gm.sf2 in Resources */,
+				BC12A6021726AD7D00FE77F4 /* hallking.mid in Resources */,
+				BC12A60B1726AD7D00FE77F4 /* mountain_king.mid in Resources */,
+				BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */,
+				BCBF35C91727351100444411 /* .gitignore in Resources */,
+				BCBF35CD1727351100444411 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BC12A5261726924000FE77F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC12A53A1726924000FE77F4 /* main.m in Sources */,
+				BC12A53E1726924000FE77F4 /* AppDelegate.m in Sources */,
+				BC12A5551726947900FE77F4 /* GridView.m in Sources */,
+				BC12A559172695F800FE77F4 /* CellularSoundsViewController.m in Sources */,
+				BC12A55C17269B6300FE77F4 /* PoolOfLife.m in Sources */,
+				BC12A5CB1726A67C00FE77F4 /* AudioManager.m in Sources */,
+				BC12A5CC1726A67C00FE77F4 /* BChannelEvent.m in Sources */,
+				BC12A5CD1726A67C00FE77F4 /* BMidiClock.m in Sources */,
+				BC12A5CE1726A67C00FE77F4 /* BMidiEvent.m in Sources */,
+				BC12A5CF1726A67C00FE77F4 /* BMidiManager.m in Sources */,
+				BC12A5D01726A67C00FE77F4 /* BMidiNote.m in Sources */,
+				BC12A5D11726A67C00FE77F4 /* BObjectPool.m in Sources */,
+				BC12A5D21726A67C00FE77F4 /* BSequence.m in Sources */,
+				BC12A5D31726A67C00FE77F4 /* BSequencePlayer.m in Sources */,
+				BC12A5D41726A67C00FE77F4 /* BTempoEvent.m in Sources */,
+				BCBF35CA1727351100444411 /* AQPlayer.m in Sources */,
+				BCBF35CB1727351100444411 /* AQSound.m in Sources */,
+				BCBF35CC1727351100444411 /* AQSynth.m in Sources */,
+				BCBF35CE1727351100444411 /* PulseOrgan.m in Sources */,
+				BCBF35CF1727351100444411 /* SawBrass.m in Sources */,
+				BCBF35D01727351100444411 /* SinePiano.m in Sources */,
+				BCBF35D11727351100444411 /* SquareStrings.m in Sources */,
+				BCBF35D21727351100444411 /* TriangleFlute.m in Sources */,
+				BCBF35D31727351100444411 /* Voice.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BC12A5361726924000FE77F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC12A5371726924000FE77F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BC12A5451726924000FE77F4 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC12A5461726924000FE77F4 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		BC12A5481726924000FE77F4 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC12A5491726924000FE77F4 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BC12A54E1726924000FE77F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC12A54F1726924000FE77F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC12A5511726924000FE77F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
+				INFOPLIST_FILE = "Cellular-Sounds/Cellular-Sounds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BC12A5521726924000FE77F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cellular-Sounds/Cellular-Sounds-Prefix.pch";
+				INFOPLIST_FILE = "Cellular-Sounds/Cellular-Sounds-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BC12A5251726924000FE77F4 /* Build configuration list for PBXProject "Cellular-Sounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC12A54E1726924000FE77F4 /* Debug */,
+				BC12A54F1726924000FE77F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC12A5501726924000FE77F4 /* Build configuration list for PBXNativeTarget "Cellular-Sounds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC12A5511726924000FE77F4 /* Debug */,
+				BC12A5521726924000FE77F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BC12A5221726924000FE77F4 /* Project object */;
+}
