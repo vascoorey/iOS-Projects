@@ -199,6 +199,9 @@
     self.currentSpeciesLabel.textColor = sender.backgroundColor;
 }
 
+- (IBAction)changeGameMode:(UISwitch *)sender {
+    self.pool.gameMode = sender.isOn ? PoolOfLifeGameModeConway : PoolOfLifeGameModeNone;
+}
 
 #pragma mark - MIDI-Library
 
@@ -318,6 +321,11 @@
                 self.metronomeTicks ++;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.metronomeLabel.text = [NSString stringWithFormat:@"%d", (self.metronomeTicks % 4) + 1];
+                    if(self.metronomeTicks % 4 == 0)
+                    {
+                        NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
+                        self.gridView.grid = self.pool.state;
+                    }
                 });
             }
         }
@@ -450,10 +458,6 @@
         {
             self.sequence = finalNotes;
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Setting the new grid");
-            self.gridView.grid = self.pool.state;
-        });
         [_shouldUpdateGrid unlock];
     }
 }

@@ -9,7 +9,6 @@
 #import "PoolOfLife.h"
 
 @interface PoolOfLife ()
-@property (nonatomic) PoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger numRows;
 @property (nonatomic) NSInteger numCols;
 @property (nonatomic) NSInteger priorRow;
@@ -103,7 +102,11 @@
 
 -(void)performStep
 {
-    [self updateGrid];
+    //Only update the grid if the gameMode says so
+    if(self.gameMode != PoolOfLifeGameModeNone)
+    {
+        [self updateGrid];
+    }
 }
 
 -(void)updateGrid
@@ -144,35 +147,28 @@
                     dominant = (NSNumber *)obj;
                 }
             }];
-            if(max)
-            {
-                NSLog(@"Dominant species for %d,%d: %d with %d occurences", row, col, [dominant intValue], max);
-            }
             self.dominantSpecies[row][col] = dominant;
         }
     }
     //Update grid
     for(int row = 0; row < self.numRows; row ++)
     {
-        if(self.gameMode != PoolOfLifeGameModeNone)
+        for(int col = 0; col < self.numCols; col ++)
         {
-            for(int col = 0; col < self.numCols; col ++)
+            NSInteger numNeighbors = [self.neighbors[row][col] intValue];
+            //Only update neighbors if theres an actual change to the board
+            if(((numNeighbors < 2) || (numNeighbors > 3)) && [self.grid[row][col] intValue])
             {
-                NSInteger numNeighbors = [self.neighbors[row][col] intValue];
-                //Only update neighbors if theres an actual change to the board
-                if(((numNeighbors < 2) || (numNeighbors > 3)) && [self.grid[row][col] intValue])
+                //[self updateNeighborsForRow:row col:col increment:NO];
+                self.grid[row][col] = @(0);
+            }
+            else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
+            {
+                //[self updateNeighborsForRow:row col:col increment:YES];
+                self.grid[row][col] = self.dominantSpecies[row][col];
+                if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:)])
                 {
-                    //[self updateNeighborsForRow:row col:col increment:NO];
-                    self.grid[row][col] = @(0);
-                }
-                else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
-                {
-                    //[self updateNeighborsForRow:row col:col increment:YES];
-                    self.grid[row][col] = self.dominantSpecies[row][col];
-                    if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:)])
-                    {
-                        [self.delegate didActivateCellAtRow:row col:col];
-                    }
+                    [self.delegate didActivateCellAtRow:row col:col];
                 }
             }
         }

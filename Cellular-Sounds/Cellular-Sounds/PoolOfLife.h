@@ -29,6 +29,7 @@ typedef enum
 @property (nonatomic) NSInteger numSpecies;
 //Get the current state
 @property (nonatomic, readonly) NSMutableArray *state;
+@property (nonatomic) PoolOfLifeGameMode gameMode;
 
 //Designated initializer
 -(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
