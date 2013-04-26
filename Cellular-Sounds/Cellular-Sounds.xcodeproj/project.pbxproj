@@ -21,16 +21,6 @@
 		BC12A5551726947900FE77F4 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5541726947900FE77F4 /* GridView.m */; };
 		BC12A559172695F800FE77F4 /* CellularSoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */; };
 		BC12A55C17269B6300FE77F4 /* PoolOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A55B17269B6300FE77F4 /* PoolOfLife.m */; };
-		BC12A5CB1726A67C00FE77F4 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B51726A67C00FE77F4 /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5CC1726A67C00FE77F4 /* BChannelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5CD1726A67C00FE77F4 /* BMidiClock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5B91726A67C00FE77F4 /* BMidiClock.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5CE1726A67C00FE77F4 /* BMidiEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5CF1726A67C00FE77F4 /* BMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5D01726A67C00FE77F4 /* BMidiNote.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5D11726A67C00FE77F4 /* BObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C31726A67C00FE77F4 /* BObjectPool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5D21726A67C00FE77F4 /* BSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C51726A67C00FE77F4 /* BSequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5D31726A67C00FE77F4 /* BSequencePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		BC12A5D41726A67C00FE77F4 /* BTempoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC12A5D61726A6B300FE77F4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5D51726A6B300FE77F4 /* AudioToolbox.framework */; };
 		BC12A5D81726A6B600FE77F4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5D71726A6B600FE77F4 /* AVFoundation.framework */; };
 		BC12A5F61726AD7D00FE77F4 /* abba_dancing_queen.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5DF1726AD7D00FE77F4 /* abba_dancing_queen.mid */; };
@@ -43,17 +33,27 @@
 		BC12A60B1726AD7D00FE77F4 /* mountain_king.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */; };
 		BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F51726AD7D00FE77F4 /* november_rain.mid */; };
 		BC12A60E1726B0C500FE77F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */; };
-		BCBF35C91727351100444411 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BCBF35B31727351100444411 /* .gitignore */; };
-		BCBF35CA1727351100444411 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B51727351100444411 /* AQPlayer.m */; };
-		BCBF35CB1727351100444411 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B71727351100444411 /* AQSound.m */; };
-		BCBF35CC1727351100444411 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35B91727351100444411 /* AQSynth.m */; };
-		BCBF35CD1727351100444411 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BCBF35BA1727351100444411 /* README.md */; };
-		BCBF35CE1727351100444411 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35BE1727351100444411 /* PulseOrgan.m */; };
-		BCBF35CF1727351100444411 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C01727351100444411 /* SawBrass.m */; };
-		BCBF35D01727351100444411 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C21727351100444411 /* SinePiano.m */; };
-		BCBF35D11727351100444411 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C41727351100444411 /* SquareStrings.m */; };
-		BCBF35D21727351100444411 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C61727351100444411 /* TriangleFlute.m */; };
-		BCBF35D31727351100444411 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BCBF35C81727351100444411 /* Voice.m */; };
+		BC9CCC65172A949D002D21F2 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC4F172A949D002D21F2 /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC66172A949D002D21F2 /* BChannelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC51172A949D002D21F2 /* BChannelEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC67172A949D002D21F2 /* BMidiClock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC53172A949D002D21F2 /* BMidiClock.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC68172A949D002D21F2 /* BMidiEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC55172A949D002D21F2 /* BMidiEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC69172A949D002D21F2 /* BMidiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC57172A949D002D21F2 /* BMidiManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC6A172A949D002D21F2 /* BMidiNote.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC59172A949D002D21F2 /* BMidiNote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC6B172A949D002D21F2 /* BObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC5D172A949D002D21F2 /* BObjectPool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC6C172A949D002D21F2 /* BSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC5F172A949D002D21F2 /* BSequence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC6D172A949D002D21F2 /* BSequencePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC61172A949D002D21F2 /* BSequencePlayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCC6E172A949D002D21F2 /* BTempoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC63172A949D002D21F2 /* BTempoEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC9CCCA5172A989F002D21F2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BC9CCC8F172A989F002D21F2 /* .gitignore */; };
+		BC9CCCA6172A989F002D21F2 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC91172A989F002D21F2 /* AQPlayer.m */; };
+		BC9CCCA7172A989F002D21F2 /* AQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC93172A989F002D21F2 /* AQSound.m */; };
+		BC9CCCA8172A989F002D21F2 /* AQSynth.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC95172A989F002D21F2 /* AQSynth.m */; };
+		BC9CCCA9172A989F002D21F2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BC9CCC96172A989F002D21F2 /* README.md */; };
+		BC9CCCAA172A989F002D21F2 /* PulseOrgan.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC9A172A989F002D21F2 /* PulseOrgan.m */; };
+		BC9CCCAB172A989F002D21F2 /* SawBrass.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC9C172A989F002D21F2 /* SawBrass.m */; };
+		BC9CCCAC172A989F002D21F2 /* SinePiano.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC9E172A989F002D21F2 /* SinePiano.m */; };
+		BC9CCCAD172A989F002D21F2 /* SquareStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCCA0172A989F002D21F2 /* SquareStrings.m */; };
+		BC9CCCAE172A989F002D21F2 /* TriangleFlute.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCCA2172A989F002D21F2 /* TriangleFlute.m */; };
+		BC9CCCAF172A989F002D21F2 /* Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCCA4172A989F002D21F2 /* Voice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,29 +78,6 @@
 		BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellularSoundsViewController.m; sourceTree = "<group>"; };
 		BC12A55A17269B6300FE77F4 /* PoolOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoolOfLife.h; sourceTree = "<group>"; };
 		BC12A55B17269B6300FE77F4 /* PoolOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoolOfLife.m; sourceTree = "<group>"; };
-		BC12A5B41726A67C00FE77F4 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = "../../MIDI-Library/co.deluge.advancedmidi/AudioManager.h"; sourceTree = "<group>"; };
-		BC12A5B51726A67C00FE77F4 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "../../MIDI-Library/co.deluge.advancedmidi/AudioManager.m"; sourceTree = "<group>"; };
-		BC12A5B61726A67C00FE77F4 /* BChannelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BChannelEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.h"; sourceTree = "<group>"; };
-		BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BChannelEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.m"; sourceTree = "<group>"; };
-		BC12A5B81726A67C00FE77F4 /* BMidiClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiClock.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.h"; sourceTree = "<group>"; };
-		BC12A5B91726A67C00FE77F4 /* BMidiClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiClock.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.m"; sourceTree = "<group>"; };
-		BC12A5BA1726A67C00FE77F4 /* BMidiEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.h"; sourceTree = "<group>"; };
-		BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.m"; sourceTree = "<group>"; };
-		BC12A5BC1726A67C00FE77F4 /* BMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiManager.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.h"; sourceTree = "<group>"; };
-		BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiManager.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.m"; sourceTree = "<group>"; };
-		BC12A5BE1726A67C00FE77F4 /* BMidiNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiNote.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.h"; sourceTree = "<group>"; };
-		BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiNote.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.m"; sourceTree = "<group>"; };
-		BC12A5C01726A67C00FE77F4 /* BNoteEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteEventHandler.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BNoteEventHandler.h"; sourceTree = "<group>"; };
-		BC12A5C11726A67C00FE77F4 /* BNoteProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteProcessor.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BNoteProcessor.h"; sourceTree = "<group>"; };
-		BC12A5C21726A67C00FE77F4 /* BObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BObjectPool.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.h"; sourceTree = "<group>"; };
-		BC12A5C31726A67C00FE77F4 /* BObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BObjectPool.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.m"; sourceTree = "<group>"; };
-		BC12A5C41726A67C00FE77F4 /* BSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequence.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequence.h"; sourceTree = "<group>"; };
-		BC12A5C51726A67C00FE77F4 /* BSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequence.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequence.m"; sourceTree = "<group>"; };
-		BC12A5C61726A67C00FE77F4 /* BSequencePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequencePlayer.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.h"; sourceTree = "<group>"; };
-		BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequencePlayer.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.m"; sourceTree = "<group>"; };
-		BC12A5C81726A67C00FE77F4 /* BTempoEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEvent.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.h"; sourceTree = "<group>"; };
-		BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTempoEvent.m; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.m"; sourceTree = "<group>"; };
-		BC12A5CA1726A67C00FE77F4 /* BTempoEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEventHandler.h; path = "../../MIDI-Library/co.deluge.advancedmidi/BTempoEventHandler.h"; sourceTree = "<group>"; };
 		BC12A5D51726A6B300FE77F4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BC12A5D71726A6B600FE77F4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BC12A5DF1726AD7D00FE77F4 /* abba_dancing_queen.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = abba_dancing_queen.mid; sourceTree = "<group>"; };
@@ -113,26 +90,49 @@
 		BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = mountain_king.mid; sourceTree = "<group>"; };
 		BC12A5F51726AD7D00FE77F4 /* november_rain.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = november_rain.mid; sourceTree = "<group>"; };
 		BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		BCBF35B31727351100444411 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		BCBF35B41727351100444411 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
-		BCBF35B51727351100444411 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
-		BCBF35B61727351100444411 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
-		BCBF35B71727351100444411 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
-		BCBF35B81727351100444411 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
-		BCBF35B91727351100444411 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
-		BCBF35BA1727351100444411 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		BCBF35BD1727351100444411 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
-		BCBF35BE1727351100444411 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
-		BCBF35BF1727351100444411 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
-		BCBF35C01727351100444411 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
-		BCBF35C11727351100444411 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
-		BCBF35C21727351100444411 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
-		BCBF35C31727351100444411 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
-		BCBF35C41727351100444411 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
-		BCBF35C51727351100444411 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
-		BCBF35C61727351100444411 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
-		BCBF35C71727351100444411 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
-		BCBF35C81727351100444411 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
+		BC9CCC4E172A949D002D21F2 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.h"; sourceTree = "<group>"; };
+		BC9CCC4F172A949D002D21F2 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.m"; sourceTree = "<group>"; };
+		BC9CCC50172A949D002D21F2 /* BChannelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BChannelEvent.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.h"; sourceTree = "<group>"; };
+		BC9CCC51172A949D002D21F2 /* BChannelEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BChannelEvent.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.m"; sourceTree = "<group>"; };
+		BC9CCC52172A949D002D21F2 /* BMidiClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiClock.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.h"; sourceTree = "<group>"; };
+		BC9CCC53172A949D002D21F2 /* BMidiClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiClock.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiClock.m"; sourceTree = "<group>"; };
+		BC9CCC54172A949D002D21F2 /* BMidiEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiEvent.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.h"; sourceTree = "<group>"; };
+		BC9CCC55172A949D002D21F2 /* BMidiEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiEvent.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiEvent.m"; sourceTree = "<group>"; };
+		BC9CCC56172A949D002D21F2 /* BMidiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiManager.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.h"; sourceTree = "<group>"; };
+		BC9CCC57172A949D002D21F2 /* BMidiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiManager.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiManager.m"; sourceTree = "<group>"; };
+		BC9CCC58172A949D002D21F2 /* BMidiNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BMidiNote.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.h"; sourceTree = "<group>"; };
+		BC9CCC59172A949D002D21F2 /* BMidiNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BMidiNote.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BMidiNote.m"; sourceTree = "<group>"; };
+		BC9CCC5A172A949D002D21F2 /* BNoteEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteEventHandler.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BNoteEventHandler.h"; sourceTree = "<group>"; };
+		BC9CCC5B172A949D002D21F2 /* BNoteProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNoteProcessor.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BNoteProcessor.h"; sourceTree = "<group>"; };
+		BC9CCC5C172A949D002D21F2 /* BObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BObjectPool.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.h"; sourceTree = "<group>"; };
+		BC9CCC5D172A949D002D21F2 /* BObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BObjectPool.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BObjectPool.m"; sourceTree = "<group>"; };
+		BC9CCC5E172A949D002D21F2 /* BSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequence.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BSequence.h"; sourceTree = "<group>"; };
+		BC9CCC5F172A949D002D21F2 /* BSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequence.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BSequence.m"; sourceTree = "<group>"; };
+		BC9CCC60172A949D002D21F2 /* BSequencePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSequencePlayer.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.h"; sourceTree = "<group>"; };
+		BC9CCC61172A949D002D21F2 /* BSequencePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSequencePlayer.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BSequencePlayer.m"; sourceTree = "<group>"; };
+		BC9CCC62172A949D002D21F2 /* BTempoEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEvent.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.h"; sourceTree = "<group>"; };
+		BC9CCC63172A949D002D21F2 /* BTempoEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BTempoEvent.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/BTempoEvent.m"; sourceTree = "<group>"; };
+		BC9CCC64172A949D002D21F2 /* BTempoEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BTempoEventHandler.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BTempoEventHandler.h"; sourceTree = "<group>"; };
+		BC9CCC8F172A989F002D21F2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BC9CCC90172A989F002D21F2 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		BC9CCC91172A989F002D21F2 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
+		BC9CCC92172A989F002D21F2 /* AQSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSound.h; sourceTree = "<group>"; };
+		BC9CCC93172A989F002D21F2 /* AQSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSound.m; sourceTree = "<group>"; };
+		BC9CCC94172A989F002D21F2 /* AQSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSynth.h; sourceTree = "<group>"; };
+		BC9CCC95172A989F002D21F2 /* AQSynth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSynth.m; sourceTree = "<group>"; };
+		BC9CCC96172A989F002D21F2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		BC9CCC99172A989F002D21F2 /* PulseOrgan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseOrgan.h; sourceTree = "<group>"; };
+		BC9CCC9A172A989F002D21F2 /* PulseOrgan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseOrgan.m; sourceTree = "<group>"; };
+		BC9CCC9B172A989F002D21F2 /* SawBrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SawBrass.h; sourceTree = "<group>"; };
+		BC9CCC9C172A989F002D21F2 /* SawBrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SawBrass.m; sourceTree = "<group>"; };
+		BC9CCC9D172A989F002D21F2 /* SinePiano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinePiano.h; sourceTree = "<group>"; };
+		BC9CCC9E172A989F002D21F2 /* SinePiano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinePiano.m; sourceTree = "<group>"; };
+		BC9CCC9F172A989F002D21F2 /* SquareStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareStrings.h; sourceTree = "<group>"; };
+		BC9CCCA0172A989F002D21F2 /* SquareStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareStrings.m; sourceTree = "<group>"; };
+		BC9CCCA1172A989F002D21F2 /* TriangleFlute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleFlute.h; sourceTree = "<group>"; };
+		BC9CCCA2172A989F002D21F2 /* TriangleFlute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleFlute.m; sourceTree = "<group>"; };
+		BC9CCCA3172A989F002D21F2 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		BC9CCCA4172A989F002D21F2 /* Voice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,30 +235,30 @@
 		BC12A5B31726A67200FE77F4 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				BCBF35B21727351100444411 /* WaveTableSynth */,
-				BC12A5B41726A67C00FE77F4 /* AudioManager.h */,
-				BC12A5B51726A67C00FE77F4 /* AudioManager.m */,
-				BC12A5B61726A67C00FE77F4 /* BChannelEvent.h */,
-				BC12A5B71726A67C00FE77F4 /* BChannelEvent.m */,
-				BC12A5B81726A67C00FE77F4 /* BMidiClock.h */,
-				BC12A5B91726A67C00FE77F4 /* BMidiClock.m */,
-				BC12A5BA1726A67C00FE77F4 /* BMidiEvent.h */,
-				BC12A5BB1726A67C00FE77F4 /* BMidiEvent.m */,
-				BC12A5BC1726A67C00FE77F4 /* BMidiManager.h */,
-				BC12A5BD1726A67C00FE77F4 /* BMidiManager.m */,
-				BC12A5BE1726A67C00FE77F4 /* BMidiNote.h */,
-				BC12A5BF1726A67C00FE77F4 /* BMidiNote.m */,
-				BC12A5C01726A67C00FE77F4 /* BNoteEventHandler.h */,
-				BC12A5C11726A67C00FE77F4 /* BNoteProcessor.h */,
-				BC12A5C21726A67C00FE77F4 /* BObjectPool.h */,
-				BC12A5C31726A67C00FE77F4 /* BObjectPool.m */,
-				BC12A5C41726A67C00FE77F4 /* BSequence.h */,
-				BC12A5C51726A67C00FE77F4 /* BSequence.m */,
-				BC12A5C61726A67C00FE77F4 /* BSequencePlayer.h */,
-				BC12A5C71726A67C00FE77F4 /* BSequencePlayer.m */,
-				BC12A5C81726A67C00FE77F4 /* BTempoEvent.h */,
-				BC12A5C91726A67C00FE77F4 /* BTempoEvent.m */,
-				BC12A5CA1726A67C00FE77F4 /* BTempoEventHandler.h */,
+				BC9CCC4E172A949D002D21F2 /* AudioManager.h */,
+				BC9CCC4F172A949D002D21F2 /* AudioManager.m */,
+				BC9CCC50172A949D002D21F2 /* BChannelEvent.h */,
+				BC9CCC51172A949D002D21F2 /* BChannelEvent.m */,
+				BC9CCC52172A949D002D21F2 /* BMidiClock.h */,
+				BC9CCC53172A949D002D21F2 /* BMidiClock.m */,
+				BC9CCC54172A949D002D21F2 /* BMidiEvent.h */,
+				BC9CCC55172A949D002D21F2 /* BMidiEvent.m */,
+				BC9CCC56172A949D002D21F2 /* BMidiManager.h */,
+				BC9CCC57172A949D002D21F2 /* BMidiManager.m */,
+				BC9CCC58172A949D002D21F2 /* BMidiNote.h */,
+				BC9CCC59172A949D002D21F2 /* BMidiNote.m */,
+				BC9CCC5A172A949D002D21F2 /* BNoteEventHandler.h */,
+				BC9CCC5B172A949D002D21F2 /* BNoteProcessor.h */,
+				BC9CCC5C172A949D002D21F2 /* BObjectPool.h */,
+				BC9CCC5D172A949D002D21F2 /* BObjectPool.m */,
+				BC9CCC5E172A949D002D21F2 /* BSequence.h */,
+				BC9CCC5F172A949D002D21F2 /* BSequence.m */,
+				BC9CCC60172A949D002D21F2 /* BSequencePlayer.h */,
+				BC9CCC61172A949D002D21F2 /* BSequencePlayer.m */,
+				BC9CCC62172A949D002D21F2 /* BTempoEvent.h */,
+				BC9CCC63172A949D002D21F2 /* BTempoEvent.m */,
+				BC9CCC64172A949D002D21F2 /* BTempoEventHandler.h */,
+				BC9CCC8E172A989F002D21F2 /* WaveTableSynth */,
 			);
 			name = Sound;
 			sourceTree = "<group>";
@@ -279,46 +279,46 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		BCBF35B21727351100444411 /* WaveTableSynth */ = {
+		BC9CCC8E172A989F002D21F2 /* WaveTableSynth */ = {
 			isa = PBXGroup;
 			children = (
-				BCBF35B31727351100444411 /* .gitignore */,
-				BCBF35B41727351100444411 /* AQPlayer.h */,
-				BCBF35B51727351100444411 /* AQPlayer.m */,
-				BCBF35B61727351100444411 /* AQSound.h */,
-				BCBF35B71727351100444411 /* AQSound.m */,
-				BCBF35B81727351100444411 /* AQSynth.h */,
-				BCBF35B91727351100444411 /* AQSynth.m */,
-				BCBF35BA1727351100444411 /* README.md */,
-				BCBF35BB1727351100444411 /* Voices */,
+				BC9CCC8F172A989F002D21F2 /* .gitignore */,
+				BC9CCC90172A989F002D21F2 /* AQPlayer.h */,
+				BC9CCC91172A989F002D21F2 /* AQPlayer.m */,
+				BC9CCC92172A989F002D21F2 /* AQSound.h */,
+				BC9CCC93172A989F002D21F2 /* AQSound.m */,
+				BC9CCC94172A989F002D21F2 /* AQSynth.h */,
+				BC9CCC95172A989F002D21F2 /* AQSynth.m */,
+				BC9CCC96172A989F002D21F2 /* README.md */,
+				BC9CCC97172A989F002D21F2 /* Voices */,
 			);
 			name = WaveTableSynth;
-			path = ../../WaveTableSynth;
+			path = ../../../WaveTableSynth;
 			sourceTree = "<group>";
 		};
-		BCBF35BB1727351100444411 /* Voices */ = {
+		BC9CCC97172A989F002D21F2 /* Voices */ = {
 			isa = PBXGroup;
 			children = (
-				BCBF35BC1727351100444411 /* The Sounds */,
-				BCBF35C71727351100444411 /* Voice.h */,
-				BCBF35C81727351100444411 /* Voice.m */,
+				BC9CCC98172A989F002D21F2 /* The Sounds */,
+				BC9CCCA3172A989F002D21F2 /* Voice.h */,
+				BC9CCCA4172A989F002D21F2 /* Voice.m */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
 		};
-		BCBF35BC1727351100444411 /* The Sounds */ = {
+		BC9CCC98172A989F002D21F2 /* The Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				BCBF35BD1727351100444411 /* PulseOrgan.h */,
-				BCBF35BE1727351100444411 /* PulseOrgan.m */,
-				BCBF35BF1727351100444411 /* SawBrass.h */,
-				BCBF35C01727351100444411 /* SawBrass.m */,
-				BCBF35C11727351100444411 /* SinePiano.h */,
-				BCBF35C21727351100444411 /* SinePiano.m */,
-				BCBF35C31727351100444411 /* SquareStrings.h */,
-				BCBF35C41727351100444411 /* SquareStrings.m */,
-				BCBF35C51727351100444411 /* TriangleFlute.h */,
-				BCBF35C61727351100444411 /* TriangleFlute.m */,
+				BC9CCC99172A989F002D21F2 /* PulseOrgan.h */,
+				BC9CCC9A172A989F002D21F2 /* PulseOrgan.m */,
+				BC9CCC9B172A989F002D21F2 /* SawBrass.h */,
+				BC9CCC9C172A989F002D21F2 /* SawBrass.m */,
+				BC9CCC9D172A989F002D21F2 /* SinePiano.h */,
+				BC9CCC9E172A989F002D21F2 /* SinePiano.m */,
+				BC9CCC9F172A989F002D21F2 /* SquareStrings.h */,
+				BC9CCCA0172A989F002D21F2 /* SquareStrings.m */,
+				BC9CCCA1172A989F002D21F2 /* TriangleFlute.h */,
+				BC9CCCA2172A989F002D21F2 /* TriangleFlute.m */,
 			);
 			path = "The Sounds";
 			sourceTree = "<group>";
@@ -389,8 +389,8 @@
 				BC12A6021726AD7D00FE77F4 /* hallking.mid in Resources */,
 				BC12A60B1726AD7D00FE77F4 /* mountain_king.mid in Resources */,
 				BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */,
-				BCBF35C91727351100444411 /* .gitignore in Resources */,
-				BCBF35CD1727351100444411 /* README.md in Resources */,
+				BC9CCCA5172A989F002D21F2 /* .gitignore in Resources */,
+				BC9CCCA9172A989F002D21F2 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,25 +406,25 @@
 				BC12A5551726947900FE77F4 /* GridView.m in Sources */,
 				BC12A559172695F800FE77F4 /* CellularSoundsViewController.m in Sources */,
 				BC12A55C17269B6300FE77F4 /* PoolOfLife.m in Sources */,
-				BC12A5CB1726A67C00FE77F4 /* AudioManager.m in Sources */,
-				BC12A5CC1726A67C00FE77F4 /* BChannelEvent.m in Sources */,
-				BC12A5CD1726A67C00FE77F4 /* BMidiClock.m in Sources */,
-				BC12A5CE1726A67C00FE77F4 /* BMidiEvent.m in Sources */,
-				BC12A5CF1726A67C00FE77F4 /* BMidiManager.m in Sources */,
-				BC12A5D01726A67C00FE77F4 /* BMidiNote.m in Sources */,
-				BC12A5D11726A67C00FE77F4 /* BObjectPool.m in Sources */,
-				BC12A5D21726A67C00FE77F4 /* BSequence.m in Sources */,
-				BC12A5D31726A67C00FE77F4 /* BSequencePlayer.m in Sources */,
-				BC12A5D41726A67C00FE77F4 /* BTempoEvent.m in Sources */,
-				BCBF35CA1727351100444411 /* AQPlayer.m in Sources */,
-				BCBF35CB1727351100444411 /* AQSound.m in Sources */,
-				BCBF35CC1727351100444411 /* AQSynth.m in Sources */,
-				BCBF35CE1727351100444411 /* PulseOrgan.m in Sources */,
-				BCBF35CF1727351100444411 /* SawBrass.m in Sources */,
-				BCBF35D01727351100444411 /* SinePiano.m in Sources */,
-				BCBF35D11727351100444411 /* SquareStrings.m in Sources */,
-				BCBF35D21727351100444411 /* TriangleFlute.m in Sources */,
-				BCBF35D31727351100444411 /* Voice.m in Sources */,
+				BC9CCC65172A949D002D21F2 /* AudioManager.m in Sources */,
+				BC9CCC66172A949D002D21F2 /* BChannelEvent.m in Sources */,
+				BC9CCC67172A949D002D21F2 /* BMidiClock.m in Sources */,
+				BC9CCC68172A949D002D21F2 /* BMidiEvent.m in Sources */,
+				BC9CCC69172A949D002D21F2 /* BMidiManager.m in Sources */,
+				BC9CCC6A172A949D002D21F2 /* BMidiNote.m in Sources */,
+				BC9CCC6B172A949D002D21F2 /* BObjectPool.m in Sources */,
+				BC9CCC6C172A949D002D21F2 /* BSequence.m in Sources */,
+				BC9CCC6D172A949D002D21F2 /* BSequencePlayer.m in Sources */,
+				BC9CCC6E172A949D002D21F2 /* BTempoEvent.m in Sources */,
+				BC9CCCA6172A989F002D21F2 /* AQPlayer.m in Sources */,
+				BC9CCCA7172A989F002D21F2 /* AQSound.m in Sources */,
+				BC9CCCA8172A989F002D21F2 /* AQSynth.m in Sources */,
+				BC9CCCAA172A989F002D21F2 /* PulseOrgan.m in Sources */,
+				BC9CCCAB172A989F002D21F2 /* SawBrass.m in Sources */,
+				BC9CCCAC172A989F002D21F2 /* SinePiano.m in Sources */,
+				BC9CCCAD172A989F002D21F2 /* SquareStrings.m in Sources */,
+				BC9CCCAE172A989F002D21F2 /* TriangleFlute.m in Sources */,
+				BC9CCCAF172A989F002D21F2 /* Voice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

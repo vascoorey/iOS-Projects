@@ -125,34 +125,29 @@
     [self setNeedsDisplayInRect:cellRect];
 }
 
-#warning collapse repeated stuff into a function
+-(void)handleTouch:(UITouch *)touch started:(BOOL)started
+{
+    CGPoint location = [touch locationInView:self];
+    NSInteger row = (location.y - self.yPadding) / self.cellSide;
+    NSInteger col = (location.x - self.xPadding) / self.cellSide;
+    if(row >= 0 && row < self.lastNumRows &&
+       col >= 0 && col < self.lastNumCols)
+    {
+        [self.delegate didDetectTouchAtRow:row col:col started:started];
+    }
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        UITouch *touch = (UITouch *)obj;
-        CGPoint location = [touch locationInView:self];
-        NSInteger row = (location.y - self.yPadding) / self.cellSide;
-        NSInteger col = (location.x - self.xPadding) / self.cellSide;
-        if(row >= 0 && row < self.lastNumRows &&
-           col >= 0 && col < self.lastNumCols)
-        {
-            [self.delegate didDetectTouchAtRow:row col:col started:YES];
-        }
+        [self handleTouch:(UITouch *)obj started:YES];
     }];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [touches enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-        UITouch *touch = (UITouch *)obj;
-        CGPoint location = [touch locationInView:self];
-        NSInteger row = (location.y - self.yPadding) / self.cellSide;
-        NSInteger col = (location.x - self.xPadding) / self.cellSide;
-        if(row >= 0 && row < self.lastNumRows &&
-           col >= 0 && col < self.lastNumCols)
-        {
-            [self.delegate didDetectTouchAtRow:row col:col started:NO];
-        }
+        [self handleTouch:(UITouch *)obj started:NO];
     }];
 }
 

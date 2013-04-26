@@ -117,19 +117,39 @@
             NSInteger nextRow = [self nextRow:row];
             NSInteger previousCol = [self previousCol:col];
             NSInteger nextCol = [self nextCol:col];
+            NSInteger topLeft = [self.grid[previousRow][previousCol] intValue];
+            NSInteger topCenter = [self.grid[previousRow][col] intValue];
+            NSInteger topRight = [self.grid[previousRow][nextCol] intValue];
+            NSInteger centerLeft = [self.grid[row][previousCol] intValue];
+            NSInteger centerRight = [self.grid[row][nextCol] intValue];
+            NSInteger bottomLeft = [self.grid[nextRow][previousCol] intValue];
+            NSInteger bottomCenter = [self.grid[nextRow][col] intValue];
+            NSInteger bottomRight = [self.grid[nextRow][nextCol] intValue];
             //Count neighbors
             self.neighbors[row][col] =
-            @([self.grid[previousRow][previousCol] intValue] +
-            [self.grid[previousRow][col] intValue] +
-            [self.grid[previousRow][nextCol] intValue] +
-            [self.grid[row][previousCol] intValue] +
-            [self.grid[row][nextCol] intValue] +
-            [self.grid[nextRow][previousCol] intValue] +
-            [self.grid[nextRow][col] intValue] +
-            [self.grid[nextRow][nextCol] intValue]);
+            @((topLeft ? 1 : 0) + (topCenter ? 1 : 0) + (topRight ? 1 : 0)
+            + (centerLeft ? 1 : 0) + (centerRight ? 1 : 0)
+            + (bottomLeft ? 1 : 0) + (bottomCenter ? 1 : 0) + (bottomRight ? 1 : 0));
             //Check dominant species
+            NSMutableArray *species = [NSMutableArray arrayWithArray:@[@(topCenter), @(topLeft), @(topRight), @(centerLeft), @(centerRight), @(bottomLeft), @(bottomCenter), @(bottomRight)]];
+            [species removeObject:@(0)];
+            NSCountedSet *counted = [NSCountedSet setWithArray:species];
+            __block NSNumber *dominant = @(0);
+            __block NSInteger max = 0;
+            [counted enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+                NSInteger current = [counted countForObject:obj];
+                if(current > max)
+                {
+                    max = current;
+                    dominant = (NSNumber *)obj;
+                }
+            }];
+            if(max)
+            {
+                NSLog(@"Dominant species for %d,%d: %d with %d occurences", row, col, [dominant intValue], max);
+            }
+            self.dominantSpecies[row][col] = dominant;
         }
-#warning Todo: figure out dominant species for each cell
     }
     //Update grid
     for(int row = 0; row < self.numRows; row ++)
@@ -148,7 +168,7 @@
                 else if(numNeighbors == 3 && ![self.grid[row][col] intValue])
                 {
                     //[self updateNeighborsForRow:row col:col increment:YES];
-                    self.grid[row][col] = @(1);
+                    self.grid[row][col] = self.dominantSpecies[row][col];
                     if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:)])
                     {
                         [self.delegate didActivateCellAtRow:row col:col];

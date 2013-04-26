@@ -433,7 +433,7 @@
                     {
                         //Create a new note and insert it into the dictionary
                         BMidiNote *note = [[BMidiNote alloc] init];
-                        note.channel = channel;
+                        note.channel = (channel - 1);
                         note.velocity = 127;
                         note.note = [self convertToMidi:col];
                         [note setStartTime:(startTime + dt)];
