@@ -11,6 +11,7 @@
 #import "CellularSoundsViewController.h"
 #import "GridView.h"
 #import "PoolOfLife.h"
+#import "OptionsViewController.h"
 //MIDI
 #import "BMidiManager.h"
 #import "BSequence.h"
@@ -22,13 +23,14 @@
 //WTS
 #import "AQSound.h"
 
-@interface CellularSoundsViewController () <GridViewDelegate, PoolOfLifeDelegate, BNoteEventHandler, BTempoEventHandler>
+@interface CellularSoundsViewController () <GridViewDelegate, PoolOfLifeDelegate, OptionsDelegate>
 {
     NSCondition *_shouldUpdateGrid;
 }
 //Outlets
 @property (weak, nonatomic) IBOutlet UILabel *metronomeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentSpeciesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *poolModeButton;
 @property (weak, nonatomic) IBOutlet GridView *gridView;
 //MIDI
 @property (nonatomic, strong) BSequencePlayer *sequencePlayer;
@@ -36,7 +38,8 @@
 @property (nonatomic, strong) AudioManager *audioManager;
 @property (nonatomic, strong) NSThread *audioThread;
 @property (nonatomic) NSUInteger metronomeTicks;
-//Access this property using @synchronized(self.sequence) as it's being used 
+@property (nonatomic, strong) NSMutableArray *voiceScales;
+//Access this property using @synchronized(self.sequence) as it's being used
 @property (nonatomic, strong) NSMutableArray *sequence;
 @property (nonatomic, strong) NSMutableArray *completeSong;
 @property (nonatomic) NSInteger timeForNextUpdate;
@@ -56,6 +59,16 @@
 @property (nonatomic, getter = isPlaying) BOOL playing;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @end
+
+//C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
+#define C_MAJ_NOTES @[@(36), @(38), @(40), @(41), @(43), @(45), @(47)]
+//C D E G A C
+#define C_PENT_MAJ_NOTES @[@(36), @(38), @(40), @(43), @(45), @(48)]
+//A C D E G A
+#define A_PENT_MIN_NOTES @[@(21), @(24), @(26), @(28), @(31), @(33)]
+//Arpeggios
+//C - E - G, D - F - A, E - G - B
+#define C_MAJ_ARPEGGIOS @[@(24), @(28), @(31), /**/ @(26), @(29), @(33), /**/ @(28), @(31), @(35)]
 
 @implementation CellularSoundsViewController
 
@@ -91,6 +104,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -132,6 +146,15 @@
     return _completeSong;
 }
 
+-(NSMutableArray *)voiceScales
+{
+    if(!_voiceScales)
+    {
+        _voiceScales = [[NSMutableArray alloc] init];
+    }
+    return _voiceScales;
+}
+
 #pragma mark - GridView Delegate
 
 -(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started
@@ -145,6 +168,18 @@
 -(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col species:(NSInteger)species
 {
     [self.gridView activateRow:row col:col color:species];
+}
+
+#pragma mark - Options Delegate
+
+-(void)setVolume:(float)volume forVoice:(NSInteger)voice
+{
+    
+}
+
+-(float)volumeForVoice:(NSInteger)voice
+{
+    
 }
 
 #pragma mark - IBActions
@@ -199,8 +234,16 @@
     self.currentSpeciesLabel.textColor = sender.backgroundColor;
 }
 
-- (IBAction)changeGameMode:(UISwitch *)sender {
-    self.pool.gameMode = sender.isOn ? PoolOfLifeGameModeConway : PoolOfLifeGameModeNone;
+- (IBAction)poolModeButtonPressed:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.pool.gameMode = sender.selected ? PoolOfLifeGameModeNone : PoolOfLifeGameModeConway;
+}
+
+#pragma mark - Unwind Segue
+
+-(IBAction)doneSettingOptions:(UIStoryboardSegue *)segue
+{
+    
 }
 
 #pragma mark - MIDI-Library
@@ -273,13 +316,21 @@
     self.audioManager = [AudioManager newAudioManager];
     
     // Load the default general midi instruments from the midi file
-    [self.audioManager configureForGeneralMidi:@"fluid_gm"];
+    //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
+    [self.audioManager addVoice:@"c0" withSound:@"memory moog" withPatch:2 withVolume:1];
+    self.voiceScales[0] = C_MAJ_NOTES;
+    [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
+    self.voiceScales[1] = C_PENT_MAJ_NOTES;
+    [self.audioManager addVoice:@"c2" withSound:@"JR_String2" withPatch:0 withVolume:1];
+    self.voiceScales[2] = A_PENT_MIN_NOTES;
+    [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
+    self.voiceScales[3] = C_MAJ_ARPEGGIOS;
     
     // Enable percussion
-    [self.audioManager enablePercussion:@"fluid_gm" withPatch:0 withVolume:1];
+    //[self.audioManager enablePercussion:@"JR_elepiano" withPatch:0 withVolume:1];
     
     // Add a silent default
-    [self.audioManager addDefaultVoice:@"fluid_gm" withPatch:0 withVolume:1];
+    //[self.audioManager addDefaultVoice:@"JR_elepiano" withPatch:0 withVolume:1];
     
     // Start the audio manager. After the audio manager has started you can't add any more
     // voices
@@ -293,9 +344,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self poolLoop];
     });
-    [_shouldUpdateGrid lock];
-    [_shouldUpdateGrid signal];
-    [_shouldUpdateGrid unlock];
 }
 
 #pragma mark - Update Methods
@@ -321,7 +369,7 @@
                 self.metronomeTicks ++;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.metronomeLabel.text = [NSString stringWithFormat:@"%d", (self.metronomeTicks % 4) + 1];
-                    if(self.metronomeTicks % 4 == 0)
+                    if(!(self.metronomeTicks % 4))
                     {
                         NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
                         self.gridView.grid = self.pool.state;
@@ -443,7 +491,7 @@
                         BMidiNote *note = [[BMidiNote alloc] init];
                         note.channel = (channel - 1);
                         note.velocity = 127;
-                        note.note = [self convertToMidi:col];
+                        note.note = [self convertToMidi:col voice:(channel - 1)];
                         [note setStartTime:(startTime + dt)];
                         [note setDuration:beatDuration];
                         notes[currentCol] = note;
@@ -462,21 +510,11 @@
     }
 }
 
-//C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
-#define C_MAJ_NOTES @[@(36), @(38), @(40), @(41), @(43), @(45), @(47)]
-//C D E G A C
-#define C_PENT_MAJ_NOTES @[@(24), @(26), @(28), @(31), @(33), @(36)]
-//A C D E G A
-#define A_PENT_MIN_NOTES @[@(21), @(24), @(26), @(28), @(31), @(33)]
-//Arpeggios
-//C - E - G, D - F - A, E - G - B
-#define C_MAJ_ARPEGGIOS @[@(24), @(28), @(31), /**/ @(26), @(29), @(33), /**/ @(28), @(31), @(35)]
-
 // http://www.midimountain.com/midi/midi_note_numbers.html
--(int)convertToMidi:(int)note
+-(int)convertToMidi:(int)note voice:(int)voice
 {
-    NSInteger count = [A_PENT_MIN_NOTES count];
-    int midiNote = [[A_PENT_MIN_NOTES objectAtIndex:(note % count)] intValue] + (12 * (note / count));
+    NSInteger count = [self.voiceScales[voice] count];
+    int midiNote = [[self.voiceScales[voice] objectAtIndex:(note % count)] intValue] + (12 * (note / count));
     return midiNote;
 }
 
