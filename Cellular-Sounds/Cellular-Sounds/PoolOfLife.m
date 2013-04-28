@@ -231,7 +231,7 @@
 
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started species:(NSInteger)species
 {
-    NSLog(@"%d,%d %d -> %d", col, row, started, species);
+    //NSLog(@"%d,%d %d -> %d", col, row, started, species);
     if(started || self.priorRow != row || self.priorCol != col)
     {
         if([self.delegate respondsToSelector:@selector(didActivateCellAtRow:col:species:)])

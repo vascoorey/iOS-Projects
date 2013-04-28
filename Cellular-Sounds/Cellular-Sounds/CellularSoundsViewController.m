@@ -174,12 +174,21 @@
 
 -(void)setVolume:(float)volume forVoice:(NSInteger)voice
 {
-    
+    [self.audioManager setVolume:volume forChannel:voice];
 }
 
 -(float)volumeForVoice:(NSInteger)voice
 {
-    
+    return [self.audioManager getVolumeForChannel:voice];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"Options Segue"])
+    {
+        OptionsViewController *optionsVC = (OptionsViewController *)segue.destinationViewController;
+        optionsVC.delegate = self;
+    }
 }
 
 #pragma mark - IBActions
@@ -253,7 +262,7 @@
 -(void) handleNoteEvent:(BMidiNote *)note {
     // Play the note in the audio manager
     [self.audioManager playNote:note];
-    //NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
+    NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
     //[self.sound triggerMidiNoteAtFirstAvailableVoice:note.note velocity:127];
 }
 
@@ -335,7 +344,7 @@
     // Start the audio manager. After the audio manager has started you can't add any more
     // voices
     [self.audioManager startAudioGraph];
-    
+
     // Create the audio thread. This is a high priority thread
     // which will update the audio around 400 times per second
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -366,26 +375,27 @@
             // We need to check if the metronome has ticked from within the
             // audio loop because it might be missed by the slower render loop
             if([self.midiClock isMetronomeTick]) {
-                self.metronomeTicks ++;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.metronomeLabel.text = [NSString stringWithFormat:@"%d", (self.metronomeTicks % 4) + 1];
-                    if(!(self.metronomeTicks % 4))
+                    if(!self.metronomeTicks || !(self.metronomeTicks % 4))
                     {
-                        NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
+                        //NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
                         self.gridView.grid = self.pool.state;
                     }
+                    //NSLog(@"%lg",CACurrentMediaTime());
                 });
+                self.metronomeTicks ++;
             }
         }
-        //Always perform the update on the last sixteenth note
-        if((self.timeForNextUpdate - (self.midiClock.PPQN / 4)) < discreteTime)
+        //Always perform the update on the last eigth note
+        if((self.timeForNextUpdate - (self.midiClock.PPQN / 2)) < discreteTime)
         {
             [_shouldUpdateGrid lock];
             [_shouldUpdateGrid signal];
             [_shouldUpdateGrid unlock];
             self.updateTime = discreteTime;
             //Each row is a 16th note
-            self.timeForNextUpdate += (self.midiClock.PPQN / 4) * self.numRows;
+            self.timeForNextUpdate += (self.midiClock.PPQN / 2) * self.numRows;
         }
     }
 }
@@ -439,10 +449,10 @@
     while(true)
     {
         //Wait for a signal from the audioloop.
-        NSLog(@"%g: waiting...", CACurrentMediaTime());
+        //NSLog(@"%g: waiting...", CACurrentMediaTime());
         [_shouldUpdateGrid lock];
         [_shouldUpdateGrid wait];
-        NSLog(@"%g: working!", CACurrentMediaTime());
+        //NSLog(@"%g: working!", CACurrentMediaTime());
         [self.pool performStep];
         NSArray *currentGrid = self.pool.state;
         NSInteger startTime = self.startTimeForNextBar;
@@ -500,7 +510,7 @@
             }
         }
         [finalNotes addObjectsFromArray:[notes allValues]];
-        NSInteger deltaTime = self.numRows * (self.midiClock.PPQN / 4);
+        NSInteger deltaTime = self.numRows * (self.midiClock.PPQN / 2);
         self.startTimeForNextBar += deltaTime;
         @synchronized(self.sequence)
         {

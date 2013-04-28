@@ -68,9 +68,6 @@
 		BC769D95172B1A44008412C4 /* CampbellsHarpischord.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D93172B1A44008412C4 /* CampbellsHarpischord.sf2 */; };
 		BC769D96172B1A44008412C4 /* Steinway Grand Piano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D94172B1A44008412C4 /* Steinway Grand Piano.sf2 */; };
 		BC769D98172B28E7008412C4 /* memory moog.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D97172B28E7008412C4 /* memory moog.sf2 */; };
-		BC7CCD9C172C34C400BF5A4D /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7CCD97172C34C400BF5A4D /* IISideController.m */; };
-		BC7CCD9D172C34C400BF5A4D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7CCD99172C34C400BF5A4D /* IIViewDeckController.m */; };
-		BC7CCD9E172C34C400BF5A4D /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7CCD9B172C34C400BF5A4D /* IIWrapController.m */; };
 		BC7CCE6C172C365500BF5A4D /* 00-Read me first - license.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC7CCDA0172C365400BF5A4D /* 00-Read me first - license.txt */; };
 		BC7CCE6D172C365500BF5A4D /* glyphish-icons.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BC7CCDA1172C365400BF5A4D /* glyphish-icons.pdf */; };
 		BC7CCE6E172C365500BF5A4D /* glyphish-icons.psd in Resources */ = {isa = PBXBuildFile; fileRef = BC7CCDA2172C365400BF5A4D /* glyphish-icons.psd */; };
@@ -428,12 +425,6 @@
 		BC769D93172B1A44008412C4 /* CampbellsHarpischord.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CampbellsHarpischord.sf2; sourceTree = "<group>"; };
 		BC769D94172B1A44008412C4 /* Steinway Grand Piano.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Steinway Grand Piano.sf2"; sourceTree = "<group>"; };
 		BC769D97172B28E7008412C4 /* memory moog.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "memory moog.sf2"; sourceTree = "<group>"; };
-		BC7CCD96172C34C400BF5A4D /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
-		BC7CCD97172C34C400BF5A4D /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
-		BC7CCD98172C34C400BF5A4D /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
-		BC7CCD99172C34C400BF5A4D /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
-		BC7CCD9A172C34C400BF5A4D /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
-		BC7CCD9B172C34C400BF5A4D /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
 		BC7CCDA0172C365400BF5A4D /* 00-Read me first - license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-Read me first - license.txt"; sourceTree = "<group>"; };
 		BC7CCDA1172C365400BF5A4D /* glyphish-icons.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "glyphish-icons.pdf"; sourceTree = "<group>"; };
 		BC7CCDA2172C365400BF5A4D /* glyphish-icons.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphish-icons.psd"; sourceTree = "<group>"; };
@@ -797,7 +788,6 @@
 			children = (
 				BC12A5B31726A67200FE77F4 /* Sound */,
 				BC12A5561726947D00FE77F4 /* View */,
-				BC7CCD95172C34C400BF5A4D /* ViewDeck */,
 				BC12A55D17269B6A00FE77F4 /* Model */,
 				BC12A53C1726924000FE77F4 /* AppDelegate.h */,
 				BC12A53D1726924000FE77F4 /* AppDelegate.m */,
@@ -928,20 +918,6 @@
 				BC12A5F51726AD7D00FE77F4 /* november_rain.mid */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		BC7CCD95172C34C400BF5A4D /* ViewDeck */ = {
-			isa = PBXGroup;
-			children = (
-				BC7CCD96172C34C400BF5A4D /* IISideController.h */,
-				BC7CCD97172C34C400BF5A4D /* IISideController.m */,
-				BC7CCD98172C34C400BF5A4D /* IIViewDeckController.h */,
-				BC7CCD99172C34C400BF5A4D /* IIViewDeckController.m */,
-				BC7CCD9A172C34C400BF5A4D /* IIWrapController.h */,
-				BC7CCD9B172C34C400BF5A4D /* IIWrapController.m */,
-			);
-			name = ViewDeck;
-			path = ../../../ViewDeck/ViewDeck;
 			sourceTree = "<group>";
 		};
 		BC7CCD9F172C365400BF5A4D /* glyphish-icons */ = {
@@ -1666,9 +1642,6 @@
 				BC9CCCAD172A989F002D21F2 /* SquareStrings.m in Sources */,
 				BC9CCCAE172A989F002D21F2 /* TriangleFlute.m in Sources */,
 				BC9CCCAF172A989F002D21F2 /* Voice.m in Sources */,
-				BC7CCD9C172C34C400BF5A4D /* IISideController.m in Sources */,
-				BC7CCD9D172C34C400BF5A4D /* IIViewDeckController.m in Sources */,
-				BC7CCD9E172C34C400BF5A4D /* IIWrapController.m in Sources */,
 				BC7CCFB1172C40F500BF5A4D /* OptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
