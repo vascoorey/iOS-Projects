@@ -12,8 +12,11 @@
 @required
 -(void)setVolume:(float)volume forVoice:(NSInteger)voice;
 -(float)volumeForVoice:(NSInteger)voice;
+-(void)setPan:(float)pan forVoice:(NSInteger)voice;
+-(float)panForVoice:(NSInteger)voice;
 @end
 
 @interface OptionsViewController : UIViewController
 @property (nonatomic, weak) id <OptionsDelegate> delegate;
+@property (nonatomic) NSInteger voices;
 @end

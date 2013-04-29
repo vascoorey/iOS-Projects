@@ -36,14 +36,15 @@
 @property (nonatomic, strong) BSequencePlayer *sequencePlayer;
 @property (nonatomic, strong) BMidiClock *midiClock;
 @property (nonatomic, strong) AudioManager *audioManager;
-@property (nonatomic, strong) NSThread *audioThread;
 @property (nonatomic) NSUInteger metronomeTicks;
 @property (nonatomic, strong) NSMutableArray *voiceScales;
+@property (nonatomic) CFTimeInterval timeOfLastBeat;
 //Access this property using @synchronized(self.sequence) as it's being used
 @property (nonatomic, strong) NSMutableArray *sequence;
 @property (nonatomic, strong) NSMutableArray *completeSong;
 @property (nonatomic) NSInteger timeForNextUpdate;
 @property (nonatomic) NSInteger startTimeForNextBar;
+@property (nonatomic) NSInteger lineDeltaTime;
 //WTS
 @property (nonatomic, strong) AQSound *sound;
 //Model
@@ -52,12 +53,10 @@
 @property (nonatomic) NSUInteger numCols;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger currentSpecies;
-@property (nonatomic, strong) NSThread *poolUpdateThread;
 @property (nonatomic) BOOL updatePool;
 @property (nonatomic) NSInteger updateTime;
 //Control
 @property (nonatomic, getter = isPlaying) BOOL playing;
-@property (nonatomic, strong) CADisplayLink *displayLink;
 @end
 
 //C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
@@ -182,6 +181,18 @@
     return [self.audioManager getVolumeForChannel:voice];
 }
 
+-(float)panForVoice:(NSInteger)voice
+{
+    return [self.audioManager getPanForChannel:voice];
+}
+
+-(void)setPan:(float)pan forVoice:(NSInteger)voice
+{
+    [self.audioManager setPan:pan forChannel:voice];
+}
+
+#pragma mark - Segue
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"Options Segue"])
@@ -262,7 +273,7 @@
 -(void) handleNoteEvent:(BMidiNote *)note {
     // Play the note in the audio manager
     [self.audioManager playNote:note];
-    NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
+    //NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
     //[self.sound triggerMidiNoteAtFirstAvailableVoice:note.note velocity:127];
 }
 
@@ -317,20 +328,19 @@
     self.midiClock = [BMidiClock new];
     self.midiClock.tickResolution = 1;
     
-    self.sound = [[AQSound alloc] init];
-    [self.sound newAQ];
-    [self.sound start];
+    //Each line is an eigth of a note
+    self.lineDeltaTime = (self.midiClock.PPQN / 2);
     
     // Create a new audio manager this will vocalize the midi messages
     self.audioManager = [AudioManager newAudioManager];
     
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
-    [self.audioManager addVoice:@"c0" withSound:@"memory moog" withPatch:2 withVolume:1];
+    [self.audioManager addVoice:@"c0" withSound:@"Steinway Grand Piano" withPatch:0 withVolume:1];
     self.voiceScales[0] = C_MAJ_NOTES;
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
     self.voiceScales[1] = C_PENT_MAJ_NOTES;
-    [self.audioManager addVoice:@"c2" withSound:@"JR_String2" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c2" withSound:@"ws_dream 2" withPatch:0 withVolume:1];
     self.voiceScales[2] = A_PENT_MIN_NOTES;
     [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
     self.voiceScales[3] = C_MAJ_ARPEGGIOS;
@@ -350,7 +360,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self audioLoop];
     });
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self poolLoop];
     });
 }
@@ -382,20 +392,33 @@
                         //NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
                         self.gridView.grid = self.pool.state;
                     }
-                    //NSLog(@"%lg",CACurrentMediaTime());
+                    if(!self.timeOfLastBeat)
+                    {
+                        self.timeOfLastBeat = [self.midiClock getCurrentTimeMillis] / 1000.0;
+                    }
+                    else
+                    {
+                        CFTimeInterval currentBeat = [self.midiClock getCurrentTimeMillis] / 1000.0;
+                        if(currentBeat - self.timeOfLastBeat > (self.midiClock.BPM / 60.0))
+                        {
+                            NSLog(@"*** MIDI Clock skew detected! ***");
+                            NSLog(@"*** Last Beat: %g ms, Current Beat: %g ms ***", self.timeOfLastBeat, currentBeat);
+                        }
+                        self.timeOfLastBeat = currentBeat;
+                    }
                 });
                 self.metronomeTicks ++;
             }
         }
         //Always perform the update on the last eigth note
-        if((self.timeForNextUpdate - (self.midiClock.PPQN / 2)) < discreteTime)
+        if((self.timeForNextUpdate - self.lineDeltaTime) < discreteTime)
         {
             [_shouldUpdateGrid lock];
             [_shouldUpdateGrid signal];
             [_shouldUpdateGrid unlock];
             self.updateTime = discreteTime;
             //Each row is a 16th note
-            self.timeForNextUpdate += (self.midiClock.PPQN / 2) * self.numRows;
+            self.timeForNextUpdate += self.lineDeltaTime * self.numRows;
         }
     }
 }
@@ -461,7 +484,7 @@
             startTime = self.updateTime;
             self.startTimeForNextBar = startTime;
         }
-        NSInteger beatDuration = self.midiClock.PPQN / 4;
+        NSInteger beatDuration = self.midiClock.PPQN / 2;
         NSInteger channel = 0;
         NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
         NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
@@ -510,7 +533,7 @@
             }
         }
         [finalNotes addObjectsFromArray:[notes allValues]];
-        NSInteger deltaTime = self.numRows * (self.midiClock.PPQN / 2);
+        NSInteger deltaTime = self.numRows * self.lineDeltaTime;
         self.startTimeForNextBar += deltaTime;
         @synchronized(self.sequence)
         {
@@ -539,10 +562,6 @@
     self.midiClock = nil;
     self.sequencePlayer = nil;
     self.audioManager = nil;
-    self.audioThread = nil;
-    //DisplayLink
-    [self.displayLink invalidate];
-    self.displayLink = nil;
 }
 
 @end

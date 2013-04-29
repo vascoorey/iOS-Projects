@@ -9,10 +9,9 @@
 #import "OptionsViewController.h"
 
 @interface OptionsViewController ()
-@property (weak, nonatomic) IBOutlet UISlider *voiceZeroSlider;
-@property (weak, nonatomic) IBOutlet UISlider *voiceOneSlider;
-@property (weak, nonatomic) IBOutlet UISlider *voiceTwoSlider;
-@property (weak, nonatomic) IBOutlet UISlider *voiceThreeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *panSlider;
+@property (nonatomic) NSInteger currentVoice;
 @end
 
 @implementation OptionsViewController
@@ -20,14 +19,20 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.voiceZeroSlider.value = [self.delegate volumeForVoice:0];
-    self.voiceOneSlider.value = [self.delegate volumeForVoice:1];
-    self.voiceTwoSlider.value = [self.delegate volumeForVoice:2];
-    self.voiceThreeSlider.value = [self.delegate volumeForVoice:3];
 }
 
 - (IBAction)changeVolume:(UISlider *)sender {
-    [self.delegate setVolume:sender.value forVoice:sender.tag];
+    [self.delegate setVolume:sender.value forVoice:self.currentVoice];
+}
+
+- (IBAction)changePan:(UISlider *)sender {
+    [self.delegate setPan:sender.value forVoice:self.currentVoice];
+}
+
+- (IBAction)changeSelectedVoice:(UISegmentedControl *)sender {
+    self.currentVoice = sender.selectedSegmentIndex;
+    self.volumeSlider.value = [self.delegate volumeForVoice:self.currentVoice];
+    self.panSlider.value = [self.delegate panForVoice:self.currentVoice];
 }
 
 @end
