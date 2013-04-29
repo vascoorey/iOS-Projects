@@ -22,6 +22,8 @@
 #import "BMidiNote.h"
 //WTS
 #import "AQSound.h"
+//Notes
+#import "NoteDefs.h"
 
 @interface CellularSoundsViewController () <GridViewDelegate, PoolOfLifeDelegate, OptionsDelegate>
 {
@@ -37,7 +39,6 @@
 @property (nonatomic, strong) BMidiClock *midiClock;
 @property (nonatomic, strong) AudioManager *audioManager;
 @property (nonatomic) NSUInteger metronomeTicks;
-@property (nonatomic, strong) NSMutableArray *voiceScales;
 @property (nonatomic) CFTimeInterval timeOfLastBeat;
 //Access this property using @synchronized(self.sequence) as it's being used
 @property (nonatomic, strong) NSMutableArray *sequence;
@@ -57,17 +58,10 @@
 @property (nonatomic) NSInteger updateTime;
 //Control
 @property (nonatomic, getter = isPlaying) BOOL playing;
+//Voice defs
+@property (nonatomic, strong) NSMutableArray *voiceRootNotes;
+@property (nonatomic, strong) NSMutableArray *voiceScales;
 @end
-
-//C3 = 36, D = 38, E = 40, F = 41, G = 43, A = 45, B = 47
-#define C_MAJ_NOTES @[@(36), @(38), @(40), @(41), @(43), @(45), @(47)]
-//C D E G A C
-#define C_PENT_MAJ_NOTES @[@(36), @(38), @(40), @(43), @(45), @(48)]
-//A C D E G A
-#define A_PENT_MIN_NOTES @[@(21), @(24), @(26), @(28), @(31), @(33)]
-//Arpeggios
-//C - E - G, D - F - A, E - G - B
-#define C_MAJ_ARPEGGIOS @[@(24), @(28), @(31), /**/ @(26), @(29), @(33), /**/ @(28), @(31), @(35)]
 
 @implementation CellularSoundsViewController
 
@@ -154,6 +148,15 @@
     return _voiceScales;
 }
 
+-(NSMutableArray *)voiceRootNotes
+{
+    if(!_voiceRootNotes)
+    {
+        _voiceRootNotes = [[NSMutableArray alloc] init];
+    }
+    return _voiceRootNotes;
+}
+
 #pragma mark - GridView Delegate
 
 -(void)didDetectTouchAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started
@@ -189,6 +192,26 @@
 -(void)setPan:(float)pan forVoice:(NSInteger)voice
 {
     [self.audioManager setPan:pan forChannel:voice];
+}
+
+-(NSInteger)rootNoteForVoice:(NSInteger)voice
+{
+    return [self.voiceRootNotes[voice] integerValue];
+}
+
+-(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice
+{
+    self.voiceRootNotes[voice] = @(note);
+}
+
+-(NSString *)scaleForVoice:(NSInteger)voice
+{
+    return self.voiceScales[voice];
+}
+
+-(void)setScale:(NSString *)scale forVoice:(NSInteger)voice
+{
+    self.voiceScales[voice] = scale;
 }
 
 #pragma mark - Segue
@@ -337,13 +360,17 @@
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
     [self.audioManager addVoice:@"c0" withSound:@"Steinway Grand Piano" withPatch:0 withVolume:1];
-    self.voiceScales[0] = C_MAJ_NOTES;
+    self.voiceScales[0] = @"Major";
+    self.voiceRootNotes[0] = @(48);
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
-    self.voiceScales[1] = C_PENT_MAJ_NOTES;
+    self.voiceScales[1] = @"Major";
+    self.voiceRootNotes[1] = @(48);
     [self.audioManager addVoice:@"c2" withSound:@"JR_ligeti" withPatch:0 withVolume:1];
-    self.voiceScales[2] = A_PENT_MIN_NOTES;
+    self.voiceScales[2] = @"Minor";
+    self.voiceRootNotes[2] = @(48);
     [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
-    self.voiceScales[3] = C_MAJ_ARPEGGIOS;
+    self.voiceScales[3] = @"Minor";
+    self.voiceRootNotes[3] = @(48);
     
     // Enable percussion
     //[self.audioManager enablePercussion:@"JR_elepiano" withPatch:0 withVolume:1];
@@ -417,7 +444,7 @@
             [_shouldUpdateGrid signal];
             [_shouldUpdateGrid unlock];
             self.updateTime = discreteTime;
-            //Each row is a 16th note
+            //Each row is a 8th note
             self.timeForNextUpdate += self.lineDeltaTime * self.numRows;
         }
     }
@@ -484,7 +511,6 @@
             startTime = self.updateTime;
             self.startTimeForNextBar = startTime;
         }
-        NSInteger beatDuration = self.lineDeltaTime;
         NSInteger channel = 0;
         NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
         NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
@@ -493,14 +519,14 @@
             for(int col = 0; col < self.numCols; col ++)
             {
                 NSNumber *currentCol = @(col);
-                NSInteger dt = row * beatDuration;
+                NSInteger dt = row * self.lineDeltaTime;
                 if([[notes allKeys] containsObject:currentCol])
                 {
                     if([currentGrid[row][col] intValue])
                     {
                         //Update the note in the dictionary
                         BMidiNote *note = notes[currentCol];
-                        [note setDuration:([note getDuration] + beatDuration)];
+                        [note setDuration:([note getDuration] + self.lineDeltaTime)];
                     }
                     else
                     {
@@ -526,7 +552,7 @@
                         note.velocity = 127;
                         note.note = [self convertToMidi:col voice:(channel - 1)];
                         [note setStartTime:(startTime + dt)];
-                        [note setDuration:beatDuration];
+                        [note setDuration:self.lineDeltaTime];
                         notes[currentCol] = note;
                     }
                 }
@@ -546,8 +572,9 @@
 // http://www.midimountain.com/midi/midi_note_numbers.html
 -(int)convertToMidi:(int)note voice:(int)voice
 {
-    NSInteger count = [self.voiceScales[voice] count];
-    int midiNote = [[self.voiceScales[voice] objectAtIndex:(note % count)] intValue] + (12 * (note / count));
+    NSArray *scaleArray = kSCALES[self.voiceScales[voice]];
+    NSInteger count = [scaleArray count];
+    int midiNote = [[scaleArray objectAtIndex:(note % count)] intValue] + (12 * (note / count)) + [self.voiceRootNotes[voice] intValue];
     return midiNote;
 }
 

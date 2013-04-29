@@ -14,6 +14,10 @@
 -(float)volumeForVoice:(NSInteger)voice;
 -(void)setPan:(float)pan forVoice:(NSInteger)voice;
 -(float)panForVoice:(NSInteger)voice;
+-(NSInteger)rootNoteForVoice:(NSInteger)voice;
+-(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice;
+-(NSString *)scaleForVoice:(NSInteger)voice;
+-(void)setScale:(NSString *)scale forVoice:(NSInteger)voice;
 @end
 
 @interface OptionsViewController : UIViewController

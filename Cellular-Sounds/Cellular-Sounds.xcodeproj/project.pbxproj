@@ -691,6 +691,7 @@
 		BC7CCFAD172C3DF300BF5A4D /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		BC7CCFAF172C40F500BF5A4D /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		BC7CCFB0172C40F500BF5A4D /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		BC7F6D56172EAAE200AAF8F4 /* NoteDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDefs.h; sourceTree = "<group>"; };
 		BC9CCC4E172A949D002D21F2 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.h"; sourceTree = "<group>"; };
 		BC9CCC4F172A949D002D21F2 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.m"; sourceTree = "<group>"; };
 		BC9CCC50172A949D002D21F2 /* BChannelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BChannelEvent.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.h"; sourceTree = "<group>"; };
@@ -795,6 +796,7 @@
 				BC12A53D1726924000FE77F4 /* AppDelegate.m */,
 				BC12A557172695F800FE77F4 /* CellularSoundsViewController.h */,
 				BC12A558172695F800FE77F4 /* CellularSoundsViewController.m */,
+				BC7F6D56172EAAE200AAF8F4 /* NoteDefs.h */,
 				BC7CCFAF172C40F500BF5A4D /* OptionsViewController.h */,
 				BC7CCFB0172C40F500BF5A4D /* OptionsViewController.m */,
 				BC12A5451726924000FE77F4 /* MainStoryboard_iPhone.storyboard */,
