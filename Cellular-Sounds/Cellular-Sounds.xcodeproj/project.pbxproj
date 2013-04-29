@@ -34,10 +34,11 @@
 		BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F51726AD7D00FE77F4 /* november_rain.mid */; };
 		BC12A60E1726B0C500FE77F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */; };
 		BC6F1FC8172E93CD00B6C69E /* ws_dream 2.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FC7172E93CD00B6C69E /* ws_dream 2.sf2 */; };
-		BC769D73172B1333008412C4 /* JR__pad.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D53172B1333008412C4 /* JR__pad.SF2 */; };
+		BC6F1FCA172E963500B6C69E /* JR_ligeti.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */; };
+		BC6F1FCD172E977C00B6C69E /* JR__pad.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */; };
+		BC6F1FCE172E977C00B6C69E /* JR_backgr.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */; };
 		BC769D74172B1333008412C4 /* JR_ambiance 1.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D54172B1333008412C4 /* JR_ambiance 1.SF2 */; };
 		BC769D75172B1333008412C4 /* JR_analog.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D55172B1333008412C4 /* JR_analog.sf2 */; };
-		BC769D76172B1333008412C4 /* JR_backgr.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D56172B1333008412C4 /* JR_backgr.sf2 */; };
 		BC769D77172B1333008412C4 /* JR_bells.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D57172B1333008412C4 /* JR_bells.SF2 */; };
 		BC769D78172B1333008412C4 /* JR_Bignoise.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D58172B1333008412C4 /* JR_Bignoise.sf2 */; };
 		BC769D79172B1333008412C4 /* JR_bulles2.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D59172B1333008412C4 /* JR_bulles2.SF2 */; };
@@ -50,7 +51,6 @@
 		BC769D80172B1333008412C4 /* JR_Ethnic voice.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D60172B1333008412C4 /* JR_Ethnic voice.SF2 */; };
 		BC769D81172B1333008412C4 /* JR_flute electronique.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D61172B1333008412C4 /* JR_flute electronique.SF2 */; };
 		BC769D82172B1333008412C4 /* JR_galboro.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D62172B1333008412C4 /* JR_galboro.SF2 */; };
-		BC769D83172B1333008412C4 /* JR_ligeti.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D63172B1333008412C4 /* JR_ligeti.SF2 */; };
 		BC769D84172B1333008412C4 /* JR_loops2k.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D64172B1333008412C4 /* JR_loops2k.SF2 */; };
 		BC769D85172B1333008412C4 /* JR_male.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D65172B1333008412C4 /* JR_male.sf2 */; };
 		BC769D86172B1333008412C4 /* JR_mood.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D66172B1333008412C4 /* JR_mood.sf2 */; };
@@ -392,10 +392,11 @@
 		BC12A5F51726AD7D00FE77F4 /* november_rain.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = november_rain.mid; sourceTree = "<group>"; };
 		BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BC6F1FC7172E93CD00B6C69E /* ws_dream 2.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ws_dream 2.sf2"; sourceTree = "<group>"; };
-		BC769D53172B1333008412C4 /* JR__pad.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR__pad.SF2; sourceTree = "<group>"; };
+		BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_ligeti.SF2; sourceTree = "<group>"; };
+		BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR__pad.SF2; sourceTree = "<group>"; };
+		BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_backgr.sf2; sourceTree = "<group>"; };
 		BC769D54172B1333008412C4 /* JR_ambiance 1.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JR_ambiance 1.SF2"; sourceTree = "<group>"; };
 		BC769D55172B1333008412C4 /* JR_analog.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_analog.sf2; sourceTree = "<group>"; };
-		BC769D56172B1333008412C4 /* JR_backgr.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_backgr.sf2; sourceTree = "<group>"; };
 		BC769D57172B1333008412C4 /* JR_bells.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_bells.SF2; sourceTree = "<group>"; };
 		BC769D58172B1333008412C4 /* JR_Bignoise.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_Bignoise.sf2; sourceTree = "<group>"; };
 		BC769D59172B1333008412C4 /* JR_bulles2.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_bulles2.SF2; sourceTree = "<group>"; };
@@ -408,7 +409,6 @@
 		BC769D60172B1333008412C4 /* JR_Ethnic voice.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JR_Ethnic voice.SF2"; sourceTree = "<group>"; };
 		BC769D61172B1333008412C4 /* JR_flute electronique.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JR_flute electronique.SF2"; sourceTree = "<group>"; };
 		BC769D62172B1333008412C4 /* JR_galboro.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_galboro.SF2; sourceTree = "<group>"; };
-		BC769D63172B1333008412C4 /* JR_ligeti.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_ligeti.SF2; sourceTree = "<group>"; };
 		BC769D64172B1333008412C4 /* JR_loops2k.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_loops2k.SF2; sourceTree = "<group>"; };
 		BC769D65172B1333008412C4 /* JR_male.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_male.sf2; sourceTree = "<group>"; };
 		BC769D66172B1333008412C4 /* JR_mood.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_mood.sf2; sourceTree = "<group>"; };
@@ -872,10 +872,11 @@
 		BC12A5DE1726AD7D00FE77F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BC769D53172B1333008412C4 /* JR__pad.SF2 */,
+				BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */,
+				BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */,
+				BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */,
 				BC769D54172B1333008412C4 /* JR_ambiance 1.SF2 */,
 				BC769D55172B1333008412C4 /* JR_analog.sf2 */,
-				BC769D56172B1333008412C4 /* JR_backgr.sf2 */,
 				BC769D57172B1333008412C4 /* JR_bells.SF2 */,
 				BC769D58172B1333008412C4 /* JR_Bignoise.sf2 */,
 				BC769D59172B1333008412C4 /* JR_bulles2.SF2 */,
@@ -888,7 +889,6 @@
 				BC769D60172B1333008412C4 /* JR_Ethnic voice.SF2 */,
 				BC769D61172B1333008412C4 /* JR_flute electronique.SF2 */,
 				BC769D62172B1333008412C4 /* JR_galboro.SF2 */,
-				BC769D63172B1333008412C4 /* JR_ligeti.SF2 */,
 				BC769D64172B1333008412C4 /* JR_loops2k.SF2 */,
 				BC769D65172B1333008412C4 /* JR_male.sf2 */,
 				BC769D66172B1333008412C4 /* JR_mood.sf2 */,
@@ -1314,10 +1314,8 @@
 				BC9CCCA9172A989F002D21F2 /* README.md in Resources */,
 				BCA92B78172AF86A00431C7A /* JR_mood.sf2 in Resources */,
 				BCA92B7B172AF92A00431C7A /* JR_pad_voice.SF2 in Resources */,
-				BC769D73172B1333008412C4 /* JR__pad.SF2 in Resources */,
 				BC769D74172B1333008412C4 /* JR_ambiance 1.SF2 in Resources */,
 				BC769D75172B1333008412C4 /* JR_analog.sf2 in Resources */,
-				BC769D76172B1333008412C4 /* JR_backgr.sf2 in Resources */,
 				BC769D77172B1333008412C4 /* JR_bells.SF2 in Resources */,
 				BC769D78172B1333008412C4 /* JR_Bignoise.sf2 in Resources */,
 				BC769D79172B1333008412C4 /* JR_bulles2.SF2 in Resources */,
@@ -1330,7 +1328,6 @@
 				BC769D80172B1333008412C4 /* JR_Ethnic voice.SF2 in Resources */,
 				BC769D81172B1333008412C4 /* JR_flute electronique.SF2 in Resources */,
 				BC769D82172B1333008412C4 /* JR_galboro.SF2 in Resources */,
-				BC769D83172B1333008412C4 /* JR_ligeti.SF2 in Resources */,
 				BC769D84172B1333008412C4 /* JR_loops2k.SF2 in Resources */,
 				BC769D85172B1333008412C4 /* JR_male.sf2 in Resources */,
 				BC769D86172B1333008412C4 /* JR_mood.sf2 in Resources */,
@@ -1612,6 +1609,9 @@
 				BC7CCFAA172C3B7900BF5A4D /* Wrench.png in Resources */,
 				BC7CCFAE172C3DF300BF5A4D /* pause.png in Resources */,
 				BC6F1FC8172E93CD00B6C69E /* ws_dream 2.sf2 in Resources */,
+				BC6F1FCA172E963500B6C69E /* JR_ligeti.SF2 in Resources */,
+				BC6F1FCD172E977C00B6C69E /* JR__pad.SF2 in Resources */,
+				BC6F1FCE172E977C00B6C69E /* JR_backgr.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

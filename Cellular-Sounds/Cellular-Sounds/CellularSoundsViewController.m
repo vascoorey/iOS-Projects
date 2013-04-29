@@ -340,7 +340,7 @@
     self.voiceScales[0] = C_MAJ_NOTES;
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
     self.voiceScales[1] = C_PENT_MAJ_NOTES;
-    [self.audioManager addVoice:@"c2" withSound:@"ws_dream 2" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c2" withSound:@"JR_ligeti" withPatch:0 withVolume:1];
     self.voiceScales[2] = A_PENT_MIN_NOTES;
     [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
     self.voiceScales[3] = C_MAJ_ARPEGGIOS;
@@ -387,7 +387,7 @@
             if([self.midiClock isMetronomeTick]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.metronomeLabel.text = [NSString stringWithFormat:@"%d", (self.metronomeTicks % 4) + 1];
-                    if(!self.metronomeTicks || !(self.metronomeTicks % 4))
+                    if(!(self.metronomeTicks % 4))
                     {
                         //NSLog(@"Setting the new grid (%d ticks)", self.metronomeTicks);
                         self.gridView.grid = self.pool.state;
@@ -406,8 +406,8 @@
                         }
                         self.timeOfLastBeat = currentBeat;
                     }
+                    self.metronomeTicks ++;
                 });
-                self.metronomeTicks ++;
             }
         }
         //Always perform the update on the last eigth note
@@ -484,7 +484,7 @@
             startTime = self.updateTime;
             self.startTimeForNextBar = startTime;
         }
-        NSInteger beatDuration = self.midiClock.PPQN / 2;
+        NSInteger beatDuration = self.lineDeltaTime;
         NSInteger channel = 0;
         NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
         NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
