@@ -25,19 +25,19 @@ typedef enum
 @interface PoolOfLife : NSObject
 
 @property (nonatomic, strong) id <PoolOfLifeDelegate> delegate;
-//Determines the number of species you can interact with
-@property (nonatomic) NSInteger numSpecies;
 //Get the current state
 @property (nonatomic, readonly) NSMutableArray *state;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
+@property (nonatomic, readonly) NSInteger numGrids;
+//Use this to change the grid. Will allow number [0..(numGrids - 1)]
+@property (nonatomic) NSInteger currentGrid;
 
 //Designated initializer
--(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
+-(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode grids:(NSInteger)grids;
 -(void)reset;
 -(void)performStep;
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started;
 //Use this method if you have set numSpecies > 1
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started species:(NSInteger)species;
--(NSInteger)cellAtRow:(NSInteger)row col:(NSInteger)col;
 
 @end

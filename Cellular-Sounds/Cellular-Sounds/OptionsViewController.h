@@ -23,4 +23,5 @@
 @interface OptionsViewController : UIViewController
 @property (nonatomic, weak) id <OptionsDelegate> delegate;
 @property (nonatomic) NSInteger voices;
+@property (nonatomic) NSInteger currentVoice;
 @end

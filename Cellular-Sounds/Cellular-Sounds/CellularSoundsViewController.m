@@ -26,9 +26,6 @@
 #import "NoteDefs.h"
 
 @interface CellularSoundsViewController () <GridViewDelegate, PoolOfLifeDelegate, OptionsDelegate>
-{
-    NSCondition *_shouldUpdateGrid;
-}
 //Outlets
 @property (weak, nonatomic) IBOutlet UILabel *metronomeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentSpeciesLabel;
@@ -50,11 +47,11 @@
 @property (nonatomic, strong) AQSound *sound;
 //Model
 @property (nonatomic, strong) PoolOfLife *pool;
-@property (nonatomic) NSUInteger numRows;
-@property (nonatomic) NSUInteger numCols;
+@property (nonatomic) NSInteger numRows;
+@property (nonatomic) NSInteger numCols;
+@property (nonatomic) NSInteger numGrids;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger currentSpecies;
-@property (nonatomic) BOOL updatePool;
 @property (nonatomic) NSInteger updateTime;
 //Control
 @property (nonatomic, getter = isPlaying) BOOL playing;
@@ -65,6 +62,45 @@
 
 @implementation CellularSoundsViewController
 
+#pragma mark - Properties - Lazy Instantiation
+
+-(PoolOfLife *)pool
+{
+    if(!_pool)
+    {
+        _pool = [[PoolOfLife alloc] initWithRows:self.numRows cols:self.numCols gameMode:self.gameMode grids:self.numGrids];
+        _pool.delegate = self;
+    }
+    return _pool;
+}
+
+-(NSMutableArray *)completeSong
+{
+    if(!_completeSong)
+    {
+        _completeSong = [[NSMutableArray alloc] init];
+    }
+    return _completeSong;
+}
+
+-(NSMutableArray *)voiceScales
+{
+    if(!_voiceScales)
+    {
+        _voiceScales = [[NSMutableArray alloc] init];
+    }
+    return _voiceScales;
+}
+
+-(NSMutableArray *)voiceRootNotes
+{
+    if(!_voiceRootNotes)
+    {
+        _voiceRootNotes = [[NSMutableArray alloc] init];
+    }
+    return _voiceRootNotes;
+}
+
 #pragma mark - View Lifecycle
 
 -(void)setup
@@ -73,10 +109,10 @@
     self.numCols = 21;
     self.numRows = 16;
     self.currentSpecies = 1;
+    self.numGrids = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 4 : 1;
     self.gameMode = PoolOfLifeGameModeConway;
     self.playing = YES;
     [self setupSound];
-    _shouldUpdateGrid = [[NSCondition alloc] init];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -116,45 +152,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Properties - Lazy Instantiation
-
--(PoolOfLife *)pool
-{
-    if(!_pool)
-    {
-        _pool = [[PoolOfLife alloc] initWithRows:self.numRows cols:self.numCols gameMode:self.gameMode];
-        _pool.delegate = self;
-    }
-    return _pool;
-}
-
--(NSMutableArray *)completeSong
-{
-    if(!_completeSong)
-    {
-        _completeSong = [[NSMutableArray alloc] init];
-    }
-    return _completeSong;
-}
-
--(NSMutableArray *)voiceScales
-{
-    if(!_voiceScales)
-    {
-        _voiceScales = [[NSMutableArray alloc] init];
-    }
-    return _voiceScales;
-}
-
--(NSMutableArray *)voiceRootNotes
-{
-    if(!_voiceRootNotes)
-    {
-        _voiceRootNotes = [[NSMutableArray alloc] init];
-    }
-    return _voiceRootNotes;
 }
 
 #pragma mark - GridView Delegate
@@ -222,6 +219,7 @@
     {
         OptionsViewController *optionsVC = (OptionsViewController *)segue.destinationViewController;
         optionsVC.delegate = self;
+        optionsVC.currentVoice = self.currentSpecies - 1;
     }
 }
 
@@ -280,6 +278,13 @@
 - (IBAction)poolModeButtonPressed:(UIButton *)sender {
     sender.selected = !sender.selected;
     self.pool.gameMode = sender.selected ? PoolOfLifeGameModeNone : PoolOfLifeGameModeConway;
+}
+
+- (IBAction)changeCurrentGrid:(UISegmentedControl *)sender {
+    if(sender.selectedSegmentIndex != self.pool.currentGrid)
+    {
+        self.pool.currentGrid = sender.selectedSegmentIndex;
+    }
 }
 
 #pragma mark - Unwind Segue
@@ -387,9 +392,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self audioLoop];
     });
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self poolLoop];
-    });
 }
 
 #pragma mark - Update Methods
@@ -440,9 +442,10 @@
         //Always perform the update on the last eigth note
         if((self.timeForNextUpdate - self.lineDeltaTime) < discreteTime)
         {
-            [_shouldUpdateGrid lock];
-            [_shouldUpdateGrid signal];
-            [_shouldUpdateGrid unlock];
+            //Update the pool
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self updatePool];
+            });
             self.updateTime = discreteTime;
             //Each row is a 8th note
             self.timeForNextUpdate += self.lineDeltaTime * self.numRows;
@@ -494,78 +497,70 @@
     }
 }
 
--(void)poolLoop
+-(void)updatePool
 {
-    while(true)
+    //NSLog(@"%g: working!", CACurrentMediaTime());
+    [self.pool performStep];
+    NSArray *currentGrid = self.pool.state;
+    NSInteger startTime = self.startTimeForNextBar;
+    if(!startTime)
     {
-        //Wait for a signal from the audioloop.
-        //NSLog(@"%g: waiting...", CACurrentMediaTime());
-        [_shouldUpdateGrid lock];
-        [_shouldUpdateGrid wait];
-        //NSLog(@"%g: working!", CACurrentMediaTime());
-        [self.pool performStep];
-        NSArray *currentGrid = self.pool.state;
-        NSInteger startTime = self.startTimeForNextBar;
-        if(!startTime)
+        startTime = self.updateTime;
+        self.startTimeForNextBar = startTime;
+    }
+    NSInteger channel = 0;
+    NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
+    NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
+    for(int row = 0; row < self.numRows; row ++)
+    {
+        for(int col = 0; col < self.numCols; col ++)
         {
-            startTime = self.updateTime;
-            self.startTimeForNextBar = startTime;
-        }
-        NSInteger channel = 0;
-        NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
-        NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
-        for(int row = 0; row < self.numRows; row ++)
-        {
-            for(int col = 0; col < self.numCols; col ++)
+            NSNumber *currentCol = @(col);
+            NSInteger dt = row * self.lineDeltaTime;
+            if([[notes allKeys] containsObject:currentCol])
             {
-                NSNumber *currentCol = @(col);
-                NSInteger dt = row * self.lineDeltaTime;
-                if([[notes allKeys] containsObject:currentCol])
+                if([currentGrid[row][col] intValue])
                 {
-                    if([currentGrid[row][col] intValue])
-                    {
-                        //Update the note in the dictionary
-                        BMidiNote *note = notes[currentCol];
-                        [note setDuration:([note getDuration] + self.lineDeltaTime)];
-                    }
-                    else
-                    {
-                        //Remove the note from the dictionary and insert it into finalNotes
-                        BMidiNote *noteToAdd = notes[currentCol];
-//                        BMidiNote *noteOff = [[BMidiNote alloc] init];
-//                        noteOff.note = noteToAdd.note;
-//                        noteOff.channel = 0;
-//                        noteOff.velocity = 0;
-//                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
-//                        [finalNotes addObject:noteOff];
-                        [finalNotes addObject:noteToAdd];
-                        [notes removeObjectForKey:currentCol];
-                    }
+                    //Update the note in the dictionary
+                    BMidiNote *note = notes[currentCol];
+                    [note setDuration:([note getDuration] + self.lineDeltaTime)];
                 }
                 else
                 {
-                    if((channel = [currentGrid[row][col] intValue]))
-                    {
-                        //Create a new note and insert it into the dictionary
-                        BMidiNote *note = [[BMidiNote alloc] init];
-                        note.channel = (channel - 1);
-                        note.velocity = 127;
-                        note.note = [self convertToMidi:col voice:(channel - 1)];
-                        [note setStartTime:(startTime + dt)];
-                        [note setDuration:self.lineDeltaTime];
-                        notes[currentCol] = note;
-                    }
+                    //Remove the note from the dictionary and insert it into finalNotes
+                    BMidiNote *noteToAdd = notes[currentCol];
+                    //                        BMidiNote *noteOff = [[BMidiNote alloc] init];
+                    //                        noteOff.note = noteToAdd.note;
+                    //                        noteOff.channel = 0;
+                    //                        noteOff.velocity = 0;
+                    //                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
+                    //                        [finalNotes addObject:noteOff];
+                    [finalNotes addObject:noteToAdd];
+                    [notes removeObjectForKey:currentCol];
+                }
+            }
+            else
+            {
+                if((channel = [currentGrid[row][col] intValue]))
+                {
+                    //Create a new note and insert it into the dictionary
+                    BMidiNote *note = [[BMidiNote alloc] init];
+                    note.channel = (channel - 1);
+                    note.velocity = 127;
+                    note.note = [self convertToMidi:col voice:(channel - 1)];
+                    [note setStartTime:(startTime + dt)];
+                    [note setDuration:self.lineDeltaTime];
+                    notes[currentCol] = note;
                 }
             }
         }
-        [finalNotes addObjectsFromArray:[notes allValues]];
-        NSInteger deltaTime = self.numRows * self.lineDeltaTime;
-        self.startTimeForNextBar += deltaTime;
-        @synchronized(self.sequence)
-        {
-            self.sequence = finalNotes;
-        }
-        [_shouldUpdateGrid unlock];
+    }
+    [finalNotes addObjectsFromArray:[notes allValues]];
+    NSInteger deltaTime = self.numRows * self.lineDeltaTime;
+    self.startTimeForNextBar += deltaTime;
+    @synchronized(self.sequence)
+    {
+        self.sequence = finalNotes;
     }
 }
 

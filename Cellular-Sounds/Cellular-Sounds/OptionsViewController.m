@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *panSlider;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (nonatomic) NSInteger currentVoice;
 @end
 
 @implementation OptionsViewController
