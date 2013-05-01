@@ -12,6 +12,7 @@
 @interface OptionsViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *panSlider;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @end
 
@@ -76,6 +77,7 @@
 {
     self.volumeSlider.value = [self.delegate volumeForVoice:self.currentVoice];
     self.panSlider.value = [self.delegate panForVoice:self.currentVoice];
+    self.voiceSegmentedControl.selectedSegmentIndex = self.currentVoice;
     [self.pickerView selectRow:[self.delegate rootNoteForVoice:self.currentVoice] inComponent:0 animated:YES];
     NSInteger pickedScale = [[kSCALES allKeys] indexOfObject:[self.delegate scaleForVoice:self.currentVoice]];
     [self.pickerView selectRow:pickedScale inComponent:1 animated:YES];

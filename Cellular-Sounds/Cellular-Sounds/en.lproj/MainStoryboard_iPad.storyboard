@@ -110,6 +110,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBf-Vg-Qd8">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EmL-N2-A6r"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -170,10 +173,10 @@
                             <constraint firstItem="DBf-Vg-Qd8" firstAttribute="leading" secondItem="Azd-Lx-apN" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="HTx-Kb-ISe"/>
                             <constraint firstAttribute="bottom" secondItem="mlm-6w-b1K" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="HwM-2K-8Tv"/>
                             <constraint firstItem="Fet-G7-23b" firstAttribute="leading" secondItem="RYH-61-Qij" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Izd-Wp-ixh"/>
-                            <constraint firstItem="DBf-Vg-Qd8" firstAttribute="bottom" secondItem="Azd-Lx-apN" secondAttribute="bottom" type="default" id="KFq-0S-dFO"/>
                             <constraint firstItem="Azd-Lx-apN" firstAttribute="leading" secondItem="iyl-s2-1qW" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Kg0-4i-mJh"/>
                             <constraint firstItem="z2O-G5-3hy" firstAttribute="trailing" secondItem="Qxg-F5-PlK" secondAttribute="trailing" type="default" id="MeV-NA-gJ7"/>
                             <constraint firstAttribute="bottom" secondItem="wPY-wX-atL" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="NV3-8R-PIB"/>
+                            <constraint firstItem="7mq-ic-k8f" firstAttribute="top" secondItem="Qxg-F5-PlK" secondAttribute="top" constant="71" id="Nyg-Zu-AOJ"/>
                             <constraint firstAttribute="trailing" secondItem="jDa-yP-QIG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="T1f-J9-yJf"/>
                             <constraint firstAttribute="bottom" secondItem="RYH-61-Qij" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="TLi-4R-9b0"/>
                             <constraint firstItem="jDa-yP-QIG" firstAttribute="bottom" secondItem="ZLG-lJ-RrL" secondAttribute="bottom" type="default" id="VbK-Ch-pFM"/>
@@ -186,10 +189,9 @@
                             <constraint firstItem="ToG-Gv-J46" firstAttribute="leading" secondItem="mlm-6w-b1K" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="coW-MM-43o"/>
                             <constraint firstItem="z2O-G5-3hy" firstAttribute="leading" secondItem="Qxg-F5-PlK" secondAttribute="leading" type="default" id="ctJ-kq-JhM"/>
                             <constraint firstAttribute="bottom" secondItem="ToG-Gv-J46" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dnt-2N-xbo"/>
-                            <constraint firstItem="Azd-Lx-apN" firstAttribute="baseline" secondItem="iyl-s2-1qW" secondAttribute="baseline" type="default" id="eFy-MW-qi3"/>
-                            <constraint firstItem="DBf-Vg-Qd8" firstAttribute="bottom" secondItem="ZLG-lJ-RrL" secondAttribute="bottom" type="default" id="fNg-27-yGI"/>
                             <constraint firstItem="wPY-wX-atL" firstAttribute="top" secondItem="z2O-G5-3hy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="fcd-E0-icb"/>
                             <constraint firstItem="iyl-s2-1qW" firstAttribute="leading" secondItem="Qxg-F5-PlK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="hDp-u7-fxS"/>
+                            <constraint firstItem="ZLG-lJ-RrL" firstAttribute="bottom" secondItem="Azd-Lx-apN" secondAttribute="bottom" type="default" id="ioH-a3-yWh"/>
                             <constraint firstItem="Fet-G7-23b" firstAttribute="leading" secondItem="7mq-ic-k8f" secondAttribute="leading" type="default" id="leK-zo-gd2"/>
                             <constraint firstItem="DBf-Vg-Qd8" firstAttribute="leading" secondItem="7mq-ic-k8f" secondAttribute="leading" type="default" id="mjd-b2-91z"/>
                             <constraint firstItem="RYH-61-Qij" firstAttribute="leading" secondItem="wPY-wX-atL" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="nMU-cf-szP"/>
@@ -197,7 +199,6 @@
                             <constraint firstItem="7mq-ic-k8f" firstAttribute="trailing" secondItem="DBf-Vg-Qd8" secondAttribute="trailing" type="default" id="pPI-fB-Dwo"/>
                             <constraint firstItem="ToG-Gv-J46" firstAttribute="leading" secondItem="jDa-yP-QIG" secondAttribute="leading" type="default" id="q43-Hh-hXd"/>
                             <constraint firstItem="mlm-6w-b1K" firstAttribute="leading" secondItem="ZLG-lJ-RrL" secondAttribute="leading" type="default" id="rJI-uW-WXk"/>
-                            <constraint firstItem="7mq-ic-k8f" firstAttribute="top" secondItem="DBf-Vg-Qd8" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="rMC-0a-nx3"/>
                             <constraint firstAttribute="trailing" secondItem="ToG-Gv-J46" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tRD-j7-LHu"/>
                             <constraint firstItem="ToG-Gv-J46" firstAttribute="top" secondItem="z2O-G5-3hy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tXH-d0-eZn"/>
                             <constraint firstItem="DBf-Vg-Qd8" firstAttribute="top" secondItem="Qxg-F5-PlK" secondAttribute="top" constant="20" symbolic="YES" type="default" id="viZ-lO-TJY"/>
@@ -307,6 +308,7 @@
                     <connections>
                         <outlet property="panSlider" destination="cmL-Iv-e2S" id="oU1-ne-LeP"/>
                         <outlet property="pickerView" destination="2aF-RW-rCs" id="GXQ-kO-Sbz"/>
+                        <outlet property="voiceSegmentedControl" destination="Uoa-8A-JJI" id="A3t-rW-m2R"/>
                         <outlet property="volumeSlider" destination="4iX-BA-k3D" id="e2V-gB-tBr"/>
                     </connections>
                 </viewController>
@@ -322,6 +324,43 @@
         <image name="95-equalizer.png" width="26" height="24"/>
         <image name="pause.png" width="44" height="44"/>
     </resources>
+    <classes>
+        <class className="CellularSoundsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellularSoundsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeCurrentGrid:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeCurrentSpecies:" candidateClass="UIButton"/>
+                <relationship kind="action" name="doneSettingOptions:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="poolModeButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="startStop:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="currentSpeciesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gridView" candidateClass="GridView"/>
+                <relationship kind="outlet" name="metronomeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="poolModeButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GridView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GridView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OptionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePan:" candidateClass="UISlider"/>
+                <relationship kind="action" name="changeSelectedVoice:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeVolume:" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="panSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="voiceSegmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
