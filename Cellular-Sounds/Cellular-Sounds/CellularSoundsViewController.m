@@ -332,25 +332,6 @@
 
 -(void) setupSound
 {
-//    // Create a new midi manager and load our midi file
-//    BMidiManager * midiManager = [BMidiManager new];
-//    
-//    // The process midi file will return a our sequence of MIDI events
-//    BSequence * sequence = [midiManager processMidiFile:@"dancing_queen"];
-//    
-//    // Initialise a new sequence player - this will actually play our
-//    // midi sequence
-//    self.sequencePlayer = [BSequencePlayer new];
-//    
-//    // Add the sequence to the sequence player
-//    self.sequencePlayer.sequence = sequence;
-//    
-//    // Add this class as a note processor - this means that notes will
-//    // be delivered to the addNote method of this class in realtime to
-//    // be handled
-//    [self.sequencePlayer setNoteHandler:self];
-//    [self.sequencePlayer setTempoHandler:self];
-    
     // Create a new midi clock - this keeps track of MIDI time based on
     // midi properties such as BPM
     self.midiClock = [BMidiClock new];
@@ -364,7 +345,7 @@
     
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
-    [self.audioManager addVoice:@"c0" withSound:@"Steinway Grand Piano" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c0" withSound:@"JR_elepiano" withPatch:0 withVolume:1];
     self.voiceScales[0] = @"Major";
     self.voiceRootNotes[0] = @(48);
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
@@ -376,13 +357,7 @@
     [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
     self.voiceScales[3] = @"Minor";
     self.voiceRootNotes[3] = @(48);
-    
-    // Enable percussion
-    //[self.audioManager enablePercussion:@"JR_elepiano" withPatch:0 withVolume:1];
-    
-    // Add a silent default
-    //[self.audioManager addDefaultVoice:@"JR_elepiano" withPatch:0 withVolume:1];
-    
+
     // Start the audio manager. After the audio manager has started you can't add any more
     // voices
     [self.audioManager startAudioGraph];
