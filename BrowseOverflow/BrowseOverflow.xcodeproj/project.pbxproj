@@ -426,6 +426,7 @@
 				GCC_PREFIX_HEADER = "BrowseOverflow/BrowseOverflow-Prefix.pch";
 				INFOPLIST_FILE = "BrowseOverflowTests/BrowseOverflowTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -443,6 +444,7 @@
 				GCC_PREFIX_HEADER = "BrowseOverflow/BrowseOverflow-Prefix.pch";
 				INFOPLIST_FILE = "BrowseOverflowTests/BrowseOverflowTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_AFTER_BUILD = NO;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};

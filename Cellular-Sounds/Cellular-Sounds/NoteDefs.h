@@ -17,7 +17,7 @@
 #define kMIN_PENT_NOTES @[@(0), @(3), @(5), @(7), @(10), @(12)]
 #define kMAJ_ARPEGGIOS @[@(0), @(4), @(7), @(2), @(5), @(9), @(4), @(7), @(10), @(5), @(9), @(12), @(7), @(11), @(14), @(9), @(12), @(16), @(11), @(14), @(17)]
 #define kSCALES @{@"Major" : kMAJ_NOTES, @"Minor" : kMIN_NOTES, @"Major Pentatonic" : kMAJ_PENT_NOTES, @"Minor Pentatonic" : kMIN_PENT_NOTES, @"Major Arpeggios" : kMAJ_ARPEGGIOS}
-#define kNOTES 120
+#define kNUM_NOTES 120
 #define kNOTE_NAMES @[@"C", @"C#", @"D", @"D#", @"E", @"F", @"F#", @"G", @"G#", @"A", @"A#", @"B"]
 //C D E G A C
 //#define C_PENT_MAJ_NOTES @[@(36), @(38), @(40), @(43), @(45), @(48)]

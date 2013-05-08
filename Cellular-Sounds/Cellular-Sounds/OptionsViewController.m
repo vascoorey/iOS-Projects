@@ -58,7 +58,7 @@
     if(!component)
     {
         //First picker
-        rows = kNOTES;
+        rows = kNUM_NOTES;
     }
     else if(component == 1)
     {

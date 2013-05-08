@@ -43,8 +43,6 @@
 @property (nonatomic) NSInteger timeForNextUpdate;
 @property (nonatomic) NSInteger startTimeForNextBar;
 @property (nonatomic) NSInteger lineDeltaTime;
-//WTS
-@property (nonatomic, strong) AQSound *sound;
 //Model
 @property (nonatomic, strong) PoolOfLife *pool;
 @property (nonatomic) NSInteger numRows;
@@ -237,14 +235,12 @@
         [self.audioManager setVolume:1];
         [sender setTitle:@"Pause" forState:UIControlStateNormal];
         self.playing = YES;
-        [self.sound start];
     }
     else {
         self.playing = NO;
         [self.midiClock pause];
         [self.audioManager setVolume:0];
         [sender setTitle:@"Resume" forState:UIControlStateNormal];
-        [self.sound stop];
     }
 }
 
