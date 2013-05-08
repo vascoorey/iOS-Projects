@@ -18,6 +18,7 @@
 -(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice;
 -(NSString *)scaleForVoice:(NSInteger)voice;
 -(void)setScale:(NSString *)scale forVoice:(NSInteger)voice;
+-(void)killAudio;
 @end
 
 @interface OptionsViewController : UIViewController

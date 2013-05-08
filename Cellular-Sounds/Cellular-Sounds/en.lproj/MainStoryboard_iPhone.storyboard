@@ -212,8 +212,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hD-UX-6fw">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="Ep1-BP-Z7e"/>
-                                    <constraint firstAttribute="width" constant="60" id="j3a-Xc-aca"/>
+                                    <constraint firstAttribute="width" constant="60" id="SSj-sw-25H"/>
+                                    <constraint firstAttribute="height" constant="43" id="s4c-ta-U8A"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Back">
@@ -228,11 +228,17 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="mUN-Dl-XnJ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="N6e-FY-LWz"/>
+                                </constraints>
                                 <connections>
                                     <action selector="changeVolume:" destination="wIK-79-m9b" eventType="valueChanged" id="CPA-FN-nFy"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cCx-BX-qrz">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="BUo-fG-RGc"/>
+                                </constraints>
                                 <connections>
                                     <action selector="changePan:" destination="wIK-79-m9b" eventType="valueChanged" id="KRB-JL-ifi"/>
                                 </connections>
@@ -254,14 +260,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sL7-T7-cUF">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="zJ2-eS-8ad"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwK-MZ-za2">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="pA6-cq-8f3"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="wIK-79-m9b" id="LJZ-Ma-TZL"/>
                                     <outlet property="delegate" destination="wIK-79-m9b" id="vlt-Im-nck"/>
@@ -277,22 +283,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxk-az-QL7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="TyB-QT-uOF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Kill">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="killPressed:" destination="wIK-79-m9b" eventType="touchUpInside" id="p7M-R0-rFE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mwr-uH-uSH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="0t0-x3-Ic0"/>
+                            <constraint firstItem="Gxk-az-QL7" firstAttribute="top" secondItem="6hD-UX-6fw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Aah-sk-iy7"/>
                             <constraint firstItem="mUN-Dl-XnJ" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EGQ-Td-bHw"/>
                             <constraint firstItem="c4o-yJ-HqT" firstAttribute="centerX" secondItem="mUN-Dl-XnJ" secondAttribute="centerX" type="default" id="EMW-BW-1x4"/>
                             <constraint firstAttribute="trailing" secondItem="mUN-Dl-XnJ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Fgv-Cr-l15"/>
                             <constraint firstItem="Mwr-uH-uSH" firstAttribute="baseline" secondItem="6hD-UX-6fw" secondAttribute="baseline" type="default" id="Hey-DY-A0K"/>
+                            <constraint firstItem="Mwr-uH-uSH" firstAttribute="top" secondItem="ITI-10-fPx" secondAttribute="top" constant="20" symbolic="YES" type="default" id="IVc-nT-zqm"/>
                             <constraint firstAttribute="trailing" secondItem="BLF-1L-upw" secondAttribute="trailing" constant="62" id="JnA-QA-q8p"/>
+                            <constraint firstItem="Gxk-az-QL7" firstAttribute="centerX" secondItem="6hD-UX-6fw" secondAttribute="centerX" type="default" id="Jpm-eN-1pr"/>
                             <constraint firstAttribute="bottom" secondItem="pwK-MZ-za2" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="JrM-Oe-5S8"/>
+                            <constraint firstItem="6hD-UX-6fw" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="LfZ-4e-7w2"/>
                             <constraint firstItem="Mwr-uH-uSH" firstAttribute="leading" secondItem="6hD-UX-6fw" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Ngx-lY-ZZS"/>
-                            <constraint firstItem="6hD-UX-6fw" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NhN-0H-oSr"/>
                             <constraint firstItem="pwK-MZ-za2" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Sbo-Vf-88g"/>
-                            <constraint firstItem="Mwr-uH-uSH" firstAttribute="top" secondItem="ITI-10-fPx" secondAttribute="top" constant="42" id="VO0-qm-Q0q"/>
+                            <constraint firstItem="mUN-Dl-XnJ" firstAttribute="top" secondItem="Gxk-az-QL7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="V60-Ch-Mjw"/>
                             <constraint firstItem="pwK-MZ-za2" firstAttribute="top" secondItem="0we-VO-jau" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Wjd-KA-fnV"/>
-                            <constraint firstItem="c4o-yJ-HqT" firstAttribute="top" secondItem="Mwr-uH-uSH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="WlA-Wj-4Ao"/>
                             <constraint firstItem="mUN-Dl-XnJ" firstAttribute="centerX" secondItem="sL7-T7-cUF" secondAttribute="centerX" type="default" id="Wsp-mW-R42"/>
                             <constraint firstItem="6hD-UX-6fw" firstAttribute="top" secondItem="ITI-10-fPx" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Yd4-mo-zfz"/>
                             <constraint firstItem="0we-VO-jau" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="45" id="YrG-vI-Swb"/>
@@ -300,8 +324,10 @@
                             <constraint firstAttribute="trailing" secondItem="pwK-MZ-za2" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="d3D-l0-OXM"/>
                             <constraint firstItem="0we-VO-jau" firstAttribute="top" secondItem="cCx-BX-qrz" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dSd-JR-qzq"/>
                             <constraint firstAttribute="trailing" secondItem="cCx-BX-qrz" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dhe-wZ-YsE"/>
+                            <constraint firstItem="c4o-yJ-HqT" firstAttribute="top" secondItem="ITI-10-fPx" secondAttribute="top" constant="93" id="gdJ-UT-zLQ"/>
                             <constraint firstItem="BLF-1L-upw" firstAttribute="baseline" secondItem="0we-VO-jau" secondAttribute="baseline" type="default" id="htI-R3-eSs"/>
                             <constraint firstItem="cCx-BX-qrz" firstAttribute="leading" secondItem="ITI-10-fPx" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mFz-8b-gEQ"/>
+                            <constraint firstItem="BLF-1L-upw" firstAttribute="top" secondItem="cCx-BX-qrz" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="p0l-WU-uid"/>
                             <constraint firstItem="sL7-T7-cUF" firstAttribute="top" secondItem="mUN-Dl-XnJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qLH-2k-u6k"/>
                         </constraints>
                     </view>
@@ -324,43 +350,6 @@
         <image name="95-equalizer.png" width="26" height="24"/>
         <image name="pause.png" width="44" height="44"/>
     </resources>
-    <classes>
-        <class className="CellularSoundsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellularSoundsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeCurrentGrid:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="changeCurrentSpecies:" candidateClass="UIButton"/>
-                <relationship kind="action" name="doneSettingOptions:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="poolModeButtonPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="startStop:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="currentSpeciesLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="gridView" candidateClass="GridView"/>
-                <relationship kind="outlet" name="metronomeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="poolModeButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="GridView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GridView.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OptionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePan:" candidateClass="UISlider"/>
-                <relationship kind="action" name="changeSelectedVoice:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="changeVolume:" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="panSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="voiceSegmentedControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

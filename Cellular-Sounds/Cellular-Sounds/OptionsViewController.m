@@ -83,6 +83,10 @@
     [self.pickerView selectRow:pickedScale inComponent:1 animated:YES];
 }
 
+- (IBAction)killPressed:(id)sender {
+    [self.delegate killAudio];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

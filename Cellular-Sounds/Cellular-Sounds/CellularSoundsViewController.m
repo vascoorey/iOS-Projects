@@ -211,6 +211,11 @@
     self.voiceScales[voice] = scale;
 }
 
+-(void)killAudio
+{
+    [self.audioManager stopAudioGraph];
+}
+
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
