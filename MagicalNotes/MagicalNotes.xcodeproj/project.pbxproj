@@ -1,0 +1,364 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BCF2A0AC173BAA38006CB6F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A0AB173BAA38006CB6F8 /* UIKit.framework */; };
+		BCF2A0AE173BAA38006CB6F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A0AD173BAA38006CB6F8 /* Foundation.framework */; };
+		BCF2A0B0173BAA38006CB6F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A0AF173BAA38006CB6F8 /* CoreGraphics.framework */; };
+		BCF2A0B6173BAA38006CB6F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0B4173BAA38006CB6F8 /* InfoPlist.strings */; };
+		BCF2A0B8173BAA38006CB6F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A0B7173BAA38006CB6F8 /* main.m */; };
+		BCF2A0BC173BAA38006CB6F8 /* MNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A0BB173BAA38006CB6F8 /* MNAppDelegate.m */; };
+		BCF2A0BE173BAA38006CB6F8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0BD173BAA38006CB6F8 /* Default.png */; };
+		BCF2A0C0173BAA38006CB6F8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0BF173BAA38006CB6F8 /* Default@2x.png */; };
+		BCF2A0C2173BAA38006CB6F8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0C1173BAA38006CB6F8 /* Default-568h@2x.png */; };
+		BCF2A0C5173BAA38006CB6F8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0C3173BAA38006CB6F8 /* MainStoryboard.storyboard */; };
+		BCF2A0CF173BAA45006CB6F8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A0CE173BAA45006CB6F8 /* Podfile */; };
+		BCF2A0D2173BAAE0006CB6F8 /* NotesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A0D0173BAAE0006CB6F8 /* NotesDataModel.xcdatamodeld */; };
+		BCF2A0D8173BAB58006CB6F8 /* MNTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A0D7173BAB58006CB6F8 /* MNTableViewController.m */; };
+		BCF2A0DA173BAB86006CB6F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A0D9173BAB86006CB6F8 /* CoreData.framework */; };
+		BCF2A0DD173BAC14006CB6F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A0DC173BAC14006CB6F8 /* Note.m */; };
+		D02DA3691C854192AC7D871D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F94DF9B8B04C8A88870FB6 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		75F94DF9B8B04C8A88870FB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF2A0A8173BAA38006CB6F8 /* MagicalNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicalNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF2A0AB173BAA38006CB6F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BCF2A0AD173BAA38006CB6F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BCF2A0AF173BAA38006CB6F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BCF2A0B3173BAA38006CB6F8 /* MagicalNotes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MagicalNotes-Info.plist"; sourceTree = "<group>"; };
+		BCF2A0B5173BAA38006CB6F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BCF2A0B7173BAA38006CB6F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BCF2A0B9173BAA38006CB6F8 /* MagicalNotes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MagicalNotes-Prefix.pch"; sourceTree = "<group>"; };
+		BCF2A0BA173BAA38006CB6F8 /* MNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNAppDelegate.h; sourceTree = "<group>"; };
+		BCF2A0BB173BAA38006CB6F8 /* MNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNAppDelegate.m; sourceTree = "<group>"; };
+		BCF2A0BD173BAA38006CB6F8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BCF2A0BF173BAA38006CB6F8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BCF2A0C1173BAA38006CB6F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BCF2A0C4173BAA38006CB6F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		BCF2A0CE173BAA45006CB6F8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		BCF2A0D1173BAAE0006CB6F8 /* NotesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		BCF2A0D6173BAB58006CB6F8 /* MNTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTableViewController.h; sourceTree = "<group>"; };
+		BCF2A0D7173BAB58006CB6F8 /* MNTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTableViewController.m; sourceTree = "<group>"; };
+		BCF2A0D9173BAB86006CB6F8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BCF2A0DB173BAC14006CB6F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Note.h; path = ../Note.h; sourceTree = "<group>"; };
+		BCF2A0DC173BAC14006CB6F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Note.m; path = ../Note.m; sourceTree = "<group>"; };
+		F3CF9655060B46F49FE8031C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCF2A0A5173BAA38006CB6F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A0DA173BAB86006CB6F8 /* CoreData.framework in Frameworks */,
+				BCF2A0AC173BAA38006CB6F8 /* UIKit.framework in Frameworks */,
+				BCF2A0AE173BAA38006CB6F8 /* Foundation.framework in Frameworks */,
+				BCF2A0B0173BAA38006CB6F8 /* CoreGraphics.framework in Frameworks */,
+				D02DA3691C854192AC7D871D /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCF2A09F173BAA38006CB6F8 = {
+			isa = PBXGroup;
+			children = (
+				BCF2A0CE173BAA45006CB6F8 /* Podfile */,
+				BCF2A0B1173BAA38006CB6F8 /* MagicalNotes */,
+				BCF2A0AA173BAA38006CB6F8 /* Frameworks */,
+				BCF2A0A9173BAA38006CB6F8 /* Products */,
+				F3CF9655060B46F49FE8031C /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		BCF2A0A9173BAA38006CB6F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A0A8173BAA38006CB6F8 /* MagicalNotes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCF2A0AA173BAA38006CB6F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A0D9173BAB86006CB6F8 /* CoreData.framework */,
+				BCF2A0AB173BAA38006CB6F8 /* UIKit.framework */,
+				BCF2A0AD173BAA38006CB6F8 /* Foundation.framework */,
+				BCF2A0AF173BAA38006CB6F8 /* CoreGraphics.framework */,
+				75F94DF9B8B04C8A88870FB6 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCF2A0B1173BAA38006CB6F8 /* MagicalNotes */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A0BA173BAA38006CB6F8 /* MNAppDelegate.h */,
+				BCF2A0BB173BAA38006CB6F8 /* MNAppDelegate.m */,
+				BCF2A0C3173BAA38006CB6F8 /* MainStoryboard.storyboard */,
+				BCF2A0D0173BAAE0006CB6F8 /* NotesDataModel.xcdatamodeld */,
+				BCF2A0DB173BAC14006CB6F8 /* Note.h */,
+				BCF2A0DC173BAC14006CB6F8 /* Note.m */,
+				BCF2A0D6173BAB58006CB6F8 /* MNTableViewController.h */,
+				BCF2A0D7173BAB58006CB6F8 /* MNTableViewController.m */,
+				BCF2A0B2173BAA38006CB6F8 /* Supporting Files */,
+			);
+			path = MagicalNotes;
+			sourceTree = "<group>";
+		};
+		BCF2A0B2173BAA38006CB6F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A0B3173BAA38006CB6F8 /* MagicalNotes-Info.plist */,
+				BCF2A0B4173BAA38006CB6F8 /* InfoPlist.strings */,
+				BCF2A0B7173BAA38006CB6F8 /* main.m */,
+				BCF2A0B9173BAA38006CB6F8 /* MagicalNotes-Prefix.pch */,
+				BCF2A0BD173BAA38006CB6F8 /* Default.png */,
+				BCF2A0BF173BAA38006CB6F8 /* Default@2x.png */,
+				BCF2A0C1173BAA38006CB6F8 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCF2A0A7173BAA38006CB6F8 /* MagicalNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCF2A0CB173BAA38006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalNotes" */;
+			buildPhases = (
+				BCF2A0A4173BAA38006CB6F8 /* Sources */,
+				BCF2A0A5173BAA38006CB6F8 /* Frameworks */,
+				BCF2A0A6173BAA38006CB6F8 /* Resources */,
+				4930F7AF06B24BAE94B7ED57 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MagicalNotes;
+			productName = MagicalNotes;
+			productReference = BCF2A0A8173BAA38006CB6F8 /* MagicalNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCF2A0A0173BAA38006CB6F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MN;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Delta Dog Studios";
+			};
+			buildConfigurationList = BCF2A0A3173BAA38006CB6F8 /* Build configuration list for PBXProject "MagicalNotes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BCF2A09F173BAA38006CB6F8;
+			productRefGroup = BCF2A0A9173BAA38006CB6F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCF2A0A7173BAA38006CB6F8 /* MagicalNotes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCF2A0A6173BAA38006CB6F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A0B6173BAA38006CB6F8 /* InfoPlist.strings in Resources */,
+				BCF2A0BE173BAA38006CB6F8 /* Default.png in Resources */,
+				BCF2A0C0173BAA38006CB6F8 /* Default@2x.png in Resources */,
+				BCF2A0C2173BAA38006CB6F8 /* Default-568h@2x.png in Resources */,
+				BCF2A0C5173BAA38006CB6F8 /* MainStoryboard.storyboard in Resources */,
+				BCF2A0CF173BAA45006CB6F8 /* Podfile in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4930F7AF06B24BAE94B7ED57 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCF2A0A4173BAA38006CB6F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A0B8173BAA38006CB6F8 /* main.m in Sources */,
+				BCF2A0BC173BAA38006CB6F8 /* MNAppDelegate.m in Sources */,
+				BCF2A0D2173BAAE0006CB6F8 /* NotesDataModel.xcdatamodeld in Sources */,
+				BCF2A0D8173BAB58006CB6F8 /* MNTableViewController.m in Sources */,
+				BCF2A0DD173BAC14006CB6F8 /* Note.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BCF2A0B4173BAA38006CB6F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCF2A0B5173BAA38006CB6F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BCF2A0C3173BAA38006CB6F8 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCF2A0C4173BAA38006CB6F8 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BCF2A0C9173BAA38006CB6F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BCF2A0CA173BAA38006CB6F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCF2A0CC173BAA38006CB6F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3CF9655060B46F49FE8031C /* Pods.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalNotes/MagicalNotes-Prefix.pch";
+				INFOPLIST_FILE = "MagicalNotes/MagicalNotes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BCF2A0CD173BAA38006CB6F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3CF9655060B46F49FE8031C /* Pods.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalNotes/MagicalNotes-Prefix.pch";
+				INFOPLIST_FILE = "MagicalNotes/MagicalNotes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCF2A0A3173BAA38006CB6F8 /* Build configuration list for PBXProject "MagicalNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF2A0C9173BAA38006CB6F8 /* Debug */,
+				BCF2A0CA173BAA38006CB6F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCF2A0CB173BAA38006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF2A0CC173BAA38006CB6F8 /* Debug */,
+				BCF2A0CD173BAA38006CB6F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCF2A0D0173BAAE0006CB6F8 /* NotesDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCF2A0D1173BAAE0006CB6F8 /* NotesDataModel.xcdatamodel */,
+			);
+			currentVersion = BCF2A0D1173BAAE0006CB6F8 /* NotesDataModel.xcdatamodel */;
+			path = NotesDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BCF2A0A0173BAA38006CB6F8 /* Project object */;
+}

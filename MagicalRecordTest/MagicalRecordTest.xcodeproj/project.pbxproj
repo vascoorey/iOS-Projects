@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FD7791116954D28A1B991E3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4548EB729D54FCE908451EA /* libPods.a */; };
+		BCF2A05A173B9E74006CB6F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A059173B9E74006CB6F8 /* UIKit.framework */; };
+		BCF2A05C173B9E74006CB6F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A05B173B9E74006CB6F8 /* Foundation.framework */; };
+		BCF2A05E173B9E74006CB6F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A05D173B9E74006CB6F8 /* CoreGraphics.framework */; };
+		BCF2A060173B9E74006CB6F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A05F173B9E74006CB6F8 /* CoreData.framework */; };
+		BCF2A066173B9E74006CB6F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A064173B9E74006CB6F8 /* InfoPlist.strings */; };
+		BCF2A068173B9E74006CB6F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A067173B9E74006CB6F8 /* main.m */; };
+		BCF2A06C173B9E74006CB6F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A06B173B9E74006CB6F8 /* AppDelegate.m */; };
+		BCF2A06E173B9E74006CB6F8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A06D173B9E74006CB6F8 /* Default.png */; };
+		BCF2A070173B9E74006CB6F8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A06F173B9E74006CB6F8 /* Default@2x.png */; };
+		BCF2A072173B9E74006CB6F8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A071173B9E74006CB6F8 /* Default-568h@2x.png */; };
+		BCF2A075173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A073173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodeld */; };
+		BCF2A07D173B9E74006CB6F8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A07C173B9E74006CB6F8 /* SenTestingKit.framework */; };
+		BCF2A07E173B9E74006CB6F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A059173B9E74006CB6F8 /* UIKit.framework */; };
+		BCF2A07F173B9E74006CB6F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A05B173B9E74006CB6F8 /* Foundation.framework */; };
+		BCF2A080173B9E74006CB6F8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF2A05F173B9E74006CB6F8 /* CoreData.framework */; };
+		BCF2A088173B9E74006CB6F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A086173B9E74006CB6F8 /* InfoPlist.strings */; };
+		BCF2A08B173B9E74006CB6F8 /* MagicalRecordTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A08A173B9E74006CB6F8 /* MagicalRecordTestTests.m */; };
+		BCF2A096173BA00C006CB6F8 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A095173BA00C006CB6F8 /* Person.m */; };
+		BCF2A098173BA141006CB6F8 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A097173BA141006CB6F8 /* iPhone.storyboard */; };
+		BCF2A09B173BA3E4006CB6F8 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A09A173BA3E4006CB6F8 /* Note.m */; };
+		BCF2A09E173BA43E006CB6F8 /* MRTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A09D173BA43E006CB6F8 /* MRTViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BCF2A081173B9E74006CB6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCF2A04E173B9E74006CB6F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCF2A055173B9E74006CB6F8;
+			remoteInfo = MagicalRecordTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2DC9A2F87C8D43F69FF14288 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B4548EB729D54FCE908451EA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF2A056173B9E74006CB6F8 /* MagicalRecordTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicalRecordTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF2A059173B9E74006CB6F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BCF2A05B173B9E74006CB6F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BCF2A05D173B9E74006CB6F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BCF2A05F173B9E74006CB6F8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BCF2A063173B9E74006CB6F8 /* MagicalRecordTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MagicalRecordTest-Info.plist"; sourceTree = "<group>"; };
+		BCF2A065173B9E74006CB6F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BCF2A067173B9E74006CB6F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BCF2A069173B9E74006CB6F8 /* MagicalRecordTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MagicalRecordTest-Prefix.pch"; sourceTree = "<group>"; };
+		BCF2A06A173B9E74006CB6F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BCF2A06B173B9E74006CB6F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BCF2A06D173B9E74006CB6F8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BCF2A06F173B9E74006CB6F8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BCF2A071173B9E74006CB6F8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BCF2A074173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MagicalRecordTest.xcdatamodel; sourceTree = "<group>"; };
+		BCF2A07B173B9E74006CB6F8 /* MagicalRecordTestTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicalRecordTestTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF2A07C173B9E74006CB6F8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		BCF2A085173B9E74006CB6F8 /* MagicalRecordTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MagicalRecordTestTests-Info.plist"; sourceTree = "<group>"; };
+		BCF2A087173B9E74006CB6F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BCF2A089173B9E74006CB6F8 /* MagicalRecordTestTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicalRecordTestTests.h; sourceTree = "<group>"; };
+		BCF2A08A173B9E74006CB6F8 /* MagicalRecordTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagicalRecordTestTests.m; sourceTree = "<group>"; };
+		BCF2A094173BA00C006CB6F8 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		BCF2A095173BA00C006CB6F8 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		BCF2A097173BA141006CB6F8 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		BCF2A099173BA3E4006CB6F8 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		BCF2A09A173BA3E4006CB6F8 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		BCF2A09C173BA43E006CB6F8 /* MRTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTViewController.h; sourceTree = "<group>"; };
+		BCF2A09D173BA43E006CB6F8 /* MRTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCF2A053173B9E74006CB6F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A05A173B9E74006CB6F8 /* UIKit.framework in Frameworks */,
+				BCF2A05C173B9E74006CB6F8 /* Foundation.framework in Frameworks */,
+				BCF2A05E173B9E74006CB6F8 /* CoreGraphics.framework in Frameworks */,
+				BCF2A060173B9E74006CB6F8 /* CoreData.framework in Frameworks */,
+				5FD7791116954D28A1B991E3 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCF2A077173B9E74006CB6F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A07D173B9E74006CB6F8 /* SenTestingKit.framework in Frameworks */,
+				BCF2A07E173B9E74006CB6F8 /* UIKit.framework in Frameworks */,
+				BCF2A07F173B9E74006CB6F8 /* Foundation.framework in Frameworks */,
+				BCF2A080173B9E74006CB6F8 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCF2A04D173B9E74006CB6F8 = {
+			isa = PBXGroup;
+			children = (
+				BCF2A061173B9E74006CB6F8 /* MagicalRecordTest */,
+				BCF2A083173B9E74006CB6F8 /* MagicalRecordTestTests */,
+				BCF2A058173B9E74006CB6F8 /* Frameworks */,
+				BCF2A057173B9E74006CB6F8 /* Products */,
+				2DC9A2F87C8D43F69FF14288 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		BCF2A057173B9E74006CB6F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A056173B9E74006CB6F8 /* MagicalRecordTest.app */,
+				BCF2A07B173B9E74006CB6F8 /* MagicalRecordTestTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCF2A058173B9E74006CB6F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A059173B9E74006CB6F8 /* UIKit.framework */,
+				BCF2A05B173B9E74006CB6F8 /* Foundation.framework */,
+				BCF2A05D173B9E74006CB6F8 /* CoreGraphics.framework */,
+				BCF2A05F173B9E74006CB6F8 /* CoreData.framework */,
+				BCF2A07C173B9E74006CB6F8 /* SenTestingKit.framework */,
+				B4548EB729D54FCE908451EA /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCF2A061173B9E74006CB6F8 /* MagicalRecordTest */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A06A173B9E74006CB6F8 /* AppDelegate.h */,
+				BCF2A06B173B9E74006CB6F8 /* AppDelegate.m */,
+				BCF2A097173BA141006CB6F8 /* iPhone.storyboard */,
+				BCF2A09C173BA43E006CB6F8 /* MRTViewController.h */,
+				BCF2A09D173BA43E006CB6F8 /* MRTViewController.m */,
+				BCF2A073173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodeld */,
+				BCF2A099173BA3E4006CB6F8 /* Note.h */,
+				BCF2A09A173BA3E4006CB6F8 /* Note.m */,
+				BCF2A094173BA00C006CB6F8 /* Person.h */,
+				BCF2A095173BA00C006CB6F8 /* Person.m */,
+				BCF2A062173B9E74006CB6F8 /* Supporting Files */,
+			);
+			path = MagicalRecordTest;
+			sourceTree = "<group>";
+		};
+		BCF2A062173B9E74006CB6F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A063173B9E74006CB6F8 /* MagicalRecordTest-Info.plist */,
+				BCF2A064173B9E74006CB6F8 /* InfoPlist.strings */,
+				BCF2A067173B9E74006CB6F8 /* main.m */,
+				BCF2A069173B9E74006CB6F8 /* MagicalRecordTest-Prefix.pch */,
+				BCF2A06D173B9E74006CB6F8 /* Default.png */,
+				BCF2A06F173B9E74006CB6F8 /* Default@2x.png */,
+				BCF2A071173B9E74006CB6F8 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCF2A083173B9E74006CB6F8 /* MagicalRecordTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A089173B9E74006CB6F8 /* MagicalRecordTestTests.h */,
+				BCF2A08A173B9E74006CB6F8 /* MagicalRecordTestTests.m */,
+				BCF2A084173B9E74006CB6F8 /* Supporting Files */,
+			);
+			path = MagicalRecordTestTests;
+			sourceTree = "<group>";
+		};
+		BCF2A084173B9E74006CB6F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A085173B9E74006CB6F8 /* MagicalRecordTestTests-Info.plist */,
+				BCF2A086173B9E74006CB6F8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCF2A055173B9E74006CB6F8 /* MagicalRecordTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCF2A08E173B9E74006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalRecordTest" */;
+			buildPhases = (
+				BCF2A052173B9E74006CB6F8 /* Sources */,
+				BCF2A053173B9E74006CB6F8 /* Frameworks */,
+				BCF2A054173B9E74006CB6F8 /* Resources */,
+				C5DBE7F313624F79AA1CDD4D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MagicalRecordTest;
+			productName = MagicalRecordTest;
+			productReference = BCF2A056173B9E74006CB6F8 /* MagicalRecordTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCF2A07A173B9E74006CB6F8 /* MagicalRecordTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCF2A091173B9E74006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalRecordTestTests" */;
+			buildPhases = (
+				BCF2A076173B9E74006CB6F8 /* Sources */,
+				BCF2A077173B9E74006CB6F8 /* Frameworks */,
+				BCF2A078173B9E74006CB6F8 /* Resources */,
+				BCF2A079173B9E74006CB6F8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCF2A082173B9E74006CB6F8 /* PBXTargetDependency */,
+			);
+			name = MagicalRecordTestTests;
+			productName = MagicalRecordTestTests;
+			productReference = BCF2A07B173B9E74006CB6F8 /* MagicalRecordTestTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCF2A04E173B9E74006CB6F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Delta Dog Studios";
+			};
+			buildConfigurationList = BCF2A051173B9E74006CB6F8 /* Build configuration list for PBXProject "MagicalRecordTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BCF2A04D173B9E74006CB6F8;
+			productRefGroup = BCF2A057173B9E74006CB6F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCF2A055173B9E74006CB6F8 /* MagicalRecordTest */,
+				BCF2A07A173B9E74006CB6F8 /* MagicalRecordTestTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCF2A054173B9E74006CB6F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A066173B9E74006CB6F8 /* InfoPlist.strings in Resources */,
+				BCF2A06E173B9E74006CB6F8 /* Default.png in Resources */,
+				BCF2A070173B9E74006CB6F8 /* Default@2x.png in Resources */,
+				BCF2A072173B9E74006CB6F8 /* Default-568h@2x.png in Resources */,
+				BCF2A098173BA141006CB6F8 /* iPhone.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCF2A078173B9E74006CB6F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A088173B9E74006CB6F8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BCF2A079173B9E74006CB6F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		C5DBE7F313624F79AA1CDD4D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCF2A052173B9E74006CB6F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A068173B9E74006CB6F8 /* main.m in Sources */,
+				BCF2A06C173B9E74006CB6F8 /* AppDelegate.m in Sources */,
+				BCF2A075173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodeld in Sources */,
+				BCF2A096173BA00C006CB6F8 /* Person.m in Sources */,
+				BCF2A09B173BA3E4006CB6F8 /* Note.m in Sources */,
+				BCF2A09E173BA43E006CB6F8 /* MRTViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCF2A076173B9E74006CB6F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCF2A08B173B9E74006CB6F8 /* MagicalRecordTestTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCF2A082173B9E74006CB6F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCF2A055173B9E74006CB6F8 /* MagicalRecordTest */;
+			targetProxy = BCF2A081173B9E74006CB6F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BCF2A064173B9E74006CB6F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCF2A065173B9E74006CB6F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BCF2A086173B9E74006CB6F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BCF2A087173B9E74006CB6F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BCF2A08C173B9E74006CB6F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BCF2A08D173B9E74006CB6F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCF2A08F173B9E74006CB6F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DC9A2F87C8D43F69FF14288 /* Pods.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalRecordTest/MagicalRecordTest-Prefix.pch";
+				INFOPLIST_FILE = "MagicalRecordTest/MagicalRecordTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BCF2A090173B9E74006CB6F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DC9A2F87C8D43F69FF14288 /* Pods.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalRecordTest/MagicalRecordTest-Prefix.pch";
+				INFOPLIST_FILE = "MagicalRecordTest/MagicalRecordTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		BCF2A092173B9E74006CB6F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MagicalRecordTest.app/MagicalRecordTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalRecordTest/MagicalRecordTest-Prefix.pch";
+				INFOPLIST_FILE = "MagicalRecordTestTests/MagicalRecordTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		BCF2A093173B9E74006CB6F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MagicalRecordTest.app/MagicalRecordTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MagicalRecordTest/MagicalRecordTest-Prefix.pch";
+				INFOPLIST_FILE = "MagicalRecordTestTests/MagicalRecordTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCF2A051173B9E74006CB6F8 /* Build configuration list for PBXProject "MagicalRecordTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF2A08C173B9E74006CB6F8 /* Debug */,
+				BCF2A08D173B9E74006CB6F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCF2A08E173B9E74006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalRecordTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF2A08F173B9E74006CB6F8 /* Debug */,
+				BCF2A090173B9E74006CB6F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCF2A091173B9E74006CB6F8 /* Build configuration list for PBXNativeTarget "MagicalRecordTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCF2A092173B9E74006CB6F8 /* Debug */,
+				BCF2A093173B9E74006CB6F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCF2A073173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCF2A074173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodel */,
+			);
+			currentVersion = BCF2A074173B9E74006CB6F8 /* MagicalRecordTest.xcdatamodel */;
+			path = MagicalRecordTest.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BCF2A04E173B9E74006CB6F8 /* Project object */;
+}

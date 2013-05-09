@@ -350,6 +350,44 @@
         <image name="95-equalizer.png" width="26" height="24"/>
         <image name="pause.png" width="44" height="44"/>
     </resources>
+    <classes>
+        <class className="CellularSoundsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellularSoundsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeCurrentGrid:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeCurrentSpecies:" candidateClass="UIButton"/>
+                <relationship kind="action" name="doneSettingOptions:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="poolModeButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="startStop:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="currentSpeciesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gridView" candidateClass="GridView"/>
+                <relationship kind="outlet" name="metronomeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="poolModeButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GridView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GridView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OptionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePan:" candidateClass="UISlider"/>
+                <relationship kind="action" name="changeSelectedVoice:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="changeVolume:" candidateClass="UISlider"/>
+                <relationship kind="action" name="killPressed:"/>
+                <relationship kind="outlet" name="panSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="voiceSegmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
