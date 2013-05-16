@@ -23,6 +23,7 @@
 //Audio setup
 -(void)killAudio;
 -(void)startAudio;
+@optional
 -(NSString *)instrumentForVoice:(NSInteger)voice;
 -(void)setInstrument:(NSString *)instrument forVoice:(NSInteger)voice;
 @end

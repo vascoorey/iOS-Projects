@@ -53,9 +53,9 @@
 @property (nonatomic) NSInteger updateTime;
 //Control
 @property (nonatomic, getter = isPlaying) BOOL playing;
-//Voice defs
-@property (nonatomic, strong) NSMutableArray *voiceRootNotes;
-@property (nonatomic, strong) NSMutableArray *voiceScales;
+//Note defs
+@property (nonatomic) NSInteger rootNote;
+@property (nonatomic, strong) NSString *scale;
 @end
 
 @implementation CellularSoundsViewController
@@ -79,24 +79,6 @@
         _completeSong = [[NSMutableArray alloc] init];
     }
     return _completeSong;
-}
-
--(NSMutableArray *)voiceScales
-{
-    if(!_voiceScales)
-    {
-        _voiceScales = [[NSMutableArray alloc] init];
-    }
-    return _voiceScales;
-}
-
--(NSMutableArray *)voiceRootNotes
-{
-    if(!_voiceRootNotes)
-    {
-        _voiceRootNotes = [[NSMutableArray alloc] init];
-    }
-    return _voiceRootNotes;
 }
 
 #pragma mark - View Lifecycle
@@ -188,24 +170,24 @@
     [self.audioManager setPan:pan forChannel:voice];
 }
 
--(NSInteger)rootNoteForVoice:(NSInteger)voice
+-(NSInteger)rootNote
 {
-    return [self.voiceRootNotes[voice] integerValue];
+    return self.rootNote;
 }
 
--(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice
+-(void)setRootNote:(NSInteger)note
 {
-    self.voiceRootNotes[voice] = @(note);
+    self.rootNote = note;
 }
 
--(NSString *)scaleForVoice:(NSInteger)voice
+-(NSString *)scale
 {
-    return self.voiceScales[voice];
+    return self.scale;
 }
 
--(void)setScale:(NSString *)scale forVoice:(NSInteger)voice
+-(void)setScale:(NSString *)scale
 {
-    self.voiceScales[voice] = scale;
+    self.scale = scale;
 }
 
 -(void)killAudio
@@ -351,17 +333,11 @@
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
     [self.audioManager addVoice:@"c0" withSound:@"JR_elepiano" withPatch:0 withVolume:1];
-    self.voiceScales[0] = @"Major";
-    self.voiceRootNotes[0] = @(48);
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
-    self.voiceScales[1] = @"Major";
-    self.voiceRootNotes[1] = @(48);
     [self.audioManager addVoice:@"c2" withSound:@"JR_ligeti" withPatch:0 withVolume:1];
-    self.voiceScales[2] = @"Minor";
-    self.voiceRootNotes[2] = @(48);
     [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
-    self.voiceScales[3] = @"Minor";
-    self.voiceRootNotes[3] = @(48);
+    self.scale = @"Major";
+    self.rootNote = 48; //C4
 
     // Start the audio manager. After the audio manager has started you can't add any more
     // voices
@@ -547,9 +523,9 @@
 // http://www.midimountain.com/midi/midi_note_numbers.html
 -(int)convertToMidi:(int)note voice:(int)voice
 {
-    NSArray *scaleArray = kSCALES[self.voiceScales[voice]];
+    NSArray *scaleArray = kSCALES[self.scale];
     NSInteger count = [scaleArray count];
-    int midiNote = [[scaleArray objectAtIndex:(note % count)] intValue] + (12 * (note / count)) + [self.voiceRootNotes[voice] intValue];
+    int midiNote = [[scaleArray objectAtIndex:(note % count)] intValue] + (12 * (note / count)) + self.rootNote;
     return midiNote;
 }
 
