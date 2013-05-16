@@ -10,16 +10,21 @@
 
 @protocol OptionsDelegate <NSObject>
 @required
+//Individual voices
 -(void)setVolume:(float)volume forVoice:(NSInteger)voice;
 -(float)volumeForVoice:(NSInteger)voice;
 -(void)setPan:(float)pan forVoice:(NSInteger)voice;
 -(float)panForVoice:(NSInteger)voice;
--(NSInteger)rootNoteForVoice:(NSInteger)voice;
--(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice;
--(NSString *)scaleForVoice:(NSInteger)voice;
--(void)setScale:(NSString *)scale forVoice:(NSInteger)voice;
+//General
+-(NSInteger)rootNote;
+-(void)setRootNote:(NSInteger)note;
+-(NSString *)scale;
+-(void)setScale:(NSString *)scale;
+//Audio setup
 -(void)killAudio;
 -(void)startAudio;
+-(NSString *)instrumentForVoice:(NSInteger)voice;
+-(void)setInstrument:(NSString *)instrument forVoice:(NSInteger)voice;
 @end
 
 @interface OptionsViewController : UIViewController

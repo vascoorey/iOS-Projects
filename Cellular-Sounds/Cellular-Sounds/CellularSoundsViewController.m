@@ -296,7 +296,7 @@
 
 -(IBAction)doneSettingOptions:(UIStoryboardSegue *)segue
 {
-    
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 #pragma mark - MIDI-Library

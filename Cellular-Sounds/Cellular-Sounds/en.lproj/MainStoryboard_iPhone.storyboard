@@ -387,6 +387,7 @@
                 <relationship kind="action" name="changeSelectedVoice:" candidateClass="UISegmentedControl"/>
                 <relationship kind="action" name="changeVolume:" candidateClass="UISlider"/>
                 <relationship kind="action" name="killPressed:"/>
+                <relationship kind="action" name="startPressed:"/>
                 <relationship kind="outlet" name="panSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="voiceSegmentedControl" candidateClass="UISegmentedControl"/>
