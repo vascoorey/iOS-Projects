@@ -19,6 +19,7 @@
 -(NSString *)scaleForVoice:(NSInteger)voice;
 -(void)setScale:(NSString *)scale forVoice:(NSInteger)voice;
 -(void)killAudio;
+-(void)startAudio;
 @end
 
 @interface OptionsViewController : UIViewController

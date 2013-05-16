@@ -87,6 +87,10 @@
     [self.delegate killAudio];
 }
 
+- (IBAction)startPressed:(id)sender {
+    [self.delegate startAudio];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
