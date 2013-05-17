@@ -170,26 +170,6 @@
     [self.audioManager setPan:pan forChannel:voice];
 }
 
--(NSInteger)rootNote
-{
-    return self.rootNote;
-}
-
--(void)setRootNote:(NSInteger)note
-{
-    self.rootNote = note;
-}
-
--(NSString *)scale
-{
-    return self.scale;
-}
-
--(void)setScale:(NSString *)scale
-{
-    self.scale = scale;
-}
-
 -(void)killAudio
 {
     [self.audioManager stopAudioGraph];
@@ -214,7 +194,8 @@
 
 #pragma mark - IBActions
 
-- (IBAction)startStop:(UIButton *)sender {
+- (IBAction)startStop:(UIButton *)sender
+{
     if(!self.isPlaying)
     {
         [self.midiClock resume];
@@ -222,7 +203,8 @@
         [sender setTitle:@"Pause" forState:UIControlStateNormal];
         self.playing = YES;
     }
-    else {
+    else
+    {
         self.playing = NO;
         [self.midiClock pause];
         [self.audioManager setVolume:0];
@@ -230,7 +212,8 @@
     }
 }
 
-- (IBAction)reset {
+- (IBAction)reset
+{
     [self.pool reset];
     self.gridView.grid = self.pool.state;
     @synchronized(self.sequence)
@@ -239,10 +222,12 @@
     }
 }
 
-- (IBAction)changeCurrentSpecies:(UIButton *)sender {
+- (IBAction)changeCurrentSpecies:(UIButton *)sender
+{
     self.currentSpecies = sender.tag;
     NSString *text;
-    switch (sender.tag) {
+    switch (sender.tag)
+    {
         case 1:
             text = @"Blue";
             break;
@@ -262,12 +247,14 @@
     self.currentSpeciesLabel.textColor = sender.backgroundColor;
 }
 
-- (IBAction)poolModeButtonPressed:(UIButton *)sender {
+- (IBAction)poolModeButtonPressed:(UIButton *)sender
+{
     sender.selected = !sender.selected;
     self.pool.gameMode = sender.selected ? PoolOfLifeGameModeNone : PoolOfLifeGameModeConway;
 }
 
-- (IBAction)changeCurrentGrid:(UISegmentedControl *)sender {
+- (IBAction)changeCurrentGrid:(UISegmentedControl *)sender
+{
     if(sender.selectedSegmentIndex != self.pool.currentGrid)
     {
         self.pool.currentGrid = sender.selectedSegmentIndex;
@@ -285,7 +272,8 @@
 
 // What to do when a new note is activated - be very careful!! We're
 // multi-threading
--(void) handleNoteEvent:(BMidiNote *)note {
+-(void) handleNoteEvent:(BMidiNote *)note
+{
     // Play the note in the audio manager
     [self.audioManager playNote:note];
     //NSLog(@"Note: %d, Channel: %d, Velocity: %d, Start: %d, Duration: %d", note.note, note.channel, note.velocity, [note getStartTime], [note getDuration]);
@@ -293,7 +281,8 @@
 }
 
 // Handle any tempo events which occur
--(void) handleTempoEvent:(BTempoEvent *)tempoEvent {
+-(void) handleTempoEvent:(BTempoEvent *)tempoEvent
+{
     // Set the midi clock PPNQ
     if(tempoEvent.type == BPPNQ) {
         self.midiClock.PPQN = tempoEvent.PPNQ;
@@ -352,7 +341,8 @@
 
 #pragma mark - Update Methods
 
--(void) audioLoop {
+-(void) audioLoop
+{
     // Loop until the program terminates
     while (true) {
         
@@ -410,8 +400,8 @@
 }
 
 // Play the next notes in the sequence
--(void) updateSequence: (NSInteger) timeInPulses{
-    
+-(void) updateSequence: (NSInteger) timeInPulses
+{    
     // Other pointers we setup to improve efficiency
     BMidiEvent * midiEvent;
     NSMutableArray *toDelete = [[NSMutableArray alloc] init];
