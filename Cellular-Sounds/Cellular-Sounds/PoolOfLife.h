@@ -28,12 +28,9 @@ typedef enum
 //Get the current state
 @property (nonatomic, readonly) NSMutableArray *state;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
-@property (nonatomic, readonly) NSInteger numGrids;
-//Use this to change the grid. Will allow number [0..(numGrids - 1)]
-@property (nonatomic) NSInteger currentGrid;
 
 //Designated initializer
--(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode grids:(NSInteger)grids;
+-(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
 -(void)reset;
 -(void)performStep;
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started;

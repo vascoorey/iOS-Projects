@@ -17,7 +17,6 @@
 @property (nonatomic) NSInteger currentCycleStep;
 @property (nonatomic) NSInteger nextRowIndex;
 @property (nonatomic) NSInteger foodCurrentlyActive;
-@property (nonatomic, strong) NSMutableArray *allGrids;
 @property (nonatomic, strong) NSMutableArray *grid;
 @property (nonatomic, strong) NSMutableArray *neighbors;
 @property (nonatomic, strong) NSMutableArray *dominantSpecies;
@@ -32,11 +31,6 @@
         _dominantSpecies = [[NSMutableArray alloc] initWithCapacity:self.numRows];
     }
     return _dominantSpecies;
-}
-
--(NSMutableArray *)grid
-{
-    return self.allGrids[self.currentGrid];
 }
 
 -(NSMutableArray *)neighbors
@@ -58,32 +52,9 @@
     return state;
 }
 
--(NSMutableArray *)allGrids
-{
-    if(!_allGrids)
-    {
-        _allGrids = [[NSMutableArray alloc] initWithCapacity:self.numGrids];
-    }
-    return _allGrids;
-}
-
--(void)setCurrentGrid:(NSInteger)currentGrid
-{
-    if(currentGrid < 0)
-    {
-        currentGrid = 0;
-    }
-    else if(currentGrid >= self.numGrids)
-    {
-        currentGrid = self.numGrids - 1;
-    }
-    NSLog(@"Old: %d, new: %d", _currentGrid, currentGrid);
-    _currentGrid = currentGrid;
-}
-
 #pragma mark -
 
--(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode grids:(NSInteger)grids
+-(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode
 {
     if((self = [super init]))
     {
@@ -91,8 +62,6 @@
         self.numCols = cols;
         self.gameMode = gameMode;
         self.nextRowIndex = 0;
-        self.numGrids = grids;
-        self.currentGrid = 0;
         [self reset];
     }
     return self;
@@ -100,24 +69,19 @@
 
 -(void)reset
 {
-    self.allGrids = nil;
     self.neighbors = nil;
     self.priorCol = -1;
     self.priorRow = -1;
     self.nextRowIndex = 0;
-    for(int numGrid = 0; numGrid < self.numGrids; numGrid ++)
+    self.grid = [[NSMutableArray alloc] initWithCapacity:self.numRows];
+    for(int row = 0; row < self.numRows; row ++)
     {
-        NSMutableArray *grid = [[NSMutableArray alloc] initWithCapacity:self.numRows];
-        for(int row = 0; row < self.numRows; row ++)
+        NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.numCols];
+        for(int col = 0; col < self.numCols; col ++)
         {
-            NSMutableArray *line = [[NSMutableArray alloc] initWithCapacity:self.numCols];
-            for(int col = 0; col < self.numCols; col ++)
-            {
-                line[col] = @(0);
-            }
-            grid[row] = line;
+            line[col] = @(0);
         }
-        self.allGrids[numGrid] = grid;
+        self.grid[row] = line;
     }
     for(int row = 0; row < self.numRows; row ++)
     {

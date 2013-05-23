@@ -24,6 +24,54 @@
     return mutableSelf;
 }
 
+-(NSArray *)slowBogoSort
+{
+    if(![self isSorted])
+    {
+        NSMutableArray *mutableSelf = [self mutableCopy];
+        NSMutableArray *sortedArray = [NSMutableArray arrayWithCapacity:[self count]];
+        BOOL done = NO;
+        while(!done)
+        {
+            if(![sortedArray count])
+            {
+                NSLog(@"Starting...");
+                NSInteger index = arc4random_uniform([mutableSelf count] + 1);
+                [sortedArray addObject:mutableSelf[index]];
+                [mutableSelf removeObjectAtIndex:index];
+                index = arc4random_uniform([mutableSelf count] + 1);
+                [sortedArray addObject:mutableSelf[index]];
+                [mutableSelf removeObjectAtIndex:index];
+            }
+            else
+            {
+                NSLog(@"Continuing...");
+                NSInteger index = arc4random_uniform([mutableSelf count] + 1);
+                [sortedArray addObject:mutableSelf[index]];
+                [mutableSelf removeObjectAtIndex:index];
+            }
+            printf("[");
+            for(int i = 0; i < [sortedArray count]; i ++)
+                printf(" %d ", [sortedArray[i] intValue]);
+            printf("]\n");
+            if([sortedArray isSorted])
+            {
+                done = [mutableSelf count] == 0;
+            }
+            else
+            {
+                sortedArray = [NSMutableArray arrayWithCapacity:[self count]];
+                mutableSelf = [self mutableCopy];
+            }
+        }
+        return sortedArray;
+    }
+    else
+    {
+        return self;
+    }
+}
+
 -(BOOL)isSorted
 {
     int count = [self count];

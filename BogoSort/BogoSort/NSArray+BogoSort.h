@@ -20,5 +20,6 @@
 //You have been warned that this is a terrible method.
 //Don't call it. Ever.
 -(NSArray *)bogoSort;
+-(NSArray *)slowBogoSort;
 
 @end

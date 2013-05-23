@@ -44,10 +44,12 @@
 @property (nonatomic) NSInteger startTimeForNextBar;
 @property (nonatomic) NSInteger lineDeltaTime;
 //Model
-@property (nonatomic, strong) PoolOfLife *pool;
+@property (nonatomic) NSInteger numPools;
+@property (nonatomic) NSInteger currentPool;
+@property (nonatomic, strong) NSArray *pools;
+@property (nonatomic, readonly) PoolOfLife *pool;
 @property (nonatomic) NSInteger numRows;
 @property (nonatomic) NSInteger numCols;
-@property (nonatomic) NSInteger numGrids;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
 @property (nonatomic) NSInteger currentSpecies;
 @property (nonatomic) NSInteger updateTime;
@@ -64,12 +66,36 @@
 
 -(PoolOfLife *)pool
 {
-    if(!_pool)
+    return [self.pools count] ? self.pools[self.currentPool] : nil;
+}
+
+-(void)setNumPools:(NSInteger)numPools
+{
+    if(numPools > 0 && numPools != _numPools)
     {
-        _pool = [[PoolOfLife alloc] initWithRows:self.numRows cols:self.numCols gameMode:self.gameMode grids:self.numGrids];
-        _pool.delegate = self;
+        _numPools = numPools;
+        for(PoolOfLife *pool in _pools)
+        {
+            pool.delegate = nil;
+        }
+        _pools = nil;
     }
-    return _pool;
+}
+
+-(NSArray *)pools
+{
+    if(!_pools)
+    {
+        NSMutableArray *allPools = [NSMutableArray array];
+        for(int i = 0; i < self.numPools; i ++)
+        {
+            PoolOfLife *newPool = [[PoolOfLife alloc] initWithRows:self.numRows cols:self.numCols gameMode:PoolOfLifeGameModeConway];
+            newPool.delegate = self;
+            [allPools addObject:newPool];
+        }
+        _pools = allPools;
+    }
+    return _pools;
 }
 
 -(NSMutableArray *)completeSong
@@ -89,8 +115,8 @@
     self.numCols = 21;
     self.numRows = 16;
     self.currentSpecies = 1;
-    self.numGrids = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 4 : 1;
     self.gameMode = PoolOfLifeGameModeConway;
+    self.numPools = 5;
     self.playing = YES;
     [self setupSound];
 }
@@ -214,7 +240,7 @@
 
 - (IBAction)reset
 {
-    [self.pool reset];
+    [self.pools makeObjectsPerformSelector:@selector(reset)];
     self.gridView.grid = self.pool.state;
     @synchronized(self.sequence)
     {
@@ -251,14 +277,6 @@
 {
     sender.selected = !sender.selected;
     self.pool.gameMode = sender.selected ? PoolOfLifeGameModeNone : PoolOfLifeGameModeConway;
-}
-
-- (IBAction)changeCurrentGrid:(UISegmentedControl *)sender
-{
-    if(sender.selectedSegmentIndex != self.pool.currentGrid)
-    {
-        self.pool.currentGrid = sender.selectedSegmentIndex;
-    }
 }
 
 #pragma mark - Unwind Segue
@@ -322,9 +340,9 @@
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
     [self.audioManager addVoice:@"c0" withSound:@"JR__pad" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c1" withSound:@"JR_bulles2" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c2" withSound:@"JR_ligeti" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c3" withSound:@"JR_organ" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c1" withSound:@"JR_flute electronique" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c2" withSound:@"JR_PADstring" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c3" withSound:@"JR_voice2" withPatch:0 withVolume:1];
     self.scale = @"Major";
     self.rootNote = 48; //C4
 
@@ -378,6 +396,7 @@
                         {
                             NSLog(@"*** MIDI Clock skew detected! ***");
                             NSLog(@"*** Last Beat: %g ms, Current Beat: %g ms ***", self.timeOfLastBeat, currentBeat);
+                            NSLog(@"*** Beat Durations: %g ***", (self.midiClock.BPM / 60.0));
                         }
                         self.timeOfLastBeat = currentBeat;
                     }
@@ -525,7 +544,11 @@
 - (void) dealloc
 {
     //Model
-    self.pool = nil;
+    for(PoolOfLife *pool in self.pools)
+    {
+        pool.delegate = nil;
+    }
+    self.pools = nil;
     //MIDI
     self.midiClock = nil;
     self.sequencePlayer = nil;

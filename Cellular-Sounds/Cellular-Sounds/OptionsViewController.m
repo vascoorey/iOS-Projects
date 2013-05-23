@@ -95,7 +95,6 @@
 {
     [super viewWillAppear:animated];
     [self refresh];
-    NSLog(@"%@", self.delegate);
 }
 
 - (IBAction)changeVolume:(UISlider *)sender {
