@@ -116,7 +116,7 @@
     self.numRows = 16;
     self.currentSpecies = 1;
     self.gameMode = PoolOfLifeGameModeConway;
-    self.numPools = 5;
+    self.numPools = 4;
     self.playing = YES;
     [self setupSound];
 }
@@ -273,6 +273,11 @@
     self.currentSpeciesLabel.textColor = sender.backgroundColor;
 }
 
+- (IBAction)changeCurrentPool:(UISegmentedControl *)sender {
+    self.currentPool = sender.selectedSegmentIndex;
+    self.gridView.grid = self.pool.state;
+}
+
 - (IBAction)poolModeButtonPressed:(UIButton *)sender
 {
     sender.selected = !sender.selected;
@@ -340,7 +345,7 @@
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
     [self.audioManager addVoice:@"c0" withSound:@"JR__pad" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c1" withSound:@"JR_flute electronique" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c2" withSound:@"JR_PADstring" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c3" withSound:@"JR_voice2" withPatch:0 withVolume:1];
     self.scale = @"Major";
@@ -466,7 +471,11 @@
 {
     //NSLog(@"%g: working!", CACurrentMediaTime());
     [self.pool performStep];
-    NSArray *currentGrid = self.pool.state;
+    NSMutableArray *grids = [NSMutableArray arrayWithCapacity:self.numPools];
+    for(int i = 0; i < self.numPools; i ++)
+    {
+        [grids addObject:((PoolOfLife *)self.pools[i]).state];
+    }
     NSInteger startTime = self.startTimeForNextBar;
     if(!startTime)
     {
@@ -476,46 +485,49 @@
     NSInteger channel = 0;
     NSMutableDictionary *notes = [[NSMutableDictionary alloc] init];
     NSMutableArray *finalNotes = [[NSMutableArray alloc] init];
-    for(int row = 0; row < self.numRows; row ++)
+    for(NSArray *currentGrid in grids)
     {
-        for(int col = 0; col < self.numCols; col ++)
+        for(int row = 0; row < self.numRows; row ++)
         {
-            NSNumber *currentCol = @(col);
-            NSInteger dt = row * self.lineDeltaTime;
-            if([[notes allKeys] containsObject:currentCol])
+            for(int col = 0; col < self.numCols; col ++)
             {
-                if([currentGrid[row][col] intValue])
+                NSNumber *currentCol = @(col);
+                NSInteger dt = row * self.lineDeltaTime;
+                if([[notes allKeys] containsObject:currentCol])
                 {
-                    //Update the note in the dictionary
-                    BMidiNote *note = notes[currentCol];
-                    [note setDuration:([note getDuration] + self.lineDeltaTime)];
+                    if([currentGrid[row][col] intValue])
+                    {
+                        //Update the note in the dictionary
+                        BMidiNote *note = notes[currentCol];
+                        [note setDuration:([note getDuration] + self.lineDeltaTime)];
+                    }
+                    else
+                    {
+                        //Remove the note from the dictionary and insert it into finalNotes
+                        BMidiNote *noteToAdd = notes[currentCol];
+                        //                        BMidiNote *noteOff = [[BMidiNote alloc] init];
+                        //                        noteOff.note = noteToAdd.note;
+                        //                        noteOff.channel = 0;
+                        //                        noteOff.velocity = 0;
+                        //                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
+                        //                        [finalNotes addObject:noteOff];
+                        [finalNotes addObject:noteToAdd];
+                        [notes removeObjectForKey:currentCol];
+                    }
                 }
                 else
                 {
-                    //Remove the note from the dictionary and insert it into finalNotes
-                    BMidiNote *noteToAdd = notes[currentCol];
-                    //                        BMidiNote *noteOff = [[BMidiNote alloc] init];
-                    //                        noteOff.note = noteToAdd.note;
-                    //                        noteOff.channel = 0;
-                    //                        noteOff.velocity = 0;
-                    //                        [noteOff setStartTime:[noteToAdd getStartTime] + [noteToAdd getDuration]];
-                    //                        [finalNotes addObject:noteOff];
-                    [finalNotes addObject:noteToAdd];
-                    [notes removeObjectForKey:currentCol];
-                }
-            }
-            else
-            {
-                if((channel = [currentGrid[row][col] intValue]))
-                {
-                    //Create a new note and insert it into the dictionary
-                    BMidiNote *note = [[BMidiNote alloc] init];
-                    note.channel = (channel - 1);
-                    note.velocity = 127;
-                    note.note = [self convertToMidi:col voice:(channel - 1)];
-                    [note setStartTime:(startTime + dt)];
-                    [note setDuration:self.lineDeltaTime];
-                    notes[currentCol] = note;
+                    if((channel = [currentGrid[row][col] intValue]))
+                    {
+                        //Create a new note and insert it into the dictionary
+                        BMidiNote *note = [[BMidiNote alloc] init];
+                        note.channel = (channel - 1);
+                        note.velocity = 127;
+                        note.note = [self convertToMidi:col voice:(channel - 1)];
+                        [note setStartTime:(startTime + dt)];
+                        [note setDuration:self.lineDeltaTime];
+                        notes[currentCol] = note;
+                    }
                 }
             }
         }
