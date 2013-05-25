@@ -6,7 +6,7 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "Life.h"
 
 typedef enum
 {
@@ -16,24 +16,12 @@ typedef enum
     PoolOfLifeGameModeConway,
 } PoolOfLifeGameMode;
 
-@protocol PoolOfLifeDelegate <NSObject>
-@optional
--(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col;
--(void)didActivateCellAtRow:(NSInteger)row col:(NSInteger)col species:(NSInteger)species;
-@end
+@interface PoolOfLife : Life
 
-@interface PoolOfLife : NSObject
-
-@property (nonatomic, strong) id <PoolOfLifeDelegate> delegate;
-//Get the current state
-@property (nonatomic, readonly) NSMutableArray *state;
 @property (nonatomic) PoolOfLifeGameMode gameMode;
 
 //Designated initializer
 -(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
--(void)reset;
--(void)performStep;
--(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started;
 //Use this method if you have set numSpecies > 1
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started species:(NSInteger)species;
 

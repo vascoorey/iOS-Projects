@@ -25,7 +25,7 @@
 //Notes
 #import "NoteDefs.h"
 
-@interface CellularSoundsViewController () <GridViewDelegate, PoolOfLifeDelegate, OptionsDelegate>
+@interface CellularSoundsViewController () <GridViewDelegate, LifeDelegate, OptionsDelegate>
 //Outlets
 @property (weak, nonatomic) IBOutlet UILabel *metronomeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentSpeciesLabel;
@@ -276,6 +276,7 @@
 - (IBAction)changeCurrentPool:(UISegmentedControl *)sender {
     self.currentPool = sender.selectedSegmentIndex;
     self.gridView.grid = self.pool.state;
+    self.poolModeButton.selected = self.pool.gameMode == PoolOfLifeGameModeNone;
 }
 
 - (IBAction)poolModeButtonPressed:(UIButton *)sender
@@ -347,7 +348,7 @@
     [self.audioManager addVoice:@"c0" withSound:@"JR__pad" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c2" withSound:@"JR_PADstring" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c3" withSound:@"JR_voice2" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:0 withVolume:1];
     self.scale = @"Major";
     self.rootNote = 48; //C4
 
