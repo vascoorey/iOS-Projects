@@ -22,7 +22,5 @@ typedef enum
 
 //Designated initializer
 -(id)initWithRows:(NSInteger)rows cols:(NSInteger)cols gameMode:(PoolOfLifeGameMode)gameMode;
-//Use this method if you have set numSpecies > 1
--(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started species:(NSInteger)species;
 
 @end

@@ -9,8 +9,6 @@
 #import "PoolOfLife.h"
 
 @interface PoolOfLife ()
-@property (nonatomic) NSInteger numRows;
-@property (nonatomic) NSInteger numCols;
 @property (nonatomic, readwrite) NSInteger numGrids;
 @property (nonatomic) NSInteger priorRow;
 @property (nonatomic) NSInteger priorCol;
@@ -169,55 +167,6 @@
                 }
             }
         }
-    }
-}
-
--(NSInteger)previousRow:(NSInteger)row
-{
-    //Wrap around if row == 0
-    if(!row)
-    {
-        return self.numRows - 1;
-    }
-    else
-    {
-        return (row - 1) % self.numRows;
-    }
-}
-
--(NSInteger)previousCol:(NSInteger)col
-{
-    if(!col)
-    {
-        return self.numCols - 1;
-    }
-    else
-    {
-        return (col - 1) % self.numCols;
-    }
-}
-
--(NSInteger)nextRow:(NSInteger)row
-{
-    if(row == self.numRows - 1)
-    {
-        return 0;
-    }
-    else
-    {
-        return (row + 1) % self.numRows;
-    }
-}
-
--(NSInteger)nextCol:(NSInteger)col
-{
-    if(col == self.numCols - 1)
-    {
-        return 0;
-    }
-    else
-    {
-        return (col + 1) % self.numCols;
     }
 }
 

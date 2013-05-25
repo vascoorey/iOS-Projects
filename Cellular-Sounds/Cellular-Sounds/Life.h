@@ -19,9 +19,19 @@
 //Get the current state
 @property (nonatomic, readonly) NSMutableArray *state;
 @property (nonatomic, strong) id <LifeDelegate> delegate;
+@property (nonatomic) NSInteger numRows;
+@property (nonatomic) NSInteger numCols;
 
+//Provided
+-(NSInteger)previousRow:(NSInteger)row;
+-(NSInteger)nextRow:(NSInteger)row;
+-(NSInteger)previousCol:(NSInteger)col;
+-(NSInteger)nextCol:(NSInteger)col;
+//Abstract
 -(void)reset;
 -(void)performStep;
 -(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started;
+//@requires species >= 0
+-(void)flipCellAtRow:(NSInteger)row col:(NSInteger)col started:(BOOL)started species:(NSInteger)species;
 
 @end

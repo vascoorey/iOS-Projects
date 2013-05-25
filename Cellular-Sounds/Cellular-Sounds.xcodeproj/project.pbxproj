@@ -335,6 +335,7 @@
 		BC7CCFAA172C3B7900BF5A4D /* Wrench.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7CCF70172C3B7900BF5A4D /* Wrench.png */; };
 		BC7CCFAE172C3DF300BF5A4D /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7CCFAD172C3DF300BF5A4D /* pause.png */; };
 		BC7CCFB1172C40F500BF5A4D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7CCFB0172C40F500BF5A4D /* OptionsViewController.m */; };
+		BC94EAB517510AC300C5FD5B /* bdlutes_musicbox.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC94EAB417510AC300C5FD5B /* bdlutes_musicbox.sf2 */; };
 		BC9CCC65172A949D002D21F2 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC4F172A949D002D21F2 /* AudioManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC9CCC66172A949D002D21F2 /* BChannelEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC51172A949D002D21F2 /* BChannelEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC9CCC67172A949D002D21F2 /* BMidiClock.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CCC53172A949D002D21F2 /* BMidiClock.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -700,6 +701,7 @@
 		BC7CCFAF172C40F500BF5A4D /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		BC7CCFB0172C40F500BF5A4D /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		BC7F6D56172EAAE200AAF8F4 /* NoteDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDefs.h; sourceTree = "<group>"; };
+		BC94EAB417510AC300C5FD5B /* bdlutes_musicbox.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bdlutes_musicbox.sf2; sourceTree = "<group>"; };
 		BC9CCC4E172A949D002D21F2 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioManager.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.h"; sourceTree = "<group>"; };
 		BC9CCC4F172A949D002D21F2 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "../../../MIDI-Library/co.deluge.advancedmidi/AudioManager.m"; sourceTree = "<group>"; };
 		BC9CCC50172A949D002D21F2 /* BChannelEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BChannelEvent.h; path = "../../../MIDI-Library/co.deluge.advancedmidi/BChannelEvent.h"; sourceTree = "<group>"; };
@@ -886,6 +888,7 @@
 		BC12A5DE1726AD7D00FE77F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC94EAB417510AC300C5FD5B /* bdlutes_musicbox.sf2 */,
 				BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */,
 				BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */,
 				BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */,
@@ -1628,6 +1631,7 @@
 				BC6F1FCD172E977C00B6C69E /* JR__pad.SF2 in Resources */,
 				BC6F1FCE172E977C00B6C69E /* JR_backgr.sf2 in Resources */,
 				BC689AFB174FC9F7007B654C /* music box.sf2 in Resources */,
+				BC94EAB517510AC300C5FD5B /* bdlutes_musicbox.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

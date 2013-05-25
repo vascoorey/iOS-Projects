@@ -347,8 +347,8 @@
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
     [self.audioManager addVoice:@"c0" withSound:@"JR__pad" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c2" withSound:@"JR_PADstring" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c2" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:1 withVolume:1];
     self.scale = @"Major";
     self.rootNote = 48; //C4
 
