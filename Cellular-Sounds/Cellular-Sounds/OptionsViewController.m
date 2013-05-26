@@ -12,6 +12,7 @@
 @interface OptionsViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *panSlider;
+@property (weak, nonatomic) IBOutlet UISlider *bpmSlider;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *voiceSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @end
@@ -78,6 +79,7 @@
     self.volumeSlider.value = [self.delegate volumeForVoice:self.currentVoice];
     self.panSlider.value = [self.delegate panForVoice:self.currentVoice];
     self.voiceSegmentedControl.selectedSegmentIndex = self.currentVoice;
+    self.bpmSlider.value = [self.delegate respondsToSelector:@selector(BPM)] ? [self.delegate BPM] : 0;
 //    [self.pickerView selectRow:[self.delegate rootNoteForVoice:self.currentVoice] inComponent:0 animated:YES];
 //    NSInteger pickedScale = [[kSCALES allKeys] indexOfObject:[self.delegate scaleForVoice:self.currentVoice]];
 //    [self.pickerView selectRow:pickedScale inComponent:1 animated:YES];
@@ -95,6 +97,13 @@
 {
     [super viewWillAppear:animated];
     [self refresh];
+}
+
+- (IBAction)changeBPM:(UISlider *)sender {
+    if([self.delegate respondsToSelector:@selector(setBPM:)])
+    {
+        [self.delegate setBPM:(NSInteger)roundf(sender.value)];
+    }
 }
 
 - (IBAction)changeVolume:(UISlider *)sender {

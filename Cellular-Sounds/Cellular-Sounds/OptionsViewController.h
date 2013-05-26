@@ -26,6 +26,8 @@
 @optional
 -(NSString *)instrumentForVoice:(NSInteger)voice;
 -(void)setInstrument:(NSString *)instrument forVoice:(NSInteger)voice;
+-(NSInteger)BPM;
+-(void)setBPM:(NSInteger)BPM;
 @end
 
 @interface OptionsViewController : UIViewController

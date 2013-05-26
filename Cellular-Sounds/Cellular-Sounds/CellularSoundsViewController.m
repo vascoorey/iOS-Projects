@@ -206,6 +206,16 @@
     [self.audioManager restartAudioGraph];
 }
 
+-(NSInteger)BPM
+{
+    return (NSInteger)[self.midiClock BPM];
+}
+
+-(void)setBPM:(NSInteger)BPM
+{
+    self.midiClock.BPM = (double)BPM;
+}
+
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -471,11 +481,11 @@
 -(void)updatePool
 {
     //NSLog(@"%g: working!", CACurrentMediaTime());
-    [self.pool performStep];
+    [self.pools makeObjectsPerformSelector:@selector(performStep)];
     NSMutableArray *grids = [NSMutableArray arrayWithCapacity:self.numPools];
-    for(int i = 0; i < self.numPools; i ++)
+    for(PoolOfLife *pool in self.pools)
     {
-        [grids addObject:((PoolOfLife *)self.pools[i]).state];
+        [grids addObject:pool.state];
     }
     NSInteger startTime = self.startTimeForNextBar;
     if(!startTime)
