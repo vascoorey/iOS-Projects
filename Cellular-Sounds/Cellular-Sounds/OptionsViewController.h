@@ -16,10 +16,10 @@
 -(void)setPan:(float)pan forVoice:(NSInteger)voice;
 -(float)panForVoice:(NSInteger)voice;
 //General
--(NSInteger)rootNote;
--(void)setRootNote:(NSInteger)note;
--(NSString *)scale;
--(void)setScale:(NSString *)scale;
+-(NSInteger)rootNoteForVoice:(NSInteger)voice;
+-(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice;
+-(NSString *)scaleForVoice:(NSInteger)voice;
+-(void)setScale:(NSString *)scale forVoice:(NSInteger)voice;
 //Audio setup
 -(void)killAudio;
 -(void)startAudio;

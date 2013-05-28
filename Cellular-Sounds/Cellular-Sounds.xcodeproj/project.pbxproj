@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC00CB0A1753ED44004B83F6 /* xylophone esmart.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC00CB091753ED44004B83F6 /* xylophone esmart.sf2 */; };
 		BC12A52E1726924000FE77F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A52D1726924000FE77F4 /* UIKit.framework */; };
 		BC12A5301726924000FE77F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A52F1726924000FE77F4 /* Foundation.framework */; };
 		BC12A5321726924000FE77F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A5311726924000FE77F4 /* CoreGraphics.framework */; };
@@ -33,6 +34,8 @@
 		BC12A60B1726AD7D00FE77F4 /* mountain_king.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */; };
 		BC12A60C1726AD7D00FE77F4 /* november_rain.mid in Resources */ = {isa = PBXBuildFile; fileRef = BC12A5F51726AD7D00FE77F4 /* november_rain.mid */; };
 		BC12A60E1726B0C500FE77F4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */; };
+		BC45884C17527A820019E70E /* toypiano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC45884B17527A820019E70E /* toypiano.sf2 */; };
+		BC45884E17527B070019E70E /* fmtoy_pianoish.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC45884D17527B070019E70E /* fmtoy_pianoish.sf2 */; };
 		BC689AFB174FC9F7007B654C /* music box.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC689AFA174FC9F7007B654C /* music box.sf2 */; };
 		BC689AFE174FCD4C007B654C /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = BC689AFD174FCD4C007B654C /* Cells.m */; };
 		BC689B01174FCE21007B654C /* Life.m in Sources */ = {isa = PBXBuildFile; fileRef = BC689B00174FCE21007B654C /* Life.m */; };
@@ -40,6 +43,7 @@
 		BC6F1FCA172E963500B6C69E /* JR_ligeti.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */; };
 		BC6F1FCD172E977C00B6C69E /* JR__pad.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */; };
 		BC6F1FCE172E977C00B6C69E /* JR_backgr.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */; };
+		BC7242E61753EBBB005077EF /* alex glockenspiel.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC7242E51753EBBB005077EF /* alex glockenspiel.sf2 */; };
 		BC769D74172B1333008412C4 /* JR_ambiance 1.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D54172B1333008412C4 /* JR_ambiance 1.SF2 */; };
 		BC769D75172B1333008412C4 /* JR_analog.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D55172B1333008412C4 /* JR_analog.sf2 */; };
 		BC769D77172B1333008412C4 /* JR_bells.SF2 in Resources */ = {isa = PBXBuildFile; fileRef = BC769D57172B1333008412C4 /* JR_bells.SF2 */; };
@@ -362,6 +366,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC00CB091753ED44004B83F6 /* xylophone esmart.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "xylophone esmart.sf2"; sourceTree = "<group>"; };
 		BC12A52A1726924000FE77F4 /* Cellular-Sounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cellular-Sounds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC12A52D1726924000FE77F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BC12A52F1726924000FE77F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -395,6 +400,8 @@
 		BC12A5F41726AD7D00FE77F4 /* mountain_king.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = mountain_king.mid; sourceTree = "<group>"; };
 		BC12A5F51726AD7D00FE77F4 /* november_rain.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = november_rain.mid; sourceTree = "<group>"; };
 		BC12A60D1726B0C500FE77F4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BC45884B17527A820019E70E /* toypiano.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = toypiano.sf2; sourceTree = "<group>"; };
+		BC45884D17527B070019E70E /* fmtoy_pianoish.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fmtoy_pianoish.sf2; sourceTree = "<group>"; };
 		BC689AFA174FC9F7007B654C /* music box.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "music box.sf2"; sourceTree = "<group>"; };
 		BC689AFC174FCD4C007B654C /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cells.h; sourceTree = "<group>"; };
 		BC689AFD174FCD4C007B654C /* Cells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cells.m; sourceTree = "<group>"; };
@@ -404,6 +411,7 @@
 		BC6F1FC9172E963500B6C69E /* JR_ligeti.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_ligeti.SF2; sourceTree = "<group>"; };
 		BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR__pad.SF2; sourceTree = "<group>"; };
 		BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_backgr.sf2; sourceTree = "<group>"; };
+		BC7242E51753EBBB005077EF /* alex glockenspiel.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "alex glockenspiel.sf2"; sourceTree = "<group>"; };
 		BC769D54172B1333008412C4 /* JR_ambiance 1.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JR_ambiance 1.SF2"; sourceTree = "<group>"; };
 		BC769D55172B1333008412C4 /* JR_analog.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_analog.sf2; sourceTree = "<group>"; };
 		BC769D57172B1333008412C4 /* JR_bells.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = JR_bells.SF2; sourceTree = "<group>"; };
@@ -888,6 +896,10 @@
 		BC12A5DE1726AD7D00FE77F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC00CB091753ED44004B83F6 /* xylophone esmart.sf2 */,
+				BC7242E51753EBBB005077EF /* alex glockenspiel.sf2 */,
+				BC45884D17527B070019E70E /* fmtoy_pianoish.sf2 */,
+				BC45884B17527A820019E70E /* toypiano.sf2 */,
 				BC94EAB417510AC300C5FD5B /* bdlutes_musicbox.sf2 */,
 				BC6F1FCB172E977B00B6C69E /* JR__pad.SF2 */,
 				BC6F1FCC172E977B00B6C69E /* JR_backgr.sf2 */,
@@ -1632,6 +1644,10 @@
 				BC6F1FCE172E977C00B6C69E /* JR_backgr.sf2 in Resources */,
 				BC689AFB174FC9F7007B654C /* music box.sf2 in Resources */,
 				BC94EAB517510AC300C5FD5B /* bdlutes_musicbox.sf2 in Resources */,
+				BC45884C17527A820019E70E /* toypiano.sf2 in Resources */,
+				BC45884E17527B070019E70E /* fmtoy_pianoish.sf2 in Resources */,
+				BC7242E61753EBBB005077EF /* alex glockenspiel.sf2 in Resources */,
+				BC00CB0A1753ED44004B83F6 /* xylophone esmart.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

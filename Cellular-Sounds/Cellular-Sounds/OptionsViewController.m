@@ -21,14 +21,14 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-//    if(!component)
-//    {
-//        [self.delegate setRootNote:row forVoice:self.currentVoice];
-//    }
-//    else
-//    {
-//        [self.delegate setScale:[kSCALES allKeys][row] forVoice:self.currentVoice];
-//    }
+    if(!component)
+    {
+        [self.delegate setRootNote:row forVoice:self.currentVoice];
+    }
+    else
+    {
+        [self.delegate setScale:[kSCALES allKeys][row] forVoice:self.currentVoice];
+    }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
@@ -80,9 +80,9 @@
     self.panSlider.value = [self.delegate panForVoice:self.currentVoice];
     self.voiceSegmentedControl.selectedSegmentIndex = self.currentVoice;
     self.bpmSlider.value = [self.delegate respondsToSelector:@selector(BPM)] ? [self.delegate BPM] : 0;
-//    [self.pickerView selectRow:[self.delegate rootNoteForVoice:self.currentVoice] inComponent:0 animated:YES];
-//    NSInteger pickedScale = [[kSCALES allKeys] indexOfObject:[self.delegate scaleForVoice:self.currentVoice]];
-//    [self.pickerView selectRow:pickedScale inComponent:1 animated:YES];
+    [self.pickerView selectRow:[self.delegate rootNoteForVoice:self.currentVoice] inComponent:0 animated:YES];
+    NSInteger pickedScale = [[kSCALES allKeys] indexOfObject:[self.delegate scaleForVoice:self.currentVoice]];
+    [self.pickerView selectRow:pickedScale inComponent:1 animated:YES];
 }
 
 - (IBAction)killPressed:(id)sender {

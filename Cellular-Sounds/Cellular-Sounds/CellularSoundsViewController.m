@@ -56,8 +56,8 @@
 //Control
 @property (nonatomic, getter = isPlaying) BOOL playing;
 //Note defs
-@property (nonatomic) NSInteger rootNote;
-@property (nonatomic, strong) NSString *scale;
+@property (nonatomic, strong) NSMutableArray *rootNotes;
+@property (nonatomic, strong) NSMutableArray *scales;
 @end
 
 @implementation CellularSoundsViewController
@@ -118,6 +118,8 @@
     self.gameMode = PoolOfLifeGameModeConway;
     self.numPools = 4;
     self.playing = YES;
+    self.scales = [@[@"Major",@"Major",@"Major",@"Major"] mutableCopy];
+    self.rootNotes = [@[@(48), @(48), @(48), @(48)] mutableCopy];
     [self setupSound];
 }
 
@@ -194,6 +196,26 @@
 -(void)setPan:(float)pan forVoice:(NSInteger)voice
 {
     [self.audioManager setPan:pan forChannel:voice];
+}
+
+-(NSString *)scaleForVoice:(NSInteger)voice
+{
+    return self.scales[voice];
+}
+
+-(void)setScale:(NSString *)scale forVoice:(NSInteger)voice
+{
+    self.scales[voice] = scale;
+}
+
+-(NSInteger)rootNoteForVoice:(NSInteger)voice
+{
+    return [self.rootNotes[voice] integerValue];
+}
+
+-(void)setRootNote:(NSInteger)note forVoice:(NSInteger)voice
+{
+    self.rootNotes[voice] = @(note);
 }
 
 -(void)killAudio
@@ -355,12 +377,10 @@
     
     // Load the default general midi instruments from the midi file
     //[self.audioManager configureForGeneralMidi:@"memory moog" sf2:@"Steinway Grand Piano" sf3:@"JR_organ" sf4:@"JR_vibra"];
-    [self.audioManager addVoice:@"c0" withSound:@"JR__pad" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c1" withSound:@"JR_vibra" withPatch:0 withVolume:1];
-    [self.audioManager addVoice:@"c2" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c0" withSound:@"alex glockenspiel" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c1" withSound:@"bdlutes_musicbox" withPatch:0 withVolume:1];
+    [self.audioManager addVoice:@"c2" withSound:@"xylophone esmart" withPatch:0 withVolume:1];
     [self.audioManager addVoice:@"c3" withSound:@"music box" withPatch:1 withVolume:1];
-    self.scale = @"Major";
-    self.rootNote = 48; //C4
 
     // Start the audio manager. After the audio manager has started you can't add any more
     // voices
@@ -534,7 +554,7 @@
                         BMidiNote *note = [[BMidiNote alloc] init];
                         note.channel = (channel - 1);
                         note.velocity = 127;
-                        note.note = [self convertToMidi:col voice:(channel - 1)];
+                        note.note = [self convertToMidi:col scale:(kSCALES[self.scales[channel - 1]]) rootNote:([self.rootNotes[channel - 1] integerValue])];
                         [note setStartTime:(startTime + dt)];
                         [note setDuration:self.lineDeltaTime];
                         notes[currentCol] = note;
@@ -553,11 +573,10 @@
 }
 
 // http://www.midimountain.com/midi/midi_note_numbers.html
--(int)convertToMidi:(int)note voice:(int)voice
+-(int)convertToMidi:(int)note scale:(NSArray *)scale rootNote:(NSInteger)rootNote
 {
-    NSArray *scaleArray = kSCALES[self.scale];
-    NSInteger count = [scaleArray count];
-    int midiNote = [[scaleArray objectAtIndex:(note % count)] intValue] + (12 * (note / count)) + self.rootNote;
+    NSInteger count = [scale count];
+    int midiNote = [scale[note % count] intValue] + (12 * (note / count)) + rootNote;
     return midiNote;
 }
 
